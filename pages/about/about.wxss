@@ -1,0 +1,36 @@
+/* pages/about/about.wxss */
+.sel_avatar_ctn {
+  width: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sel_avatar_img {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  margin-top: 50rpx;
+  background-color: rgb(219, 219, 243);
+}
+.sel_warm_title {
+  width: 70%;
+  font-size: 26rpx;
+  color: gray;
+}
+.sel_warm_info {
+  width: 70%;
+  font-size: 26rpx;
+  color: gray;
+}
+.sel_warm_optitle {
+  width: 70%;
+  font-size: 26rpx;
+  color: gray;
+  margin-top: 80rpx;
+}
+.sel_warm_opauth {
+  width: 70%;
+  font-size: 26rpx;
+  color: gray;
+}

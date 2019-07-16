@@ -1,0 +1,11 @@
+<!--components/posts/posts.wxml-->
+<!-- <text>components/posts/posts.wxml</text> -->
+<view class="swiper_ctn">
+  <swiper class="swiper_self" indicator-dots='true' autoplay='true' interval='5000' duration='1000' circular='true'>
+    <block wx:for="{{bnrUrl}}" wx:for-index="index">
+      <swiper-item class="swiper_item">
+        <image src='{{item.url}}' class='swiper_img' mode='aspectFill'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

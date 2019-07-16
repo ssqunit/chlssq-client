@@ -1,0 +1,16 @@
+<!--components/squareList_gr/squareListGr.wxml-->
+<view class="squ_ctn">
+  <block wx:for="{{squData}}" wx:for-index="index">
+    <view class="squ_unit_ctn">
+      <view class="squ_unit_tag_ctn">
+        <image class="squ_unit_tag_img" src="{{item.tag==1?'../../images/tag_yh.png':''}}"></image>
+      </view>
+      <view class="squ_unit_icon">
+        <image class="squ_unit_icon_img" mode='aspectFit' src="{{item.id==''?'../../images/gr_default.png':item.img}}"></image>
+      </view>
+      <view class="squ_unit_text">
+        <text class="squ_unit_text_value">{{item.name}}</text>
+      </view>
+    </view>
+  </block>
+</view>  

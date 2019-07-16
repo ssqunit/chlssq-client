@@ -1,0 +1,69 @@
+/* pages/searchSSQ/searchSSQ.wxss */
+.sea_ctn {
+  width: 100%;
+}
+.sea_sta_txt {
+  margin-left:10rpx;
+  font-size: 32rpx;
+  color:#ff9800;
+}
+.sea_sta_txt_line {
+  width: calc(100% - 20rpx);
+  height: 1rpx;
+  background-color: #ff9800;
+  margin-left: 10rpx;
+}
+.sea_res_ctn {
+  width:calc(100% - 20rpx);
+  margin-left: 10rpx;
+}
+.sea_res_item {
+  width:100%;
+  height: 180rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* border:1rpx solid gray; */
+  background-color: #ff9800;
+  margin-top: 5rpx;
+  border-radius: 20rpx;
+}
+.sea_item_left {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item_km {
+  width:100%;
+  height: 40rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: white;
+}
+.item_pos_icon {
+  width:100%;
+  height: 138rpx;
+}
+.sea_item_right {
+  width: 74%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item_img {
+  height: 70%;
+  width: 100%;
+  margin-top: 2rpx;
+}
+.item_name {
+  width: 100%;
+  font-size: 32rpx;
+  text-align: center;
+  color:white;
+}
+.hide_item {
+  height: 0rpx;
+}

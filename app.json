@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/selfDetail/selfDetail",
+    "pages/about/about",
+    "pages/searchSSQ/searchSSQ",
+    "pages/creatSSQ/creatSSQ",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ff9800",
+    "navigationBarTitleText": "社区商业圈",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
+    "list": [
+      {
+        "selectedIconPath": "images/tabBar_main_s.png",
+        "iconPath": "images/tabBar_main.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/tabBar_msg_s.png",
+        "iconPath": "images/tabBar_msg.png",
+        "pagePath": "pages/logs/logs",
+        "text": "信息"
+      },
+      {
+        "selectedIconPath": "images/tabBar_my_s.png",
+        "iconPath": "images/tabBar_my.png",
+        "pagePath": "pages/index/index",
+        "text": "我的社商"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

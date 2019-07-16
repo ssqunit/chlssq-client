@@ -1,0 +1,43 @@
+<!--pages/searchSSQ/searchSSQ.wxml-->
+<!-- <text>pages/searchSSQ/searchSSQ.wxml</text> -->
+<view class="container" style="background-color:white;">
+
+  <view class="sea_ctn" hidden="{{searchFlag?false:true}}">
+    <text class="sea_sta_txt">{{search_status_text}}</text> 
+    <view class="sea_sta_txt_line"></view>
+    <view class="sea_res_ctn">
+      <block wx:for="{{search_res}}" wx:for-index="index">
+        <view class="sea_res_item">
+          <view class="sea_item_left">
+            <text class="item_km">距离：{{item.dis}}</text>
+            <image class="item_pos_icon" mode="aspectFit" src="../../images/icon_pos.png"></image>
+          </view>
+          <view class="sea_item_right">
+            <image class="item_img" mode="aspectFit" src="{{item.img_url}}"></image>
+            <text class="item_name">{{item.name}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class="sea_ctn">
+    <text class="sea_sta_txt">{{search_fj_text}}</text> 
+    <view class="sea_res_ctn">
+      <block wx:for="{{fj_res}}" wx:for-index="index">
+        <view class="sea_res_item">
+          <view class="sea_item_left">
+            <text class="item_km">距离：{{item.dis}}</text>
+            <image class="item_pos_icon" mode="aspectFit" src="../../images/icon_pos.png"></image>
+          </view>
+          <view class="sea_item_right">
+            <image class="item_img" mode="aspectFit" src="{{item.img_url}}"></image>
+            <text class="item_name">{{item.name}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+</view>

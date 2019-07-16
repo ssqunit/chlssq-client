@@ -1,0 +1,168 @@
+/**index.wxss**/
+.userinfobar {
+  width:100%;
+  height: 88rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1rpx solid #ff9800;
+  border-bottom-color: white;
+}
+.userinfo-avatar {
+  width: 78rpx;
+  height: 78rpx;
+  margin: 5rpx;
+  border-radius: 50%;
+}
+.userinfo_nickname {
+  color: white;
+  font-size: 34rpx;
+  margin-left: 10rpx;
+}
+.userinfo_nowdate {
+  color:white;
+  font-size: 24rpx;
+  margin-left: 100rpx;
+  padding-top: 50rpx;
+}
+.searchbar-ctn {
+  width: 100%;
+  height: 84rpx;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-top: 1rpx;
+}
+.searchbar-ctn .searchbar {
+  width: 60%;
+  height: 100%;
+}
+.searchbar-ctn .fjssq {
+  width:19%;
+  font-size: 28rpx;
+  color: white;
+}
+.searchbar-ctn .newssq {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1rpx solid #ff9800;
+  border-left-color: white;
+}
+.searchbar-ctn .newssq .newssq_icon {
+  width: 100rpx;
+  height: 80rpx;
+}
+.searchbar-ctn .newssq .newssq_text {
+  width: 100%;
+  font-size: 24rpx;
+  text-align: center;
+  color: white;
+}
+.ssqname-ctn {
+  width: 100%;
+  height: 100rpx;
+  border: 1rpx solid #ff9800;
+  border-top-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.ssqname-ctn .pos_mark {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.ssqname-ctn .pos_mark .postext {
+  font-size: 22rpx;
+  color: white;
+}
+.ssqname-ctn .pos_mark .iconpos {
+  width: 100rpx;
+  height: 60rpx;
+  padding-bottom: 5rpx;
+}
+.ssqname-ctn .ssqname {
+  font-size: 34rpx;
+  color:white;
+}
+.ssqname-ctn .ssqjoin {
+  font-size: 24rpx;
+  color:white;
+  padding-left: 30rpx;
+}
+.poststext_ear {
+  width: 100%;
+  height:60rpx;
+}
+.posts_ear {
+  width: 100%;
+  height:280rpx;
+}
+.getuserinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.list_shangpu {
+  width: calc( 100% - 44rpx );
+  height: 360rpx;
+  padding: 15rpx 25rpx 5rpx 5rpx;
+}
+.list_tab_ctn {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+.list_tab {
+  width: 140rpx;
+  height: 50rpx;
+  background-color: white;
+  border-radius: 16rpx 16rpx 0rpx 0rpx;
+}
+.list_tab_text {
+  width: 100%;
+  font-size: 26rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10rpx;
+}
+.list_more {
+  width: 80rpx;
+  height: 100%;
+  font-size: 22rpx;
+  padding-left: 30rpx;
+  color:blue;
+  text-decoration-line: underline;
+}
+.list_ctn {
+  width: 100%;
+  height: 300rpx;
+  background-color: white;
+  border-radius: 0rpx 16rpx 16rpx 16rpx;
+  padding: 10rpx;
+}
+.list_geren {
+  width: calc( 100% - 44rpx );
+  height: 220rpx;
+  padding: 15rpx 25rpx 5rpx 5rpx;
+}
+.list_geren .list_ctn {
+  width: 100%;
+  height: 150rpx;
+}
+.banner_0 {
+  width: 90%;
+  height: 150rpx;
+  margin: 20rpx 5% 20rpx 5%;
+  background-color: blue;
+  border-radius: 10rpx;
+}

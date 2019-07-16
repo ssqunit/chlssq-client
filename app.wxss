@@ -1,0 +1,14 @@
+/**app.wxss**/
+/********设置全局式样***********/
+.container {
+  height: 100%;
+  background: #ff9800;
+  /*弹性模型*/
+  display: flex;
+  /*垂直方向 列方向 排布*/
+  flex-direction: column;
+  /*居中*/
+  align-items: center;
+  /*容器元素在主轴方向上的对齐方式*/
+  justify-content: space-between;
+} 
