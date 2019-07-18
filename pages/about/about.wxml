@@ -1,19 +1,4 @@
 <!--pages/about/about.wxml-->
-<view class="container" style="background-color:white;">
-  <view class="sel_avatar_ctn">
-    <image class="sel_avatar_img" src="../../images/code.jpg"></image>
-  </view>
-  <text class="sel_warm_title">关于平台：</text>
-  <text class="sel_warm_info">
-    本平台旨在给广大用户提供一个获取生活便利信息的服务平台，请尊敬的广大用户自觉遵守国家的相关法律法规，如有违反，平台保留追究相关责任用户法律责任的权限。
-  </text>
-  <text class="sel_warm_info">
-    请广大平台内容提供参与者保证提供的内容的真实有效性，切勿发布虚假误导性信息，一经发现，将永久封号。
-  </text>
-  <text class="sel_warm_info">
-    谢谢配合，祝您健康快乐！
-  </text>
-  <text class="sel_warm_optitle">平台开发运营商：</text>
-  <text class="sel_warm_opauth">深圳市小航科技有限公司</text>
-
+<view>
+关于平台
 </view>

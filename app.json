@@ -1,11 +1,17 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/selfDetail/selfDetail",
     "pages/about/about",
-    "pages/searchSSQ/searchSSQ",
-    "pages/creatSSQ/creatSSQ",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/message/message",
+    "pages/my/my",
+    "pages/admin/index",
+    "pages/admin/audit/index",
+    "pages/admin/audit/detail/detail",
+    "pages/admin/announcement/publish",
+    "pages/my/person/info",
+    "pages/district/detail/person/index",
+    "pages/district/detail/shop/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,26 +20,26 @@
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
-    "color": "#a9b7b7",
-    "selectedColor": "#11cd6e",
+    "color": "#666666",
+    "selectedColor": "#d81e06",
     "borderStyle": "white",
     "list": [
       {
-        "selectedIconPath": "images/tabBar_main_s.png",
-        "iconPath": "images/tabBar_main.png",
+        "selectedIconPath": "static/icons/home_r.png",
+        "iconPath": "static/icons/home_b.png",
         "pagePath": "pages/index/index",
         "text": "首页"
       },
       {
-        "selectedIconPath": "images/tabBar_msg_s.png",
-        "iconPath": "images/tabBar_msg.png",
-        "pagePath": "pages/logs/logs",
+        "selectedIconPath": "static/icons/message_r.png",
+        "iconPath": "static/icons/message_b.png",
+        "pagePath": "pages/message/message",
         "text": "信息"
       },
       {
-        "selectedIconPath": "images/tabBar_my_s.png",
-        "iconPath": "images/tabBar_my.png",
-        "pagePath": "pages/index/index",
+        "selectedIconPath": "static/icons/account_r.png",
+        "iconPath": "static/icons/account_b.png",
+        "pagePath": "pages/my/my",
         "text": "我的社商"
       }
     ]

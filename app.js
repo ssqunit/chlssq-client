@@ -1,4 +1,6 @@
 //app.js
+var common = require("/utils/common.js")
+
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -6,37 +8,62 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    var that = this
+
     // 登录
     wx.login({
       success: res => {
-        // console.log("aaaaaaaaaaaaaaaaaaaaa wxlogin:res.code="+res.code);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        //将res.code发送给小程序服务器后台，需要后台拿这个参数去微信服务器换取 openId, sessionKey, unionId
-        //新版本只能由后台去获取
-      }
-    })
-    // 获取用户信息
-    wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
-          wx.getUserInfo({
-            success: res => {
-              // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
-
-              // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-              // 所以此处加入 callback 以防止这种情况
-              if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+        common.request({
+          method: "GET",
+          url: "/user/wx/login",
+          data: {
+            code: res.code
+          },
+          success: res => {
+            if (res.statusCode == 200 && res.data.success) {
+              that.globalData.userInfo = res.data.response
+              if (that.userInfoReadyCallback) {
+                that.userInfoReadyCallback(res)
               }
+
+              //检测是否授权获取用户信息，如果已经授权，获取并更新用户信息到服务器上
+              wx.getSetting({
+                success: (res) => {
+                  if (res.authSetting['scope.userInfo']) {
+                    wx.getUserInfo({
+                      success: function (res) {
+                        common.request({
+                          method: "POST",
+                          url: "/user/wx/user_info/update",
+                          data: {
+                            nickName: res.userInfo.nickName,
+                            avatarUrl: res.userInfo.avatarUrl,
+                            gender: res.userInfo.gender,
+                            city: res.userInfo.city,
+                            province: res.userInfo.province,
+                            country: res.userInfo.country,
+                          },
+                          success: res => { }
+                        })
+                      }
+                    })
+                  }
+                }
+              })
+            } else {
+              wx.showToast({
+                title: '登录失败，请检查网络连接',
+                icon: 'none',
+                duration: 2000
+              })
             }
-          })
-        }
+          }
+        })
       }
     })
   },
   globalData: {
-    userInfo: null
-  }
+    userInfo: {},
+  },
 })
