@@ -1,4 +1,36 @@
 <!--index.wxml-->
 <view>
-首页
+
+  <!-- 顶部用户信息栏 -->
+  <van-button type="default">默认按钮</van-button>
+  <view>
+    <view>
+    <image src="{{user.avatar}}"></image>
+    <text>lock.lee</text>
+    </view>
+    <view>
+    </view>
+  </view>
+
+  <!-- 搜索栏 -->
+  <view>
+
+  </view>
+
+  <!-- 当前坐标  -->
+  <view>
+  
+  </view>
+
+  <!-- Post广告区域 -->
+  <view>
+  
+  </view>
+
+  <!-- 所在商圈的列表 -->
+
+  <view>
+  
+  </view>
+
 </view>

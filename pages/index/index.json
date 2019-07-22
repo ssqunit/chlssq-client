@@ -1,9 +1,5 @@
 {
   "usingComponents": {
-    "SearchBar": "/components/searchBox/index",
-    "postsTextCom":"/components/poststext/poststext",
-    "postsCom":"/components/posts/posts",
-    "squListSpCom":"/components/squareList_sp/squareListSp",
-    "squListGrCom": "/components/squareList_gr/squareListGr"
+    "van-button": "vant-weapp/button/index"
   }
 }

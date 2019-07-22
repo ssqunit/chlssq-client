@@ -7,14 +7,10 @@ var util = require('../../utils/util.js');
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     time:"",
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    img_ssqnew: "../../images/SSQ_new.png",
-    icon_pos: "../../images/icon_pos.png",
-    banner_img:"../../images/banners/banner_0.png"
   },
   // ---------- 事件处理函数 ---------start
   //跳转-个人详细信息
@@ -33,9 +29,7 @@ Page({
 
   //跳转搜索商圈页面
   doSearch: function (event) {
-    wx.navigateTo({
-      url: '../searchSSQ/searchSSQ?type=1&str='+event.detail._value
-    })
+    //TODO 
   },
 
   //跳转附近的商圈页面
@@ -51,10 +45,7 @@ Page({
       url: '../creatSSQ/creatSSQ'
     })
   },
-
-  // ---------- 事件处理函数 ---------end
-
-
+  
   onLoad: function () {
 
     var time = util.formatTimeYMD(new Date());
@@ -62,6 +53,7 @@ Page({
     this.setData({
       time:time +" - "+ weekday
     })
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
