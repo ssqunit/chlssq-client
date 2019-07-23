@@ -1,18 +1,29 @@
 // pages/my/person/info.js
+var app = getApp();
+var _userInfo;
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
+    ssqData: [
+      { "id": "1", "name": "平湖御峰园", "area":"广东省深圳市龙岗区" },
+      { "id": "1", "name": "御峰园", "area": "广东省深圳市龙岗区" },
+      { "id": "1", "name": "平湖御峰园", "area": "广东省深圳市龙岗区" },
+      { "id": "1", "name": "平湖御峰园", "area": "广东省深圳市龙岗区" }
+    ]
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    let that = this;
+    _userInfo = app.globalData.userInfo;
+    that.setData({
+      _userInfo: _userInfo
+    });
   },
 
   /**
