@@ -7,6 +7,7 @@
     "van-toast": "/components/vant/toast/index",
     "van-row": "/components/vant/row/index",
     "van-col": "/components/vant/col/index",
-    "van-notice-bar": "/components/vant/notice-bar/index"
+    "van-notice-bar": "/components/vant/notice-bar/index",
+    "ssq-logo": "/components/ssq/logo/logo"
   }
 }

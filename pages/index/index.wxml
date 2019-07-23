@@ -59,11 +59,17 @@
       </van-nav-bar>
       <van-row>
         <van-col span="6">
-          <van-icon name="fire-o" info="新商家" />
+          <ssq-logo />
         </van-col>
-        <van-col span="6">span: 8</van-col>
-        <van-col span="6">span: 8</van-col>
-        <van-col span="6">span: 8</van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
       </van-row>
 
     </view>
@@ -73,10 +79,18 @@
         <text slot="left">本圈个人</text>
       </van-nav-bar>
       <van-row>
-        <van-col span="6">span: 8</van-col>
-        <van-col span="6">span: 8</van-col>
-        <van-col span="6">span: 8</van-col>
-        <van-col span="6">span: 8</van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
+        <van-col span="6">
+          <ssq-logo />
+        </van-col>
       </van-row>
     </view>
 
