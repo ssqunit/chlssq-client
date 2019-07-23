@@ -2,35 +2,81 @@
 <view>
 
   <!-- 顶部用户信息栏 -->
-  <van-button type="default">默认按钮</van-button>
-  <view>
-    <view>
-    <image src="{{user.avatar}}"></image>
-    <text>lock.lee</text>
+  <view class="flex-row space-items default-padding">
+    <view class="flex-row center">
+      <image class="small-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563861469412&di=ed292ede6531b4779ba4f371afb196d0&imgtype=0&src=http%3A%2F%2Fu.thsi.cn%2Ffileupload%2Fdata%2FCircle%2F1664781537411677.jpg" mode="aspectFill"></image>
+      <text class="default-margin">Locky.Lee</text>
     </view>
-    <view>
+    <view class="flex-row center">
+      <text>{{time}}</text>
     </view>
   </view>
 
   <!-- 搜索栏 -->
-  <view>
-
+  <view class="flex-row center van-hairline--top">
+    <view class="expand">
+      <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch">
+        <view slot="action" bind:tap="doSearch">搜索</view>
+      </van-search>
+    </view>
+    <view>
+      <van-button>新建商圈</van-button>
+    </view>
   </view>
 
   <!-- 当前坐标  -->
-  <view>
-  
+  <view class="flex-row center van-hairline--top">
+    <view class="expand flex-row">
+      <van-icon name="location-o" size="20px"></van-icon>
+      <text>深圳市龙岗区xxxxxxxxx</text>
+    </view>
+    <view>
+      <van-button>马上加入</van-button>
+    </view>
   </view>
 
   <!-- Post广告区域 -->
   <view>
-  
+    <van-notice-bar left-icon="volume-o" color="orange" text="专业肩颈理疗 50分钟舒服享受 仅需38元 马上预约" />
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{postUrls}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150" />
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
 
   <!-- 所在商圈的列表 -->
-
+  <van-toast id="van-toast" />
   <view>
-  
+    <view>
+      <van-nav-bar right-text="更多>>" bind:click-right="shopShowMore">
+        <text slot="left">本圈商家</text>
+      </van-nav-bar>
+      <van-row>
+        <van-col span="6">
+          <van-icon name="fire-o" info="新商家" />
+        </van-col>
+        <van-col span="6">span: 8</van-col>
+        <van-col span="6">span: 8</van-col>
+        <van-col span="6">span: 8</van-col>
+      </van-row>
+
+    </view>
+
+    <view>
+      <van-nav-bar right-text="更多>>" bind:click-right="personShowMore">
+        <text slot="left">本圈个人</text>
+      </van-nav-bar>
+      <van-row>
+        <van-col span="6">span: 8</van-col>
+        <van-col span="6">span: 8</van-col>
+        <van-col span="6">span: 8</van-col>
+        <van-col span="6">span: 8</van-col>
+      </van-row>
+    </view>
+
   </view>
 
 </view>

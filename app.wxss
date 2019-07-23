@@ -1,5 +1,48 @@
-@import 'style/weui.wxss';
 
 page {
     background-color: #F8F8F8;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.space-items {
+  justify-content: space-between;
+}
+
+.flex-right {
+  justify-content: flex-end;
+}
+
+.flex-bottom {
+  align-items: flex-end;
+}
+
+.expand {
+  flex-grow: 1;
+}
+
+.default-padding {
+  padding: 4px;
+}
+
+.default-margin {
+  margin: 4px;
+}
+
+.small-avatar {
+  width: 40px;
+  height: 40px;
 }
