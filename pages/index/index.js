@@ -68,6 +68,13 @@ Page({
     })
   },
 
+  //跳转-个人详细信息
+  goMyPerson: function(e) {
+    wx.navigateTo({
+      url: '../my/person/info'
+    })
+  },
+
   //跳转搜索商圈页面
   doSearch: function (e) {
     //TODO 

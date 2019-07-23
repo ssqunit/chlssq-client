@@ -3,7 +3,7 @@
 
   <!-- 顶部用户信息栏 -->
   <view class="flex-row space-items default-padding">
-    <view class="flex-row center">
+    <view class="flex-row center" bindtap="goMyPerson">
       <image class="small-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563861469412&di=ed292ede6531b4779ba4f371afb196d0&imgtype=0&src=http%3A%2F%2Fu.thsi.cn%2Ffileupload%2Fdata%2FCircle%2F1664781537411677.jpg" mode="aspectFill"></image>
       <text class="default-margin">Locky.Lee</text>
     </view>
@@ -18,6 +18,9 @@
       <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch">
         <view slot="action" bind:tap="doSearch">搜索</view>
       </van-search>
+    </view>
+    <view>
+      <van-button>附近商圈</van-button>
     </view>
     <view>
       <van-button>新建商圈</van-button>
