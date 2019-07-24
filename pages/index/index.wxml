@@ -29,7 +29,7 @@
 
   <!-- 当前坐标  -->
   <view class="flex-row center van-hairline--top">
-    <view class="expand flex-row">
+    <view class="expand flex-row" bindtap="goSsqInfo">
       <van-icon name="location-o" size="20px"></van-icon>
       <text>深圳市龙岗区xxxxxxxxx</text>
     </view>

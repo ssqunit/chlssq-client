@@ -87,6 +87,13 @@ Page({
     })
   },
 
+  //跳转商圈主页
+  goSsqInfo: function (e) {
+    wx.navigateTo({
+      url: '../ssqinfo/ssqinfo'
+    })
+  },
+
   shopShowMore: function () {
     Toast({
       selector: "#van-toast",

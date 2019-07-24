@@ -1,0 +1,51 @@
+<!--pages/ssqinfo/ssqinfo.wxml-->
+<!-- <text>pages/ssqinfo/ssqinfo.wxml</text> -->
+<view class="container">
+  <view class="name_info">
+    <image class="n_icon" mode="aspectFit" src="../../static/custom/icons/icon_pos_b.png"></image>
+    <text class="n_name">{{ssqInfo.name}} 商圈</text>
+    <text class="n_area">{{ssqInfo.area}}</text>
+    <text class="n_dis">距离：{{distance}}km</text>
+  </view>
+  <view class="photo_info">
+    <image class="p_img" mode="aspectFit" src="{{ssqInfo.photo}}"></image>
+    <view class="p_text">
+      <text>商家数量：{{ssqInfo.busCount}}</text>
+      <text>个人商家数量：{{ssqInfo.perCount}}</text>
+      <text class="p_changebtn">申请换图</text>
+    </view>
+  </view>
+  <view class="contents_info">
+    <van-tabs active="{{ active }}" bind:change="onChange" line-width="0">
+      <van-tab title="本圈商家">
+        <van-tabs active="{{ active_chi }}" bind:change="onChangeChi" type="line">
+          <van-tab title="全部">
+          全部
+          </van-tab>
+          <van-tab title="培训辅导">
+          培训辅导
+          </van-tab>
+          <van-tab title="健康">
+          健康
+          </van-tab>
+          <van-tab title="家装报修">
+          家装报修
+          </van-tab>
+          <van-tab title="中介">
+          中介
+          </van-tab>
+          <van-tab title="服务">
+          服务
+          </van-tab>
+          <van-tab title="其它">
+          其它
+          </van-tab>
+        </van-tabs>
+      </van-tab>
+      <van-tab title="本圈个人">
+      内容 2
+      </van-tab>
+    </van-tabs>
+  </view>
+</view>
+
