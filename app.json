@@ -13,7 +13,8 @@
     "pages/district/detail/person/index",
     "pages/district/detail/shop/index",
     "pages/newssq/newssq",
-    "pages/ssqinfo/ssqinfo"
+    "pages/ssqinfo/ssqinfo",
+    "pages/shop/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

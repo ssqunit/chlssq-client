@@ -1,0 +1,46 @@
+<view>
+  <van-nav-bar title="商家主页" left-arrow bind:click-left="back" safe-area-inset-top="{{false}}" />
+  <view class="default-padding">
+    <view class="flex-row center van-hairline--bottom">
+      <view class="expand">
+        <van-cell title="双手健康理疗馆" border="{{false}}">
+          <avatar slot="icon" class="small-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563987445492&di=e4a77db74d89feebc12b5e653246bbfb&imgtype=0&src=http%3A%2F%2Fimg01.cztv.com%2F201603%2F21%2Fb984b787fc6f3a61de5d3847975bfc2a.jpg"
+          />
+        </van-cell>
+      </view>
+      <van-icon class="default-padding" size="50rpx" name="location-o" bind:click="onLocationClick" />
+    </view>
+
+    <view class="van-hairline--surround">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{postUrls}}">
+          <swiper-item>
+            <image src="{{item}}" mode="aspectFill" />
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="default-padding">
+        <van-row>
+          <van-col span="8">经营信息：</van-col>
+          <van-col span="16">经营信息经营信息经营信息经营信息经营信息经营信息经营信息经营信息经营信息经营信息经营信息</van-col>
+        </van-row>
+        <van-row>
+          <van-col span="8">商家地址：</van-col>
+          <van-col span="16">商家地址商家地址商家地址商家地址商家地址商家地址</van-col>
+        </van-row>
+        <van-row>
+          <van-col span="8">商家电话：</van-col>
+          <van-col span="16">12345678909</van-col>
+        </van-row>
+      </view>
+    </view>
+
+    <view>
+      <view class="vertical-margin-top">产品/服务列表(18个项目)</view>
+      <view class="van-hairline--surround">
+
+      </view>
+    </view>
+
+  </view>
+</view>

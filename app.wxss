@@ -1,6 +1,6 @@
 
 page {
-    background-color: #F8F8F8;
+    background-color: #FFF;
 }
 
 .flex-row {
@@ -35,14 +35,27 @@ page {
 }
 
 .default-padding {
-  padding: 4px;
+  padding: 16rpx;
 }
 
 .default-margin {
-  margin: 4px;
+  margin: 16rpx;
 }
 
 .small-avatar {
-  width: 40px;
-  height: 40px;
+  display: block;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.default-avatar {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.large-avatar {
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
 }

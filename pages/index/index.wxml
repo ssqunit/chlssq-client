@@ -4,7 +4,7 @@
   <!-- 顶部用户信息栏 -->
   <view class="flex-row space-items default-padding">
     <view class="flex-row center" bindtap="goMyPerson">
-      <image class="small-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563861469412&di=ed292ede6531b4779ba4f371afb196d0&imgtype=0&src=http%3A%2F%2Fu.thsi.cn%2Ffileupload%2Fdata%2FCircle%2F1664781537411677.jpg" mode="aspectFill"></image>
+      <avatar class="small-avatar" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563861469412&di=ed292ede6531b4779ba4f371afb196d0&imgtype=0&src=http%3A%2F%2Fu.thsi.cn%2Ffileupload%2Fdata%2FCircle%2F1664781537411677.jpg" mode="aspectFill"></avatar>
       <text class="default-margin">Locky.Lee</text>
     </view>
     <view class="flex-row center">
@@ -44,7 +44,7 @@
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{postUrls}}">
         <swiper-item>
-          <image src="{{item}}" class="slide-image" width="355" height="150" />
+          <image src="{{item}}" mode="aspectFill"/>
         </swiper-item>
       </block>
     </swiper>
