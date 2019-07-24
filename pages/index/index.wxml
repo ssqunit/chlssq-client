@@ -23,7 +23,7 @@
       <van-button>附近商圈</van-button>
     </view>
     <view>
-      <van-button>新建商圈</van-button>
+      <van-button bindtap="goCreatSsq">新建商圈</van-button>
     </view>
   </view>
 

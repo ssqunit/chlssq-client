@@ -11,7 +11,8 @@
     "pages/admin/announcement/publish",
     "pages/my/person/info",
     "pages/district/detail/person/index",
-    "pages/district/detail/shop/index"
+    "pages/district/detail/shop/index",
+    "pages/newssq/newssq"
   ],
   "window": {
     "backgroundTextStyle": "light",

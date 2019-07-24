@@ -80,6 +80,13 @@ Page({
     //TODO 
   },
 
+  //跳转创建商圈
+  goCreatSsq: function (e) {
+    wx.navigateTo({
+      url: '../newssq/newssq'
+    })
+  },
+
   shopShowMore: function () {
     Toast({
       selector: "#van-toast",
