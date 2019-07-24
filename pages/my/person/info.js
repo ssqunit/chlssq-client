@@ -26,6 +26,12 @@ Page({
     });
   },
 
+  goAbout: function () {
+    wx.navigateTo({
+      url: '../../about/about'
+    })
+  },
+
   /**
    * Lifecycle function--Called when page is initially rendered
    */

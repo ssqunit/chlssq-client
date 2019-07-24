@@ -1,4 +1,8 @@
 /* pages/about/about.wxss */
+.container{
+  width: 100%;
+  display: flex;flex-direction: column;align-items: center;
+}
 .sel_avatar_ctn {
   width: 100%;
   background-color: white;
