@@ -10,7 +10,6 @@
     "pages/admin/audit/detail/detail",
     "pages/admin/announcement/publish",
     "pages/my/person/info",
-    "pages/ssqinfo/ssqinfo",
     "pages/shop/index",
     "pages/district/create/create",
     "pages/district/detail/detail"
