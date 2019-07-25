@@ -1,0 +1,16 @@
+<view class="product-item-container">
+  <text>{{name}}</text>
+  <view class="flex-row">
+    <image class="product-thumbnail" src="{{thumbnail}}" />
+    <view class="expand flex-column items-end">
+      <text>{{price}}</text>
+      <text>{{num}}</text>
+      <view>
+        <block wx:for="{{tags}}">
+          <van-tag round type="danger">{{item}}</van-tag>
+        </block>
+      </view>
+    </view>
+  </view>
+  <van-tag round plain type="danger">{{vaildTime}}</van-tag>
+</view>

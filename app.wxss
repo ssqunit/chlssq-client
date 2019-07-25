@@ -22,11 +22,11 @@ page {
   justify-content: space-between;
 }
 
-.flex-right {
+.content-end {
   justify-content: flex-end;
 }
 
-.flex-bottom {
+.items-end {
   align-items: flex-end;
 }
 

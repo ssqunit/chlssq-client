@@ -7,6 +7,7 @@
     "van-row": "/components/vant/row/index",
     "van-col": "/components/vant/col/index",
     "van-button": "/components/vant/button/index",
-    "avatar": "/components/ssq/avatar/index"
+    "avatar": "/components/ssq/avatar/index",
+    "product-item": "/components/ssq/product-item/index"
   }
 }
