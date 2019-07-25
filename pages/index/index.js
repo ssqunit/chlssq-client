@@ -83,7 +83,7 @@ Page({
   //跳转创建商圈
   goCreatSsq: function (e) {
     wx.navigateTo({
-      url: '../newssq/newssq'
+      url: '../district/create/create'
     })
   },
 

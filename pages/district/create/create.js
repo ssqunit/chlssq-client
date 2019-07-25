@@ -1,9 +1,9 @@
-// pages/newssq/newssq.js
+// pages/district/create/create.js
 
 // 在需要使用的js文件中，导入js
-var cityInfo = require('../../common/cityArray.js');
+var cityInfo = require('../../../common/cityArray.js');
 var arrays = cityInfo.getAreaInfo();
-var util = require("../../utils/util.js");
+var util = require("../../../utils/util.js");
 
 Page({
 
@@ -11,7 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    upload_img: "../../static/custom/defaults/def_ssq.jpg",
+    upload_img: "../../../static/custom/defaults/def_ssq.jpg",
     citysIndex: [0, 0, 0], //给一个初始值索引，因为有三列，所以3个0,
     citysData: "",
     inputText: null,

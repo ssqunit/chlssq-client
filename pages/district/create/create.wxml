@@ -1,5 +1,4 @@
-<!--pages/newssq/newssq.wxml-->
-<!-- <text>pages/newssq/newssq.wxml</text> -->
+<!--pages/district/create/create.wxml-->
 <view class="ctn">
   <text class="web_title">申请创建新的商业圈</text>
   <view class="line"></view>
