@@ -1,4 +1,4 @@
-// pages/ssqinfo/ssqinfo.js
+// pages/district/detail/detail.js
 Page({
 
   /**
@@ -6,9 +6,9 @@ Page({
    */
   data: {
     active: 0,
-    active_chi:0,
-    distance:0.50,
-    ssqInfo:{"ID":1,"name":"御峰园","area":"广东省深圳市龙岗区","photo":"../../static/custom/defaults/def_ssq.jpg","busCount":98,"perCount":23}
+    active_chi: 0,
+    distance: 0.50,
+    ssqInfo: { "ID": 1, "name": "御峰园", "area": "广东省深圳市龙岗区", "photo": "../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 23 }
   },
 
   /**

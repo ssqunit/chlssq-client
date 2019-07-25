@@ -1,5 +1,4 @@
-<!--pages/ssqinfo/ssqinfo.wxml-->
-<!-- <text>pages/ssqinfo/ssqinfo.wxml</text> -->
+<!--pages/district/detail/detail.wxml-->
 <view class="container">
   <view class="name_info">
     <image class="n_icon" mode="aspectFit" src="../../static/custom/icons/icon_pos_b.png"></image>
@@ -48,4 +47,5 @@
     </van-tabs>
   </view>
 </view>
+
 
