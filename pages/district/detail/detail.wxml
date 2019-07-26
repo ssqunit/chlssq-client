@@ -29,7 +29,8 @@
                     <view class="shop_right_ctn">
                       <text class="shop_name">{{item.name}}</text>
                       <view class="shop_flag_ctn">
-                        <image class="shop_flag" src="../../../static/icons/add_cart_r.png"></image>
+                        <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_0.png"></image>
+                        <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_1.png"></image>
                       </view>
                     </view>
                   </view>
@@ -47,7 +48,8 @@
             <view class="shop_right_ctn">
               <text class="shop_name">{{item.name}}</text>
               <view class="shop_flag_ctn">
-                <image class="shop_flag" src="../../../static/icons/add_cart_r.png"></image>
+                <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_0.png"></image>
+                <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_1.png"></image>
               </view>
             </view>
           </view>

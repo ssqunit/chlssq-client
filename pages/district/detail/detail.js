@@ -15,6 +15,16 @@ Page({
           "members": [
             { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
             { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
             { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" }
           ]
         },
@@ -62,6 +72,15 @@ Page({
         ],
         "pInfo":[
           {"id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png"},
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
           { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
           { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
           { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" }
