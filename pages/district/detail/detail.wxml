@@ -1,10 +1,11 @@
 <!--pages/district/detail/detail.wxml-->
 <view class="container">
   <view class="name_info">
-    <image class="n_icon" mode="aspectFit" src="../../../static/custom/icons/icon_pos_b.png"></image>
+    <image class="n_icon" mode="aspectFit" src="../../../static/icons/favorite_r.png"></image>
     <text class="n_name">{{ssqInfo.name}} 商圈</text>
     <text class="n_area">{{ssqInfo.area}}</text>
     <text class="n_dis">距离：{{distance}}km</text>
+    <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../static/custom/icons/icon_pos_b.png"></image>
   </view>
   <view class="photo_info">
     <image class="p_img" mode="aspectFit" src="{{ssqInfo.photo}}"></image>
@@ -12,6 +13,7 @@
       <text>商家数量：{{ssqInfo.busCount}}</text>
       <text>个人商家数量：{{ssqInfo.perCount}}</text>
       <text class="p_changebtn">申请换图</text>
+      <text class="p_joinbtn">马上加入</text>
     </view>
   </view>
   <view class="contents_info">

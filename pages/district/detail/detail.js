@@ -61,12 +61,20 @@ Page({
         }
         ],
         "pInfo":[
-          {"id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/home_r.png"},
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/home_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/home_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/home_r.png" }
+          {"id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png"},
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" }
         ]
       }
+  },
+
+  //打开商圈在地图上的位置
+  openPosition:function(e){
+    wx.openLocation({
+      latitude:21.70915603,
+      longitude:111.35697174,
+      scale:14})
   },
 
   /**
