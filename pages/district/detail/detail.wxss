@@ -45,9 +45,13 @@
 .contents_info{
   width: 100%;
 }
-.tab_ctn{
-  width: 100%;height: auto;display:flex;flex-direction: column;
+.scroll_ctn{
+    flex: 1;
+    height: 800rpx;
   }
+.tab_ctn{
+  height: 100%;
+}
 .shop_ctn{
   width: calc(100%-20rpx);height: 100rpx;display: flex;flex-direction: row;align-items: center;
   border: 1rpx solid gainsboro;

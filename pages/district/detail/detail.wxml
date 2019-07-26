@@ -22,7 +22,8 @@
         <van-tabs active="{{ active_chi }}" bind:change="onChangeChi" type="line">
           <block wx:for="{{ssqBpInfo.bInfo}}" wx:for-index="index" >
             <van-tab optype="0" title="{{item.opname}}">
-              <view class="tab_ctn">
+              <view class="scroll_ctn">
+              <scroll-view class="tab_ctn" scroll-y='true'>
                 <block wx:for="{{ssqBpInfo.bInfo[index].members}}" wx:for-index="index">
                   <view class="shop_ctn" sid="{{item.id}}">
                     <image mode="aspectFit" class="shop_photo" src="{{item.photo}}"></image>
@@ -35,13 +36,15 @@
                     </view>
                   </view>
                 </block>
+              </scroll-view>
               </view>
             </van-tab>
           </block>
         </van-tabs>
       </van-tab>
       <van-tab title="本圈个人">
-        <view class="tab_ctn">
+        <view class="scroll_ctn">
+        <scroll-view class="tab_ctn" scroll-y='true'>
           <block wx:for="{{ssqBpInfo.pInfo}}" wx:for-index="index">
           <view class="shop_ctn" sid="{{item.id}}">
             <image mode="aspectFit" class="shop_photo" src="{{item.photo}}"></image>
@@ -54,6 +57,7 @@
             </view>
           </view>
           </block>     
+        </scroll-view>
         </view>
       </van-tab>
     </van-tabs>
