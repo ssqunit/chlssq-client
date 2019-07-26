@@ -37,3 +37,24 @@
 .contents_info{
   width: 100%;
 }
+.tab_ctn{
+  width: 100%;height: 100%;display:flex;flex-direction: row;flex-wrap: wrap;
+  }
+.shop_ctn{
+  width: 30%;height: 100rpx;display: flex;flex-direction: row;align-items: center;
+  border: 1rpx solid gainsboro;
+  border-radius: 10rpx;margin: 10rpx;
+}
+.shop_photo{
+  height: 90%;width: 30%;
+}
+.shop_right_ctn{
+  height: 90%;width: 69%;display: flex;flex-direction: column;
+}
+.shop_name{
+  width: 100%;height: 40rpx;
+  font-size: 22rpx;overflow: hidden;
+}
+.shop_flag{
+  width: 35rpx;height: 25rpx;
+}
