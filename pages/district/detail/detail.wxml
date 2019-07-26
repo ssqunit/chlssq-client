@@ -26,7 +26,7 @@
               <view class="scroll_ctn">
               <scroll-view class="tab_ctn" scroll-y='true'>
                 <block wx:for="{{ssqBpInfo.bInfo[index].members}}" wx:for-index="index">
-                  <view class="shop_ctn" sid="{{item.id}}">
+                  <view class="shop_ctn" sid="{{item.id}}" bindtap="onItemClick" data-id="{{item.id}}">
                     <image mode="aspectFit" class="shop_photo" src="{{item.photo}}"></image>
                     <view class="shop_right_ctn">
                       <text class="shop_name">{{item.name}}</text>
@@ -47,7 +47,7 @@
         <view class="scroll_ctn">
         <scroll-view class="tab_ctn" scroll-y='true'>
           <block wx:for="{{ssqBpInfo.pInfo}}" wx:for-index="index">
-          <view class="shop_ctn" sid="{{item.id}}">
+          <view class="shop_ctn" sid="{{item.id}}" bindtap="onItemClick" data-id="{{item.id}}">
             <image mode="aspectFit" class="shop_photo" src="{{item.photo}}"></image>
             <view class="shop_right_ctn">
               <text class="shop_name">{{item.name}}</text>

@@ -72,19 +72,19 @@ Page({
         }
         ],
         "pInfo":[
-          {"id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png"},
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 0, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" }
+          {"id": 0, "name": "个人商家名字0", "photo": "../../../static/icons/account_r.png"},
+          { "id": 1, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
+          { "id": 3, "name": "个人商家名字3", "photo": "../../../static/icons/account_r.png" },
+          { "id": 4, "name": "个人商家名字4", "photo": "../../../static/icons/account_r.png" },
+          { "id": 2, "name": "个人商家名字2", "photo": "../../../static/icons/account_r.png" },
+          { "id": 5, "name": "个人商家名字5", "photo": "../../../static/icons/account_r.png" },
+          { "id": 6, "name": "个人商家名字6", "photo": "../../../static/icons/account_r.png" },
+          { "id": 9, "name": "个人商家名字9", "photo": "../../../static/icons/account_r.png" },
+          { "id": 8, "name": "个人商家名字8", "photo": "../../../static/icons/account_r.png" },
+          { "id": 7, "name": "个人商家名字7", "photo": "../../../static/icons/account_r.png" },
+          { "id": 12, "name": "个人商家名字12", "photo": "../../../static/icons/account_r.png" },
+          { "id": 10, "name": "个人商家名字10", "photo": "../../../static/icons/account_r.png" },
+          { "id": 11, "name": "个人商家名字11", "photo": "../../../static/icons/account_r.png" }
         ]
       }
   },
@@ -95,6 +95,11 @@ Page({
       latitude:21.70915603,
       longitude:111.35697174,
       scale:14})
+  },
+
+  //
+  onItemClick:function(e){
+    console.log("eeeeeeeee:" + e.currentTarget.dataset.id);
   },
 
   /**
