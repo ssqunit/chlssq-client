@@ -31,6 +31,7 @@ Page({
         { "optype": 1, "opname":"健康养生",
           "members": [
             { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
+            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
             { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" }
           ]
         },
