@@ -12,6 +12,7 @@
     <view class="p_text">
       <text>商家数量：{{ssqInfo.busCount}}</text>
       <text>个人商家数量：{{ssqInfo.perCount}}</text>
+      <text>创建者：locky.lee</text>
       <text class="p_changebtn">申请换图</text>
       <text class="p_joinbtn">马上加入</text>
     </view>
