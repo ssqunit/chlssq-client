@@ -12,7 +12,8 @@
     "pages/my/person/info",
     "pages/shop/index",
     "pages/district/create/create",
-    "pages/district/detail/detail"
+    "pages/district/detail/detail",
+    "pages/district/join/join"
   ],
   "window": {
     "backgroundTextStyle": "light",

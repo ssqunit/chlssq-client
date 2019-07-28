@@ -94,6 +94,13 @@ Page({
     })
   },
 
+  //选择商圈加入方式
+  goJoin:function(e){
+    wx.navigateTo({
+      url: '../district/join/join'
+    })
+  },
+
   shopShowMore: function () {
     Toast({
       selector: "#van-toast",
