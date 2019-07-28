@@ -5,6 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
+    distance: 0.50,
+    ssqInfo: { "ID": 0, "name": "御峰园", "area": "广东省深圳市龙岗区", "photo": "../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
+
+  },
+
+  //打开商圈在地图上的位置
+  openPosition: function (e) {
+    wx.openLocation({
+      latitude: 21.70915603,
+      longitude: 111.35697174,
+      scale: 14
+    })
+  },
+
+  //商圈入驻
+  joinApply: function (e) {
+    console.log("eeeeeeeee:" + e.currentTarget.dataset.type);
+
+  },
+
+  //购买商圈广告
+  buySsqAD: function (e) {
 
   },
 

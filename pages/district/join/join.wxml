@@ -1,2 +1,33 @@
 <!--pages/district/join/join.wxml-->
-<text>pages/district/join/join.wxml</text>
+<view class="container">
+  <view class="name_info">
+    <image class="n_icon" mode="aspectFit" src="../../../static/icons/favorite_r.png"></image>
+    <text class="n_name">{{ssqInfo.name}} 商圈</text>
+    <text class="n_area">{{ssqInfo.area}}</text>
+    <text class="n_dis">距离：{{distance}}km</text>
+    <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../static/custom/icons/icon_pos_b.png"></image>
+  </view>
+  <view class="photo_info">
+    <image class="p_img" mode="aspectFit" src="{{ssqInfo.photo}}"></image>
+    <view class="p_text">
+      <text>商家数量：{{ssqInfo.busCount}}</text>
+      <text>个人商家数量：{{ssqInfo.perCount}}</text>
+      <text>创建者：locky.lee</text>
+    </view>
+  </view>
+  <view class="contents_info">
+    <text class="ctn_des">欢迎入驻：入驻方式说明：</text>
+    <text class="ctn_des">>成员：可以预约该商圈的相关产品或服务</text>
+    <text class="ctn_des">>个人：可以给商圈用户提供小规模的产品或服务</text>
+    <text class="ctn_des">>商家：有营业执照，可以给商圈提供全方位的产品或服务</text>
+    <view class="ctn_btns">
+      <button bindtap="joinApply" data-type="1">成员快速加入</button>
+      <button bindtap="joinApply" data-type="2">申请个人入驻</button>
+      <button bindtap="joinApply" data-type="3">申请商家入驻</button>
+      <button bindtap="buySsqAD">购买商圈广告</button>
+    </view>
+  </view>
+</view>
+
+
+
