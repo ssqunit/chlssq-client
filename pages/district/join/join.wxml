@@ -16,7 +16,7 @@
     </view>
   </view>
   <view class="contents_info">
-    <text class="ctn_des">欢迎入驻：入驻方式说明：</text>
+    <text class="ctn_des">欢迎入驻,入驻方式说明：</text>
     <text class="ctn_des">>成员：可以预约该商圈的相关产品或服务</text>
     <text class="ctn_des">>个人：可以给商圈用户提供小规模的产品或服务</text>
     <text class="ctn_des">>商家：有营业执照，可以给商圈提供全方位的产品或服务</text>
