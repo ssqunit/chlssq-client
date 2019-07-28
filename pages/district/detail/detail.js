@@ -97,6 +97,13 @@ Page({
       scale:14})
   },
 
+  //选择商圈加入方式
+  goJoin: function (e) {
+    wx.navigateTo({
+      url: '../../district/join/join'
+    })
+  },
+
   //
   onItemClick:function(e){
     console.log("eeeeeeeee:" + e.currentTarget.dataset.id);

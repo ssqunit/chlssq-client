@@ -14,7 +14,7 @@
       <text>个人商家数量：{{ssqInfo.perCount}}</text>
       <text>创建者：locky.lee</text>
       <text class="p_changebtn">申请换图</text>
-      <text class="p_joinbtn">马上加入</text>
+      <text class="p_joinbtn" bindtap="goJoin">马上加入</text>
     </view>
   </view>
   <view class="contents_info">
