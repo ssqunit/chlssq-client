@@ -18,7 +18,7 @@ App({
           method: "GET",
           url: "login",
           data: {
-            code: res.code
+            js_code: res.code
           },
           success: res => {
             if (res.statusCode == 200 && res.data.success) {
