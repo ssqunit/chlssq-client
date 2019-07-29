@@ -16,7 +16,7 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         common.request({
           method: "GET",
-          url: "/user/wx/login",
+          url: "login",
           data: {
             code: res.code
           },
