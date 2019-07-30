@@ -21,8 +21,18 @@ Page({
 
   //商圈入驻
   joinApply: function (e) {
-    console.log("eeeeeeeee:" + e.currentTarget.dataset.type);
+    var _type = e.currentTarget.dataset.type;
+    if(_type == 1){
 
+    }
+    else if(_type == 2){
+      wx.navigateTo({
+        url: '../../district/join/person/person'
+      })
+    }
+    else if (_type == 3) {
+
+    }
   },
 
   //购买商圈广告

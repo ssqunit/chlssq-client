@@ -1,2 +1,67 @@
 <!--pages/district/join/person/person.wxml-->
-<text>pages/district/join/person/person.wxml</text>
+<view class="container">
+  <view class="name_info">
+    <image class="n_icon" mode="aspectFit" src="../../../../static/icons/favorite_r.png"></image>
+    <text class="n_name">{{ssqInfo.name}} 商圈</text>
+    <text class="n_area">{{ssqInfo.area}}</text>
+    <text class="n_dis">距离：{{distance}}km</text>
+    <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../../static/custom/icons/icon_pos_b.png"></image>
+  </view>
+  <view class="photo_info">
+    <image class="p_img" mode="aspectFit" src="{{ssqInfo.photo}}"></image>
+    <view class="p_text">
+      <text>商家数量：{{ssqInfo.busCount}}</text>
+      <text>个人商家数量：{{ssqInfo.perCount}}</text>
+      <text>创建者：locky.lee</text>
+    </view>
+  </view>
+  <view class="contents_info">
+    <text class="ctn_way">入驻方式：个人入驻</text>
+    <view class="ctn_info">
+      <view class="info_opmsg">
+        <van-cell-group>
+          <van-field
+            value="{{ message }}"
+            label="经营信息："
+            type="textarea"
+            fixed="true"
+            placeholder="请输入个人经营的相关信息"
+            maxlength="50"
+            autosize
+            border="{{ true }}"
+          />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field
+            value="{{ message }}"
+            label="商家地址："
+            type="textarea"
+            fixed="true"
+            placeholder="请输地址信息"
+            maxlength="25"
+            autosize
+            border="{{ true }}"
+          />
+        </van-cell-group>
+        <van-cell-group>
+          <van-field
+            value="{{ message }}"
+            label="商家电话："
+            type="textarea"
+            fixed="true"
+            placeholder="请输入电话"
+            maxlength="24"
+            autosize
+            border="{{ true }}"
+          />
+        </van-cell-group>
+      </view>
+      <view class="info_imginfo">
+        <text>请上传本人手持身份证照：</text>
+        <text class="uploadtxt" bindtap="uploadImg">上传</text>
+      </view>
+      <image class="myimg" src="{{upload_img}}" mode="aspectFit"></image>
+    </view>
+  </view>
+  <button class="comitbtn">提交申请</button>
+</view>
