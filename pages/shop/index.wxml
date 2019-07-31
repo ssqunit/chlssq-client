@@ -37,9 +37,18 @@
 
     <view>
       <view class="vertical-margin-top">产品/服务列表(18个项目)</view>
-      <view class="product-grid van-hairline--surround">
-        <block wx:for="{{productList}}" wx:key="*this" wx:for-item="productItem">
-          <product-item class="product-item" thumb-class="product-thumbnail" name="{{productItem.name}}" tags="{{productItem.tags}}" price="{{productItem.price}}" num="{{productItem.num}}" thumbnail="{{productItem.thumbnail}}" vaildTime="{{productItem.vaildTime}}"/>
+      <view>
+        <block wx:for="{{productList}}" wx:for-item="productItem">
+          <van-card num="{{productItem.num}}" price="{{productItem.price}}" title="{{productItem.name}}" thumb="{{productItem.thumbnail}}">
+            <view slot="tags">
+              <block wx:for="{{productItem.tags}}">
+                <van-tag style="margin-right: 4px;" round type="danger">{{item}}</van-tag>
+              </block>
+            </view>
+            <view slot="footer">
+              <van-button round plain type="danger" size="mini">详情</van-button>
+            </view>
+          </van-card>
         </block>
       </view>
     </view>

@@ -8,6 +8,7 @@
     "van-col": "/components/vant/col/index",
     "van-button": "/components/vant/button/index",
     "avatar": "/components/ssq/avatar/index",
-    "product-item": "/components/ssq/product-item/index"
+    "van-tag": "/components/vant/tag/index",
+    "van-card": "/components/vant/card/index"
   }
 }

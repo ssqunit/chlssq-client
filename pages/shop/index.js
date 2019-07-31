@@ -19,48 +19,40 @@ Page({
         name: '颈椎理疗',
         thumbnail: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg',
         tags: ['优惠', '新品'],
-        price: '$10.0',
-        num: 'x2',
+        price: 10.0,
+        num: 2,
         vaildTime: '长期有效'
       }, 
       {
         name: '颈椎理疗',
         thumbnail: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg',
         tags: ['优惠', '新品'],
-        price: '$10.0',
-        num: 'x2',
+        price: '10.0',
+        num: 2,
         vaildTime: '长期有效'
       },
       {
         name: '颈椎理疗',
         thumbnail: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg',
         tags: ['优惠', '新品'],
-        price: '$10.0',
-        num: 'x2',
+        price: '10.0',
+        num: 2,
         vaildTime: '长期有效'
       },
       {
         name: '颈椎理疗',
         thumbnail: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg',
         tags: ['优惠', '新品'],
-        price: '$10.0',
-        num: 'x2',
+        price: '10.0',
+        num: 2,
         vaildTime: '长期有效'
       },
       {
         name: '颈椎理疗',
         thumbnail: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg',
         tags: ['优惠', '新品'],
-        price: '$10.0',
-        num: 'x2',
-        vaildTime: '长期有效'
-      },
-      {
-        name: '颈椎理疗',
-        thumbnail: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg',
-        tags: ['优惠', '新品'],
-        price: '$10.0',
-        num: 'x2',
+        price: '10.0',
+        num: 2,
         vaildTime: '长期有效'
       },
     ],

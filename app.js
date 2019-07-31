@@ -16,13 +16,15 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         common.request({
           method: "GET",
-          url: "login",
+          url: common.BASE_URL,
           data: {
+            'function': 'login',
             js_code: res.code
           },
           success: res => {
-            if (res.statusCode == 200 && res.data.success) {
-              that.globalData.userInfo = res.data.response
+            if (res.data.iRet == 0) {
+              that.globalData.userInfo = res.data.data
+
               if (that.userInfoReadyCallback) {
                 that.userInfoReadyCallback(res)
               }
@@ -53,12 +55,19 @@ App({
               })
             } else {
               wx.showToast({
-                title: '登录失败，请检查网络连接',
+                title: '登录失败，请重试',
                 icon: 'none',
                 duration: 2000
               })
             }
-          }
+          },
+          fail: res => {
+            wx.showToast({
+              title: res.errMsg,
+              icon: 'none',
+              duration: 2000
+            })
+          },
         })
       }
     })
