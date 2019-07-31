@@ -1,4 +1,7 @@
 // pages/district/join/person/person.js
+
+const app = getApp();
+
 Page({
 
   /**
@@ -22,18 +25,27 @@ Page({
         that.setData({
           upload_img: tempFilePaths[0]
         });
-        // wx.uploadFile({
-        //   url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-        //   filePath: tempFilePaths[0],
-        //   name: 'file',
-        //   formData: {
-        //     'user': 'test'
-        //   },
-        //   success(res) {
-        //     const data = res.data
-        //     //do something
-        //   }
-        // })
+      }
+    })
+  },
+
+  commitApply:function(e){
+    var that = this;
+    wx.uploadFile({
+      url: 'https://ssqunit.com/index.php?function=upload',
+      filePath: that.data.upload_img,
+      name: 'file',
+      formData: {
+        'user': 'test'
+      },
+      session_id: "app.globalData.userInfo",
+      success(res) {
+        console.log("ssssssssssssssssssssssss");
+        const data = res.data
+        //do something
+      },
+      fail(res){
+        console.log("fffffffffffffffffffff");
       }
     })
   },

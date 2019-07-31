@@ -63,5 +63,5 @@
       <image class="myimg" src="{{upload_img}}" mode="aspectFit"></image>
     </view>
   </view>
-  <button class="comitbtn">提交申请</button>
+  <button class="comitbtn" bindtap="commitApply">提交申请</button>
 </view>
