@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-field": "/components/vant/field/index"
+  },
+  "navigationBarTitleText": "商家入驻"
 }

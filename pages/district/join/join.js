@@ -31,7 +31,9 @@ Page({
       })
     }
     else if (_type == 3) {
-
+      wx.navigateTo({
+        url: '../../district/join/business/business'
+      })
     }
   },
 
