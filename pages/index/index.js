@@ -118,6 +118,15 @@ Page({
 
   },
 
+  //打开商圈在地图上的位置
+  openPosition: function (e) {
+    wx.openLocation({
+      latitude: 21.70915603,
+      longitude: 111.35697174,
+      scale: 14
+    })
+  },
+
   //跳转-个人详细信息
   goMyPerson: function(e) {
     wx.navigateTo({

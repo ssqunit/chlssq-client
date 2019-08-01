@@ -19,19 +19,23 @@
         <view slot="action" bind:tap="doSearch">搜索</view>
       </van-search>
     </view>
-    <view>
-      <van-button>附近商圈</van-button>
+    <view class="s_btn">
+      <van-button size="normal">附近</van-button>
     </view>
-    <view>
-      <van-button bindtap="goCreatSsq">新建商圈</van-button>
+    <view class="s_btn">
+      <van-button bindtap="goCreatSsq" size="normal">新建</van-button>
     </view>
   </view>
 
   <!-- 当前坐标  -->
   <view class="flex-row center van-hairline--top">
+    <view class="expand flex-column" bindtap="openPosition">
+      <image class="kmicon" src="../../static/custom/icons/icon_pos_b.png" mode="aspectFit"></image>
+      <text class="kmtext">当前位置</text>
+    </view>
     <view class="expand flex-row" bindtap="goSsqInfo">
-      <van-icon name="location-o" size="20px"></van-icon>
-      <text>深圳市龙岗区xxxxxxxxx</text>
+      <text class="ssq_name">御峰园商圈</text>
+      <text class="ssq_area">(广东省深圳市龙岗区)</text>
     </view>
     <view>
       <van-button bindtap="goJoin">马上加入</van-button>
