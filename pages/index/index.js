@@ -15,15 +15,22 @@ Page({
     v_avatarUrl:"",
     time: "",
     searchKeyword: "",
-    postUrls: [
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg"
+    postTexts: [
+      { "text": "这里最多能显示多少个字好吧这里最多能显示多23" },
+      { "text": "这里最多能显示多少个字？-》good$￥# 好吧！" },
+      { "text": "这里最多能显示多少个字好吧这里最多能显示多少23" },
+      { "text": "这里最多能显示多少个字好吧这里最多能显示多" },
+      { "text": "这里最多能显示多少个字？-》good$￥# 好吧！" }
     ],
-    indicatorDots: true,
-    autoplay: false,
-    interval: 5000,
-    duration: 1000,
+    postImgs: [
+      { "url": "../../static/custom/defaults/def_ssq.jpg" , "text": "针对图片的描述"},
+      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" },
+      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
+      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" },
+      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
+      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
+      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" }
+    ],
   },
 
   onLoad: function(options) {

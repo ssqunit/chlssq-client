@@ -8,5 +8,13 @@
   font-size: 38rpx;
 }
 .ssq_area{
-  font-size: 24rpx;color: rgb(146, 145, 145);margin-top: 14rpx;margin-left: 5rpx;
+  font-size: 24rpx;color: rgb(7, 7, 7);margin-top: 14rpx;margin-left: 5rpx;
 }
+.swiper_txtctn {width: 100%;height: 80rpx;}
+.swiper_imgctn {width: 100%;height:320rpx;}
+.swiper_self {width:100%;height: 100%;}
+.swiper_item {height: 100%;}
+.swiper_img_item {height: 100%;align-items: center;display: flex;flex-direction: column;}
+.swiper_img {width:100%;height: 100%;}
+.swiper_img_txtbg{width: 100%;height: 100rpx;background-color: black;opacity: 0.3;position: absolute;margin-top: 220rpx;}
+.swiper_img_txt{width: 100%;height: 100rpx;color:white;position: absolute;margin-top: 220rpx;font-size: 24rpx;}
