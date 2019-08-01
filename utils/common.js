@@ -4,7 +4,7 @@ var DEFAULT_PAGE_SIZE = 10;  //默认分页大小
 var DEBUG = true
 var loading = 0
 // var BASE_URL = "http://127.0.0.1:8000/chlssq/api/v1"
-var BASE_URL = "https://ssqunit.com/index.php"
+var BASE_URL = "https://106.52.156.60:443/index.php"
 
 function log(msg, level = 'DEBUG') {
   if (!DEBUG) {

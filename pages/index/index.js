@@ -1,15 +1,18 @@
 import Toast from '../../components/vant/toast/toast';
 
+
 const app = getApp()
 
 // 在需要使用的js文件中，导入js
 var util = require('../../utils/util.js');
+var c_userInfo = require("../../utils/data/userInfo.js");
+var common = require("../../utils/common.js")
 
 Page({
   data: {
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    userInfo: c_userInfo.UserInfo,
+    v_nickName:"",
+    v_avatarUrl:"",
     time: "",
     searchKeyword: "",
     postUrls: [
@@ -31,42 +34,88 @@ Page({
       time: time + " - " + weekday
     })
 
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        console.debug("----------- get user info callback")
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
+    app.userInfoReadyCallback = res => {
+      console.log("----------- get user info callback:" + JSON.stringify(res))
+
+      this.data.userInfo.nickName = res.userInfo.nickName;
+      this.data.userInfo.gender = res.userInfo.gender;
+      this.data.userInfo.language = res.userInfo.language;
+      this.data.userInfo.city = res.userInfo.city;
+      this.data.userInfo.province = res.userInfo.province;
+      this.data.userInfo.country = res.userInfo.country;
+      this.data.userInfo.avatarUrl = res.userInfo.avatarUrl;
+      app.globalData.userInfo = this.data.userInfo;
+      this.myLogin();
     }
+
   },
 
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+  myLogin:function(){
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'login',
+        js_code: app.globalData.js_code
+      },
+      success: res => {
+        if (res.data.iRet == 0) {
+          this.data.userInfo.ID = res.data.data.openId;
+          this.data.userInfo.session_id = res.data.data.session_id;
+          app.globalData.userInfo = this.data.userInfo;
+
+          common.request({
+            method: "GET",
+            url:common.BASE_URL,
+            data:{
+              "function": "getUserInfo",
+              session_id: this.data.userInfo.session_id
+            },
+            success: res => {
+              this.data.userInfo.actLimit = res.data.data.actlimit;
+              this.data.userInfo.ssqLimit = res.data.data.ssqLimit;
+              this.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
+
+              this.setData({
+                v_nickName:this.data.userInfo.nickName,
+                v_avatarUrl:this.data.userInfo.avatarUrl
+              })
+            },
+            fail: res => {
+              //getUserInfo fail
+            }
+          })
+              // common.request({
+              //   method: "POST",
+              //   url: "/user/wx/user_info/update",
+              //   data: {
+              //     nickName: res.userInfo.nickName,
+              //     avatarUrl: res.userInfo.avatarUrl,
+              //     gender: res.userInfo.gender,
+              //     city: res.userInfo.city,
+              //     province: res.userInfo.province,
+              //     country: res.userInfo.country,
+              //   },
+              //   success: res => { }
+              // })
+        } else {
+              wx.showToast({
+                title: '登录失败，请重试',
+                icon: 'none',
+                duration: 2000
+              })
+        }
+      },//success
+      fail: res => {
+        wx.showToast({
+          title: res.errMsg,
+            icon: 'none',
+            duration: 2000
+        })
+      },//fail
+
+    })//common.request
+
   },
 
   //跳转-个人详细信息

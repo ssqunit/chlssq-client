@@ -1,5 +1,6 @@
 var userInfo = {
   ID:"",//用户微信平台的OPENID
+  session_id:"",
   nickName:"",//昵称
   gender:0,//性别
   language:"",//语言

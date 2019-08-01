@@ -5,7 +5,7 @@
     <text class="sel_user_name">{{_userInfo.nickName}}</text>
   </view>
   <view class="sel_info_ctn">
-    <text class="sel_info_ctn_txt">ID：{{_userInfo.id}}</text>
+    <text class="sel_info_ctn_txt">ID：{{_userInfo.ID}}</text>
     <text class="sel_info_ctn_txt">性别：{{_userInfo.gender==1?"男":"女"}}</text>
     <text class="sel_info_ctn_txt">城市：{{_userInfo.city}}</text>
     <text class="sel_info_ctn_txt">我加入的商圈：</text>
