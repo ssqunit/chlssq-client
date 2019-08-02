@@ -11,11 +11,7 @@
  <view class="cho_area">
   <text>选择区域(中国)：</text>
   <text class="cho_area_txt">{{citysData}}</text>
-  <picker class="placeholder" mode="multiSelector" 
-  bindchange="func_changeCitysChange" 
-  bindcolumnchange="func_changeCitysChangeColumn" value="{{ citysIndex }}" range="{{ cityArray }}">
-    <view class="picker pickbtn">选择</view>
-  </picker>
+  <view class="picker pickbtn" bindtap="choseArea">选择</view>
  </view>
  <view class="input_name_ctn">
    <text>商圈名字(限长6字)：</text>
@@ -39,5 +35,7 @@
  <view class="commit_ctn">
   <button class="commit_btn" >提交申请</button>
  </view>
- 
+ <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
+    <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="选择区域" bind:confirm="onAreaConfirm" bind:cancel="onAreaCancel" bind:change="onAreaChange"/>
+</van-popup>
 </view>
