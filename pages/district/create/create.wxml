@@ -1,12 +1,12 @@
 <!--pages/district/create/create.wxml-->
 <view class="ctn">
-  <text class="web_title">申请创建新的商业圈</text>
+  <text class="web_title">申请创建新的社区圈</text>
   <view class="line"></view>
   <view class="img_ctn">
     <image class="img" src="{{upload_img}}" mode="aspectFit"></image>
   </view>
   <view class="upload_btn">
-    <text class="upload_txt" bindtap="uploadImg">点击上传商圈展示图</text>
+    <text class="upload_txt" bindtap="uploadImg">点击上传社圈展示图</text>
  </view>
  <view class="cho_area">
   <text>选择区域(中国)：</text>
@@ -14,16 +14,16 @@
   <view class="picker pickbtn" bindtap="choseArea">选择</view>
  </view>
  <view class="input_name_ctn">
-   <text>商圈名字(限长6字)：</text>
-   <input class="input_name" maxlength="12" type="text" bindinput="getInput" placeholder="请输入商圈名字"></input>
-   <text>商圈</text>
+   <text>社圈名字(限长6字)：</text>
+   <input class="input_name" maxlength="12" type="text" bindinput="getInput" placeholder="请输入社圈名字"></input>
+   <text>社圈</text>
  </view>
  <view class="input_name_ctn">
-  <text>商圈全名预览：</text>
-  <text class="full_name">{{citysData}}{{inputText}}商圈</text>
+  <text>社圈全名预览：</text>
+  <text class="full_name">{{citysData}}{{inputText}}社圈</text>
  </view>
  <view class="input_name_ctn">
-  <text>标记商圈位置：</text>
+  <text>标记社圈位置：</text>
   <text class="mark" bindtap="onMapMark">在地图上标记</text>
   <text>或</text>
   <text class="mark" bindtap="getCurPosition">使用当前位置</text>
@@ -31,7 +31,7 @@
  <view class="input_name_ctn">
   <text class="curpos">当前位置：（{{positions.latitude}} , {{positions.longitude}}）</text>
  </view>
- <text class="attention">注意：商圈新建申请一旦提交，其它人则不可以再创建同区域的同名商圈。</text>
+ <text class="attention">注意：社圈新建申请一旦提交，其它人则不可以再创建同区域的同名社圈。</text>
  <view class="commit_ctn">
   <button class="commit_btn" >提交申请</button>
  </view>

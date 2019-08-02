@@ -34,7 +34,7 @@
       <text class="kmtext">当前位置</text>
     </view>
     <view class="expand flex-row" bindtap="goSsqInfo">
-      <text class="ssq_name">御峰园商圈</text>
+      <text class="ssq_name">御峰园社圈</text>
       <text class="ssq_area">(广东省深圳市龙岗区)</text>
     </view>
     <view>

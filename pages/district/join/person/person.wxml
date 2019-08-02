@@ -2,7 +2,7 @@
 <view class="container">
   <view class="name_info">
     <image class="n_icon" mode="aspectFit" src="../../../../static/icons/favorite_r.png"></image>
-    <text class="n_name">{{ssqInfo.name}} 商圈</text>
+    <text class="n_name">{{ssqInfo.name}} 社圈</text>
     <text class="n_area">{{ssqInfo.area}}</text>
     <text class="n_dis">距离：{{distance}}km</text>
     <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../../static/custom/icons/icon_pos_b.png"></image>
