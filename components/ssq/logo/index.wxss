@@ -1,6 +1,6 @@
 .logo-container {
   display: flex;
-  margin: 10rpx;
+  margin: 15rpx;
   border-width: 0px;
   border-color: transparent;
   border-style: solid;
@@ -11,8 +11,7 @@
 }
 
 .logo-img {
-  width: 100%;
-  height: 150rpx;
+  width: 100%;height: 150rpx;border-radius: 6rpx;
 }
 
 .top-right {
