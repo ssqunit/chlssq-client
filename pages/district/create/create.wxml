@@ -6,7 +6,7 @@
     <image class="img" src="{{upload_img}}" mode="aspectFit"></image>
   </view>
   <view class="upload_btn">
-    <text class="upload_txt" bindtap="uploadImg">点击上传社圈展示图</text>
+    <text class="upload_txt" bindtap="loadImg">点击上传社圈展示图</text>
  </view>
  <view class="cho_area">
   <text>选择区域(中国)：</text>
@@ -15,11 +15,11 @@
  </view>
  <view class="input_name_ctn">
    <text>社圈名字(限长6字)：</text>
-   <input class="input_name" maxlength="12" type="text" bindinput="getInput" placeholder="请输入社圈名字"></input>
+   <input class="input_name" maxlength="6" type="text" bindinput="getInput" placeholder="请输入社圈名字"></input>
    <text>社圈</text>
  </view>
  <view class="input_name_ctn">
-  <text>社圈全名预览：</text>
+  <text>社圈全名：</text>
   <text class="full_name">{{citysData}}{{inputText}}社圈</text>
  </view>
  <view class="input_name_ctn">
@@ -33,7 +33,7 @@
  </view>
  <text class="attention">注意：社圈新建申请一旦提交，其它人则不可以再创建同区域的同名社圈。</text>
  <view class="commit_ctn">
-  <button class="commit_btn" >提交申请</button>
+  <button class="commit_btn" bindtap="onCommit">提交申请</button>
  </view>
  <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
     <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="选择区域" bind:confirm="onAreaConfirm" bind:cancel="onAreaCancel" bind:change="onAreaChange"/>

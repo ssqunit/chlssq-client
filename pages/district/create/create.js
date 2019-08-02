@@ -3,6 +3,9 @@
 // 在需要使用的js文件中，导入js
 var util = require("../../../utils/util.js");
 var aList = require("../../../common/area.js");
+var common = require("../../../utils/common.js");
+
+const app = getApp();
 
 Page({
 
@@ -11,11 +14,12 @@ Page({
    */
   data: {
     upload_img: "../../../static/custom/defaults/def_ssq.jpg",
-    citysData: "",
     areaList:null,
     popShow:false,
-    inputText: null,
-    positions: null
+    imgId:"",   //上传后返回的图片ID
+    citysData: "",//区域
+    inputText: "",//社圈名称
+    positions: null //社圈位置
   },
 
   /**
@@ -100,8 +104,8 @@ Page({
   },
 
 
-  //
-  uploadImg:function(e){
+  //加载本地图片
+  loadImg:function(e){
     var that = this;
     wx.chooseImage({
       count: 1,
@@ -112,20 +116,73 @@ Page({
         that.setData({
           upload_img : tempFilePaths[0]
         });
-        // wx.uploadFile({
-        //   url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址
-        //   filePath: tempFilePaths[0],
-        //   name: 'file',
-        //   formData: {
-        //     'user': 'test'
-        //   },
-        //   success(res) {
-        //     const data = res.data
-        //     //do something
-        //   }
-        // })
+
       }
     })
+  },
+
+  uploadImages:function(obj){
+    console.log("uploadImg:" + app.globalData.userInfo.session_id + "," + this.data.upload_img);
+    const uploadTask = common.uploadFile({
+      url: 'https://106.52.156.60:443/index.php?function=upload',
+      filePath: this.data.upload_img,
+      name: 'file',
+      header: { "Content-Type": "multipart/form-data" },
+      formData: {
+        session_id: app.globalData.userInfo.session_id
+      },
+      success(res) {
+        if (obj.uploadSuccess){
+          obj.uploadSuccess(res);
+        }
+      },
+      fail(res) {
+        if (obj.uploadFail) {
+          obj.uploadFail(res);
+        }
+      },
+      complete(res) {
+        console.log("wx.uploadFile : complete - " + JSON.stringify(res));
+      }
+    })
+
+    uploadTask.onProgressUpdate((res) => {
+      console.log('上传进度', res.progress)
+      console.log('已经上传的数据长度', res.totalBytesSent)
+      console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
+    })
+  },
+
+  //提交申请
+  onCommit:function(e){
+    this.uploadImages({
+      uploadSuccess(res){
+        console.log("wx.uploadFile : success - " + JSON.stringify(res));
+
+        common.request({
+          method: "GET",
+          url: common.BASE_URL,
+          data: {
+            'function': 'ssqCreateApply',
+            imgid: this.data.imgId,
+            area: this.data.citysData,
+            name: this.data.inputText,
+            position: this.data.positions
+          },
+          success: res => {
+            //todo
+          },
+          fail: res => {
+            //todo
+          }
+        });
+
+      },
+      uploadFail(res){
+        console.log("wx.uploadFile : fail - " + JSON.stringify(res));
+
+      }
+    });
   },
 
   /**

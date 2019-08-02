@@ -99,6 +99,7 @@ Page({
               this.data.userInfo.actLimit = res.data.data.actlimit;
               this.data.userInfo.ssqLimit = res.data.data.ssqLimit;
               this.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
+              app.globalData.userInfo = this.data.userInfo;
 
               this.setData({
                 v_nickName:this.data.userInfo.nickName,
