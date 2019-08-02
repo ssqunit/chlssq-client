@@ -33,7 +33,7 @@
       <image class="kmicon" src="../../static/custom/icons/icon_pos_b.png" mode="aspectFit"></image>
       <text class="kmtext">当前位置</text>
     </view>
-    <view class="expand flex-row" bindtap="goSsqInfo">
+    <view class="expand flex-row" bindtap="goSsqInfo" data-tab="0">
       <text class="ssq_name">御峰园社圈</text>
       <text class="ssq_area">(广东省深圳市龙岗区)</text>
     </view>
@@ -73,7 +73,7 @@
   <van-toast id="van-toast" />
   <view>
     <view>
-      <van-nav-bar right-text="更多>>" bind:click-right="shopShowMore">
+      <van-nav-bar right-text="更多>>" bind:click-right="goSsqInfo"  data-tab="0">
         <text slot="left">本圈商家</text>
       </van-nav-bar>
       <van-row>
@@ -94,7 +94,7 @@
     </view>
 
     <view>
-      <van-nav-bar right-text="更多>>" bind:click-right="personShowMore">
+      <van-nav-bar right-text="更多>>" bind:click-right="goSsqInfo"  data-tab="1">
         <text slot="left">本圈个人</text>
       </van-nav-bar>
       <van-row>

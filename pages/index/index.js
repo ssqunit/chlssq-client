@@ -155,8 +155,9 @@ Page({
 
   //跳转商圈主页
   goSsqInfo: function (e) {
+    let tab = e.currentTarget.dataset.tab;
     wx.navigateTo({
-      url: '../district/detail/detail'
+      url: '../district/detail/detail?tab='+ tab
     })
   },
 
@@ -167,17 +168,4 @@ Page({
     })
   },
 
-  shopShowMore: function () {
-    Toast({
-      selector: "#van-toast",
-      message: '本圈商家 - 查看更多'
-    });
-  },
-
-  personShowMore: function () {
-    Toast({
-      selector: "#van-toast",
-      message: '本圈个人 - 查看更多'
-    });
-  },
 })

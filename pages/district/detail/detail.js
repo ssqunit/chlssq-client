@@ -113,7 +113,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let tab = options.tab;
+    this.setData({
+      active: tab
+    })
   },
 
   /**
@@ -127,6 +130,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      active: this.data.active == 0 ? 0 : 1 //这里重复设置是为了修复选中样式不执行的问题
+    })
 
   },
 
