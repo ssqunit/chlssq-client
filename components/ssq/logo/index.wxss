@@ -20,3 +20,13 @@
   top: 0;
   right: 0;
 }
+
+.bottom{
+  position: absolute;bottom: 0;
+}
+.txtbg{
+  height: 40rpx;width: 100%;background-color: black;opacity: 0.3;
+}
+.txt{
+  width:100%;font-size: 22rpx;color:white;text-align: center;
+}

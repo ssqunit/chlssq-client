@@ -31,6 +31,23 @@ Page({
       { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
       { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" }
     ],
+    busPosData: [
+      { "id": "101", "name": "双手理疗馆", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
+      { "id": "102", "name": "健康养生馆", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
+      { "id": "103", "name": "一凡超市", "tag": "0", "img": "../../../static/custom/icons/icon_pos_b.png" },
+      { "id": "104", "name": "美丽美发馆", "tag": "1", "img": "../../../static/custom/banners/banner_0.png" },
+      { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../../static/custom/code.jpg" },
+      { "id": "106", "name": "水果王", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
+      { "id": "107", "name": "美丽美发馆", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
+      { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../../static/custom/defaults/def_ssq.jpg" }
+    ],
+    perPosData: [
+      { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../images/SSQ_new.png" },
+      { "id": "106", "name": "水果王", "tag": "1", "img": "../../images/SSQ_new.png" },
+      { "id": "107", "name": "美丽美发馆", "tag": "1", "img": "../../images/SSQ_new.png" },
+      { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../images/SSQ_new.png" }
+    ],
+
   },
 
   onLoad: function(options) {
@@ -167,5 +184,16 @@ Page({
       url: '../district/join/join'
     })
   },
+
+  //商家点击事件
+  onBusClick:function(e){
+    console.log("onBusClick,id="+e.currentTarget.dataset.id);
+  },
+
+  //个人点击事件
+  onPerClick: function (e) {
+    console.log("onBusClick,id=" + e.currentTarget.dataset.id);
+  }
+
 
 })

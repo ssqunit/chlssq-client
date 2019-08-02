@@ -4,6 +4,23 @@ Component({
    * Component properties
    */
   properties: {
+    cname:{
+      type:String,
+      value:""
+    },
+    cid:{
+      type:Number,
+      value:0
+    },
+    ctag:{
+      type:Number,
+      value:0
+    },
+    cimg:{
+      type:String,
+      value:""
+    }
+    
 
   },
 

@@ -77,18 +77,11 @@
         <text slot="left">本圈商家</text>
       </van-nav-bar>
       <van-row>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
+        <block wx:for="{{busPosData}}" wx:for-index="index">
+          <van-col span="6">
+            <ssq-logo cname="{{item.name}}" cid="{{item.id}}" ctag="{{item.id}}" cimg="{{item.img}}"  bindtap="onBusClick" data-id="{{item.id}}" />
+          </van-col>
+        </block>
       </van-row>
 
     </view>
@@ -98,18 +91,11 @@
         <text slot="left">本圈个人</text>
       </van-nav-bar>
       <van-row>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
-        <van-col span="6">
-          <ssq-logo />
-        </van-col>
+        <block wx:for="{{perPosData}}" wx:for-index="index">
+          <van-col span="6">
+            <ssq-logo cname="{{item.name}}" cid="{{item.id}}" ctag="{{item.id}}" cimg="{{item.img}}"  bindtap="onPerClick" data-id="{{item.id}}" />
+          </van-col>
+        </block>
       </van-row>
     </view>
 
@@ -119,5 +105,5 @@
   <!-- <view class="getuserinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
   </view> -->
-  <banner></banner>
+  <!-- <banner></banner> -->
 </view>
