@@ -3,8 +3,8 @@
   width: 100%;height: auto;padding: 0rpx;
 }
 .myssq{width: 100%; height: auto;}
-.myssq_info{width: 100%;height: auto;}
-.myssq_name{width: 100%;font-size: 32rpx;padding-left: 10rpx;}
+.myssq_info{width: 100%;height: auto;margin-top: 20rpx;}
+.myssq_name{width: 100%;font-size: 38rpx;padding-left: 10rpx;}
 .myssq_imgctn{width: 100%;height: 190rpx;display: flex;flex-direction: column;align-items: center;}
 .myssq_img{width: 100%;height: 100%;}
 .null_info{width: 100%;height: 80rpx;font-size: 28rpx;display: flex;flex-direction: column;align-items: center;margin: 20rpx;}
