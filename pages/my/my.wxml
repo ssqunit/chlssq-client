@@ -1,2 +1,80 @@
 <!--pages/my.wxml-->
-<text>我的社商</text>
+<view class="container">
+  
+  <!-- 我的商家信息 -->
+  <view class="myssq">
+    <view class="myssq_info">
+      <text class="myssq_name">{{mySsqInfo.name}}</text>
+      <view class="myssq_imgctn">
+        <image src="{{mySsqInfo.ssqImgUrl}}" class="myssq_img" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 未加入社圈 -->
+  <view class="null_info" hidden="{{mySsqInfo==null?false:true}}">
+    <text>亲，您未加入社圈或不是商家哦！</text>
+    <text>赶紧行动吧，加入身边的社圈，享受便利生活！</text>
+  </view>
+
+  <!-- 选择社圈 -->
+  <view class="pick_ssq">
+    <text>选择社圈：</text>
+    <view class="pick_ssqlist">
+      <!-- <text>包括当前位置社圈，加入的社圈</text> -->
+      <van-radio-group value="{{ pick_name }}" bind:change="onChange">
+        <block wx:for="{{ssqList}}" wx:for-index="index">
+          <van-radio name="{{item.name}}" class="pick_item">
+            <view class="item_ctn">
+              <text class="item_name">{{item.area}}  {{item.name}}  社圈</text>
+              <text class="item_type">{{item.myRole}}</text>
+            </view>
+          </van-radio>
+          <view class="item_space"></view>
+        </block>
+      </van-radio-group>
+    </view>
+  </view>
+
+  <!-- 我的广告记录 -->
+  <view class="ad_info">
+    <text class="ad_count">我购买的广告：{{mySsqInfo.adCount}}单</text>
+    <text class="ad_btn">详情>></text>
+  </view>
+
+  <!-- 产品详情 -->
+  <view class="products">
+    <view class="pro_info">
+      <text class="pro_title" decode="{{true}}">产品/项目列表：&nbsp;（{{proCount}}&nbsp;个产品）</text>
+      <text class="pro_des" decode="{{true}}">推荐：已推荐&nbsp;{{}},&nbsp;&nbsp;最多推荐&nbsp;6&nbsp;个</text>
+      <text class="pro_des" decode="{{true}}">折扣：折扣中&nbsp;{{}}</text>
+      <text class="pro_des" decode="{{true}}">广告：广告中&nbsp;{{}} ,&nbsp;预购成功&nbsp;{{}}</text>
+    </view>
+    <view class="pro_list">
+      <scroll-view>
+        <block wx:for="{{mySsqInfo.productList}}" wx:for-index="index">
+          <van-card
+            num="{{item.count}}"
+            price="{{item.price}}"
+            desc="{{item.des}}"
+            title="{{item.name}}"
+            thumb="{{ item.images[0] }}"
+          >
+            <view slot="tags">
+              <van-tag color="#f2826a" plain>标签</van-tag>
+              <van-tag color="#f2826a" plain>标签</van-tag>
+            </view>
+            <view slot="footer">
+              <van-button size="mini">按钮</van-button>
+              <van-button size="mini">按钮</van-button>
+              <van-button size="mini">按钮</van-button>
+              <van-button size="mini">按钮</van-button>
+              <van-button size="mini">按钮</van-button>
+            </view>
+          </van-card>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+
+</view>
