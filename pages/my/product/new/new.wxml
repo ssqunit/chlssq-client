@@ -1,0 +1,53 @@
+<!--pages/my/product/new/new.wxml-->
+<view class="container">
+  <view class="new_title"><text>新增产品：</text></view>
+  <view class="space_line"></view>
+  <view class="new_name">
+    <text>产品名称：</text>
+    <input class="name_input" maxlength="8" placeholder="请输入产品/项目名称" type="text"></input>
+  </view>
+  <view class="new_image">
+    <view class="img_ctn">
+      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
+      <text class="img_btn">上传</text>
+    </view>
+    <view class="img_ctn">
+      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
+      <text class="img_btn">上传</text>
+    </view>
+    <view class="img_ctn">
+      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
+      <text class="img_btn">上传</text>
+    </view>
+    <view class="img_ctn">
+      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
+      <text class="img_btn">上传</text>
+    </view>
+  </view>
+  <view class="new_des">
+    <text>产品描述：</text>
+    <textarea class="des_input" maxlength="60" placeholder="请输入产品/项目描述信息" type="text"></textarea>
+  </view>
+  <view class="new_name">
+    <text>产品价格：￥</text>
+    <input class="name_input" maxlength="8" placeholder="请输入产品价格" type="digit"></input>
+  </view>
+  <view class="new_name">
+    <text>产品单位：</text>
+    <input class="name_input" maxlength="2" placeholder="请输入产品单位" type="text"></input>
+  </view>
+  <view class="new_name">
+    <text>产品到期时间：</text>
+    <input class="name_input" maxlength="20" placeholder="" type="text" bindfocus="selectDate"></input>
+  </view>
+  <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
+    <van-datetime-picker
+      type="datetime"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      max-date="{{ maxDate }}"
+      bind:confirm="onConfirm"
+      bind:cancel="onCancel"
+    />
+  </van-popup>
+</view>
