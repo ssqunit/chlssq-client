@@ -1,5 +1,5 @@
 <view class="logo-container">
-  <image class="logo-img" mode="aspectFill" src="{{cimg}}"></image>
+  <image class="logo-img" mode="aspectFit" src="{{cimg}}"></image>
   <van-tag class="top-right" type="danger">标签</van-tag>
   <view class="bottom txtbg"></view>
   <text class="bottom txt">{{cname}}</text>

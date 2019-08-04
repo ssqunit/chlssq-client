@@ -42,10 +42,10 @@ Page({
       { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../../static/custom/defaults/def_ssq.jpg" }
     ],
     perPosData: [
-      { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../images/SSQ_new.png" },
-      { "id": "106", "name": "水果王", "tag": "1", "img": "../../images/SSQ_new.png" },
-      { "id": "107", "name": "美丽美发馆", "tag": "1", "img": "../../images/SSQ_new.png" },
-      { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../images/SSQ_new.png" }
+      { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../../static/custom/code.jpg" },
+      { "id": "106", "name": "水果王", "tag": "1", "img": "../../../static/custom/code.jpg" },
+      { "id": "107", "name": "美丽美发馆", "tag": "1", "img": "../../../static/custom/code.jpg" },
+      { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../../static/custom/code.jpg" }
     ],
 
   },

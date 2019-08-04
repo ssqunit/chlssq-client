@@ -4,7 +4,7 @@
   <!-- 顶部用户信息栏 -->
   <view class="flex-row space-items default-padding">
     <view class="flex-row center" bindtap="goMyPerson">
-      <avatar class="small-avatar" src="{{v_avatarUrl}}" mode="aspectFill"></avatar>
+      <avatar class="small-avatar" src="{{v_avatarUrl}}" mode="aspectFit"></avatar>
       <text class="default-margin">{{v_nickName}}</text>
     </view>
     <view class="flex-row center">
@@ -60,7 +60,7 @@
       <swiper class="swiper_self" autoplay='true' interval='5000' duration='1000' circular='true'>
         <block wx:for="{{postImgs}}" wx:for-index="index">
           <swiper-item class="swiper_img_item">
-            <image src='{{item.url}}' class='swiper_img' mode='aspectFill'></image>
+            <image src='{{item.url}}' class='swiper_img' mode='aspectFit'></image>
             <view class="swiper_img_txtbg" hidden="{{item.text==''?true:false}}"></view>
             <text class="swiper_img_txt" hidden="{{item.text==''?true:false}}">{{item.text}}</text>
           </swiper-item>
