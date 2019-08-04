@@ -161,7 +161,14 @@ Page({
 
   //跳转搜索商圈页面
   doSearch: function (e) {
-    //TODO 
+    let type = e.currentTarget.dataset.type;
+    let searchkeys = this.data.searchKeyword;
+    wx.navigateTo({
+      url: '../district/search/search?type=' + type + "&searchkeys=" + searchkeys
+    })
+  },
+  doSearchChange: function (e) {
+    this.data.searchKeyword = e.detail;
   },
 
   //跳转创建商圈

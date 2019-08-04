@@ -15,12 +15,12 @@
   <!-- 搜索栏 -->
   <view class="flex-row center van-hairline--top">
     <view class="expand">
-      <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch">
-        <view slot="action" bind:tap="doSearch">搜索</view>
+      <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch" bind:change="doSearchChange">
+        <view slot="action" bind:tap="doSearch" data-type="0">搜索</view>
       </van-search>
     </view>
     <view class="s_btn">
-      <van-button size="normal">附近</van-button>
+      <van-button size="normal" bindtap="doSearch" data-type="1">附近</van-button>
     </view>
     <view class="s_btn">
       <van-button bindtap="goCreatSsq" size="normal">新建</van-button>

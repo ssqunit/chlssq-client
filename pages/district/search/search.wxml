@@ -1,0 +1,70 @@
+<!--pages/district/search/search.wxml-->
+<view class="container">
+
+  <!-- 搜索社圈 -->
+  <view class="area_ctn" hidden="{{openType == 1 ? true : false}}">
+
+    <text>搜索社圈......</text>
+    <view class="space_line"></view>
+    <view class="fail_text">
+      <text>抱歉！没有匹配到您要找的社圈。</text>
+      <text>可以返回调整输入重新查找。</text>
+    </view>
+    <view class="list_ctn">
+
+      <block wx:for="{{searchList}}" wx:for-index="index">    
+      <view class="item_ctn">
+        <view class="item_pos">
+          <image class="pos_img" mode="aspectFit" src="../../../static/custom/icons/icon_pos_b.png"></image>
+          <text class="pos_km">{{item.distance}}km</text>
+        </view>
+        <view class="item_img">
+          <image class="img_img" mode="aspectFit" src="{{item.imageUrl}}"></image>
+        </view>
+        <view class="item_name">
+          <text class="name_name">{{item.name}}社圈</text>
+          <text class="name_area">{{item.area}}</text>
+        </view>
+        <view class="item_btn">
+          <button class="btn_btn">加入</button>
+        </view>
+      </view>
+      </block>
+
+    </view>
+    
+  </view>
+
+  <!-- 附近社圈 -->
+  <view class="area_ctn">
+
+    <text>附近社圈：</text>
+    <view class="space_line"></view>
+    <view class="fail_text">
+      <text>抱歉！附近3公里内没有发现社圈。</text>
+    </view>
+    <view class="list_ctn">
+
+      <block wx:for="{{searchList}}" wx:for-index="index">    
+      <view class="item_ctn">
+        <view class="item_pos">
+          <image class="pos_img" mode="aspectFit" src="../../../static/custom/icons/icon_pos_b.png"></image>
+          <text class="pos_km">{{item.distance}}km</text>
+        </view>
+        <view class="item_img">
+          <image class="img_img" mode="aspectFit" src="{{item.imageUrl}}"></image>
+        </view>
+        <view class="item_name">
+          <text class="name_name">{{item.name}}社圈</text>
+          <text class="name_area">{{item.area}}</text>
+        </view>
+        <view class="item_btn">
+          <button class="btn_btn">加入</button>
+        </view>
+      </view>
+      </block>
+
+    </view>
+  
+  </view>  
+</view>
