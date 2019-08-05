@@ -6,24 +6,16 @@
     <text>产品名称：</text>
     <input class="name_input" maxlength="8" placeholder="请输入产品/项目名称" type="text"></input>
   </view>
+
   <view class="new_image">
     <view class="img_ctn">
-      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
-      <text class="img_btn">上传</text>
+      <block wx:for="{{imgesArr}}" wx:for-index="index">
+        <image class="img_img" mode="aspectFit" src="{{item}}"></image>
+      </block>
     </view>
-    <view class="img_ctn">
-      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
-      <text class="img_btn">上传</text>
-    </view>
-    <view class="img_ctn">
-      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
-      <text class="img_btn">上传</text>
-    </view>
-    <view class="img_ctn">
-      <image class="img_img" mode="aspectFit" src="../../../../static/custom/defaults/def_ssq.jpg"></image>
-      <text class="img_btn">上传</text>
-    </view>
+    <text class="img_btn" bindtap="loadImg">上传</text>
   </view>
+
   <view class="new_des">
     <text>产品描述：</text>
     <textarea class="des_input" maxlength="60" placeholder="请输入产品/项目描述信息" type="text"></textarea>
@@ -36,6 +28,7 @@
     <text>产品单位：</text>
     <input class="name_input" maxlength="2" placeholder="请输入产品单位" type="text"></input>
   </view>
+
   <!-- 产品期限 -->
   <view class="new_date">
     <text>请选择产品期限：</text>

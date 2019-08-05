@@ -24,8 +24,30 @@ Page({
     ],
     tradeType: [
       { name: '1', value: '预约', checked: 'true' }
+    ],
+    imgesArr:[
+      "../../../../static/custom/defaults/def_ssq.jpg",
+      "../../../../static/custom/defaults/def_ssq.jpg",
+      "../../../../static/custom/defaults/def_ssq.jpg",
+      "../../../../static/custom/defaults/def_ssq.jpg"
     ]
 
+  },
+
+  //选择产品图片，最多4张
+  loadImg: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 4,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        that.setData({
+          imgesArr: tempFilePaths
+        });
+      }
+    })
   },
 
   selectDate: function (e) {
