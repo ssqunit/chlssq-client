@@ -61,15 +61,13 @@
             thumb="{{ item.images[0] }}"
           >
             <view slot="tags">
-              <van-tag color="#f2826a" plain>标签</van-tag>
-              <van-tag color="#f2826a" plain>标签</van-tag>
+              <van-tag color="#f2826a" plain class="t_space">推荐</van-tag>
+              <van-tag color="#f2826a" plain class="t_space">优惠</van-tag>
             </view>
             <view slot="footer">
-              <van-button size="mini">按钮</van-button>
-              <van-button size="mini">按钮</van-button>
-              <van-button size="mini">按钮</van-button>
-              <van-button size="mini">按钮</van-button>
-              <van-button size="mini">按钮</van-button>
+              <van-button size="mini" class="t_space">做广告</van-button>
+              <van-button size="mini" class="t_space">上架</van-button>
+              <van-button size="mini" class="t_space" bindtap="proEdit" data-id="{{item.ID}}">编辑</van-button>
             </view>
           </van-card>
         </block>

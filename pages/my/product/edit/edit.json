@@ -1,3 +1,9 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-datetime-picker": "/components/vant/datetime-picker/index",
+    "van-popup": "/components/vant/popup/index",
+    "van-radio": "/components/vant/radio/index",
+    "van-radio-group": "/components/vant/radio-group/index"
+  },
+  "navigationBarTitleText": "编辑产品"
 }

@@ -44,6 +44,13 @@ Page({
     })
   },
 
+  //编辑产品
+  proEdit: function (e) {
+    wx.navigateTo({
+      url: 'product/edit/edit?id=' + e.currentTarget.dataset.id,
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

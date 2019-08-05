@@ -17,8 +17,8 @@
     "pages/district/search/search",
     "pages/district/join/person/person",
     "pages/district/join/business/business",
-    "pages/my/product/new/new",
-    "pages/my/product/edit/edit"
+    "pages/my/product/edit/edit",
+    "pages/my/product/new/new"
   ],
   "window": {
     "backgroundTextStyle": "light",
