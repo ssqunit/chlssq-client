@@ -29,12 +29,19 @@ Page({
 
   },
 
-
+  //社圈选择
   onChange(event) {
     console.log("tttttttt:"+JSON.stringify(event));
     this.setData({
       pick_name: event.detail
     });
+  },
+
+  //添加产品
+  goNew: function (e) {
+    wx.navigateTo({
+      url: 'product/new/new',
+    })
   },
 
   /**

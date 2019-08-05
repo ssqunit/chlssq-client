@@ -1,4 +1,8 @@
 // pages/my/product/new/new.js
+
+var util = require('../../../../utils/util.js');
+
+
 Page({
 
   /**
@@ -6,11 +10,22 @@ Page({
    */
   data: {
     popShow: false,
+    dateType:"1",
+    dateEnd:"",
+    dateEndFormat:"",
     minHour: 10,
     maxHour: 20,
     minDate: new Date().getTime(),
     maxDate: new Date(2029, 1, 1).getTime(),
-    currentDate: new Date().getTime()
+    currentDate: new Date().getTime(),
+    tags: [
+      { name: '1', value: '推荐' },
+      { name: '2', value: '优惠', checked: 'true' }
+    ],
+    tradeType: [
+      { name: '1', value: '预约', checked: 'true' }
+    ]
+
   },
 
   selectDate: function (e) {
@@ -22,13 +37,32 @@ Page({
   onConfirm: function(e) {
     console.log("--------onInput:" + e.detail)
     this.setData({
-      popShow: false
+      popShow: false,
+      dateEnd: e.detail,
+      dateEndFormat: util.formatTime(new Date(e.detail))
     })
   },
   onCancel: function(e) {
     this.setData({
       popShow:false
     })
+  },
+
+  //选择日期类型
+  onChangeDateType(event) {
+    this.setData({
+      dateType: event.detail
+    });
+  },
+
+  //标签选择
+  tagsChange: function (e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+  },
+
+  //交易方式选择
+  tradeTypeChange: function (e) {
+    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
   },
 
   /**

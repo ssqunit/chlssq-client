@@ -75,7 +75,7 @@
         </block>
       </scroll-view>
     </view>
-    <button class="plus">+</button>
+    <button class="plus" bindtap="goNew">+</button>
     <text class="plus_txt">点击‘+’号新增产品，最多可以创建18个产品</text>
   </view>
 

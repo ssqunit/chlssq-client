@@ -13,3 +13,12 @@ display: flex;flex-direction: column;align-items: center;}
 .img_btn{width:100%;height: 25%;text-align: center;font-size: 28rpx;color: blue;text-decoration-line: underline;}
 .new_des{width: 96%;margin-left: 2%;height: auto;font-size: 28rpx;margin-top: 15rpx;}
 .des_input{width: 100%;height: 140rpx;border: 1rpx solid silver;border-radius: 10rpx;}
+.new_date{width: 96%;margin-left: 2%;height: auto;font-size: 28rpx;margin-top: 10rpx;
+display: flex;flex-direction: column;margin-bottom: 10rpx;}
+.date_space{width: 100%;height: 5rpx;}
+.date_radio{padding-left: 30rpx;}
+.pickdate{color: blue;text-decoration-line: underline;margin-left: 10rpx;}
+.tag_list{width:100%;display: flex;flex-direction: row;}
+.checkbox{margin-left: 30rpx;}
+.waitdes{margin-left: 30rpx;color: gray;}
+.attention{font-size: 24rpx;color: gray;display: flex;flex-direction: column;margin: 30rpx;}
