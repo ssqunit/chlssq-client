@@ -5,13 +5,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    upload_img: "",
+    upload_img1: "",
+    upload_img2: "",
     distance: 0.50,
-    ssqInfo: { "ID": 0, "name": "御峰园", "area": "广东省深圳市龙岗区", "photo": "../../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
+    ssqInfo: { "ID": 0, "name": "御峰园",     upload_img: "",
+"area": "广东省深圳市龙岗区", "photo": "../../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
 
   },
 
-  uploadImg: function (e) {
+  uploadImg1: function (e) {
     var that = this;
     wx.chooseImage({
       count: 1,
@@ -20,7 +22,22 @@ Page({
       success(res) {
         const tempFilePaths = res.tempFilePaths
         that.setData({
-          upload_img: tempFilePaths[0]
+          upload_img1: tempFilePaths[0]
+        });
+      }
+    })
+  },
+
+  uploadImg2: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        that.setData({
+          upload_img2: tempFilePaths[0]
         });
         // wx.uploadFile({
         //   url: 'https://example.weixin.qq.com/upload', //仅为示例，非真实的接口地址

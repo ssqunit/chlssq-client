@@ -69,10 +69,15 @@
         </van-cell-group>
       </view>
       <view class="info_imginfo">
-        <text>请上传商家形象图：</text>
-        <text class="uploadtxt" bindtap="uploadImg">上传</text>
+        <text>请上传商家营业执照：</text>
+        <text class="uploadtxt" bindtap="uploadImg1">上传</text>
       </view>
-      <image class="myimg" src="{{upload_img}}" mode="aspectFit"></image>
+      <image class="myimg" src="{{upload_img1}}" mode="aspectFit"></image>
+      <view class="info_imginfo">
+        <text>请上传商家形象图：</text>
+        <text class="uploadtxt" bindtap="uploadImg2">上传</text>
+      </view>
+      <image class="myimg" src="{{upload_img2}}" mode="aspectFit"></image>
     </view>
   </view>
   <button class="comitbtn">提交申请</button>
