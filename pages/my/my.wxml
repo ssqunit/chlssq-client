@@ -4,7 +4,10 @@
   <!-- 我的商家信息 -->
   <view class="myssq">
     <view class="myssq_info">
-      <text class="myssq_name">{{mySsqInfo.name}}</text>
+      <view class="name_ctn">
+        <image class="myssq_icon" mode="aspectFit" src="../../static/icons/map_r.png"></image>
+        <text class="myssq_name">{{mySsqInfo.name}}</text>
+      </view>
       <view class="myssq_imgctn">
         <image src="{{mySsqInfo.ssqImgUrl}}" class="myssq_img" mode="aspectFit"></image>
       </view>

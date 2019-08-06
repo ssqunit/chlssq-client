@@ -2,11 +2,15 @@
 .container{
   width: 100%;height: auto;padding: 0rpx;
 }
-.myssq{width: 100%; height: auto;}
-.myssq_info{width: 100%;height: auto;margin-top: 20rpx;}
+
+.myssq{width: 100%; height: 260rpx;}
+.myssq_info{width: 100%;height: auto;margin-top: 20rpx;display: flex;flex-direction: column;}
+.name_ctn{width: 100%;height: 50rpx;display: flex;flex-direction: row;align-items: center;}
+.myssq_icon{width: 40rpx;height: 100%;}
 .myssq_name{width: 100%;font-size: 38rpx;padding-left: 10rpx;}
-.myssq_imgctn{width: 100%;height: 190rpx;display: flex;flex-direction: column;align-items: center;}
+.myssq_imgctn{width: 100%;height: 180rpx;margin-top:10rpx;display: flex;flex-direction: column;align-items: center;}
 .myssq_img{width: 100%;height: 100%;}
+
 .null_info{width: 100%;height: 80rpx;font-size: 28rpx;display: flex;flex-direction: column;align-items: center;margin: 20rpx;}
 .pick_ssq{width: 100%;height: auto;font-size: 28rpx;border:1rpx solid gainsboro;
   border-left-color: white;border-right-color: white;margin-top: 10rpx;padding-left: 10rpx;
