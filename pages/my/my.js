@@ -51,6 +51,13 @@ Page({
     })
   },
 
+  //点击产品
+  onCardClick: function (e) {
+    wx.navigateTo({
+      url: 'product/viewer/viewer',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

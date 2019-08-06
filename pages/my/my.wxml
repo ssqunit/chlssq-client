@@ -62,6 +62,7 @@
             desc="{{item.des}}"
             title="{{item.name}}"
             thumb="{{ item.images[0] }}"
+            bindtap="onCardClick"
           >
             <view slot="tags">
               <van-tag color="#f2826a" plain class="t_space">推荐</van-tag>
