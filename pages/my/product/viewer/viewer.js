@@ -6,11 +6,11 @@ Page({
    */
   data: {
     productInfo:{
-      bopInfo:{"ID":198,"name":"ggggggggg","position":{latitude:0.0,longitude:0.0}},
+      bopInfo:{"ID":198,"name":"双手健康理疗馆","position":{latitude:0.0,longitude:0.0}},
       "owner":true,//是否是产品拥有者
-      "name":"nnnnnnnnn",
+      "name":"肩颈理疗",
       "images":[],
-      "des":"ffffffffffffffffff",
+      "des":"产品描述产品描述产品描述,产品描述产品描述产品描述,产品描述产品描述产品描述,产品描述产品描述产品描述",
       "price":99.09,
       "unit":"次",
       "dateType":1,

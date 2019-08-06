@@ -1,2 +1,32 @@
 <!--pages/my/product/viewer/viewer.wxml-->
-<text>pages/my/product/viewer/viewer.wxml</text>
+<view class="container">
+  <view class="shopctn">
+    <image class="shop_icon" mode="aspectFit" src="../../../../static/icons/map_r.png"></image>
+    <text class="shop_name">{{productInfo.bopInfo.name}}</text>
+  </view>
+  <view class="space_line"></view>
+  <view class="name_ctn">
+    <text>产品/项目名称：</text>
+    <text>{{productInfo.name}}</text>
+  </view>
+  <view class="space"></view>
+  <view class="des_ctn">
+    <text class="des_tag">产品/项目描述：</text>
+    <text class="des_value">{{productInfo.des}}</text>
+  </view>
+  <view class="space"></view>
+  <view class="des_ctn">
+    <text class="des_tag">产品/项目价格：</text>
+    <text class="des_value">￥{{productInfo.price}}</text>
+  </view>
+  <view class="space"></view>
+  <view class="des_ctn">
+    <text class="des_tag">产品/项目单位：</text>
+    <text class="des_value">{{productInfo.unit}}</text>
+  </view>
+  <view class="space"></view>
+  <view class="des_ctn">
+    <text class="des_tag">产品/项目期限：</text>
+    <text class="des_value">{{productInfo.dateEnd}}  到期</text>
+  </view>
+</view>
