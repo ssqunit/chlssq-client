@@ -7,6 +7,7 @@ Page({
   data: {
     upload_img1: "",
     upload_img2: "",
+    positions: null,
     distance: 0.50,
     ssqInfo: { "ID": 0, "name": "御峰园",     upload_img: "",
 "area": "广东省深圳市龙岗区", "photo": "../../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
@@ -54,6 +55,42 @@ Page({
       }
     })
   },
+
+  //在地图上标记位置
+  onMapMark: function (e) {
+    var that = this;
+    wx.chooseLocation({
+      success: function (res) {
+        that.setData({
+          positions: { "latitude": res.latitude, "longitude": res.longitude },
+        })
+      },
+      fail: function () {
+        that.setData({
+          positions: { "latitude": "获取位置信息失败！", "longitude": "" }
+        })
+      }
+    })
+  },
+
+  //获取当前的位置经纬度
+  getCurPosition: function (e) {
+    var that = this;
+    wx.getLocation({
+      type: "wgs84",
+      success: function (res) {
+        that.setData({
+          positions: { "latitude": res.latitude, "longitude": res.longitude },
+        })
+      },
+      fail: function () {
+        that.setData({
+          positions: { "latitude": "获取位置信息失败！", "longitude": "" }
+        })
+      }
+    })
+  },
+
 
 
   /**

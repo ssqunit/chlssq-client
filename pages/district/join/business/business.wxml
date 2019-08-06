@@ -16,7 +16,7 @@
     </view>
   </view>
   <view class="contents_info">
-    <text class="ctn_way">入驻方式：个人入驻</text>
+    <text class="ctn_way">入驻方式：商家入驻</text>
     <view class="ctn_info">
       <view class="info_opmsg">
         <van-cell-group>
@@ -68,6 +68,18 @@
           />
         </van-cell-group>
       </view>
+
+      <view class="info_imginfo">
+        <text>标记社圈位置：</text>
+        <text class="uploadtxt" bindtap="onMapMark">在地图上标记</text>
+        <text>或</text>
+        <text class="uploadtxt" bindtap="getCurPosition">使用当前位置</text>
+      </view>
+      <view class="info_imginfo">
+        <text class="curpos">商家位置：（{{positions.latitude}} , {{positions.longitude}}）</text>
+      </view>
+      <view class="info_space"></view>
+
       <view class="info_imginfo">
         <text>请上传商家营业执照：</text>
         <text class="uploadtxt" bindtap="uploadImg1">上传</text>
