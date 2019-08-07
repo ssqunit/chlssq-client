@@ -61,7 +61,7 @@ Page({
   //
   previewImage: function (e) {
     var current = e.target.dataset.src;
-    let urls = [current];
+    let urls = ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563987445492&di=e4a77db74d89feebc12b5e653246bbfb&imgtype=0&src=http%3A%2F%2Fimg01.cztv.com%2F201603%2F21%2Fb984b787fc6f3a61de5d3847975bfc2a.jpg"];
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: urls
