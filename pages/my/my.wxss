@@ -1,6 +1,6 @@
 /* pages/my/my.wxss */
 .container{
-  width: 100%;height: auto;padding: 0rpx;
+  width: 96%;height: auto;margin-left: 2%;overflow: hidden;
 }
 
 .myssq{width: 100%; height: 260rpx;}
@@ -11,9 +11,10 @@
 .myssq_imgctn{width: 100%;height: 180rpx;margin-top:10rpx;display: flex;flex-direction: column;align-items: center;}
 .myssq_img{width: 100%;height: 100%;}
 
-.null_info{width: 100%;height: 80rpx;font-size: 28rpx;display: flex;flex-direction: column;align-items: center;margin: 20rpx;}
+.null_info{width: calc(100% - 20rpx);height: 80rpx;font-size: 28rpx;display: flex;flex-direction: column;align-items: center;margin: 20rpx;}
+
 .pick_ssq{width: 100%;height: auto;font-size: 28rpx;border:1rpx solid gainsboro;
-  border-left-color: white;border-right-color: white;margin-top: 10rpx;padding-left: 10rpx;
+  border-left-color: white;border-right-color: white;margin-top: 10rpx; 
 }
 .pick_ssqlist{width: 100%;height: auto;padding-left: 30rpx;padding-top: 10rpx;}
 .pick_item{padding: 0rpx;}
@@ -21,13 +22,15 @@
 .item_name{width: calc(100% - 150rpx);}
 .item_type{width: 150rpx;text-align: right;}
 .item_space{width: 100%;height: 10rpx;}
-.ad_info{width: 100%;height: 55rpx;margin: 10rpx 0rpx;font-size: 28rpx;
+
+.ad_info{width: 100%;height: 55rpx;font-size: 28rpx;
 display: flex;flex-direction: row;border: 1rpx solid white;border-bottom-color: gainsboro;}
-.ad_count{width: 70%;padding-left: 10rpx;}
-.ad_btn{width:25%;text-align: right;}
+.ad_count{width: calc(100% - 120rpx);}
+.ad_btn{width:120rpx;text-align: right;}
+
 .products{width: 100%;height: auto;}
 .pro_info{width:100%;height: auto;display: flex;flex-direction: column;}
-.pro_title{font-size: 28rpx;padding-left: 10rpx;}
+.pro_title{font-size: 28rpx;}
 .pro_des{font-size: 20rpx;margin-left: 30rpx;}
 .pro_list{width: 100%;height: auto;}
 .plus{font-size: 32rpx;}
