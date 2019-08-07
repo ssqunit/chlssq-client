@@ -10,7 +10,7 @@
   <view class="new_image">
     <view class="img_ctn">
       <block wx:for="{{imgesArr}}" wx:for-index="index">
-        <image class="img_img" mode="aspectFit" src="{{item}}"></image>
+        <image class="img_img" mode="aspectFit" src="{{item}}" data-src="{{item}}" bindtap="previewImage"></image>
       </block>
     </view>
     <text class="img_btn" bindtap="loadImg">上传</text>

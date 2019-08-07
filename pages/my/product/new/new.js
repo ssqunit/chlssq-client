@@ -87,6 +87,17 @@ Page({
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
   },
 
+  //预览图片
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    let urls = this.data.imgesArr;
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: urls
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
