@@ -58,6 +58,16 @@ Page({
     })
   },
 
+  //
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    let urls = [current];
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: urls
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

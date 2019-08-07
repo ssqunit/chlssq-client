@@ -9,7 +9,7 @@
         <text class="myssq_name">{{mySsqInfo.name}}</text>
       </view>
       <view class="myssq_imgctn">
-        <image src="{{mySsqInfo.ssqImgUrl}}" class="myssq_img" mode="aspectFit"></image>
+        <image src="{{mySsqInfo.ssqImgUrl}}" class="myssq_img" mode="aspectFit" data-src="{{mySsqInfo.ssqImgUrl}}" bindtap="previewImage"></image>
       </view>
     </view>
   </view>
@@ -81,5 +81,4 @@
     <text class="plus_txt">点击‘+’号新增产品，最多可以创建18个产品</text>
     <view class="bottom_space"></view>
   </view>
-
 </view>
