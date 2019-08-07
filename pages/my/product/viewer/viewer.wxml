@@ -10,6 +10,16 @@
     <text>{{productInfo.name}}</text>
   </view>
   <view class="space"></view>
+  <view class="img_ctn">
+    <swiper class="img_swiper" autoplay='true' interval='5000' duration='1000' circular='true'>
+      <block wx:for="{{productInfo.images}}" wx:for-index="index">
+        <swiper-item class="img_item">
+          <image src='{{item}}' class='img_img' mode='aspectFit'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="space"></view>
   <view class="des_ctn">
     <text class="des_tag">产品/项目描述：</text>
     <text class="des_value">{{productInfo.des}}</text>
@@ -28,5 +38,31 @@
   <view class="des_ctn">
     <text class="des_tag">产品/项目期限：</text>
     <text class="des_value">{{productInfo.dateEnd}}  到期</text>
+  </view>
+  <view class="space_line"></view>
+  <view class="order_ctn">
+    <view class="order_sum">
+      <text>产品预约情况：</text>
+      <text>(预约人数 8 ，数量 14)  </text>
+      <text class="order_cancel_btn">取消预约</text>
+    </view>
+    <view class="space"></view>
+    <text class="order_detail_btn" bindtap="onOrderDetail">{{orderDetaiLabel}}</text>
+    <view class="order_list" hidden="{{showOrderDetail}}">
+      <view class="list_item">
+        <view class="item_name">昵称</view>
+        <view class="item_tel">电话</view>
+        <view class="item_count">数量</view>
+        <view class="item_date">时间</view>
+      </view>
+      <block wx:for="{{productInfo.orderInfo.detail.list}}" wx:for-index="index">
+      <view class="list_item">
+        <view class="item_name">{{item.name}}</view>
+        <view class="item_tel">{{item.tel}}</view>
+        <view class="item_count">{{item.count}}</view>
+        <view class="item_date">{{item.date}}</view>
+      </view>
+      </block>
+    </view>
   </view>
 </view>
