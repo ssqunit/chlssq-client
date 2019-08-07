@@ -1,5 +1,0 @@
-@import "/components/vant/common/index.wxss";
-
-.vertical-margin-top {
-  margin-top: 40rpx;
-}

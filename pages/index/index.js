@@ -196,11 +196,17 @@ Page({
   //商家点击事件
   onBusClick:function(e){
     console.log("onBusClick,id="+e.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../shop/shop'
+    })
   },
 
   //个人点击事件
   onPerClick: function (e) {
     console.log("onBusClick,id=" + e.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '../shop/shop'
+    })
   }
 
 

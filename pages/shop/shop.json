@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-tag": "/components/vant/tag/index",
+    "van-card": "/components/vant/card/index",
+    "van-button": "/components/vant/button/index"
+  },
+  "navigationBarTitleText": "商家主页"
+}
