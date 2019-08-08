@@ -1,2 +1,39 @@
 <!--pages/ad/text/text.wxml-->
-<text>pages/ad/text/text.wxml</text>
+<view class="container">
+  <view class="preview_ctn fullwh">
+    <text>文字广告滚动效果预览：</text>
+    <view class="hspace"></view>
+    <swiper class="fullwh" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
+      <swiper-item class="fullwh">
+        <van-notice-bar left-icon="volume-o" color="orange" text="{{adText}}" />
+      </swiper-item>
+      <swiper-item class="fullwh">
+        <van-notice-bar left-icon="volume-o" color="orange" text="{{adText}}" />
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="space_line"></view>
+  <view class="product_info fullwh">
+    <view class="fullwh text_ctn">
+      <text class="text_tag">产品/项目名称：</text>
+      <text class="text_content">{{productInfo.name}}</text>
+    </view>
+    <view class="hspace"></view>
+    <view class="fullwh text_ctn">
+      <text class="text_tag">产品/项目描述：</text>
+      <text class="text_content">{{productInfo.des}}</text>
+    </view>
+  </view>
+  <view class="space_line"></view>
+  <view class="ad_info fullwh">
+    <text>请输入文字广告内容（必填）：</text>
+    <view class="hspace"></view>
+    <input maxlength="20" placeholder="限长20个字" value="" bindinput="onInput"></input>
+  </view>
+  <view class="space_line"></view>
+  <view class="ad_date fullwh">
+    <text class="fullwh">请选择广告时段及次数：</text>
+    <view class="date_list">
+    </view>
+  </view>
+</view>

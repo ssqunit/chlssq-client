@@ -20,8 +20,8 @@
     "pages/my/product/viewer/viewer",
     "pages/my/product/edit/edit",
     "pages/my/product/new/new",
-    "pages/ad/image/image",
-    "pages/ad/text/text"
+    "pages/ad/text/text",
+    "pages/ad/image/image"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    adText:"生命周期函数--监听页面初次渲染完成",
+    productInfo: { "ID": "108", "name": "肩周调理", "des": "产品的描述信息,产品的描述信息,产品的描述信息,产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"]},
 
+  },
+
+  //
+  onInput: function(e){
+    this.setData({adText:e.detail.value});
   },
 
   /**
