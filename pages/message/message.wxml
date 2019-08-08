@@ -1,2 +1,12 @@
 <!--pages/message.wxml-->
-<text>消息</text>
+<view class="container">
+
+  <view class="list_ctn">
+    <scroll-view>
+      <block wx:for="{{msgList}}" wx:for-index="index">
+      <ssq-msg-item ctitle="{{item.title}}" cdate="{{item.date}}" cstatus="{{item.status}}" ccontent="{{item.content}}"/>
+      </block>
+    </scroll-view>
+  </view>
+
+</view>

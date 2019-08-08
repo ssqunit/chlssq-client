@@ -5,9 +5,13 @@ Page({
    * Page initial data
    */
   data: {
-
+    msgList:[
+      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 1, "content":"消息内容，消息内容，消息内容，消息内容，消息内容，消息内容"},
+      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 1, "content": "消息内容，消息内容，消息内容，消息内容，消息内容，消息内容" },
+      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 0, "content": "消息内容，消息内容，消息内容，消息内容，消息内容，消息内容" },
+      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 0, "content": "消息内容，消息内容，消息内容，消息内容，消息内容，消息内容" }
+    ]
   },
-
   /**
    * Lifecycle function--Called when page load
    */

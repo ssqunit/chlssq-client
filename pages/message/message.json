@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "ssq-msg-item": "/components/ssq/msgitem/index"
+  },
+  "navigationBarTitleText": "消息"
 }
