@@ -4,7 +4,8 @@
       "van-radio-group": "/components/vant/radio-group/index",
       "van-tag": "/components/vant/tag/index",
       "van-card": "/components/vant/card/index",
-      "van-button": "/components/vant/button/index"
+      "van-button": "/components/vant/button/index",
+      "van-popup": "/components/vant/popup/index"
   },
   "navigationBarTitleText": "我的社商"
 }

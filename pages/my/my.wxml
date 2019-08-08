@@ -69,8 +69,8 @@
               <van-tag color="#f2826a" plain class="t_space">优惠</van-tag>
             </view>
             <view slot="footer">
-              <van-button size="mini" class="t_space">做广告</van-button>
               <van-button size="mini" class="t_space">上架</van-button>
+              <van-button size="mini" class="t_space" catchtap="onOpenADChoose">做广告</van-button>
               <van-button size="mini" class="t_space" catchtap="proEdit" data-id="{{item.ID}}">编辑</van-button>
             </view>
           </van-card>
@@ -81,4 +81,18 @@
     <text class="plus_txt">点击‘+’号新增产品，最多可以创建18个产品</text>
     <view class="bottom_space"></view>
   </view>
+
+  <van-popup
+    show="{{ adShow }}"
+    position="bottom"
+    overlay="true"
+    bind:close="onCloseADChoose"
+    safe-area-inset-bottom="true"
+  >
+    <view class="adType_ctn">
+      <button catchtap="onADText">购买首页文字广告</button>
+      <button catchtap="onADImage">购买首页大图广告</button>
+    </view>
+  </van-popup>
+
 </view>

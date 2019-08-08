@@ -5,6 +5,7 @@ Page({
    * Page initial data
    */
   data: {
+    adShow:false,
     pick_name:"御峰园",
     ssqList:[
       { "ID": 101, "name": "御峰园", "area": "广东省深圳市龙岗区", "myRole": "成员" },
@@ -65,6 +66,30 @@ Page({
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: urls
+    })
+  },
+
+  //
+  onCloseADChoose: function() {
+    this.setData({ adShow: false });
+  },
+  onOpenADChoose: function(e) {
+    this.setData({ adShow: true });
+  },
+
+  //
+  onADText: function (e) {
+    this.onCloseADChoose();
+    wx.navigateTo({
+      url: '../ad/text/text',
+    })
+  },
+
+  //
+  onADImage: function (e) {
+    onCloseADChoose();
+    wx.navigateTo({
+      url: '../ad/image/image',
     })
   },
 

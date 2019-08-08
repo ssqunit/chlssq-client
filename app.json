@@ -19,7 +19,9 @@
     "pages/district/join/business/business",
     "pages/my/product/viewer/viewer",
     "pages/my/product/edit/edit",
-    "pages/my/product/new/new"
+    "pages/my/product/new/new",
+    "pages/ad/image/image",
+    "pages/ad/text/text"
   ],
   "window": {
     "backgroundTextStyle": "light",
