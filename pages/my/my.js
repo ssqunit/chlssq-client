@@ -87,7 +87,7 @@ Page({
 
   //
   onADImage: function (e) {
-    onCloseADChoose();
+    this.onCloseADChoose();
     wx.navigateTo({
       url: '../ad/image/image',
     })

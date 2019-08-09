@@ -1,2 +1,76 @@
 <!--pages/ad/image/image.wxml-->
-<text>pages/ad/image/image.wxml</text>
+<view class="container">
+  <view class="preview_ctn fullwh">
+    <text>文字广告滚动效果预览：</text>
+    <view class="hspace"></view>
+    <swiper class="fullwh" autoplay='true' interval='4000' duration='500' circular='true'>
+      <swiper-item class="swiper_img_item">
+        <image src='{{adImage}}' class='swiper_img' mode='aspectFit'></image>
+        <view class="swiper_img_txtbg" hidden="{{adText==''?true:false}}"></view>
+        <text class="swiper_img_txt" hidden="{{adText==''?true:false}}">{{adText}}</text>
+      </swiper-item>
+      <swiper-item class="swiper_img_item">
+        <image src='{{adImage}}' class='swiper_img' mode='aspectFit'></image>
+        <view class="swiper_img_txtbg" hidden="{{adText==''?true:false}}"></view>
+        <text class="swiper_img_txt" hidden="{{adText==''?true:false}}">{{adText}}</text>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="space_line"></view>
+  <view class="product_info fullwh">
+    <view class="fullwh text_ctn">
+      <text class="text_tag">产品/项目名称：</text>
+      <text class="text_content">{{productInfo.name}}</text>
+    </view>
+    <view class="hspace"></view>
+    <view class="fullwh text_ctn">
+      <text class="text_tag">产品/项目描述：</text>
+      <text class="text_content">{{productInfo.des}}</text>
+    </view>
+  </view>
+  <view class="space_line"></view>
+  <view class="ad_info fullwh">
+    <text>请选择一张图片作为大图广告（必填）：</text>
+    <view class="hspace"></view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{productInfo.images}}" wx:for-index="index">
+        <radio value="{{item}}" >
+          <image src="{{item}}" mode=""></image>
+        </radio>
+      </label>
+    </radio-group>
+    <view class="hspace"></view>
+    <text>请输入配图文字（可选填）：</text>
+    <view class="hspace"></view>
+    <textarea maxlength="100" placeholder="限长100个字" bindinput="onInput"></textarea>
+  </view>
+  <view class="space_line"></view>
+  <view class="ad_date fullwh">
+    <text class="fullwh">请选择广告时段及次数：</text>
+    <view class="date_list">
+      <text class="date_circle">注意：以下时段的广告周期为：{{imageADInfo.dateStart}} - {{imageADInfo.dateEnd}}</text>
+
+      <block wx:for="{{imageADInfo.list}}" wx:for-index="index">
+      <view class="list_item">
+        <view class="text_ctn">
+          <text class="text_time">>{{item.time}}</text>
+          <text class="text_price">￥{{item.price}}</text>
+          <text class="text_left">剩余：{{item.left}}</text>
+        </view>
+        <van-stepper
+          value="{{ 0 }}"
+          integer
+          min="0"
+          max="{{item.left}}"
+          step="1"
+          bind:change="onChange"
+          data-id="{{item.id}}"
+          data-price="{{item.price}}"
+        />
+      </view>
+      </block>
+
+      <button type="primary">支付：￥{{priceTotal}}</button>
+    </view>
+  </view>
+</view>
