@@ -34,6 +34,29 @@
   <view class="ad_date fullwh">
     <text class="fullwh">请选择广告时段及次数：</text>
     <view class="date_list">
+      <text class="date_circle">注意：以下时段的广告周期为：{{textADInfo.dateStart}} - {{textADInfo.dateEnd}}</text>
+
+      <block wx:for="{{textADInfo.list}}" wx:for-index="index">
+      <view class="list_item">
+        <view class="text_ctn">
+          <text class="text_time">>{{item.time}}</text>
+          <text class="text_price">￥{{item.price}}</text>
+          <text class="text_left">剩余：{{item.left}}</text>
+        </view>
+        <van-stepper
+          value="{{ 0 }}"
+          integer
+          min="0"
+          max="{{item.left}}"
+          step="1"
+          bind:change="onChange"
+          data-id="{{item.id}}"
+          data-price="{{item.price}}"
+        />
+      </view>
+      </block>
+
+      <button type="primary">支付：￥{{priceTotal}}</button>
     </view>
   </view>
 </view>

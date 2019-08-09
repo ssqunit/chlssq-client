@@ -14,3 +14,12 @@
 .ad_info text{font-size: 36rpx;}
 .ad_info input{border:1rpx solid silver;}
 .ad_date{font-size: 36rpx;}
+.vspace{width: 20rpx;height: 100%;}
+.date_circle{font-size: 28rpx;color: red;}
+.list_item{font-size: 28rpx;display: flex;flex-direction: row;align-items: center;}
+.list_item .text_ctn{width:calc(100% - 200rpx);}
+.text_time{width: 40%;} 
+.text_price{width: 30%;text-align: right;}
+.text_left{width: 30%;text-align: right;}
+.list_item van-stepper{width: 200rpx;}
+.price_total{color: green;}
