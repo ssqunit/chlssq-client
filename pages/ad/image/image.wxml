@@ -1,7 +1,7 @@
 <!--pages/ad/image/image.wxml-->
 <view class="container">
   <view class="preview_ctn fullwh">
-    <text>文字广告滚动效果预览：</text>
+    <text>大图广告滚动效果预览：</text>
     <view class="hspace"></view>
     <swiper class="fullwh" autoplay='true' interval='4000' duration='500' circular='true'>
       <swiper-item class="swiper_img_item">
