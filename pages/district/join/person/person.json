@@ -1,6 +1,4 @@
 {
-  "usingComponents": {
-    "van-field": "/components/vant/field/index"
-  },
+  "usingComponents": {},
   "navigationBarTitleText": "个人入驻"
 }

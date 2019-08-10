@@ -19,49 +19,34 @@
     <text class="ctn_way">入驻方式：个人入驻</text>
     <view class="ctn_info">
       <view class="info_opmsg">
-        <van-cell-group>
-          <van-field
-            value="{{ message }}"
-            label="经营信息："
-            type="textarea"
-            fixed="true"
-            placeholder="请输入个人经营的相关信息"
-            maxlength="50"
-            autosize
-            border="{{ true }}"
-          />
-        </van-cell-group>
-        <van-cell-group>
-          <van-field
-            value="{{ message }}"
-            label="商家地址："
-            type="textarea"
-            fixed="true"
-            placeholder="请输地址信息"
-            maxlength="25"
-            autosize
-            border="{{ true }}"
-          />
-        </van-cell-group>
-        <van-cell-group>
-          <van-field
-            value="{{ message }}"
-            label="商家电话："
-            type="textarea"
-            fixed="true"
-            placeholder="请输入电话"
-            maxlength="24"
-            autosize
-            border="{{ true }}"
-          />
-        </van-cell-group>
+        <view class="info_space"></view>
+        <view class="info_item">
+          <text class="info_star">*</text>
+          <text class="info_tag">经营信息：</text>
+          <textarea maxlength="50" placeholder="请输入个人经营的相关信息"></textarea>
+        </view>
+        <view class="line_space"></view>
+        <view class="info_item">
+          <text class="info_star">*</text>
+          <text class="info_tag">商家地址：</text>
+          <textarea maxlength="25" placeholder="请输地址信息"></textarea>
+        </view>
+        <view class="line_space"></view>
+        <view class="info_item">
+          <text class="info_star">*</text>
+          <text class="info_tag">商家联系：</text>
+          <input maxlength="30" placeholder="请输入商家联系信息"></input>
+        </view>
       </view>
+      <view class="line_space"></view>
       <view class="info_imginfo">
+        <text class="info_star">*</text>
         <text>请上传本人手持身份证照：</text>
         <text class="uploadtxt" bindtap="uploadImg">上传</text>
       </view>
       <image class="myimg" src="{{upload_img}}" mode="aspectFit"></image>
     </view>
   </view>
+  <text class="tips">平台会在1到5个工作日内审核该申请，请留意相关信息，谢谢！</text>
   <button class="comitbtn" bindtap="commitApply">提交申请</button>
 </view>
