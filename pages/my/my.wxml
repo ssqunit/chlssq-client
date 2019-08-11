@@ -42,7 +42,7 @@
   <!-- 我的广告记录 -->
   <view class="ad_info">
     <text class="ad_count">我购买的广告：{{mySsqInfo.adCount}}单</text>
-    <text class="ad_btn">详情>></text>
+    <text class="ad_btn" bindtap="onADRecord">详情>></text>
   </view>
 
   <!-- 产品详情 -->

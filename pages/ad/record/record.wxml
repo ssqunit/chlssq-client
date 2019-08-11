@@ -1,0 +1,13 @@
+<!--pages/ad/record/record.wxml-->
+<view class="container">
+  <text class="title">广告记录：{{count}}</text>
+  <view class="space_line"></view>
+  <scroll-view scroll-y style="height:{{scr_h + 'px'}};">
+
+    <block wx:for="{{recordsInfo}}" wx:for-index="index">
+    <ssq-adrecord-item dateTime="{{item.dateTime}}" name="{{item.name}}" type="{{item.type}}" dateSet="{{item.dateSet}}" timeSet="{{item.timeSet}}" price="{{item.price}}" shopName="{{item.shopName}}" ssqName="{{item.ssqName}}" />
+    <view class="bottom_line"></view>
+    </block>
+
+  </scroll-view>
+</view>

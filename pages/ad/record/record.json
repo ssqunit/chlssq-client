@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "ssq-adrecord-item":"/components/ssq/adrecord-item/index"
+  }
+}

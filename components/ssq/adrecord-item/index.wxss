@@ -1,0 +1,10 @@
+/* components/ssq/adrecord-item/index.wxss */
+.sitem{width: 100%;height: auto;font-size: 28rpx;}
+.text_ctn{width: 100%;height: auto;display: flex;flex-direction: row;align-items: center;}
+.text_tag{width: 110rpx;height: auto;}
+.text_value{width: calc(100% - 110rpx);height: auto;}
+.time_list{width: calc(100% - 110rpx);height: auto;display: flex;flex-direction: column;}
+.list_item{width: 100%;height: auto;display: flex;flex-direction: row;}
+.time_value{width: calc(100% - 200rpx);height: auto;}
+.time_count{width: 200rpx;height: auto;}
+.btn{color: blue;}

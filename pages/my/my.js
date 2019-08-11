@@ -38,6 +38,13 @@ Page({
     });
   },
 
+  //广告记录
+  onADRecord: function(e) {
+    wx.navigateTo({
+      url: '../ad/record/record',
+    })
+  },
+
   //添加产品
   goNew: function (e) {
     wx.navigateTo({

@@ -20,6 +20,7 @@
     "pages/my/product/viewer/viewer",
     "pages/my/product/edit/edit",
     "pages/my/product/new/new",
+    "pages/ad/record/record",
     "pages/ad/text/text",
     "pages/ad/image/image"
   ],
