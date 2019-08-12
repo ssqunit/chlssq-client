@@ -105,29 +105,22 @@ Page({
                 v_nickName:this.data.userInfo.nickName,
                 v_avatarUrl:this.data.userInfo.avatarUrl
               })
+
+              this.updateInfo2Svr();
             },
             fail: res => {
-              //getUserInfo fail
+              wx.showToast({
+                title: res.errMsg,
+                icon: 'none',
+                duration: 3000
+              })
             }
           })
-              // common.request({
-              //   method: "POST",
-              //   url: "/user/wx/user_info/update",
-              //   data: {
-              //     nickName: res.userInfo.nickName,
-              //     avatarUrl: res.userInfo.avatarUrl,
-              //     gender: res.userInfo.gender,
-              //     city: res.userInfo.city,
-              //     province: res.userInfo.province,
-              //     country: res.userInfo.country,
-              //   },
-              //   success: res => { }
-              // })
         } else {
               wx.showToast({
                 title: '登录失败，请重试',
                 icon: 'none',
-                duration: 2000
+                duration: 3000
               })
         }
       },//success
@@ -135,12 +128,35 @@ Page({
         wx.showToast({
           title: res.errMsg,
             icon: 'none',
-            duration: 2000
+            duration: 3000
         })
       },//fail
-
     })//common.request
+  },
 
+  updateInfo2Svr: function () {
+    common.request({
+      method:"POST",
+      url: common.BASE_URL,
+      data: {
+        'function': 'updateUserInfo',
+        js_code: app.globalData.js_code,
+        "openId": this.data.userInfo.ID, 
+        "nickName": this.data.userInfo.nickName, 
+        "gender": this.data.userInfo.gender, 
+        "language": this.data.userInfo.language, 
+        "city": this.data.userInfo.city, 
+        "province": this.data.userInfo.province, 
+        "country": this.data.userInfo.country, 
+        "avatarUrl": this.data.userInfo.avatarUrl
+      },
+      success: res => {
+        console.log("updateUserInfo:"+JSON.stringify(res));
+      },
+      fail: res => {
+        console.log("updateUserInfo:" + JSON.stringify(res));
+      }
+    });
   },
 
   //打开商圈在地图上的位置
