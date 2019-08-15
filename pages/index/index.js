@@ -59,8 +59,7 @@ Page({
     })
 
     app.userInfoReadyCallback = res => {
-      console.log("----------- get user info callback:" + JSON.stringify(res))
-
+      console.log("----------- userInfoReadyCallback:" + JSON.stringify(res));
       this.data.userInfo.nickName = res.userInfo.nickName;
       this.data.userInfo.gender = res.userInfo.gender;
       this.data.userInfo.language = res.userInfo.language;
@@ -69,9 +68,36 @@ Page({
       this.data.userInfo.country = res.userInfo.country;
       this.data.userInfo.avatarUrl = res.userInfo.avatarUrl;
       app.globalData.userInfo = this.data.userInfo;
-      this.myLogin();
+      this.setData({
+        v_nickName: this.data.userInfo.nickName,
+        v_avatarUrl: this.data.userInfo.avatarUrl
+      })
+      this.requestNotice();
     }
 
+  },
+
+  //拉取通知消息
+  requestNotice: function (e) {
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'requestNotice'
+      },
+      success: res => {
+        console.log("----------- requestNotice:success" + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+
+        } else {
+          this.toast("查询公告失败！");
+        }
+        this.myLogin();
+      },
+      fail: res => {
+        this.myLogin();
+      }
+    });
   },
 
   myLogin:function(){
@@ -109,38 +135,25 @@ Page({
               this.updateInfo2Svr();
             },
             fail: res => {
-              wx.showToast({
-                title: res.errMsg,
-                icon: 'none',
-                duration: 3000
-              })
+              this.toast(res.errMsg);
             }
           })
         } else {
-              wx.showToast({
-                title: '登录失败，请重试',
-                icon: 'none',
-                duration: 3000
-              })
+          this.toast('登录失败，请重试');
         }
       },//success
       fail: res => {
-        wx.showToast({
-          title: res.errMsg,
-            icon: 'none',
-            duration: 3000
-        })
+        this.toast(res.errMsg);
       },//fail
     })//common.request
   },
 
+  //更新用户信息给服务器
   updateInfo2Svr: function () {
     common.request({
       method:"POST",
-      url: common.BASE_URL,
+      url: common.BASE_URL + '?function=updateUserInfo&session_id=' + this.data.userInfo.session_id,
       data: {
-        'function': 'updateUserInfo',
-        js_code: app.globalData.js_code,
         "openId": this.data.userInfo.ID, 
         "nickName": this.data.userInfo.nickName, 
         "gender": this.data.userInfo.gender, 
@@ -151,12 +164,46 @@ Page({
         "avatarUrl": this.data.userInfo.avatarUrl
       },
       success: res => {
-        console.log("updateUserInfo:"+JSON.stringify(res));
+        console.log("----------- updateUserInfo:"+JSON.stringify(res));
+        this.getNearbySsqDetail();
       },
       fail: res => {
-        console.log("updateUserInfo:" + JSON.stringify(res));
+        console.log("----------- updateUserInfo:" + JSON.stringify(res));
       }
     });
+  },
+
+  //获取首页商圈信息
+  getNearbySsqDetail:function() {
+    var that = this;
+    wx.getLocation({
+      type: "wgs84",
+      success: function (res) {
+        common.request({
+          method: "GET",
+          url: common.BASE_URL,
+          data: {
+            'function': 'getNearbySsqDetail',
+            session_id: that.data.userInfo.session_id,
+            "latitude": res.latitude,
+            "longitude": res.longitude
+          },
+          success: res => {
+            console.log("----------- getNearbySsqDetail:" + JSON.stringify(res));
+            if (res.data.iRet == 0) {
+            } else {
+              that.toast("获取商圈信息失败！");
+            }
+          },//success
+          fail: res => {
+            that.toast("获取商圈信息失败！请检查网络或稍后再试。");
+          },//fail
+        })//common.request
+      },
+      fail: function () {
+      }
+    })
+
   },
 
   //打开商圈在地图上的位置
@@ -222,6 +269,14 @@ Page({
     console.log("onBusClick,id=" + e.currentTarget.dataset.id);
     wx.navigateTo({
       url: '../shop/shop'
+    })
+  },
+
+  toast: function (title) {
+    wx.showToast({
+      title: title,
+      icon: 'none',
+      duration: 3000
     })
   }
 
