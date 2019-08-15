@@ -124,11 +124,12 @@ Page({
   uploadImages:function(obj){
     console.log("uploadImg:" + app.globalData.userInfo.session_id + "," + this.data.upload_img);
     const uploadTask = common.uploadFile({
-      url: 'https://106.52.156.60:443/index.php?function=upload',
+      url: common.BASE_URL,
       filePath: this.data.upload_img,
       name: 'file',
       header: { "Content-Type": "multipart/form-data" },
       formData: {
+        'function': 'upload',
         session_id: app.globalData.userInfo.session_id
       },
       success(res) {
@@ -155,6 +156,7 @@ Page({
 
   //提交申请
   onCommit:function(e){
+    var that = this;
     this.uploadImages({
       uploadSuccess(res){
         console.log("wx.uploadFile : success - " + JSON.stringify(res));
@@ -164,10 +166,10 @@ Page({
           url: common.BASE_URL,
           data: {
             'function': 'ssqCreateApply',
-            imgid: this.data.imgId,
-            area: this.data.citysData,
-            name: this.data.inputText,
-            position: this.data.positions
+            imgid: that.data.imgId,
+            area: that.data.citysData,
+            name: that.data.inputText,
+            position: that.data.positions
           },
           success: res => {
             //todo
