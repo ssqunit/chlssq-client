@@ -19,7 +19,7 @@
    <text>社圈</text>
  </view>
  <view class="input_name_ctn">
-  <text>社圈全名：</text>
+  <text class="full_name">社圈全名：</text>
   <text class="full_name">{{citysData}}{{inputText}}社圈</text>
  </view>
  <view class="input_name_ctn">
@@ -29,11 +29,11 @@
   <text class="mark" bindtap="getCurPosition">使用当前位置</text>
  </view>
  <view class="input_name_ctn">
-  <text class="curpos">当前位置：（{{positions.latitude}} , {{positions.longitude}}）</text>
+  <text class="curpos">社圈位置：{{markText}}</text>
  </view>
  <text class="attention">注意：社圈新建申请一旦提交，其它人则不可以再创建同区域的同名社圈。</text>
  <view class="commit_ctn">
-  <button class="commit_btn" bindtap="onCommit">提交申请</button>
+  <button bindtap="onCommit" type="primary">提交申请</button>
  </view>
  <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
     <van-area area-list="{{ areaList }}" columns-num="{{ 3 }}" title="选择区域" bind:confirm="onAreaConfirm" bind:cancel="onAreaCancel" bind:change="onAreaChange"/>

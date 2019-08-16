@@ -92,8 +92,3 @@
   width: 100%;
   margin-top: 60rpx;
 }
-.commit_btn{
-  width: 280rpx;
-  background-color: green;
-  color: white;
-}

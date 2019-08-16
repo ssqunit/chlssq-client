@@ -14,12 +14,14 @@ Page({
    */
   data: {
     upload_img: "../../../static/custom/defaults/def_ssq.jpg",
+    loadImage:false,
     areaList:null,
     popShow:false,
     imgId:"",   //上传后返回的图片ID
     citysData: "",//区域
     inputText: "",//社圈名称
-    positions: null //社圈位置
+    positions: null, //社圈位置
+    markText:"未标记"
   },
 
   /**
@@ -49,11 +51,13 @@ Page({
       success: function (res) {
         that.setData({
           positions: { "latitude": res.latitude, "longitude": res.longitude },
+          markText: "已标记"
         })
       },
       fail: function () {
         that.setData({
-          positions: { "latitude": "获取位置信息失败！", "longitude": "" }
+          positions: null,
+          markText: "未标记"
         })
       }
     })
@@ -62,16 +66,29 @@ Page({
   //获取当前的位置经纬度
   getCurPosition: function (e) {
     var that = this;
+    wx.showLoading({
+      title: '正在获取当前位置...',
+      mask: true
+    })
     wx.getLocation({
       type: "wgs84",
       success: function (res) {
+        wx.hideLoading();
         that.setData({
           positions: { "latitude": res.latitude, "longitude": res.longitude },
+          markText: "已标记"
         })
       },
       fail: function () {
+        wx.hideLoading();
+        wx.showToast({
+          title: '获取位置信息失败！',
+          icon : 'none',
+          duration : 2000
+        })
         that.setData({
-          positions: { "latitude": "获取位置信息失败！", "longitude": "" }
+          positions: null,
+          markText: "未标记"
         })
       }
     })
@@ -114,7 +131,8 @@ Page({
       success(res) {
         const tempFilePaths = res.tempFilePaths
         that.setData({
-          upload_img : tempFilePaths[0]
+          upload_img : tempFilePaths[0],
+          loadImage:true
         });
 
       }
@@ -157,34 +175,64 @@ Page({
   //提交申请
   onCommit:function(e){
     var that = this;
-    this.uploadImages({
-      uploadSuccess(res){
-        console.log("wx.uploadFile : success - " + JSON.stringify(res));
+    var ck = that.check();
+    if(ck == ""){
+      wx.showLoading({
+        title: '提交中，请稍后...',
+        mask: true
+      })
+      this.uploadImages({
+        uploadSuccess(res) {
+          console.log("wx.uploadFile : success - " + JSON.stringify(res));
 
-        common.request({
-          method: "GET",
-          url: common.BASE_URL,
-          data: {
-            'function': 'ssqCreateApply',
-            imgid: that.data.imgId,
-            area: that.data.citysData,
-            name: that.data.inputText,
-            position: that.data.positions
-          },
-          success: res => {
-            //todo
-          },
-          fail: res => {
-            //todo
-          }
-        });
+          common.request({
+            method: "GET",
+            url: common.BASE_URL,
+            data: {
+              'function': 'ssqCreateApply',
+              imgid: that.data.imgId,
+              area: that.data.citysData,
+              name: that.data.inputText,
+              position: that.data.positions
+            },
+            success: res => {
+              wx.hideLoading();
+              //todo
+            },
+            fail: res => {
+              wx.hideLoading();
+              //todo
+            }
+          });
 
-      },
-      uploadFail(res){
-        console.log("wx.uploadFile : fail - " + JSON.stringify(res));
+        },
+        uploadFail(res) {
+          console.log("wx.uploadFile : fail - " + JSON.stringify(res));
+          wx.hideLoading();
 
-      }
-    });
+        }
+      });
+    }else{
+      wx.showToast({
+        title: ck,
+        icon: 'none',
+        duration: 2000
+      })
+    }
+  },
+
+  check: function() {
+    if(this.data.upload_img.length <= 20 || !this.data.loadImage){
+      return "请选择上传社圈展示图！";
+    } else if (this.data.citysData.length <=2){
+      return "请选择社圈所在的区域";
+    } else if (this.data.inputText.length == "") {
+      return "请输入社圈名字";
+    } else if (this.data.positions == null) {
+      return "请标记社圈位置";
+    } else {
+      return "";
+    } 
   },
 
   /**
