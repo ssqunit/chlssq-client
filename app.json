@@ -8,6 +8,7 @@
     "pages/admin/index",
     "pages/admin/audit/index",
     "pages/admin/audit/ssqapply/ssqapply",
+    "pages/admin/audit/busapply/busapply",
     "pages/admin/announcement/publish",
     "pages/my/person/info",
     "pages/shop/shop",

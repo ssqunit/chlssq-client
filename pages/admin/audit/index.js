@@ -27,6 +27,13 @@ Page({
     })
   },
 
+  //
+  delBusApply: function (e) {
+    wx.navigateTo({
+      url: 'busapply/busapply',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

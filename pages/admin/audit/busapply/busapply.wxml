@@ -1,0 +1,92 @@
+<!--pages/admin/audit/busapply/busapply.wxml-->
+<view class="container">
+
+  <view class="welcom">
+    <text class="title">SSQ管理后台--商家入驻</text>
+    <text class="name">欢迎：{{nickName}}</text>
+  </view>
+  <view class="line"></view>
+
+  <view class="main_ctn">
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">名字：{{busJoinInfo.name}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">经营信息：{{busJoinInfo.opdes}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">地址：{{busJoinInfo.addr}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">联系：{{busJoinInfo.tel}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">商家类型：需要在入驻页面加上</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">商家位置：</text>
+        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{busJoinInfo.position.latitude}}" data-longitude="{{busJoinInfo.position.longitude}}"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">入驻：{{busJoinInfo.joinSsq.area}}{{busJoinInfo.joinSsq.name}}社圈</text>
+        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{busJoinInfo.joinSsq.position.latitude}}" data-longitude="{{busJoinInfo.joinSsq.position.longitude}}"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">商家营业执照:</text>
+      </view>
+      <view class="item_img">
+        <image src="{{busJoinInfo.opImage}}" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">商家形象图:</text>
+      </view>
+      <view class="item_img">
+        <image src="{{busJoinInfo.photo}}" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">审核意见：</text>
+      </view>
+      <view class="item_msg">
+        <textarea></textarea>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <button type="warn">驳回</button>
+        <button type="primary">通过</button>
+      </view>
+    </view>
+
+  </view>
+
+</view>
