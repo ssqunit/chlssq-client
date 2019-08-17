@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName: "locky",
+    applySsqInfo:{
+      "name":"茗萃园",
+      "area":"广东省深圳市龙岗区",
+      "position":{"latitude":14.989,"longitude":14.989},
+      "image":"../../../../static/custom/defaults/def_ssq.jpg",
+      "creator":{
+        "openid":"",
+        "nickName":"locky"
+      }
+    }
 
+  },
+
+  //
+  openMap: function (e) {
+    wx.openLocation({
+      latitude: this.data.applySsqInfo.position.latitude,
+      longitude: this.data.applySsqInfo.position.longitude,
+      scale: 14
+    })
   },
 
   /**
