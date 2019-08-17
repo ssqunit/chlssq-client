@@ -59,7 +59,7 @@
           <view class="item_item">
             <text class="tag">新申请：</text>
             <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn">去处理</text>
+            <text class="btn" bindtap="delPerApply">去处理</text>
           </view>
           </block>
         </scroll-view>
@@ -78,7 +78,7 @@
           <view class="item_item">
             <text class="tag">新申请：</text>
             <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn">去处理</text>
+            <text class="btn" bindtap="delImgApply">去处理</text>
           </view>
           </block>
         </scroll-view>

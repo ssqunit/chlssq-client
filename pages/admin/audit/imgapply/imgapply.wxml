@@ -1,0 +1,68 @@
+<!--pages/admin/audit/imgapply/imgapply.wxml-->
+<view class="container">
+
+  <view class="welcom">
+    <text class="title">SSQ管理后台--社圈改图</text>
+    <text class="name">欢迎：{{nickName}}</text>
+  </view>
+  <view class="line"></view>
+
+  <view class="main_ctn">
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">名字：{{imgChangeInfo.user.nickName}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">描述：{{imgChangeInfo.des}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">{{imgChangeInfo.ssq.area}}{{imgChangeInfo.ssq.name}}社圈</text>
+        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{imgChangeInfo.ssq.position.latitude}}" data-longitude="{{imgChangeInfo.ssq.position.longitude}}"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">新照片:</text>
+      </view>
+      <view class="item_img">
+        <image src="{{imgChangeInfo.newImage}}" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">旧照片:</text>
+      </view>
+      <view class="item_img">
+        <image src="{{imgChangeInfo.oldImage}}" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">审核意见：</text>
+      </view>
+      <view class="item_msg">
+        <textarea></textarea>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <button type="warn">驳回</button>
+        <button type="primary">通过</button>
+      </view>
+    </view>
+
+  </view>
+
+</view>
+

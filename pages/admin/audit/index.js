@@ -34,6 +34,20 @@ Page({
     })
   },
 
+  //
+  delPerApply: function (e) {
+    wx.navigateTo({
+      url: 'perapply/perapply',
+    })
+  },
+
+  //
+  delImgApply: function (e) {
+    wx.navigateTo({
+      url: 'imgapply/imgapply',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
