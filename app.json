@@ -7,7 +7,7 @@
     "pages/logs/logs",
     "pages/admin/index",
     "pages/admin/audit/index",
-    "pages/admin/audit/detail/detail",
+    "pages/admin/audit/ssqapply/ssqapply",
     "pages/admin/announcement/publish",
     "pages/my/person/info",
     "pages/shop/shop",

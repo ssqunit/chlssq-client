@@ -15,13 +15,16 @@ Page({
       { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
       { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
       { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
-      { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
-      { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
-      { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
-      { "area": "广东省深圳市龙岗区", "name": "茗萃园" },
       { "area": "广东省深圳市龙岗区", "name": "茗萃园" }
     ]
 
+  },
+
+  //
+  delSsqApply: function (e) {
+    wx.navigateTo({
+      url: 'ssqapply/ssqapply',
+    })
   },
 
   /**

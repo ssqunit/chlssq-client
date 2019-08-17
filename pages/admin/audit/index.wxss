@@ -12,7 +12,7 @@
 .short_line{width: 150rpx;height: 4rpx;background-color: silver;}
 .item_text{font-size: 32rpx;margin-left: 10rpx;}
 .count{color: red;}
-.item_list{width: 96%;margin-left: 2%;height:250rpx;border: 1rpx solid silver;}
+.item_list{width: 96%;margin-left: 2%;height:220rpx;border: 1rpx solid silver;}
 .item_list scroll-view{width: 100%;height: 100%;}
 
 .item_item{width: 98%;margin-left: 1%;height: auto;display: flex;flex-direction: row;align-items: center;font-size: 24rpx;margin-top: 10rpx;}
