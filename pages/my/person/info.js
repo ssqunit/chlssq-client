@@ -32,6 +32,12 @@ Page({
     })
   },
 
+  admin: function (e) {
+    wx.navigateTo({
+      url: '../../admin/index'
+    })
+  },
+
   /**
    * Lifecycle function--Called when page is initially rendered
    */

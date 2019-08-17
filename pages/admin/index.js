@@ -5,6 +5,8 @@ Page({
    * Page initial data
    */
   data: {
+    nickName:"locky",
+    count:8
 
   },
 

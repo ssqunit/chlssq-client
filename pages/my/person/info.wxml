@@ -2,7 +2,7 @@
 <view class="container" style="background-color:white;">
   <view class="sel_avatar_ctn">
     <image class="sel_avatar_img" src="{{_userInfo.avatarUrl}}" mode="aspectFill"></image>
-    <text class="sel_user_name">{{_userInfo.nickName}}</text>
+    <text class="sel_user_name" bindtap="admin">{{_userInfo.nickName}}</text>
   </view>
   <view class="sel_info_ctn">
     <text class="sel_info_ctn_txt">ID：{{_userInfo.ID}}</text>

@@ -1,2 +1,37 @@
 <!--pages/admin/index.wxml-->
-<text>后台管理首页</text>
+<view class="container">
+
+  <view class="welcom">
+    <text class="title">SSQ管理后台</text>
+    <text class="name">欢迎：{{nickName}}</text>
+  </view>
+  <view class="line"></view>
+
+  <view class="main_ctn">
+    <view class="sum">
+      <text class="ssq">SSQ 社区商业圈</text>
+      <text class="des">专注社区  服务全国</text>
+      <text class="des">深圳市小航科技有限公司</text>
+    </view>
+    <view class="item_ctn">
+      <view class="short_line"></view>
+      <text class="item_text">审核(</text>
+      <text class="item_text count">{{count}}</text>
+      <text class="item_text">)</text>
+    </view>
+    <view class="item_ctn">
+      <view class="short_line"></view>
+      <text class="item_text">用户审核</text>
+    </view>
+    <view class="item_ctn">
+      <view class="short_line"></view>
+      <text class="item_text">社圈审核</text>
+    </view>
+    <view class="item_ctn">
+      <view class="short_line"></view>
+      <text class="item_text">公告审核</text>
+    </view>
+
+  </view>
+
+</view>
