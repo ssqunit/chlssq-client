@@ -13,7 +13,7 @@
       <text class="des">专注社区  服务全国</text>
       <text class="des">深圳市小航科技有限公司</text>
     </view>
-    <view class="item_ctn">
+    <view class="item_ctn" bindtap="goAudit">
       <view class="short_line"></view>
       <text class="item_text">审核(</text>
       <text class="item_text count">{{count}}</text>
@@ -21,15 +21,15 @@
     </view>
     <view class="item_ctn">
       <view class="short_line"></view>
-      <text class="item_text">用户审核</text>
+      <text class="item_text">用户管理</text>
     </view>
     <view class="item_ctn">
       <view class="short_line"></view>
-      <text class="item_text">社圈审核</text>
+      <text class="item_text">社圈管理</text>
     </view>
     <view class="item_ctn">
       <view class="short_line"></view>
-      <text class="item_text">公告审核</text>
+      <text class="item_text">公告管理</text>
     </view>
 
   </view>

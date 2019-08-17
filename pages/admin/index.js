@@ -10,6 +10,13 @@ Page({
 
   },
 
+  //
+  goAudit: function (e) {
+    wx.navigateTo({
+      url: 'audit/index',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
