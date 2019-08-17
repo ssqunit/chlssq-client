@@ -1,0 +1,71 @@
+<!--pages/admin/audit/perapply/perapply.wxml-->
+<view class="container">
+
+  <view class="welcom">
+    <text class="title">SSQ管理后台--个人入驻</text>
+    <text class="name">欢迎：{{nickName}}</text>
+  </view>
+  <view class="line"></view>
+
+  <view class="main_ctn">
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">名字：{{perJoinInfo.user.nickName}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">经营信息：{{perJoinInfo.opdes}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">地址：{{perJoinInfo.addr}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text">联系：{{perJoinInfo.tel}}</text>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">入驻：{{perJoinInfo.joinSsq.area}}{{perJoinInfo.joinSsq.name}}社圈</text>
+        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{perJoinInfo.joinSsq.position.latitude}}" data-longitude="{{perJoinInfo.joinSsq.position.longitude}}"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">手持身份证照:</text>
+      </view>
+      <view class="item_img">
+        <image src="{{perJoinInfo.opImage}}" mode="aspectFit"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">审核意见：</text>
+      </view>
+      <view class="item_msg">
+        <textarea></textarea>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <button type="warn">驳回</button>
+        <button type="primary">通过</button>
+      </view>
+    </view>
+
+  </view>
+
+</view>
+
