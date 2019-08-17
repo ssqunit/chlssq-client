@@ -38,8 +38,24 @@
     <view class="item_ctn">
       <view class="item_title">
         <view class="short_line"></view>
-        <text class="item_text">所在位置：</text>
-        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="openMap"></image>
+        <text class="item_text">本社圈所在位置：</text>
+        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{applySsqInfo.position.latitude}}" data-longitude="{{applySsqInfo.position.longitude}}"></image>
+      </view>
+    </view>
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">附近社圈：</text>
+      </view>
+      <view class="list_ctn">
+        <block wx:for="{{applySsqInfo.nearbySsq}}" wx:for-index="index">
+        <view class="item_title ssqinfo">
+          <view class="short_space"></view>
+          <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{item.position.latitude}}" data-longitude="{{item.position.longitude}}"></image>
+          <text class="item_text">距离：{{item.dis}}km</text>
+          <text class="item_text">{{item.area}}{{item.name}}社圈</text>
+        </view>
+        </block>
       </view>
     </view>
     <view class="item_ctn">

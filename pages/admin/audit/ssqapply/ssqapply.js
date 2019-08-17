@@ -14,16 +14,21 @@ Page({
       "creator":{
         "openid":"",
         "nickName":"locky"
-      }
+      },
+      "nearbySsq":[
+        { "name": "芳园", "area": "广东省深圳市龙岗区", "position": { "latitude": 14.989, "longitude": 14.989 }, "dis": 0.3 },
+        { "name": "芳园", "area": "广东省深圳市龙岗区", "position": { "latitude": 14.989, "longitude": 14.989 }, "dis": 0.3 },
+        { "name": "芳园", "area": "广东省深圳市龙岗区", "position": { "latitude": 14.989, "longitude": 14.989 }, "dis": 0.3 }
+      ]
     }
 
   },
 
   //
-  openMap: function (e) {
+  showOnMap: function (e) {
     wx.openLocation({
-      latitude: this.data.applySsqInfo.position.latitude,
-      longitude: this.data.applySsqInfo.position.longitude,
+      latitude: e.currentTarget.dataset.latitude,
+      longitude: e.currentTarget.dataset.longitude,
       scale: 14
     })
   },
