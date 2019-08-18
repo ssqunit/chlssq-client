@@ -1,1 +1,23 @@
 /* pages/admin/announcement/publish.wxss */
+.container{width: 96%;margin-left: 2%;height: auto;}
+.welcom{width: 100%;height: auto;display: flex;flex-direction: row;margin-top: 20rpx;}
+.welcom .title{font-size: 36rpx;width: 50%;height: 100%;}
+.welcom .name{font-size: 28rpx;width: 50%;height: 100%;padding-top: 8rpx;text-align: right;}
+.line{width: 100%;height: 2rpx;background-color: silver;margin-top: 5rpx;margin-bottom: 10rpx;}
+
+.main_ctn{width: 96%;margin-left: 2%;height: 100%;display: flex;flex-direction: column;border: 4rpx solid white;border-left-color: silver;}
+.item_ctn{width: 100%;height: auto;display: flex;flex-direction: column;margin-top: 20rpx;}
+.item_title{width: 100%;height: auto;display: flex;flex-direction: row;align-items: center;margin-top: 5rpx;margin-bottom: 5rpx;}
+.short_line{width: 50rpx;height: 4rpx;background-color: silver;}
+.short_space{width: 50rpx;height: 4rpx;}
+.item_text{font-size: 32rpx;margin-left: 10rpx;}
+.item_content{width: 100%;height: auto;display: flex;flex-direction: column;overflow: hidden;}
+.item_content van-search{width: 100%;height: 90rpx;}
+button{width:100%;margin-top: 50rpx;}
+.item_title radio-group{display: flex;flex-direction: column;padding-left: 50rpx;font-size: 28rpx;}
+.item_title label{margin-top: 15rpx;}
+.item_title textarea{border:1rpx solid silver;border-radius: 10rpx;height: 180rpx;padding: 10rpx;font-size: 24rpx;}
+.dataST{font-size: 28rpx;}
+.dataSV{width: 300rpx;font-size: 24rpx;height:35rpx;border:1rpx solid silver;}
+.dataET{font-size: 28rpx;}
+.dataEV{width: 300rpx;font-size: 24rpx;height:35rpx;border:1rpx solid silver;}

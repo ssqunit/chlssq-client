@@ -31,6 +31,13 @@ Page({
     })
   },
 
+  //
+  goPublish: function (e) {
+    wx.navigateTo({
+      url: 'announcement/publish',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

@@ -68,10 +68,6 @@ Page({
       this.data.userInfo.country = res.userInfo.country;
       this.data.userInfo.avatarUrl = res.userInfo.avatarUrl;
       app.globalData.userInfo = this.data.userInfo;
-      this.setData({
-        v_nickName: this.data.userInfo.nickName,
-        v_avatarUrl: this.data.userInfo.avatarUrl
-      })
       this.requestNotice();
     }
 
