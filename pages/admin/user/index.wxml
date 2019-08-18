@@ -1,0 +1,74 @@
+<!--pages/admin/user/index.wxml-->
+<view class="container">
+
+  <view class="welcom">
+    <text class="title">SSQ管理后台--用户</text>
+    <text class="name">欢迎：{{nickName}}</text>
+  </view>
+  <view class="line"></view>
+
+  <view class="main_ctn">
+
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">平台用户信息简要：</text>
+      </view>
+      <view class="text_ctn">
+        <text class="text_tag">平台用户总数</text>
+        <text>：</text>
+        <text class="text_value">{{sumInfo.userTotal}}</text>
+      </view>
+      <view class="text_ctn">
+        <text class="text_tag">平台首页访问量(昨天)</text>
+        <text>：</text>
+        <text class="text_value">{{sumInfo.firstpageTotal}}</text>
+      </view>
+      <view class="text_ctn">
+        <text class="text_tag">平台日活跃（昨天）</text>
+        <text>：</text>
+        <text class="text_value">{{sumInfo.userActivity}}</text>
+      </view>
+    </view>
+
+    <view class="item_ctn">
+      <view class="item_title">
+        <view class="short_line"></view>
+        <text class="item_text">管理用户：</text>
+      </view>
+      <view class="item_content">
+        <van-search
+          value="{{ value }}"
+          label="搜索用户:"
+          placeholder="请输入搜索关键词"
+          use-action-slot
+          bind:search="onSearch">
+          <view slot="action" bind:tap="onSearch">搜索</view>
+        </van-search>
+      </view>
+      <view class="item_title">
+        <text class="item_text">搜索结果：</text>
+      </view>
+      <view class="res_list">
+
+        <block wx:for="{{users}}" wx:for-index="index">
+        <view class="list_item">
+          <text>{{item.nickName}}</text>
+          <radio-group class="radio-group" bindchange="radioChange" data-openid="{{item.openId}}">
+            <label class="radio">
+              <radio value="1"/>拉黑
+            </label>
+            <label class="radio">
+              <radio value="0"/>移出黑名单
+            </label>
+          </radio-group>
+        </view>
+        </block>
+
+      </view>
+    </view>
+
+  </view>
+
+  <button type="primary">确认提交</button>
+</view>

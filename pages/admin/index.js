@@ -17,6 +17,13 @@ Page({
     })
   },
 
+  //
+  goUsers: function (e) {
+    wx.navigateTo({
+      url: 'user/index',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
