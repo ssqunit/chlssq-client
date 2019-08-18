@@ -12,6 +12,7 @@
     "pages/admin/audit/perapply/perapply",
     "pages/admin/audit/imgapply/imgapply",
     "pages/admin/user/index",
+    "pages/admin/ssq/index",
     "pages/admin/announcement/publish",
     "pages/my/person/info",
     "pages/shop/shop",

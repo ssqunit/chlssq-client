@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-search": "/components/vant/search/index",
+    "van-area": "/components/vant/area/index",
+    "van-popup": "/components/vant/popup/index"
+  },
+  "navigationBarTitleText": "社圈管理"
+}

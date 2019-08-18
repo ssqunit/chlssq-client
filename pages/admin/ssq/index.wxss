@@ -1,0 +1,32 @@
+/* pages/admin/ssq/index.wxss */
+.container{width: 96%;margin-left: 2%;height: auto;}
+.welcom{width: 100%;height: auto;display: flex;flex-direction: row;margin-top: 20rpx;}
+.welcom .title{font-size: 36rpx;width: 50%;height: 100%;}
+.welcom .name{font-size: 28rpx;width: 50%;height: 100%;padding-top: 8rpx;text-align: right;}
+.line{width: 100%;height: 2rpx;background-color: silver;margin-top: 5rpx;margin-bottom: 10rpx;}
+
+.main_ctn{width: 96%;margin-left: 2%;height: 100%;display: flex;flex-direction: column;border: 4rpx solid white;border-left-color: silver;}
+.item_ctn{width: 100%;height: auto;display: flex;flex-direction: column;margin-top: 20rpx;}
+.item_title{width: 100%;height: auto;display: flex;flex-direction: row;align-items: center;margin-top: 5rpx;margin-bottom: 5rpx;}
+.short_line{width: 50rpx;height: 4rpx;background-color: silver;}
+.short_space{width: 50rpx;height: 4rpx;}
+.item_text{font-size: 32rpx;margin-left: 10rpx;}
+.text_ctn{width: 96%;margin-left: 2%;height: auto;display: flex;flex-direction: row;font-size: 24rpx;color: rgb(138, 136, 136);margin-top: 15rpx;}
+.text_tag{width: 50%;height: auto;text-align: left;}
+.text_value{width: 50%;height: auto;text-align: left;}
+.text_choose{color: blue;margin-left: 10rpx;}
+.item_content{width: 100%;height: auto;display: flex;flex-direction: column;overflow: hidden;}
+.item_content van-search{width: 100%;height: 90rpx;}
+.res_list{width: 92%;margin-left: 4%;height: auto;font-size: 28rpx;margin-top: 20rpx;}
+button{width:100%;margin-top: 50rpx;}
+.ssq_list{width: 96%;margin-left: 2%;font-size: 28rpx;border:1rpx solid silver;border-radius: 10rpx;padding: 10rpx;height: 260rpx;margin-top: 10rpx;}
+.ssq_list scroll-view{width: 100%;height: 100%;}
+.list_item{width: 100%;height: auto;display: flex;flex-direction: row;margin-top: 10rpx;}
+.list_item .btn{width: 100rpx;text-align: right;color: blue;}
+.list_item .name{width: calc(100% - 100rpx);}
+.searchList{height: 160rpx!important;}
+.ssqdetail{font-size: 24rpx!important;}
+.item_title image{width: 40rpx;height: 40rpx;}
+.ssqphoto{width: 80%!important;height: 180rpx!important;}
+.item_title radio-group{font-size: 28rpx;}
+.mtop{margin-top: 20rpx;}
