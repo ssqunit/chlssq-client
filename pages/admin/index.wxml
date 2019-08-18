@@ -23,7 +23,7 @@
       <view class="short_line"></view>
       <text class="item_text">用户管理</text>
     </view>
-    <view class="item_ctn">
+    <view class="item_ctn" bindtap="goSsq">
       <view class="short_line"></view>
       <text class="item_text">社圈管理</text>
     </view>

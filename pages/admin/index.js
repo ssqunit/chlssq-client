@@ -24,6 +24,13 @@ Page({
     })
   },
 
+  //
+  goSsq: function (e) {
+    wx.navigateTo({
+      url: 'ssq/index',
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
