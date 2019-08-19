@@ -21,7 +21,8 @@ Page({
     citysData: "",//区域
     inputText: "",//社圈名称
     positions: null, //社圈位置
-    markText:"未标记"
+    markText:"未标记",
+    commited:[]
   },
 
   /**
@@ -142,14 +143,12 @@ Page({
   uploadImages:function(obj){
     console.log("uploadImg:" + app.globalData.userInfo.session_id + "," + this.data.upload_img);
     const uploadTask = common.uploadFile({
-      url: common.BASE_URL,
+      method: "POST",
+      url: common.BASE_URL + "?function=upload&session_id=" + app.globalData.userInfo.session_id,
       filePath: this.data.upload_img,
       name: 'file',
       header: { "Content-Type": "multipart/form-data" },
-      formData: {
-        'function': 'upload',
-        session_id: app.globalData.userInfo.session_id
-      },
+      formData: {},
       success(res) {
         if (obj.uploadSuccess){
           obj.uploadSuccess(res);
@@ -175,6 +174,11 @@ Page({
   //提交申请
   onCommit:function(e){
     var that = this;
+    var suc = that.successed(that.data.inputText);
+    if(suc){
+      that.toast("已提交了申请，切勿重复提交！")
+      return;
+    }
     var ck = that.check();
     if(ck == ""){
       wx.showLoading({
@@ -184,40 +188,38 @@ Page({
       this.uploadImages({
         uploadSuccess(res) {
           console.log("wx.uploadFile : success - " + JSON.stringify(res));
-
-          common.request({
-            method: "GET",
-            url: common.BASE_URL,
-            data: {
-              'function': 'ssqCreateApply',
-              imgid: that.data.imgId,
-              area: that.data.citysData,
-              name: that.data.inputText,
-              position: that.data.positions
-            },
-            success: res => {
-              wx.hideLoading();
-              //todo
-            },
-            fail: res => {
-              wx.hideLoading();
-              //todo
-            }
-          });
-
+          if(res.data.iRet == 0){
+            common.request({
+              method: "POST",
+              url: common.BASE_URL + "?function=ssqCreateApply&session_id=" + app.globalData.userInfo.session_id,
+              data: {
+                imgid: that.data.imgId,
+                area: that.data.citysData,
+                name: that.data.inputText,
+                position: that.data.positions
+              },
+              success: res => {
+                wx.hideLoading();
+                that.toast("已成功提交申请！请勿重复提交！");
+                that.data.commited.push({"name":that.data.inputText});
+              },
+              fail: res => {
+                wx.hideLoading();
+                that.toast("提交失败！请稍后再试。");
+              }
+            });
+          }else{
+            wx.hideLoading();
+            that.toast('图片上传失败！' + res.data.iRet);
+          }
         },
         uploadFail(res) {
-          console.log("wx.uploadFile : fail - " + JSON.stringify(res));
           wx.hideLoading();
-
+          that.toast('图片上传失败！' + res.data.iRet);
         }
       });
     }else{
-      wx.showToast({
-        title: ck,
-        icon: 'none',
-        duration: 2000
-      })
+      that.toast(ck);
     }
   },
 
@@ -233,6 +235,30 @@ Page({
     } else {
       return "";
     } 
+  },
+
+  //检查是否已经成功提交了申请
+  successed:function(name){
+    let len = this.data.commited.length;
+    var got = false;
+    if(len>0){
+      for(var i=0;i<len;i++){
+        if(name == this.data.commited[i]){
+          got = true;
+        }
+      }
+      return got;
+    }else{
+      return false;
+    }
+  },
+
+  toast: function(msg){
+    wx.showToast({
+      title: msg,
+      icon: 'none',
+      duration: 2000
+    })
   },
 
   /**

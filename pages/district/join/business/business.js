@@ -1,10 +1,16 @@
 // pages/district/join/business/business.js
+
+var constd = require("../../../../utils/data/constd.js");
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    show:false,
+    actions: constd.OpType,
+    opType:{},
     upload_img1: "",
     upload_img2: "",
     positions: null,
@@ -12,6 +18,23 @@ Page({
     ssqInfo: { "ID": 0, "name": "御峰园",     upload_img: "",
 "area": "广东省深圳市龙岗区", "photo": "../../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
 
+  },
+
+  selectOpType: function (e) {
+    this.setData({
+      show:true
+    })
+    console.log("---------："+this.data.show)
+  },
+  onSelect: function (e) {
+    this.setData({
+      opType: e.detail
+    })
+    console.log("----------:"+JSON.stringify(e))
+    this.onClose();
+  },
+  onClose: function () {
+    this.setData({ show: false })
   },
 
   uploadImg1: function (e) {

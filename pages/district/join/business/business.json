@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-action-sheet": "/components/vant/action-sheet/index"
+  },
   "navigationBarTitleText": "商家入驻"
 }

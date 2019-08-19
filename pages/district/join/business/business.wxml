@@ -34,6 +34,12 @@
         <view class="line_space"></view>
         <view class="info_item">
           <text class="info_star">*</text>
+          <text class="info_tag">选择类别：</text>
+          <text class="optype" bindtap="selectOpType">{{opType.name}}</text>
+        </view>
+        <view class="line_space"></view>
+        <view class="info_item">
+          <text class="info_star">*</text>
           <text class="info_tag">商家地址：</text>
           <textarea maxlength="25" placeholder="请输地址信息"></textarea>
         </view>
@@ -74,5 +80,11 @@
   </view>
   <text class="tips">平台会在1到5个工作日内审核该申请，请留意相关信息，谢谢！</text>
   <button class="comitbtn">提交申请</button>
+  <van-action-sheet
+    show="{{ show }}"
+    actions="{{ actions }}"
+    bind:close="onClose"
+    bind:select="onSelect"
+  />
 </view>
 
