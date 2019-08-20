@@ -1,0 +1,33 @@
+<!--pages/ad/shop/shop.wxml-->
+<view class="container">
+  <view class="mytitle">
+    <text >抢购首页商家展示位：</text>
+  </view>
+  <view class="effect">
+    <van-row>
+      <van-col span="6">
+        <ssq-logo cname="{{defShopADInfo.text}}" cid="{{defShopADInfo.shopId}}" cflag="{{defShopADInfo.flag}}" cimg="{{defShopADInfo.img}}" />
+      </van-col>
+    </van-row>
+  </view>
+  <view class="mytitle">
+    <text>展示周期：</text>
+  </view>
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox" wx:for="{{timeItems}}">
+      <checkbox value="{{item.id}}">
+        <view class="show_time">
+          <text>{{item.timeStart}}</text>
+          <view class="hspace"></view>
+          <text>至</text>
+          <view class="hspace"></view>
+          <text>{{item.timeEnd}}</text>
+          <view class="hspace"></view>
+          <text>剩余：{{item.left}}</text>
+        </view>
+      </checkbox>
+    </label>
+  </checkbox-group> 
+
+  <button type="primary">抢购：￥{{priceTotal}}</button>
+</view>

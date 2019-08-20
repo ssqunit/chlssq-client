@@ -18,14 +18,8 @@ Page({
     ssqInfo: null,
     defShopADInfo: { "shopId": -1, "productId":"", "text": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
     shopADInfo: [],
+    defPersonADInfo: { "shopId": -1, "productId": "", "text": "", "flag": 0, "img": "../../../static/custom/defaults/person_logo.png" },
     personADInfo:[],
-    perPosData: [
-      { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../../static/custom/code.jpg" },
-      { "id": "106", "name": "水果王", "tag": "1", "img": "../../../static/custom/code.jpg" },
-      { "id": "107", "name": "美丽美发馆", "tag": "1", "img": "../../../static/custom/code.jpg" },
-      { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../../static/custom/code.jpg" }
-    ],
-
   },
 
   onLoad: function(options) {
@@ -199,13 +193,13 @@ Page({
           if (!that.data.ssqInfo.personADInfo) {
             var _personADInfo = [];
             while (_personADInfo.length < 4) {
-              _personADInfo.push(that.data.defShopADInfo);
+              _personADInfo.push(that.data.defPersonADInfo);
             }
             that.setData({ personADInfo: _personADInfo })
           } else if (that.data.ssqInfo.personADInfo.length < 4) {
             var _personADInfo = that.data.ssqInfo.personADInfo;
             while (_personADInfo.length < 4) {
-              _personADInfo.push(that.data.defShopADInfo);
+              _personADInfo.push(that.data.defPersonADInfo);
             }
             that.setData({ personADInfo: _personADInfo })
           } else {
@@ -273,18 +267,30 @@ Page({
 
   //商家点击事件
   onBusClick:function(e){
-    console.log("onBusClick,id="+e.currentTarget.dataset.id);
-    wx.navigateTo({
-      url: '../shop/shop'
-    })
+    var shopId = e.currentTarget.dataset.id;
+    if(shopId == -1){
+      wx.navigateTo({
+        url: '../ad/shop/shop'
+      })
+    }else{
+      wx.navigateTo({
+        url: '../shop/shop'
+      })
+    }
   },
 
   //个人点击事件
   onPerClick: function (e) {
-    console.log("onBusClick,id=" + e.currentTarget.dataset.id);
-    wx.navigateTo({
-      url: '../shop/shop'
-    })
+    var shopId = e.currentTarget.dataset.id;
+    if (shopId == -1) {
+      wx.navigateTo({
+        url: '../ad/shop/shop'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../shop/shop'
+      })
+    }
   },
 
   toast: function (title) {
