@@ -148,7 +148,7 @@ Page({
       filePath: this.data.upload_img,
       name: 'file',
       header: { "Content-Type": "multipart/form-data" },
-      formData: {},
+      data: {},
       success(res) {
         if (obj.uploadSuccess){
           obj.uploadSuccess(res);
@@ -187,25 +187,38 @@ Page({
       })
       this.uploadImages({
         uploadSuccess(res) {
-          console.log("wx.uploadFile : success - " + JSON.stringify(res));
-          if(res.data.iRet == 0){
+          // console.log("wx.uploadFile : success - " + JSON.stringify(res));
+          var newRes = JSON.stringify(res.data);
+          newRes = newRes.replace(/\\/g,'');
+          newRes = newRes.substr(1,newRes.length-2);
+          // console.log("wx.uploadFile : JSON.parse - " + newRes);
+          res = JSON.parse(newRes);
+          
+          if(res.iRet == 0){
+            that.data.imgId = res.data.file_id;
             common.request({
               method: "POST",
-              url: common.BASE_URL + "?function=ssqCreateApply&session_id=" + app.globalData.userInfo.session_id,
+              url: common.BASE_URL + "?function=createSsq&session_id=" + app.globalData.userInfo.session_id,
               data: {
-                imgid: that.data.imgId,
-                area: that.data.citysData,
-                name: that.data.inputText,
-                position: that.data.positions
+                "imgId": that.data.imgId,
+                "area": that.data.citysData,
+                "name": that.data.inputText,
+                "latitude": that.data.positions.latitude,
+                "longitude": that.data.positions.longitude
               },
               success: res => {
-                wx.hideLoading();
-                that.toast("已成功提交申请！请勿重复提交！");
-                that.data.commited.push({"name":that.data.inputText});
+                if(res.data.iRet == 0){
+                  wx.hideLoading();
+                  that.toast("已成功提交申请！请勿重复提交！");
+                  that.data.commited.push({ "name": that.data.inputText });
+                }else{
+                  wx.hideLoading();
+                  that.toast("提交失败！请稍后再试。");
+                }
               },
               fail: res => {
                 wx.hideLoading();
-                that.toast("提交失败！请稍后再试。");
+                that.toast("提交失败！请检查您的网络。");
               }
             });
           }else{

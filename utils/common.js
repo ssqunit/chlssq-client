@@ -52,6 +52,13 @@ function request(obj) {
     }
   }
 
+  if (obj.method == "POST") {
+    if(!obj.header){
+      obj.header={};
+    }
+    obj.header['content-type'] = "application/x-www-form-urlencoded";
+  }
+
   var url = obj.url
   if (!url.startsWith('http://') && !url.startsWith('https://')) {
     obj.url = BASE_URL + url
