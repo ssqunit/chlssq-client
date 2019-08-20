@@ -12,7 +12,7 @@ Component({
       type:Number,
       value:0
     },
-    ctag:{
+    cflag:{
       type:Number,
       value:0
     },
@@ -28,6 +28,7 @@ Component({
    * Component initial data
    */
   data: {
+    // hideFlag = cflag == 1 ? false : true
 
   },
 

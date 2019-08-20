@@ -1,6 +1,8 @@
 <view class="logo-container">
   <image class="logo-img" mode="aspectFit" src="{{cimg}}"></image>
-  <van-tag class="top-right" type="danger">标签</van-tag>
-  <view class="bottom txtbg"></view>
+  <view hidden="{{cflag == 1? false : true}}">
+    <van-tag class="top-right" type="danger">优惠</van-tag>
+  </view>
+  <view class="bottom txtbg" hidden="{{cname.length<=0?true:false}}"></view>
   <text class="bottom txt">{{cname}}</text>
 </view>

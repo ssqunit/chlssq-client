@@ -15,32 +15,10 @@ Page({
     v_avatarUrl:"",
     time: "",
     searchKeyword: "",
-    postTexts: [
-      { "text": "这里最多能显示多少个字好吧这里最多能显示多23" },
-      { "text": "这里最多能显示多少个字？-》good$￥# 好吧！" },
-      { "text": "这里最多能显示多少个字好吧这里最多能显示多少23" },
-      { "text": "这里最多能显示多少个字好吧这里最多能显示多" },
-      { "text": "这里最多能显示多少个字？-》good$￥# 好吧！" }
-    ],
-    postImgs: [
-      { "url": "../../static/custom/defaults/def_ssq.jpg" , "text": "针对图片的描述"},
-      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" },
-      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
-      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" },
-      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
-      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "针对图片的描述" },
-      { "url": "../../static/custom/defaults/def_ssq.jpg", "text": "" }
-    ],
-    busPosData: [
-      { "id": "101", "name": "双手理疗馆", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
-      { "id": "102", "name": "健康养生馆", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
-      { "id": "103", "name": "一凡超市", "tag": "0", "img": "../../../static/custom/icons/icon_pos_b.png" },
-      { "id": "104", "name": "美丽美发馆", "tag": "1", "img": "../../../static/custom/banners/banner_0.png" },
-      { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../../static/custom/code.jpg" },
-      { "id": "106", "name": "水果王", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
-      { "id": "107", "name": "美丽美发馆", "tag": "1", "img": "../../../static/custom/defaults/def_ssq.jpg" },
-      { "id": "108", "name": "黄金展示位", "tag": "0", "img": "../../../static/custom/defaults/def_ssq.jpg" }
-    ],
+    ssqInfo: null,
+    defShopADInfo: { "shopId": -1, "productId":"", "text": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
+    shopADInfo: [],
+    personADInfo:[],
     perPosData: [
       { "id": "105", "name": "生鲜超市", "tag": "1", "img": "../../../static/custom/code.jpg" },
       { "id": "106", "name": "水果王", "tag": "1", "img": "../../../static/custom/code.jpg" },
@@ -160,8 +138,7 @@ Page({
         "avatarUrl": this.data.userInfo.avatarUrl
       },
       success: res => {
-        console.log("----------- updateUserInfo:"+JSON.stringify(res));
-        this.getNearbySsqDetail();
+        this.getMyPosition();
       },
       fail: res => {
         console.log("----------- updateUserInfo:" + JSON.stringify(res));
@@ -169,37 +146,79 @@ Page({
     });
   },
 
-  //获取首页商圈信息
-  getNearbySsqDetail:function() {
+  //获取我的位置信息
+  getMyPosition:function() {
     var that = this;
     wx.getLocation({
       type: "wgs84",
       success: function (res) {
-        common.request({
-          method: "GET",
-          url: common.BASE_URL,
-          data: {
-            'function': 'getNearbySsqDetail',
-            session_id: that.data.userInfo.session_id,
-            "latitude": res.latitude,
-            "longitude": res.longitude
-          },
-          success: res => {
-            console.log("----------- getNearbySsqDetail:" + JSON.stringify(res));
-            if (res.data.iRet == 0) {
-            } else {
-              that.toast("获取商圈信息失败！");
-            }
-          },//success
-          fail: res => {
-            that.toast("获取商圈信息失败！请检查网络或稍后再试。");
-          },//fail
-        })//common.request
+        that.getNearbySsqDetail(res.latitude, res.longitude);
       },
       fail: function () {
+        that.toast("获取位置信息失败！");
+        //that.getNearbySsqDetail(0, 0);
       }
     })
+  },
 
+  //获取首页商圈信息
+  getNearbySsqDetail: function(latitude,longitude){
+    var that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getNearbySsqDetail',
+        session_id: that.data.userInfo.session_id,
+        "latitude": latitude,
+        "longitude": longitude
+      },
+      success: res => {
+        console.log("----------- getNearbySsqDetail:" + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          that.setData({
+            ssqInfo: res.data.data
+          });
+          //shopADInfo
+          if(!that.data.ssqInfo.shopADInfo){
+            var _shopADInfo = [];
+            while(_shopADInfo.length<8){
+              _shopADInfo.push(that.data.defShopADInfo);
+            }
+            that.setData({shopADInfo:_shopADInfo})
+          } else if (that.data.ssqInfo.shopADInfo.length<8){
+            var _shopADInfo = that.data.ssqInfo.shopADInfo;
+            while (_shopADInfo.length < 8) {
+              _shopADInfo.push(that.data.defShopADInfo);
+            }
+            that.setData({ shopADInfo: _shopADInfo })
+          }else{
+            that.setData({ shopADInfo: that.data.ssqInfo.shopADInfo })
+          }
+          //personADInfo
+          if (!that.data.ssqInfo.personADInfo) {
+            var _personADInfo = [];
+            while (_personADInfo.length < 4) {
+              _personADInfo.push(that.data.defShopADInfo);
+            }
+            that.setData({ personADInfo: _personADInfo })
+          } else if (that.data.ssqInfo.personADInfo.length < 4) {
+            var _personADInfo = that.data.ssqInfo.personADInfo;
+            while (_personADInfo.length < 4) {
+              _personADInfo.push(that.data.defShopADInfo);
+            }
+            that.setData({ personADInfo: _personADInfo })
+          } else {
+            that.setData({ personADInfo: that.data.ssqInfo.personADInfo })
+          }
+        } else {
+          that.toast("获取商圈信息失败！");
+        }
+      },//success
+      fail: res => {
+        that.toast("获取商圈信息失败！请检查网络或稍后再试。");
+      },//fail
+    })//common.request
   },
 
   //打开商圈在地图上的位置

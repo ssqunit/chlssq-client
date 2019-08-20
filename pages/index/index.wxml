@@ -34,8 +34,8 @@
       <text class="kmtext">当前位置</text>
     </view>
     <view class="expand flex-row" bindtap="goSsqInfo" data-tab="0">
-      <text class="ssq_name">御峰园社圈</text>
-      <text class="ssq_area">(广东省深圳市龙岗区)</text>
+      <text class="ssq_name">{{ssqInfo.name}}</text>
+      <text class="ssq_area">({{ssqInfo.area}})</text>
     </view>
     <view>
       <van-button bindtap="goJoin">马上加入</van-button>
@@ -46,7 +46,7 @@
   <view>
     <view class="swiper_txtctn">
       <swiper class="swiper_self" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
-        <block wx:for="{{postTexts}}" wx:for-index="index">
+        <block wx:for="{{ssqInfo.textADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_item">
             <van-notice-bar left-icon="volume-o" color="orange" text="{{item.text}}" />
             <!-- <view class='swiper_text' mode='aspectFill'>"{{item.text}}"</view> -->
@@ -58,9 +58,9 @@
   <view>
     <view class="swiper_imgctn">
       <swiper class="swiper_self" autoplay='true' interval='5000' duration='1000' circular='true'>
-        <block wx:for="{{postImgs}}" wx:for-index="index">
+        <block wx:for="{{ssqInfo.imgADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_img_item">
-            <image src='{{item.url}}' class='swiper_img' mode='aspectFit'></image>
+            <image src='{{item.img}}' class='swiper_img' mode='aspectFit'></image>
             <view class="swiper_img_txtbg" hidden="{{item.text==''?true:false}}"></view>
             <text class="swiper_img_txt" hidden="{{item.text==''?true:false}}">{{item.text}}</text>
           </swiper-item>
@@ -77,9 +77,9 @@
         <text slot="left">本圈商家</text>
       </van-nav-bar>
       <van-row>
-        <block wx:for="{{busPosData}}" wx:for-index="index">
+        <block wx:for="{{shopADInfo}}" wx:for-index="index">
           <van-col span="6">
-            <ssq-logo cname="{{item.name}}" cid="{{item.id}}" ctag="{{item.id}}" cimg="{{item.img}}"  bindtap="onBusClick" data-id="{{item.id}}" />
+            <ssq-logo cname="{{item.text}}" cid="{{item.shopId}}" cflag="{{item.flag}}" cimg="{{item.img}}"  bindtap="onBusClick" data-id="{{item.shopId}}" />
           </van-col>
         </block>
       </van-row>
@@ -91,9 +91,9 @@
         <text slot="left">本圈个人</text>
       </van-nav-bar>
       <van-row>
-        <block wx:for="{{perPosData}}" wx:for-index="index">
+        <block wx:for="{{personADInfo}}" wx:for-index="index">
           <van-col span="6">
-            <ssq-logo cname="{{item.name}}" cid="{{item.id}}" ctag="{{item.id}}" cimg="{{item.img}}"  bindtap="onPerClick" data-id="{{item.id}}" />
+            <ssq-logo cname="{{item.text}}" cid="{{item.shopId}}" cflag="{{item.flag}}" cimg="{{item.img}}"  bindtap="onPerClick" data-id="{{item.shopId}}" />
           </van-col>
         </block>
       </van-row>
