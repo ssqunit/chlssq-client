@@ -46,7 +46,7 @@
   <view>
     <view class="swiper_txtctn">
       <swiper class="swiper_self" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
-        <block wx:for="{{ssqInfo.textADInfo}}" wx:for-index="index">
+        <block wx:for="{{textADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_item">
             <van-notice-bar left-icon="volume-o" color="orange" text="{{item.text}}" />
             <!-- <view class='swiper_text' mode='aspectFill'>"{{item.text}}"</view> -->
@@ -58,7 +58,7 @@
   <view>
     <view class="swiper_imgctn">
       <swiper class="swiper_self" autoplay='true' interval='5000' duration='1000' circular='true'>
-        <block wx:for="{{ssqInfo.imgADInfo}}" wx:for-index="index">
+        <block wx:for="{{imgADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_img_item">
             <image src='{{item.img}}' class='swiper_img' mode='aspectFit'></image>
             <view class="swiper_img_txtbg" hidden="{{item.text==''?true:false}}"></view>

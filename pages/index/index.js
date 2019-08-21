@@ -16,9 +16,13 @@ Page({
     time: "",
     searchKeyword: "",
     ssqInfo: null,
+    defTextADInfo: { "shopId": "", "productId": -1, "text": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
+    textADInfo: [],
+    defImgADInfo: { "shopId": "", "productId": -1, "text": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
+    imgADInfo: [],
     defShopADInfo: { "shopId": -1, "productId":"", "text": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
     shopADInfo: [],
-    defPersonADInfo: { "shopId": -1, "productId": "", "text": "", "flag": 0, "img": "../../../static/custom/defaults/person_logo.png" },
+    defPersonADInfo: { "shopId": -1, "productId": "", "text": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
     personADInfo:[],
   },
 
@@ -173,6 +177,33 @@ Page({
           that.setData({
             ssqInfo: res.data.data
           });
+          
+          //textADInfo
+          if (!that.data.ssqInfo.textADInfo) {
+            var _textADInfo = [];
+            while (_textADInfo.length < 2) {
+              _textADInfo.push(that.data.defTextADInfo);
+            }
+            that.setData({ textADInfo: _textADInfo })
+          } else if (that.data.ssqInfo.textADInfo.length < 6) {
+            var _textADInfo = that.data.ssqInfo.textADInfo;
+            _textADInfo.push(that.data.defTextADInfo);
+            that.setData({ textADInfo: _textADInfo })
+          }
+
+          //imgADInfo
+          if (!that.data.ssqInfo.imgADInfo) {
+            var _imgADInfo = [];
+            while (_imgADInfo.length < 2) {
+              _imgADInfo.push(that.data.defImgADInfo);
+            }
+            that.setData({ imgADInfo: _imgADInfo })
+          } else if (that.data.ssqInfo.imgADInfo.length < 8) {
+            var _imgADInfo = that.data.ssqInfo.imgADInfo;
+            _imgADInfo.push(that.data.defImgADInfo);
+            that.setData({ imgADInfo: _imgADInfo })
+          }
+
           //shopADInfo
           if(!that.data.ssqInfo.shopADInfo){
             var _shopADInfo = [];
