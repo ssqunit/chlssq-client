@@ -324,7 +324,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../my/product/viewer/viewer'
+        url: '../shop/shop'
       })
     }
   },
