@@ -25,6 +25,7 @@
     "pages/my/product/viewer/viewer",
     "pages/my/product/edit/edit",
     "pages/my/product/new/new",
+    "pages/help/ad/ad",
     "pages/ad/record/record",
     "pages/ad/shop/shop",
     "pages/ad/text/text",

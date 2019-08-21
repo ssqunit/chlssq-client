@@ -319,7 +319,21 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../shop/shop'
+        url: '../my/product/viewer/viewer'
+      })
+    }
+  },
+
+  //点击文字或大图广告
+  onSwiperAD: function(e){
+    var pId = e.currentTarget.dataset.pid;
+    if (pId == -1) {
+      wx.navigateTo({
+        url: '../help/ad/ad'
+      })
+    } else {
+      wx.navigateTo({
+        url: '../my/product/viewer/viewer'
       })
     }
   },
