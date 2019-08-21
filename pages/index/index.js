@@ -33,6 +33,10 @@ Page({
     this.setData({
       time: time + " - " + weekday
     })
+    wx.showLoading({
+      title: '加载中...',
+      mask:true
+    })
 
     app.userInfoReadyCallback = res => {
       console.log("----------- userInfoReadyCallback:" + JSON.stringify(res));
@@ -172,6 +176,7 @@ Page({
         "longitude": longitude
       },
       success: res => {
+        wx.hideLoading();
         console.log("----------- getNearbySsqDetail:" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           that.setData({
