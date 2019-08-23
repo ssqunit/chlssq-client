@@ -203,8 +203,8 @@ Page({
                 "imgId": that.data.imgId,
                 "area": that.data.citysData,
                 "name": that.data.inputText,
-                "latitude": that.data.positions.latitude,
-                "longitude": that.data.positions.longitude
+                "latitude": Math.round(that.data.positions.latitude * 100000)/100000,
+                "longitude": Math.round(that.data.positions.longitude * 100000) / 100000
               },
               success: res => {
                 if(res.data.iRet == 0){
