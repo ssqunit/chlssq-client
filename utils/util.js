@@ -29,8 +29,27 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+//依据经纬度计算两个位置的距离
+const countDistance = (la1, lo1, la2, lo2) => {
+  la1 = la1 || 0;
+  la2 = la2 || 0;
+  lo1 = lo1 || 0;
+  lo2 = lo2 || 0;
+  var La1 = la1 * Math.PI / 180.0;
+  var La2 = la2 * Math.PI / 180.0;
+  var La3 = La1 - La2;
+  var Lo3 = lo1 * Math.PI / 180.0 - lo2 * Math.PI / 180.0;
+  //地球半径 
+  var r = 6378.137;
+  var s = r * 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(La3 / 2), 2) + Math.cos(La1) * Math.cos(La2) * Math.pow(Math.sin(Lo3 / 2), 2)));
+  //单位KM，保留一位小数
+  s = Math.round(s * 10) / 10;
+  return s;
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTimeYMD: formatTimeYMD,
-  getWeekDay: getWeekDay
+  getWeekDay: getWeekDay,
+  countDistance: countDistance
 }

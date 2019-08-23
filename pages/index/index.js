@@ -8,6 +8,10 @@ var util = require('../../utils/util.js');
 var c_userInfo = require("../../utils/data/userInfo.js");
 var common = require("../../utils/common.js")
 
+// var QQMapWX = require('../../utils/qqmap-wx-jssdk1.2/qqmap-wx-jssdk.js');
+// var qqmapsdk;
+
+
 Page({
   data: {
     userInfo: c_userInfo.UserInfo,
@@ -37,6 +41,10 @@ Page({
       title: '加载中...',
       mask:true
     })
+
+    // qqmapsdk = new QQMapWX({
+    //   key: ''
+    // });
 
     app.userInfoReadyCallback = res => {
       console.log("----------- userInfoReadyCallback:" + JSON.stringify(res));
@@ -148,6 +156,27 @@ Page({
     });
   },
 
+  // 获取当前地理位置
+  // getLocal: function (latitude, longitude) {
+  //   let vm = this;
+  //   qqmapsdk.reverseGeocoder({
+  //     location: {
+  //       latitude: latitude,
+  //       longitude: longitude
+  //     },
+  //     success: function (res) {
+  //       console.log("--------getLocal:"+JSON.stringify(res));
+
+  //     },
+  //     fail: function (res) {
+  //       console.log(res);
+  //     },
+  //     complete: function (res) {
+  //       // console.log(res);
+  //     }
+  //   });
+  // },
+
   //获取我的位置信息
   getMyPosition:function() {
     var that = this;
@@ -155,6 +184,7 @@ Page({
       type: "wgs84",
       success: function (res) {
         that.getNearbySsqDetail(res.latitude, res.longitude);
+        // that.getLocal(res.latitude, res.longitude);
       },
       fail: function () {
         that.toast("获取位置信息失败！");

@@ -60,7 +60,7 @@
       <swiper class="swiper_self" autoplay='true' interval='5000' duration='1000' circular='true'>
         <block wx:for="{{imgADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_img_item"  bindtap="onSwiperAD" data-pid="{{item.productId}}">
-            <image src='{{item.img}}' class='swiper_img' mode='aspectFit'></image>
+            <image src='{{item.img}}' class='swiper_img' mode='aaaaspectFit'></image>
             <view class="swiper_img_txtbg" hidden="{{item.text==''?true:false}}"></view>
             <text class="swiper_img_txt" hidden="{{item.text==''?true:false}}">{{item.text}}</text>
           </swiper-item>
