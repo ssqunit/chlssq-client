@@ -46,6 +46,16 @@ Page({
 
   },
 
+  //预览图
+  previewImage: function (e) {
+    var current = e.currentTarget.dataset.src;
+    let urls = [current];
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: urls
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */

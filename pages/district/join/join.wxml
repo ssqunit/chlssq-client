@@ -8,7 +8,7 @@
     <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../static/custom/icons/icon_pos_b.png"></image>
   </view>
   <view class="photo_info">
-    <image class="p_img" mode="aaaspectFit" src="{{ssqInfo.imageUrl}}"></image>
+    <image class="p_img" mode="aaaspectFit" src="{{ssqInfo.imageUrl}}" data-src="{{ssqInfo.imageUrl}}" bindtap="previewImage"></image>
     <view class="p_text">
       <text>商家数量：{{ssqInfo.busCount}}</text>
       <text>个人商家数量：{{ssqInfo.perCount}}</text>
