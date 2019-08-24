@@ -303,9 +303,16 @@ Page({
   doSearch: function (e) {
     let type = e.currentTarget.dataset.type;
     let searchkeys = this.data.searchKeyword;
-    wx.navigateTo({
-      url: '../district/search/search?type=' + type + "&searchkeys=" + searchkeys
-    })
+    if(searchkeys && typeof(searchkeys) == String){
+      searchkeys = searchkeys.replace(/\s+/g, '');
+    }
+    if(searchkeys && searchkeys.length>0){
+      wx.navigateTo({
+        url: '../district/search/search?type=' + type + "&searchkeys=" + searchkeys
+      })
+    }else{
+      this.toast("请输入搜索关键字！");
+    }
   },
   doSearchChange: function (e) {
     this.data.searchKeyword = e.detail;

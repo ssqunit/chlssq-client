@@ -12,12 +12,59 @@ Page({
   data: {
     openType:0,
     searchResNotNull:true,
-    searchList:[
-      { "ID": 199, "name": "御峰园", "position": { latitude: 0.1, longitude: 0.1 }, "distance": 18.9, "area": "广东省深圳市龙岗区", "imageUrl": "../../../static/custom/defaults/def_ssq.jpg", "myRole": 0 },
-      { "ID": 199, "name": "御峰园", "position": { latitude: 0.1, longitude: 0.1 }, "distance": 18.9, "area": "广东省深圳市龙岗区", "imageUrl": "../../../static/custom/defaults/def_ssq.jpg", "myRole": 0 }
-    ],
+    nearbyResNotNull:true,
+    searchList:null,
     nearbyList: null,
 
+  },
+
+  //搜索社圈
+  sendSearchRequest: function(keys){
+    var that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'searchSsq',
+        "session_id": app.globalData.userInfo.session_id,
+        "keywords":keys
+      },
+      success: res => {
+
+        if (res.data.iRet == 0) {
+          var resList = res.data.data;
+          if (!resList || resList.length == 0) {
+            that.setData({ searchResNotNull: false })
+          } else {
+            for (var i = 0; i < resList.length; i++) {
+              resList[i]["distance"] = util.countDistance(
+                app.globalData.myLocation.latitude, app.globalData.myLocation.longitude,
+                resList[i]["latitude"], resList[i]['longitude']);
+              resList[i]['imageUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, resList[i]['imgid']);
+            }
+            that.setData({ 
+              searchList: resList,
+              searchResNotNull: true
+            })
+          }
+
+        } else {
+          wx.showToast({
+            title: '服务器错误！res:' + res.sMsg,
+            mask: true,
+            duration: 2000
+          })
+          that.setData({ searchResNotNull:false })
+        }
+      },
+      fail: res => {
+        wx.showToast({
+          title: '网络错误！请检查设备网络。',
+          mask: true,
+          duration: 2000
+        })
+      }
+    });
   },
 
   //拉取附近商圈
@@ -34,7 +81,7 @@ Page({
         if(res.data.iRet==0){
           var resList = res.data.data;
           if(!resList || resList.length==0){
-            that.setData({searchResNotNull : false})
+            that.setData({ nearbyResNotNull : false})
           }else{
             for(var i=0;i<resList.length;i++){
               resList[i]["distance"] = util.countDistance(
@@ -42,7 +89,10 @@ Page({
                 resList[i]["latitude"],resList[i]['longitude']);
               resList[i]['imageUrl'] = common.getImgUrl(app.globalData.userInfo.session_id,resList[i]['imgid']); 
             }
-            that.setData({ nearbyList: resList})
+            that.setData({ 
+              nearbyList: resList,
+              nearbyResNotNull:true
+            })
           }
         }else{
           wx.showToast({
@@ -50,6 +100,7 @@ Page({
             mask: true,
             duration: 2000
           })
+          that.setData({ nearbyResNotNull: false })
         }
       },
       fail: res => {
@@ -91,11 +142,14 @@ Page({
    */
   onLoad: function (options) {
     let type = options.type;
-    let searchkeys = options.searchkeys;
     this.setData({
       openType: type
     })
-
+    
+    if(type == 0){
+      let searchkeys = options.searchkeys;
+      this.sendSearchRequest(searchkeys);
+    }
     this.sendNearbyRequest();
 
   },

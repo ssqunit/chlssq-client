@@ -6,7 +6,7 @@
 
     <text>搜索社圈......</text>
     <view class="space_line"></view>
-    <view class="fail_text">
+    <view class="fail_text" hidden="{{searchResNotNull}}">
       <text>抱歉！没有匹配到您要找的社圈。</text>
       <text>可以返回调整输入重新查找。</text>
     </view>
@@ -14,19 +14,19 @@
 
       <block wx:for="{{searchList}}" wx:for-index="index">    
       <view class="item_ctn">
-        <view class="item_pos">
+        <view class="item_pos" bindtap="openPosition" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}">
           <image class="pos_img" mode="aspectFit" src="../../../static/custom/icons/icon_pos_b.png"></image>
           <text class="pos_km">{{item.distance}}km</text>
         </view>
         <view class="item_img">
           <image class="img_img" mode="aspectFit" src="{{item.imageUrl}}"></image>
         </view>
-        <view class="item_name">
+        <view class="item_name" bindtap="goSsqInfo" data-tab="0" data-ssqid="{{item.ssqid}}">
           <text class="name_name">{{item.name}}社圈</text>
           <text class="name_area">{{item.area}}</text>
         </view>
         <view class="item_btn">
-          <button class="btn_btn">加入</button>
+          <button class="btn_btn" bindtap="goJoin" data-ssqid="{{item.ssqid}}">加入</button>
         </view>
       </view>
       </block>
@@ -36,11 +36,12 @@
   </view>
 
   <!-- 附近社圈 -->
+  <view class="bigspace"></view>
   <view class="area_ctn">
 
     <text>附近社圈：</text>
     <view class="space_line"></view>
-    <view class="fail_text" hidden="{{searchResNotNull}}">
+    <view class="fail_text" hidden="{{nearbyResNotNull}}">
       <text>抱歉！附近10公里内没有发现社圈。</text>
     </view>
     <view class="list_ctn">
