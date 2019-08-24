@@ -62,11 +62,27 @@ Page({
     });
   },
 
+  //打开商圈在地图上的位置
+  openPosition: function (e) {
+    wx.openLocation({
+      latitude: Number(e.currentTarget.dataset.latitude),
+      longitude: Number(e.currentTarget.dataset.longitude),
+      scale: 14
+    })
+  },
+
   //跳转商圈主页
   goSsqInfo: function (e) {
     let tab = e.currentTarget.dataset.tab;
     wx.navigateTo({
       url: '../detail/detail?tab=' + tab
+    })
+  },
+
+  //选择商圈加入方式
+  goJoin: function (e) {
+    wx.navigateTo({
+      url: '../join/join'
     })
   },
 
