@@ -75,7 +75,9 @@ Page({
       url: common.BASE_URL,
       data: {
         'function': 'getNearbySsq',
-        "session_id": app.globalData.userInfo.session_id
+        "session_id": app.globalData.userInfo.session_id,
+        "latitude":app.globalData.myLocation.latitude,
+        "longitude":app.globalData.myLocation.longitude
       },
       success: res => {
         if(res.data.iRet==0){
