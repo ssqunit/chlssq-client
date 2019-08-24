@@ -11,19 +11,18 @@ Page({
    */
   data: {
     openType:0,
+    searchResNotNull:true,
     searchList:[
       { "ID": 199, "name": "御峰园", "position": { latitude: 0.1, longitude: 0.1 }, "distance": 18.9, "area": "广东省深圳市龙岗区", "imageUrl": "../../../static/custom/defaults/def_ssq.jpg", "myRole": 0 },
       { "ID": 199, "name": "御峰园", "position": { latitude: 0.1, longitude: 0.1 }, "distance": 18.9, "area": "广东省深圳市龙岗区", "imageUrl": "../../../static/custom/defaults/def_ssq.jpg", "myRole": 0 }
     ],
-    nearbyList: [
-      { "ID": 199, "name": "御峰园", "position": { latitude: 0.1, longitude: 0.1 }, "distance": 18.9, "area": "广东省深圳市龙岗区", "imageUrl": "../../../static/custom/defaults/def_ssq.jpg", "myRole": 0 },
-      { "ID": 199, "name": "御峰园", "position": { latitude: 0.1, longitude: 0.1 }, "distance": 18.9, "area": "广东省深圳市龙岗区", "imageUrl": "../../../static/custom/defaults/def_ssq.jpg", "myRole": 0 }
-    ],
+    nearbyList: null,
 
   },
 
   //拉取附近商圈
   sendNearbyRequest: function(){
+    var that = this;
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -32,14 +31,44 @@ Page({
         "session_id": app.globalData.userInfo.session_id
       },
       success: res => {
-        console.log("----------- sendNearbyRequest:success" + JSON.stringify(res));
+        if(res.data.iRet==0){
+          var resList = res.data.data;
+          if(!resList || resList.length==0){
+            that.setData({searchResNotNull : false})
+          }else{
+            for(var i=0;i<resList.length;i++){
+              resList[i]["distance"] = util.countDistance(
+                app.globalData.myLocation.latitude,app.globalData.myLocation.longitude,
+                resList[i]["latitude"],resList[i]['longitude']);
+              resList[i]['imageUrl'] = common.getImgUrl(app.globalData.userInfo.session_id,resList[i]['imgid']); 
+            }
+            that.setData({ nearbyList: resList})
+          }
+        }else{
+          wx.showToast({
+            title: '服务器错误！res:'+res.sMsg,
+            mask: true,
+            duration: 2000
+          })
+        }
       },
       fail: res => {
-        console.log("----------- sendNearbyRequest:fail" + JSON.stringify(res));
+        wx.showToast({
+          title: '网络错误！请检查设备网络。',
+          mask:true,
+          duration:2000
+        })
       }
     });
   },
 
+  //跳转商圈主页
+  goSsqInfo: function (e) {
+    let tab = e.currentTarget.dataset.tab;
+    wx.navigateTo({
+      url: '../detail/detail?tab=' + tab
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

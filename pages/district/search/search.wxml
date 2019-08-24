@@ -40,13 +40,13 @@
 
     <text>附近社圈：</text>
     <view class="space_line"></view>
-    <view class="fail_text">
-      <text>抱歉！附近3公里内没有发现社圈。</text>
+    <view class="fail_text" hidden="{{searchResNotNull}}">
+      <text>抱歉！附近10公里内没有发现社圈。</text>
     </view>
     <view class="list_ctn">
 
-      <block wx:for="{{searchList}}" wx:for-index="index">    
-      <view class="item_ctn">
+      <block wx:for="{{nearbyList}}" wx:for-index="index">    
+      <view class="item_ctn" bindtap="goSsqInfo" data-tab="0">
         <view class="item_pos">
           <image class="pos_img" mode="aspectFit" src="../../../static/custom/icons/icon_pos_b.png"></image>
           <text class="pos_km">{{item.distance}}km</text>

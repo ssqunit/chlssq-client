@@ -183,6 +183,8 @@ Page({
     wx.getLocation({
       type: "wgs84",
       success: function (res) {
+        app.globalData.myLocation.latitude = res.latitude;
+        app.globalData.myLocation.longitude = res.longitude;
         that.getNearbySsqDetail(res.latitude, res.longitude);
         // that.getLocal(res.latitude, res.longitude);
       },

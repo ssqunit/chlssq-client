@@ -36,6 +36,7 @@ App({
   },//onLaunch
   globalData: {
     userInfo: null,
-    js_code:""
+    js_code:"",
+    myLocation:{"latitude":0.0,"longitude":0.0}
   },
 })

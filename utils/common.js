@@ -201,6 +201,10 @@ function randomString(len, charSet) {
   return randomString;
 }
 
+function getImgUrl(session_id,img_id){
+  return "https://ssqunit.com/index.php?function=download&session_id=" + session_id + "&filename=" + img_id;
+}
+
 module.exports.APP_ID = WX_APP_ID;
 module.exports.API_KEY = WX_API_KEY;
 module.exports.DEFAULT_PAGE_SIZE = DEFAULT_PAGE_SIZE;
@@ -216,3 +220,4 @@ module.exports.showToastFail = showToastFail;
 module.exports.refreshPrePage = refreshPrePage;
 module.exports.randomString = randomString;
 module.exports.log = log;
+module.exports.getImgUrl = getImgUrl;
