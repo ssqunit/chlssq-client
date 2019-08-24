@@ -135,7 +135,7 @@ Page({
   //选择商圈加入方式
   goJoin: function (e) {
     wx.navigateTo({
-      url: '../join/join'
+      url: '../join/join?ssqid=' + e.currentTarget.dataset.ssqid
     })
   },
 

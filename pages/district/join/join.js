@@ -1,11 +1,15 @@
 // pages/district/join/join.js
+
+var common = require("../../../utils/common.js")
+var util = require('../../../utils/util.js');
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    distance: 0.50,
     ssqInfo: { "ID": 0, "name": "御峰园", "area": "广东省深圳市龙岗区", "photo": "../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
 
   },
@@ -13,8 +17,8 @@ Page({
   //打开商圈在地图上的位置
   openPosition: function (e) {
     wx.openLocation({
-      latitude: 21.70915603,
-      longitude: 111.35697174,
+      latitude: this.ssqInfo.latitude,
+      longitude: this.ssqInfo.longitude,
       scale: 14
     })
   },
@@ -46,6 +50,49 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
+    let ssqid = options.ssqid;
+    console.log("---------onLoad:ssqid="+ssqid);
+    if(ssqid > 0)
+    {
+      common.request({
+        method: "GET",
+        url: common.BASE_URL,
+        data: {
+          'function': 'getSsqInfo4JoinPage',
+          "session_id": app.globalData.userInfo.session_id,
+          "ssqid": ssqid
+        },
+        success: res => {
+          if (res.data.iRet == 0) {
+            var resList = res.data.data;
+            if (resList && resList.length > 0) {
+              resList[0]["distance"] = util.countDistance(
+                app.globalData.myLocation.latitude, app.globalData.myLocation.longitude,
+                resList[0]["latitude"], resList[0]['longitude']);
+              resList[0]['imageUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, resList[0]['imgid']);
+              that.setData({
+                ssqInfo: resList[0]
+              })
+            }
+          } else {
+            wx.showToast({
+              title: '服务器错误！res:' + res.sMsg,
+              mask: true,
+              duration: 2000
+            })
+          }
+        },
+        fail: res => {
+          wx.showToast({
+            title: '网络错误！请检查设备网络。',
+            mask: true,
+            duration: 2000
+          })
+        }
+      });
+
+    }
 
   },
 
