@@ -1,4 +1,11 @@
 // pages/message.js
+import Dialog from '../../components/vant/dialog/dialog';
+
+var common = require("../../utils/common.js")
+var util = require('../../utils/util.js');
+
+const app = getApp()
+
 Page({
 
   /**
@@ -16,6 +23,40 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    let that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getMsg',
+        session_id: app.globalData.userInfo.session_id,
+        'openid': app.globalData.userInfo.ID
+      },
+      success: res => {
+        console.log("----------- getMsg:success" + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          var list = res.data.data;
+          if(list && list.length>0){
+            for(var i=0;i<list.length;i++){
+              var ms = Number(list[i]['create_time'])*1000;
+              list[i]['date'] = util.formatTime(new Date(ms));
+              list[i]['status'] = 1;
+            }
+            that.setData({
+              msgList:list
+            });
+          }else{
+            Toast("没有消息！");
+          }
+        } else {
+          Toast.fail("查询公告失败！");
+        }
+      },
+      fail: res => {
+        Toast.fail("请检查网络链接！");
+      }
+    });
+
 
   },
 

@@ -1,6 +1,6 @@
 <!--pages/message.wxml-->
 <view class="container">
-
+  <van-dialog id="van-dialog" />
   <view class="list_ctn">
     <scroll-view>
       <block wx:for="{{msgList}}" wx:for-index="index">
