@@ -47,7 +47,6 @@ Page({
     // });
 
     app.userInfoReadyCallback = res => {
-      console.log("----------- userInfoReadyCallback:" + JSON.stringify(res));
       this.data.userInfo.nickName = res.userInfo.nickName;
       this.data.userInfo.gender = res.userInfo.gender;
       this.data.userInfo.language = res.userInfo.language;
@@ -56,7 +55,8 @@ Page({
       this.data.userInfo.country = res.userInfo.country;
       this.data.userInfo.avatarUrl = res.userInfo.avatarUrl;
       app.globalData.userInfo = this.data.userInfo;
-      this.requestNotice();
+      //this.requestNotice();
+      this.myLogin();
     }
 
   },
@@ -67,19 +67,19 @@ Page({
       method: "GET",
       url: common.BASE_URL,
       data: {
-        'function': 'requestNotice'
+        'function': 'getNotice',
+        session_id: this.data.userInfo.session_id
       },
       success: res => {
         console.log("----------- requestNotice:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
-
+          this.toast("查询公告成功！");
         } else {
           this.toast("查询公告失败！");
         }
-        this.myLogin();
       },
       fail: res => {
-        this.myLogin();
+        this.toast("请检查网络链接！");
       }
     });
   },
@@ -117,6 +117,7 @@ Page({
               })
 
               this.updateInfo2Svr();
+              this.requestNotice();
             },
             fail: res => {
               this.toast(res.errMsg);
@@ -209,7 +210,6 @@ Page({
       },
       success: res => {
         wx.hideLoading();
-        console.log("----------- getNearbySsqDetail:" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           that.setData({
             ssqInfo: res.data.data
