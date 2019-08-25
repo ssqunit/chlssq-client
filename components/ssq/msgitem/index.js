@@ -4,6 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    cid:{
+      type:Number,
+      value:0
+    },
     ctitle:{
       type:String,
       value:""
@@ -39,10 +43,11 @@ Component({
     onClip:function(e){
      let clip = !this.data.isClip;
      let txt = clip?"展开":"收起"
+      wx.setStorageSync(String(e.currentTarget.dataset.id), 1);
      this.setData({
        isClip:clip,
        actText:txt,
-       cstatus:0
+       cstatus:1
      }) 
     }
 

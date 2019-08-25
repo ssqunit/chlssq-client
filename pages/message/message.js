@@ -12,12 +12,7 @@ Page({
    * Page initial data
    */
   data: {
-    msgList:[
-      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 1, "content":"消息内容，消息内容，消息内容，消息内容，消息内容，消息内容"},
-      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 1, "content": "消息内容，消息内容，消息内容，消息内容，消息内容，消息内容" },
-      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 0, "content": "消息内容，消息内容，消息内容，消息内容，消息内容，消息内容" },
-      { "id": 100, "title": "消息标题", "date": 154673677274, "status": 0, "content": "消息内容，消息内容，消息内容，消息内容，消息内容，消息内容" }
-    ]
+    msgList:[]
   },
   /**
    * Lifecycle function--Called when page load
@@ -37,10 +32,16 @@ Page({
         if (res.data.iRet == 0) {
           var list = res.data.data;
           if(list && list.length>0){
+            list.sort(that.compare("create_time"));
             for(var i=0;i<list.length;i++){
               var ms = Number(list[i]['create_time'])*1000;
               list[i]['date'] = util.formatTime(new Date(ms));
-              list[i]['status'] = 1;
+              try {
+                var value = wx.getStorageSync(String(list[i]['id']))
+                list[i]['status'] = value == 1 ? 1 : 0;
+              } catch (e) {
+                list[i]['status'] = 0;
+              }
             }
             that.setData({
               msgList:list
@@ -57,6 +58,20 @@ Page({
       }
     });
 
+
+  },
+
+  compare: function (property) {
+
+    return function (a, b) {
+
+      var value1 = a[property];
+
+      var value2 = b[property];
+
+      return value2 - value1;
+
+    }
 
   },
 

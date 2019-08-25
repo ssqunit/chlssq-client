@@ -4,7 +4,7 @@
   <view class="list_ctn">
     <scroll-view>
       <block wx:for="{{msgList}}" wx:for-index="index">
-      <ssq-msg-item ctitle="{{item.title}}" cdate="{{item.date}}" cstatus="{{item.status}}" ccontent="{{item.content}}"/>
+      <ssq-msg-item cid="{{item.id}}" ctitle="{{item.title}}" cdate="{{item.date}}" cstatus="{{item.status}}" ccontent="{{item.content}}"/>
       </block>
     </scroll-view>
   </view>
