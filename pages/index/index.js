@@ -1,4 +1,5 @@
 import Toast from '../../components/vant/toast/toast';
+import Dialog from '../../components/vant/dialog/dialog';
 
 
 const app = getApp()
@@ -14,6 +15,7 @@ var common = require("../../utils/common.js")
 
 Page({
   data: {
+    noticeType:0,
     userInfo: c_userInfo.UserInfo,
     v_nickName:"",
     v_avatarUrl:"",
@@ -37,10 +39,11 @@ Page({
     this.setData({
       time: time + " - " + weekday
     })
-    wx.showLoading({
-      title: '加载中...',
-      mask:true
-    })
+    
+    Toast.loading({
+      mask: true,
+      message: '加载中...'
+    });
 
     // qqmapsdk = new QQMapWX({
     //   key: ''
@@ -63,6 +66,7 @@ Page({
 
   //拉取通知消息
   requestNotice: function (e) {
+    var that = this;
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -73,13 +77,25 @@ Page({
       success: res => {
         console.log("----------- requestNotice:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
-          this.toast("查询公告成功！");
+          that.data.noticeType = res.data.data[0].type;
+          if (res.data.data[0].type == 1){
+            wx.redirectTo({
+              url: '../notice/notice?title='+res.data.data[0].title
+                + '&content=' + res.data.data[0].content
+            })
+          }else{
+            Dialog({
+              title: res.data.data[0].title,
+              message: res.data.data[0].content,
+              zIndex: 999
+            })
+          }
         } else {
-          this.toast("查询公告失败！");
+          Toast.fail("查询公告失败！");
         }
       },
       fail: res => {
-        this.toast("请检查网络链接！");
+        Toast.fail("请检查网络链接！");
       }
     });
   },
@@ -120,15 +136,15 @@ Page({
               this.requestNotice();
             },
             fail: res => {
-              this.toast(res.errMsg);
+              Toast.fail(res.errMsg);
             }
           })
         } else {
-          this.toast('登录失败，请重试');
+          Toast.fail('登录失败，请重试');
         }
       },//success
       fail: res => {
-        this.toast(res.errMsg);
+        Toast.fail(res.errMsg);
       },//fail
     })//common.request
   },
@@ -190,7 +206,7 @@ Page({
         // that.getLocal(res.latitude, res.longitude);
       },
       fail: function () {
-        that.toast("获取位置信息失败！");
+        Toast.fail("获取位置信息失败！");
         //that.getNearbySsqDetail(0, 0);
       }
     })
@@ -209,7 +225,7 @@ Page({
         "longitude": longitude
       },
       success: res => {
-        wx.hideLoading();
+        Toast.clear();
         if (res.data.iRet == 0) {
           that.setData({
             ssqInfo: res.data.data
@@ -274,11 +290,11 @@ Page({
             that.setData({ personADInfo: that.data.ssqInfo.personADInfo })
           }
         } else {
-          that.toast("获取商圈信息失败！");
+          Toast.fail("获取商圈信息失败！");
         }
       },//success
       fail: res => {
-        that.toast("获取商圈信息失败！请检查网络或稍后再试。");
+        Toast.fail("获取商圈信息失败！请检查网络或稍后再试。");
       },//fail
     })//common.request
   },
@@ -312,7 +328,7 @@ Page({
           url: '../district/search/search?type=' + type + "&searchkeys=" + searchkeys
         })
       } else {
-        this.toast("请输入搜索关键字！");
+        Toast("请输入搜索关键字！");
       }
     }else{
       wx.navigateTo({
@@ -387,14 +403,6 @@ Page({
       })
     }
   },
-
-  toast: function (title) {
-    wx.showToast({
-      title: title,
-      icon: 'none',
-      duration: 3000
-    })
-  }
 
 
 })

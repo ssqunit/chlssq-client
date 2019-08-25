@@ -70,6 +70,7 @@
   </view>
 
   <!-- 所在商圈的列表 -->
+  <van-dialog id="van-dialog" />
   <van-toast id="van-toast" />
   <view>
     <view>

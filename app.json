@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/message/message",
     "pages/my/my",
+    "pages/notice/notice",
     "pages/about/about",
     "pages/logs/logs",
     "pages/admin/index",

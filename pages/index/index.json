@@ -10,6 +10,7 @@
     "van-notice-bar": "/components/vant/notice-bar/index",
     "ssq-logo": "/components/ssq/logo/index",
     "avatar": "/components/ssq/avatar/index",
-    "banner": "/components/ssq/banner/banner"
+    "banner": "/components/ssq/banner/banner",
+    "van-dialog": "/components/vant/dialog/index"
   }
 }
