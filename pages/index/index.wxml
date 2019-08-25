@@ -15,7 +15,7 @@
   <!-- 搜索栏 -->
   <view class="flex-row center van-hairline--top">
     <view class="expand">
-      <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch" bind:change="doSearchChange">
+      <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch" bind:change="doSearchChange" data-type="0">
         <view slot="action" bind:tap="doSearch" data-type="0">搜索</view>
       </van-search>
     </view>
