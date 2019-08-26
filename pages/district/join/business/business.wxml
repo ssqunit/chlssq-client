@@ -26,7 +26,7 @@
           <input maxlength="12" type="text" bindinput="onNameInfo" placeholder="请输入商家名字"></input>
         </view>
         <view class="line_space"></view>
-        <view class="info_item">
+        <view class="info_item" hidden="{{show}}">
           <text class="info_star">*</text>
           <text class="info_tag">经营信息：</text>
           <textarea maxlength="80" type="text" bindinput="onOpTextInfo" placeholder="请输入个人经营的相关信息"></textarea>
@@ -35,13 +35,14 @@
         <view class="info_item">
           <text class="info_star">*</text>
           <text class="info_tag">选择类别：</text>
-          <text class="optype" bindtap="selectOpType">{{opType.name}}</text>
+          <text>{{opType.name}}</text>
+          <text class="clickText" bindtap="selectOpType">选择</text>
         </view>
         <view class="line_space"></view>
-        <view class="info_item">
+        <view class="info_item" hidden="{{show}}">
           <text class="info_star">*</text>
           <text class="info_tag">商家地址：</text>
-          <textarea maxlength="25" type="text" bindinput="onAddrInfo" placeholder="请输地址信息"></textarea>
+          <textarea maxlength="50" type="text" bindinput="onAddrInfo" placeholder="请输地址信息"></textarea>
         </view>
         <view class="line_space"></view>
         <view class="info_item">
