@@ -77,18 +77,20 @@ Page({
       success: res => {
         console.log("----------- requestNotice:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
-          that.data.noticeType = res.data.data[0].type;
-          if (res.data.data[0].type == 1){
-            wx.redirectTo({
-              url: '../notice/notice?title='+res.data.data[0].title
-                + '&content=' + res.data.data[0].content
-            })
-          }else{
-            Dialog({
-              title: res.data.data[0].title,
-              message: res.data.data[0].content,
-              zIndex: 999
-            })
+          if(res.data.data){
+            that.data.noticeType = res.data.data[0].type;
+            if (res.data.data[0].type == 1) {
+              wx.redirectTo({
+                url: '../notice/notice?title=' + res.data.data[0].title
+                  + '&content=' + res.data.data[0].content
+              })
+            } else {
+              Dialog({
+                title: res.data.data[0].title,
+                message: res.data.data[0].content,
+                zIndex: 999
+              })
+            }
           }
         } else {
           Toast.fail("查询公告失败！");

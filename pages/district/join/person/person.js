@@ -1,4 +1,6 @@
 // pages/district/join/person/person.js
+var common = require("../../../../utils/common.js")
+var util = require('../../../../utils/util.js');
 
 const app = getApp();
 
@@ -9,7 +11,6 @@ Page({
    */
   data: {
     upload_img:"",
-    distance: 0.50,
     ssqInfo: { "ID": 0, "name": "御峰园", "area": "广东省深圳市龙岗区", "photo": "../../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
 
   },
@@ -54,6 +55,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var _info = {
+      "ID": options.ssqid,
+      "imgid": options.ssqimg,
+      "name": options.ssqname,
+      "area": options.ssqarea,
+      "distance": options.distance,
+      "photo": common.getImgUrl(app.globalData.userInfo.session_id, options.ssqimg)
+    }
+    this.setData({
+      ssqInfo: _info
+    })
 
   },
 

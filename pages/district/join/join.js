@@ -1,5 +1,5 @@
 // pages/district/join/join.js
-
+import Toast from '../../../components/vant/toast/toast';
 var common = require("../../../utils/common.js")
 var util = require('../../../utils/util.js');
 const app = getApp()
@@ -10,7 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ssqInfo: { "ID": 0, "name": "御峰园", "area": "广东省深圳市龙岗区", "photo": "../../../static/custom/defaults/def_ssq.jpg", "busCount": 98, "perCount": 66 }
+    ssqInfo: {}
 
   },
 
@@ -25,18 +25,41 @@ Page({
 
   //商圈入驻
   joinApply: function (e) {
+    var that = this;
     var _type = e.currentTarget.dataset.type;
     if(_type == 1){
+      common.request({
+        method: "POST",
+        url: common.BASE_URL + '?function=joinApply&session_id=' + app.globalData.userInfo.session_id,
+        data: {
+          'ownerid':app.globalData.userInfo.ID,
+          'ssqid': this.data.ssqInfo.ssqid,
+          'ssqname': this.data.ssqInfo.name,
+          'ssqarea': this.data.ssqInfo.area,
+          'roletype':_type
+        },
+        success: res => {
+          console.log("----------- joinApply:success" + JSON.stringify(res));
+          if (res.data.iRet == 0) {
+            Toast('加入成功！请勿重复提交！');
+          } else {
+            Toast('加入失败！' + res.data.sMsg);
+          }
+        },
+        fail: res => {
+          Toast('加入失败！' + res.data.sMsg);
+        }
+      });
 
-    }
-    else if(_type == 2){
+    }else{
+      var base = _type == 2 ? '../../district/join/business/business?' : '../../district/join/person/person?';
       wx.navigateTo({
-        url: '../../district/join/person/person'
-      })
-    }
-    else if (_type == 3) {
-      wx.navigateTo({
-        url: '../../district/join/business/business'
+        url: base +
+          'ssqid=' + that.data.ssqInfo.ssqid +
+          '&ssqimg=' + that.data.ssqInfo.imgid +
+          '&ssqname=' + that.data.ssqInfo.name +
+          '&ssqarea=' + that.data.ssqInfo.area +
+          '&distance=' + that.data.ssqInfo.distance
       })
     }
   },
@@ -62,7 +85,6 @@ Page({
   onLoad: function (options) {
     var that = this;
     let ssqid = options.ssqid;
-    console.log("---------onLoad:ssqid="+ssqid);
     if(ssqid > 0)
     {
       common.request({
@@ -86,19 +108,11 @@ Page({
               })
             }
           } else {
-            wx.showToast({
-              title: '服务器错误！res:' + res.sMsg,
-              mask: true,
-              duration: 2000
-            })
+            Toast('服务器错误！res' + res.data.sMsg);
           }
         },
         fail: res => {
-          wx.showToast({
-            title: '网络错误！请检查设备网络。',
-            mask: true,
-            duration: 2000
-          })
+          Toast('网络错误！请检查设备网络');
         }
       });
 

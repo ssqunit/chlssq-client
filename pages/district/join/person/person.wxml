@@ -4,11 +4,11 @@
     <image class="n_icon" mode="aspectFit" src="../../../../static/icons/favorite_r.png"></image>
     <text class="n_name">{{ssqInfo.name}} 社圈</text>
     <text class="n_area">{{ssqInfo.area}}</text>
-    <text class="n_dis">距离：{{distance}}km</text>
+    <text class="n_dis">距离：{{ssqInfo.distance}}km</text>
     <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../../static/custom/icons/icon_pos_b.png"></image>
   </view>
   <view class="photo_info">
-    <image class="p_img" mode="aspectFit" src="{{ssqInfo.photo}}"></image>
+    <image class="p_img" mode="aaaspectFit" src="{{ssqInfo.photo}}"></image>
     <view class="p_text">
       <text>商家数量：{{ssqInfo.busCount}}</text>
       <text>个人商家数量：{{ssqInfo.perCount}}</text>

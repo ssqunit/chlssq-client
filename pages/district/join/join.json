@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-toast": "/components/vant/toast/index"    
+  },
   "navigationBarTitleText": "社圈入驻"
 }
