@@ -241,7 +241,7 @@ Page({
       return "请选择上传社圈展示图！";
     } else if (this.data.citysData.length <=2){
       return "请选择社圈所在的区域";
-    } else if (this.data.inputText.length == "") {
+    } else if (this.data.inputText == "") {
       return "请输入社圈名字";
     } else if (this.data.positions == null) {
       return "请标记社圈位置";

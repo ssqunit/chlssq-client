@@ -65,3 +65,4 @@
 .info_space{width: 100%;height: 30rpx;}
 .line_space{width: 100%;height: 2rpx;background-color: silver;margin-top: 15rpx;margin-bottom: 15rpx;}
 .tips{font-size: 28rpx;color: silver;padding-left: 40rpx;padding-right: 40rpx;}
+.curpos{font-size: 24rpx;padding-left: 15rpx;color: silver;}
