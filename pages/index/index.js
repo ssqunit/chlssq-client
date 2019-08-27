@@ -111,6 +111,7 @@ Page({
         js_code: app.globalData.js_code
       },
       success: res => {
+        console.log("----------login:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           this.data.userInfo.ID = res.data.data.openId;
           this.data.userInfo.session_id = res.data.data.session_id;
@@ -121,9 +122,11 @@ Page({
             url:common.BASE_URL,
             data:{
               "function": "getUserInfo",
-              session_id: this.data.userInfo.session_id
+              'session_id': this.data.userInfo.session_id,
+              'openid': this.data.userInfo.ID
             },
             success: res => {
+              console.log("----------getUserInfo:res="+JSON.stringify(res));
               this.data.userInfo.actLimit = res.data.data.actlimit;
               this.data.userInfo.ssqLimit = res.data.data.ssqLimit;
               this.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
@@ -167,6 +170,7 @@ Page({
         "avatarUrl": this.data.userInfo.avatarUrl
       },
       success: res => {
+        console.log("----------updateUserInfo:res=" + JSON.stringify(res));
         this.getMyPosition();
       },
       fail: res => {

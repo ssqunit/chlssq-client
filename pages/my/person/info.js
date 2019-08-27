@@ -1,28 +1,56 @@
 // pages/my/person/info.js
 var app = getApp();
-var _userInfo;
+var common = require("../../../utils/common.js")
+var util = require('../../../utils/util.js');
+
+import Dialog from '../../../components/vant/dialog/dialog';
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    ssqData: [
-      { "id": "1", "name": "平湖御峰园", "area":"广东省深圳市龙岗区" },
-      { "id": "1", "name": "御峰园", "area": "广东省深圳市龙岗区" },
-      { "id": "1", "name": "平湖御峰园", "area": "广东省深圳市龙岗区" },
-      { "id": "1", "name": "平湖御峰园", "area": "广东省深圳市龙岗区" }
-    ]
+    userInfo:null,
+    ssqData: []
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    let that = this;
-    _userInfo = app.globalData.userInfo;
-    that.setData({
-      _userInfo: _userInfo
+    this.setData({
+      userInfo: app.globalData.userInfo
+    });
+    this.myJoinRequest();
+  },
+
+  //
+  myJoinRequest: function () {
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getMyJoin',
+        'session_id': this.data.userInfo.session_id,
+        'openid':this.data.userInfo.ID
+      },
+      success: res => {
+        if (res.data.iRet == 0) {
+          this.setData({
+            ssqData:res.data.data
+          })
+        } else {
+          wx.showToast({
+            title: '查询社圈失败！',
+          })
+        }
+      },
+      fail: res => {
+        wx.showToast({
+          title: '请检查网络链接！',
+        })
+      }
     });
   },
 
@@ -30,6 +58,58 @@ Page({
     wx.navigateTo({
       url: '../../about/about'
     })
+  },
+
+  onQuit: function (e) {
+    var _title = "退出社圈";
+    var _message = "";
+    var dateStr = util.formatTime(new Date(e.currentTarget.dataset.create_time * 1000));
+    if (e.currentTarget.dataset.roletype == 1){
+      _message = "您于"+dateStr+"加入了该社圈，成为社圈尊贵的一员，谢谢您的陪伴！您确定退出该社圈请按'确定'！";
+    }
+    else if (e.currentTarget.dataset.roletype == 2){
+      _message = "您于" + dateStr + "入驻了该社圈，成为社圈尊贵的商家，谢谢您的付出与陪伴！退出社圈后您的商家信息将不会再出现在该商圈，确定退出请按'确定'！";
+    }
+    else if (e.currentTarget.dataset.roletype == 3) {
+      _message = "您于" + dateStr + "入驻了该社圈，成为社圈尊贵的个人商家，谢谢您的付出与陪伴！退出社圈后您的商家信息将不会再出现在该商圈，确定退出请按'确定'！";
+    }
+    Dialog.confirm({
+      title: _title,
+      message: _message
+    }).then(() => {
+      this.myQuitRequest(e.currentTarget.dataset.ssqid);
+    }).catch(() => {
+      // on cancel
+    });
+  },
+
+  //
+  myQuitRequest: function (ssqid) {
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'quitSsq',
+        'session_id': this.data.userInfo.session_id,
+        'openid': this.data.userInfo.ID,
+        'ssqid':ssqid
+      },
+      success: res => {
+        console.log("----------- myQuitRequest:success" + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          //todo
+        } else {
+          wx.showToast({
+            title: '退出社圈失败！请稍后再试！',
+          })
+        }
+      },
+      fail: res => {
+        wx.showToast({
+          title: '请检查网络链接！',
+        })
+      }
+    });
   },
 
   admin: function (e) {
