@@ -133,31 +133,40 @@ Page({
   },
 
   sendCommit: function () {
-          // common.request({
-          //   method: "POST",
-          //   url: common.BASE_URL + "?function=createSsq&session_id=" + app.globalData.userInfo.session_id,
-          //   data: {
-          //     "imgId": that.data.imgId,
-          //     "area": that.data.citysData,
-          //     "name": that.data.inputText,
-          //     "latitude": Math.round(that.data.positions.latitude * 100000) / 100000,
-          //     "longitude": Math.round(that.data.positions.longitude * 100000) / 100000
-          //   },
-          //   success: res => {
-          //     if (res.data.iRet == 0) {
-          //       wx.hideLoading();
-          //       that.toast("已成功提交申请！请勿重复提交！");
-          //       that.data.commited.push({ "name": that.data.inputText });
-          //     } else {
-          //       wx.hideLoading();
-          //       that.toast("提交失败！请稍后再试。");
-          //     }
-          //   },
-          //   fail: res => {
-          //     wx.hideLoading();
-          //     that.toast("提交失败！请检查您的网络。");
-          //   }
-          // });
+    var that = this;
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=joinApply&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        'ownerid': app.globalData.userInfo.ID,
+        'ssqid': this.data.ssqInfo.ssqid,
+        'ssqname': this.data.ssqInfo.name,
+        'ssqarea': this.data.ssqInfo.area,
+        'roletype': 2,
+
+        "shopname": this.data.shopname,
+        "shopimg": this.data.resImgids[0],
+        "shopcimg": this.data.resImgids[1],
+        "shopoptext": this.data.shopOpText,
+        "shopaddr": this.data.addrText,
+        "shopcontact": this.data.contactText,
+        "shoplatitude": Math.round(this.data.positions.latitude * 100000) / 100000,
+        "shoplongitude": Math.round(this.data.positions.longitude * 100000) / 100000
+      },
+      success: res => {
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          that.toast("已成功提交申请！请勿重复提交！");
+          that.data.commited.push({ "name": that.data.shopname });
+        } else {
+          that.toast("提交失败！请稍后再试。");
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        that.toast("提交失败！请检查您的网络。");
+      }
+    });
   },
 
   onNameInfo: function (e) {
