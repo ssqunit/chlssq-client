@@ -147,6 +147,7 @@ Page({
         "shopname": this.data.shopname,
         "shopimg": this.data.resImgids[0],
         "shopcimg": this.data.resImgids[1],
+        "shopoptype": this.data.opType.id,
         "shopoptext": this.data.shopOpText,
         "shopaddr": this.data.addrText,
         "shopcontact": this.data.contactText,
