@@ -114,7 +114,7 @@ Page({
       })
       that.data.uploadPaths = [that.data.upload_img1, that.data.upload_img2];
       var resImgs = [];
-      common.uploadFiles(imgPaths, 0, resImgs, this.uploadCallBack, app.globalData.userInfo.session_id);
+      common.uploadFiles(that.data.uploadPaths, 0, resImgs, this.uploadCallBack, app.globalData.userInfo.session_id);
 
     } else {
       that.toast(ck);
@@ -237,7 +237,7 @@ Page({
    */
   onLoad: function (options) {
     var _info = {
-      "ID":options.ssqid, 
+      "ssqid":options.ssqid, 
       "imgid":options.ssqimg, 
       "name":options.ssqname, 
       "area":options.ssqarea,
