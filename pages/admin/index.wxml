@@ -31,6 +31,18 @@
       <view class="short_line"></view>
       <text class="item_text">公告管理</text>
     </view>
+    <view class="item_ctn"  bindtap="goADcfg">
+      <view class="short_line"></view>
+      <text class="item_text">配置广告</text>
+    </view>
+    <view class="item_ctn">
+      <view class="short_line"></view>
+      <input class="sqlinput" bindinput="onInput"></input>
+    </view>
+    <view class="item_ctn" bindtap="goGodHelp">
+      <view class="short_line"></view>
+      <text class="item_text">Test</text>
+    </view>
 
   </view>
 

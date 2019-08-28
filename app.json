@@ -15,6 +15,7 @@
     "pages/admin/user/index",
     "pages/admin/ssq/index",
     "pages/admin/announcement/publish",
+    "pages/admin/adcfg/adcfg",
     "pages/my/person/info",
     "pages/shop/shop",
     "pages/district/create/create",

@@ -15,3 +15,4 @@
 .short_line{width: 150rpx;height: 4rpx;background-color: silver;}
 .item_text{font-size: 32rpx;margin-left: 10rpx;}
 .count{color: red;}
+.sqlinput{border: 1px solid silver;}
