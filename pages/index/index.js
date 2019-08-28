@@ -20,8 +20,10 @@ Page({
     v_nickName:"",
     v_avatarUrl:"",
     time: "",
+    kmtext:"当前位置",
     searchKeyword: "",
     ssqInfo: null,
+    hideJoinBtn:false,
     defTextADInfo: { "shopId": "", "productId": -1, "text": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
     textADInfo: [],
     defImgADInfo: { "shopId": "", "productId": -1, "text": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
@@ -103,6 +105,7 @@ Page({
   },
 
   myLogin:function(){
+    var that = this;
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -113,32 +116,35 @@ Page({
       success: res => {
         console.log("----------login:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
-          this.data.userInfo.ID = res.data.data.openId;
-          this.data.userInfo.session_id = res.data.data.session_id;
-          app.globalData.userInfo = this.data.userInfo;
+          that.data.userInfo.ID = res.data.data.openId;
+          that.data.userInfo.session_id = res.data.data.session_id;
+          app.globalData.userInfo = that.data.userInfo;
 
           common.request({
             method: "GET",
             url:common.BASE_URL,
             data:{
               "function": "getUserInfo",
-              'session_id': this.data.userInfo.session_id,
-              'openid': this.data.userInfo.ID
+              'session_id': that.data.userInfo.session_id,
+              'openid': that.data.userInfo.ID
             },
             success: res => {
               console.log("----------getUserInfo:res="+JSON.stringify(res));
-              this.data.userInfo.actLimit = res.data.data.actlimit;
-              this.data.userInfo.ssqLimit = res.data.data.ssqLimit;
-              this.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
-              app.globalData.userInfo = this.data.userInfo;
-
-              this.setData({
-                v_nickName:this.data.userInfo.nickName,
-                v_avatarUrl:this.data.userInfo.avatarUrl
-              })
-
-              this.updateInfo2Svr();
-              this.requestNotice();
+              if(res.data.iRet == 0){
+                that.data.userInfo.actLimit = res.data.data.platInfo.act_limit;
+                that.data.userInfo.ssqLimit = res.data.data.platInfo.ssq_limit;
+                that.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
+                app.globalData.userInfo = that.data.userInfo;
+                
+                that.setData({
+                  v_nickName: that.data.userInfo.nickName,
+                  v_avatarUrl: that.data.userInfo.avatarUrl
+                })
+              }else{
+                Toast("Get user info fail:"+res.data.sMsg);
+              }
+              that.updateInfo2Svr();
+              that.requestNotice();
             },
             fail: res => {
               Toast.fail(res.errMsg);
@@ -226,17 +232,50 @@ Page({
       url: common.BASE_URL,
       data: {
         'function': 'getNearbySsqDetail',
-        session_id: that.data.userInfo.session_id,
+        'session_id': that.data.userInfo.session_id,
         "latitude": latitude,
         "longitude": longitude
       },
       success: res => {
         Toast.clear();
+        console.log("----------getNearbySsqDetail:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
+          var _ssqInfo = res.data.data;
+          var _hideJoinBtn = false;
+
+          if (that.data.userInfo.mySsqInfo != null && _ssqInfo != null) {
+            var arr = that.data.userInfo.mySsqInfo;
+            if (arr.length > 0) {
+              for (var i = 0; i < arr.length; i++) {
+                console.log("ssqid="+_ssqInfo['ssqid']+','+arr[i]['ssqid']);
+                if(_ssqInfo['ssqid'] == arr[i]['ssqid'])
+                {
+                  _hideJoinBtn = true;
+                  break;
+                }
+              }
+            }
+          }
+
           that.setData({
-            ssqInfo: res.data.data
+            hideJoinBtn: _hideJoinBtn,
+            ssqInfo: _ssqInfo
           });
           
+          if(!_ssqInfo){
+            return;
+          }
+
+          //kmtext
+          that.setData({
+            kmtext: util.countDistance(
+              app.globalData.myLocation.latitude,
+              app.globalData.myLocation.longitude,
+              that.data.ssqInfo.latitude,
+              that.data.ssqInfo.longitude
+            ) + 'km'
+          });
+
           //textADInfo
           if (!that.data.ssqInfo.textADInfo) {
             var _textADInfo = [];
@@ -308,8 +347,8 @@ Page({
   //打开商圈在地图上的位置
   openPosition: function (e) {
     wx.openLocation({
-      latitude: 21.70915603,
-      longitude: 111.35697174,
+      latitude: Number(this.data.ssqInfo.latitude),
+      longitude: Number(this.data.ssqInfo.longitude),
       scale: 14
     })
   },

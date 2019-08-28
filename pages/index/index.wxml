@@ -28,16 +28,16 @@
   </view>
 
   <!-- 当前坐标  -->
-  <view class="flex-row center van-hairline--top">
+  <view class="flex-row center van-hairline--top" style="height:80rpx!important;">
     <view class="expand flex-column" bindtap="openPosition">
       <image class="kmicon" src="../../static/custom/icons/icon_pos_b.png" mode="aspectFit"></image>
-      <text class="kmtext">当前位置</text>
+      <text class="kmtext">{{kmtext}}</text>
     </view>
     <view class="expand flex-row" bindtap="goSsqInfo" data-tab="0">
       <text class="ssq_name">{{ssqInfo.name}}</text>
       <text class="ssq_area">({{ssqInfo.area}})</text>
     </view>
-    <view>
+    <view hidden="{{hideJoinBtn}}">
       <van-button bindtap="goJoin">马上加入</van-button>
     </view>
   </view>
