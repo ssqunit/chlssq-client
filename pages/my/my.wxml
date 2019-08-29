@@ -70,7 +70,7 @@
             </view>
             <view slot="footer">
               <van-button size="mini" class="t_space">上架</van-button>
-              <van-button size="mini" class="t_space" catchtap="onOpenADChoose">做广告</van-button>
+              <van-button size="mini" class="t_space" catchtap="onOpenADChoose" data-id="{{item.ID}}">做广告</van-button>
               <van-button size="mini" class="t_space" catchtap="proEdit" data-id="{{item.ID}}">编辑</van-button>
             </view>
           </van-card>

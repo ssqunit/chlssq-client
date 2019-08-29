@@ -96,10 +96,10 @@
 
   <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
     <van-datetime-picker
-      type="datetime"
+      type="date"
       value="{{ currentDate }}"
       min-date="{{ minDate }}"
-      max-date="{{ maxDate }}"
+      formatter="{{ formatter }}"
       bind:confirm="onConfirm"
       bind:cancel="onCancel"
     />

@@ -6,6 +6,7 @@ Page({
    */
   data: {
     adShow:false,
+    adproduct_id:0,
     pick_name:"御峰园",
     ssqList:[
       { "ID": 101, "name": "御峰园", "area": "广东省深圳市龙岗区", "myRole": "成员" },
@@ -18,13 +19,13 @@ Page({
       ssqImgUrl:"../../static/custom/defaults/def_ssq.jpg",
       adCount: 8,
       productList: [
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] }
+        { "ID": 1081, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
+        { "ID": 1082, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
+        { "ID": 1083, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
+        { "ID": 1084, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
+        { "ID": 1085, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
+        { "ID": 1086, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
+        { "ID": 1087, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] }
       ]
     },
 
@@ -81,14 +82,17 @@ Page({
     this.setData({ adShow: false });
   },
   onOpenADChoose: function(e) {
-    this.setData({ adShow: true });
+    this.data.adproduct_id = e.currentTarget.dataset.id;
+    this.setData({ 
+      adShow: true 
+    });
   },
 
   //
   onADText: function (e) {
     this.onCloseADChoose();
     wx.navigateTo({
-      url: '../ad/text/text',
+      url: '../ad/text/text?product_id='+this.data.adproduct_id,
     })
   },
 

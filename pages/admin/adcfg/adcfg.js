@@ -24,12 +24,22 @@ Page({
     hour_end:'0',
     date_begin_f: '0',
     date_end_f: '0',
-    minDate: new Date().getTime(),
-    maxDate: new Date(2029, 1, 1).getTime(),
-    currentDate: new Date().getTime(),
     currentHour: '12:00',
     minHour: 0,
     maxHour: 23,
+
+    currentDate: new Date().getTime(),
+    minDate: new Date().getTime(),
+    maxDate: new Date(2029, 1, 1).getTime(),
+    formatter(type, value) {
+      if (type === 'year') {
+        return `${value}年`;
+      } else if (type === 'month') {
+        return `${value}月`;
+      }
+      return value;
+    },
+    
     dataType: 0, //标记当前操作的是开始时间还是结束时间
   },
 
@@ -54,13 +64,13 @@ Page({
       this.setData({
         popShow: false,
         date_begin: e.detail,
-        date_begin_f: util.formatTime(new Date(e.detail))
+        date_begin_f: util.formatTimeYMD(new Date(e.detail))
       })
     } else if (this.data.dataType == 2) {
       this.setData({
         popShow: false,
         date_end: e.detail,
-        date_end_f: util.formatTime(new Date(e.detail))
+        date_end_f: util.formatTimeYMD(new Date(e.detail))
       })
     }
     else if (this.data.dataType == 3) {
@@ -118,8 +128,8 @@ Page({
           'total_count': this.data.adcount,
           'cur_price': this.data.curPrice,
           'old_price': this.data.oldPrice,
-          'begin_date': Math.round(this.data.date_begin / 1000),
-          'end_date': Math.round(this.data.date_end / 1000),
+          'begin_date': this.data.date_begin_f,
+          'end_date': this.data.date_end_f,
           'begin_hour': this.data.hour_begin,
           'end_hour': this.data.hour_end
         },
