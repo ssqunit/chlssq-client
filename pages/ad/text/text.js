@@ -62,7 +62,7 @@ Page({
     })
   },
 
-  //
+  //获取服务器配置
   getAdCfg: function () {
     var that = this;
     common.request({
@@ -96,7 +96,16 @@ Page({
     });
   },
 
-
+  //点击支付按钮
+  onPay: function (e) {
+    var _adText = this.data.adText.replace(/\s+/g, '');
+    if (_adText == "") {
+      Toast("请输入广告文字！");
+    }
+    if (!this.data.itemSelected || this.data.itemSelected.length <= 0){
+      Toast("请选择广告时段！");
+    }
+  },
 
   /**
    * 生命周期函数--监听页面加载

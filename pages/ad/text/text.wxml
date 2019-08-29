@@ -41,13 +41,13 @@
         <view class="text_ctn">
           <text class="text_time">>{{item.begin_hour}}-{{item.end_hour}}</text>
           <text class="text_price">￥{{item.cur_price}}</text>
-          <text class="text_left">剩余：{{item.total_count}}</text>
+          <text class="text_left">剩余：{{item.left}}</text>
         </view>
         <van-stepper
           value="{{ 0 }}"
           integer
           min="0"
-          max="{{item.total_count}}"
+          max="{{item.left}}"
           step="1"
           bind:change="onChange"
           data-id="{{item.ad_period_id}}"
@@ -56,7 +56,7 @@
       </view>
       </block>
 
-      <button type="primary">支付：￥{{priceTotal}}</button>
+      <button type="primary" bindtap="onPay">支付：￥{{priceTotal}}</button>
     </view>
   </view>
   <van-toast id="van-toast" />
