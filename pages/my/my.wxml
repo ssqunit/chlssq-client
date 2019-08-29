@@ -1,8 +1,14 @@
 <!--pages/my.wxml-->
 <view class="container">
   
+  <!-- 未加入社圈 -->
+  <view class="null_info" hidden="{{myShopInfo==null?false:true}}">
+    <text>亲，您还不是商家哦！</text>
+    <text>赶紧行动，入驻身边的社圈，成为商家，为社圈的福祉作出您的贡献！</text>
+  </view>
+
   <!-- 我的商家信息 -->
-  <view class="shop_name">
+  <view class="shop_name" hidden="{{myShopInfo==null?true:false}}">
     <view class="name_img">
       <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage"></image>
     </view>
@@ -10,15 +16,15 @@
       <text class="name_value">{{myShopInfo.name}}</text>
       <text class="name_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
     </view>
-    <view class="name_km">
+    <view class="name_km" bindtap="openPosition">
       <image src="../../static/icons/map_b.png" mode="aspectFit"></image>
       <text>{{shop_distance}}km</text>
     </view>
   </view>
-  <view class="space_line"></view>
+  <view class="space_line" hidden="{{myShopInfo==null?true:false}}"></view>
 
   <!-- 商家信息 -->
-  <view class="shop_detail">
+  <view class="shop_detail" hidden="{{myShopInfo==null?true:false}}">
     <view class="detail_left">
       <view class="shop_sum">
         <view class="sum_item">
@@ -54,33 +60,10 @@
     </view>
   </view>
 
-  <!-- 未加入社圈 -->
-  <view class="null_info" hidden="{{myShopInfo==null?false:true}}">
-    <text>亲，您未加入社圈或不是商家哦！</text>
-    <text>赶紧行动吧，加入身边的社圈，享受便利生活！</text>
-  </view>
-
-  <!-- 选择社圈 -->
-  <view class="pick_ssq">
-    <text>选择社圈：</text>
-    <view class="pick_ssqlist">
-      <!-- <text>包括当前位置社圈，加入的社圈</text> -->
-      <van-radio-group value="{{ pick_name }}" bind:change="onChange">
-        <block wx:for="{{ssqList}}" wx:for-index="index">
-          <van-radio name="{{item.name}}" class="pick_item">
-            <view class="item_ctn">
-              <text class="item_name">{{item.area}}  {{item.name}}  社圈</text>
-              <text class="item_type">{{item.myRole}}</text>
-            </view>
-          </van-radio>
-          <view class="item_space"></view>
-        </block>
-      </van-radio-group>
-    </view>
-  </view>
 
   <!-- 我的广告记录 -->
-  <view class="ad_info">
+  <view class="space_line" hidden="{{myShopInfo==null?true:false}}"></view>
+  <view class="ad_info" hidden="{{myShopInfo==null?true:false}}">
     <text class="ad_count">我购买的广告：{{myShopInfo.adCount}}单</text>
     <view hidden="{{myShopInfo.adCount>0?false:true}}">
       <text class="ad_btn" bindtap="onADRecord">详情>></text>
@@ -88,7 +71,7 @@
   </view>
 
   <!-- 产品详情 -->
-  <view class="products">
+  <view class="products" hidden="{{myShopInfo==null?true:false}}">
     <view class="pro_info">
       <text class="pro_title" decode="{{true}}">产品/项目列表：&nbsp;（{{proCount}}&nbsp;个产品）</text>
       <text class="pro_des" decode="{{true}}">推荐：已推荐&nbsp;{{}},&nbsp;&nbsp;最多推荐&nbsp;6&nbsp;个</text>

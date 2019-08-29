@@ -14,27 +14,7 @@ Page({
   data: {
     adShow:false,
     adproduct_id:0,
-    pick_name:"御峰园",
-    ssqList:[
-      { "ID": 101, "name": "御峰园", "area": "广东省深圳市龙岗区", "myRole": "成员" },
-      { "ID": 101, "name": "御峰园01", "area": "广东省深圳市龙岗区", "myRole": "成员" },
-      { "ID": 101, "name": "御峰园02", "area": "广东省深圳市龙岗区", "myRole": "成员" },
-      { "ID": 101, "name": "御峰园03", "area": "广东省深圳市龙岗区", "myRole": "成员" }
-    ],
-    myShopInfo:{
-      name:"双手健康理疗馆",
-      ssqImgUrl:"../../static/custom/defaults/def_ssq.jpg",
-      adCount: 8,
-      productList: [
-        { "ID": 1081, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": 1082, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": 1083, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": 1084, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": 1085, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": 1086, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-        { "ID": 1087, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] }
-      ]
-    },
+    myShopInfo:{},
     shop_distance:0.1,
     shop_type:"商家",
     shop_optype:"养生",
@@ -43,12 +23,13 @@ Page({
 
   },
 
-  //社圈选择
-  onChange(event) {
-    console.log("tttttttt:"+JSON.stringify(event));
-    this.setData({
-      pick_name: event.detail
-    });
+  //打开商圈在地图上的位置
+  openPosition: function (e) {
+    wx.openLocation({
+      latitude: Number(this.data.myShopInfo.latitude),
+      longitude: Number(this.data.myShopInfo.longitude),
+      scale: 14
+    })
   },
 
   //广告记录
@@ -156,6 +137,7 @@ Page({
   },
 
   updateShopInfo: function () {
+    if(!this.data.myShopInfo)return;
     var _type = this.data.myShopInfo.type == 2 ? '商家' : '个人';
     var _optype = "";
     var optypes = constd.OpType;
