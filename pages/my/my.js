@@ -1,4 +1,11 @@
 // pages/my.js
+
+var app = getApp();
+var common = require("../../utils/common.js")
+var util = require('../../utils/util.js');
+var constd = require('../../utils/data/constd.js');
+
+
 Page({
 
   /**
@@ -14,7 +21,7 @@ Page({
       { "ID": 101, "name": "御峰园02", "area": "广东省深圳市龙岗区", "myRole": "成员" },
       { "ID": 101, "name": "御峰园03", "area": "广东省深圳市龙岗区", "myRole": "成员" }
     ],
-    mySsqInfo:{
+    myShopInfo:{
       name:"双手健康理疗馆",
       ssqImgUrl:"../../static/custom/defaults/def_ssq.jpg",
       adCount: 8,
@@ -28,6 +35,11 @@ Page({
         { "ID": 1087, "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] }
       ]
     },
+    shop_distance:0.1,
+    shop_type:"商家",
+    shop_optype:"养生",
+    shop_createtime:"2019",
+
 
   },
 
@@ -70,7 +82,7 @@ Page({
   //预览图片
   previewImage: function (e) {
     var current = e.target.dataset.src;
-    let urls = ["https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563987445492&di=e4a77db74d89feebc12b5e653246bbfb&imgtype=0&src=http%3A%2F%2Fimg01.cztv.com%2F201603%2F21%2Fb984b787fc6f3a61de5d3847975bfc2a.jpg"];
+    let urls = [current];
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: urls
@@ -104,11 +116,68 @@ Page({
     })
   },
 
+  //
+  getMyShopInfo: function () {
+    var that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getMyShopInfo',
+        'session_id': app.globalData.userInfo.session_id,
+        'openid': app.globalData.userInfo.ID
+      },
+      success: res => {
+        console.log('---------getMyShopInfo:res='+JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          if(res.data.data == null || res.data.data.length <= 0){
+            myShopInfo = null;
+          }else{
+            var _obj = res.data.data[0];
+            _obj['ssqImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
+            _obj['ssqCImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.cimg);
+            that.setData({
+              myShopInfo:_obj
+            })
+            that.updateShopInfo();
+          }
+        } else {
+          wx.showToast({
+            title: '查询社圈失败！',
+          })
+        }
+      },
+      fail: res => {
+        wx.showToast({
+          title: '请检查网络链接！',
+        })
+      }
+    });
+  },
+
+  updateShopInfo: function () {
+    var _type = this.data.myShopInfo.type == 2 ? '商家' : '个人';
+    var _optype = "";
+    var optypes = constd.OpType;
+    for(var i=0;i<optypes.length;i++){
+      if(this.data.myShopInfo.optype == optypes[i]['id']){
+        _optype = optypes[i]['name'];
+      }
+    }
+    var _createtime = util.formatTime(new Date(this.data.myShopInfo.create_time * 1000));
+    var _dis = util.countDistance(app.globalData.myLocation.latitude, app.globalData.myLocation.longitude,this.data.myShopInfo.latitude,this.data.myShopInfo.longitude);
+    this.setData({
+      shop_type:_type,
+      shop_optype:_optype,
+      shop_createtime:_createtime,
+      shop_distance:_dis
+    })
+  },
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    this.getMyShopInfo();
   },
 
   /**

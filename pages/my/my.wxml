@@ -2,20 +2,60 @@
 <view class="container">
   
   <!-- 我的商家信息 -->
-  <view class="myssq">
-    <view class="myssq_info">
-      <view class="name_ctn">
-        <image class="myssq_icon" mode="aspectFit" src="../../static/icons/map_r.png"></image>
-        <text class="myssq_name">{{mySsqInfo.name}}</text>
+  <view class="shop_name">
+    <view class="name_img">
+      <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage"></image>
+    </view>
+    <view class="name_name">
+      <text class="name_value">{{myShopInfo.name}}</text>
+      <text class="name_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
+    </view>
+    <view class="name_km">
+      <image src="../../static/icons/map_b.png" mode="aspectFit"></image>
+      <text>{{shop_distance}}km</text>
+    </view>
+  </view>
+  <view class="space_line"></view>
+
+  <!-- 商家信息 -->
+  <view class="shop_detail">
+    <view class="detail_left">
+      <view class="shop_sum">
+        <view class="sum_item">
+          <view class="sum_item_left">
+            <text class="sum_item_tag">商家类型：</text>
+            <text class="sum_item_value">{{shop_type}}</text>
+          </view>
+          <view class="sumitem_right">
+            <text class="sum_item_tag">商业类别：</text>
+            <text class="sum_item_value">{{shop_optype}}</text>
+          </view>
+        </view>
+        <view class="sum_item">
+          <text class="sum_item_tag">地址：</text>
+          <text class="sum_item_value">{{myShopInfo.addr}}</text>
+        </view>
+        <view class="sum_item">
+          <text class="sum_item_tag">联系信息：</text>
+          <text class="sum_item_value">{{myShopInfo.contact}}</text>
+        </view>
+        <view class="sum_item">
+          <text class="sum_item_tag">首次入驻：</text>
+          <text class="sum_item_value">{{shop_createtime}}</text>
+        </view>
+        <view class="sum_item">
+          <text class="sum_item_tag">经营信息：</text>
+          <text class="sum_item_value">{{myShopInfo.optext}}</text>
+        </view>
       </view>
-      <view class="myssq_imgctn">
-        <image src="{{mySsqInfo.ssqImgUrl}}" class="myssq_img" mode="aspectFit" data-src="{{mySsqInfo.ssqImgUrl}}" bindtap="previewImage"></image>
-      </view>
+    </view>
+    <view class="detail_right">
+      <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image>
     </view>
   </view>
 
   <!-- 未加入社圈 -->
-  <view class="null_info" hidden="{{mySsqInfo==null?false:true}}">
+  <view class="null_info" hidden="{{myShopInfo==null?false:true}}">
     <text>亲，您未加入社圈或不是商家哦！</text>
     <text>赶紧行动吧，加入身边的社圈，享受便利生活！</text>
   </view>
@@ -41,8 +81,10 @@
 
   <!-- 我的广告记录 -->
   <view class="ad_info">
-    <text class="ad_count">我购买的广告：{{mySsqInfo.adCount}}单</text>
-    <text class="ad_btn" bindtap="onADRecord">详情>></text>
+    <text class="ad_count">我购买的广告：{{myShopInfo.adCount}}单</text>
+    <view hidden="{{myShopInfo.adCount>0?false:true}}">
+      <text class="ad_btn" bindtap="onADRecord">详情>></text>
+    </view>
   </view>
 
   <!-- 产品详情 -->
@@ -55,7 +97,7 @@
     </view>
     <view class="pro_list">
       <scroll-view>
-        <block wx:for="{{mySsqInfo.productList}}" wx:for-index="index">
+        <block wx:for="{{myShopInfo.product_list}}" wx:for-index="index">
           <van-card
             num="{{item.count}}"
             price="{{item.price}}"
