@@ -1,4 +1,13 @@
 // pages/ad/text/text.js
+
+const app = getApp()
+
+// 在需要使用的js文件中，导入js
+var util = require('../../../utils/util.js');
+var common = require("../../../utils/common.js")
+
+import Toast from '../../../components/vant/toast/toast';
+
 Page({
 
   /**
@@ -7,18 +16,12 @@ Page({
   data: {
     priceTotal:0.00,
     itemSelected:[],
-    adText:"生命周期函数--监听页面初次渲染完成",
+    adText:"这里输入能突出产品又能吸人眼球的文字",
     productInfo: { "ID": "108", "name": "肩周调理", "des": "产品的描述信息,产品的描述信息,产品的描述信息,产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"]},
     textADInfo:{
-      dateStart:1565478,
-      dateEnd:15343748,
-      list:[
-        { "id": 1, "time": "0:00-9:00", "price": 7.00, "left": 5 },
-        { "id": 2, "time": "9:00-13:00", "price": 14.00, "left": 4 },
-        { "id": 3, "time": "13:00-17:00", "price": 14.00, "left": 3 },
-        { "id": 4, "time": "17:00-21:00", "price": 28.00, "left": 1 },
-        { "id": 5, "time": "21:00-24:00", "price": 21.00, "left": 0 }
-      ]
+      dateStart:0,
+      dateEnd:0,
+      list:[]
     }
 
   },
@@ -59,11 +62,48 @@ Page({
     })
   },
 
+  //
+  getAdCfg: function () {
+    var that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getAdCfg',
+        'session_id': app.globalData.userInfo.session_id,
+        'adType': 1
+      },
+      success: res => {
+        console.log("----------- getAdCfg:success" + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          if (res.data.data) {
+            var _info = {
+              dateStart:res.data.data[0]['begin_date'],
+              dateEnd:res.data.data[0]['end_date'],
+              list:res.data.data
+            }
+            that.setData({
+              textADInfo:_info
+            })
+          }
+        } else {
+          Toast("查询广告失败！");
+        }
+      },
+      fail: res => {
+        Toast.fail("请检查网络链接！");
+      }
+    });
+  },
+
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('----------onLoad:product_id='+options.product_id);
+    this.getAdCfg();
   },
 
   /**
@@ -77,7 +117,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

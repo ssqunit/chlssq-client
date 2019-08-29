@@ -28,7 +28,7 @@
   </view>
 
   <!-- 当前坐标  -->
-  <view class="flex-row center van-hairline--top" style="height:80rpx!important;">
+  <view class="flex-row center van-hairline--top" style="height:90rpx!important;">
     <view class="expand flex-column" bindtap="openPosition">
       <image class="kmicon" src="../../static/custom/icons/icon_pos_b.png" mode="aspectFit"></image>
       <text class="kmtext">{{kmtext}}</text>

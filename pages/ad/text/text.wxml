@@ -39,19 +39,19 @@
       <block wx:for="{{textADInfo.list}}" wx:for-index="index">
       <view class="list_item">
         <view class="text_ctn">
-          <text class="text_time">>{{item.time}}</text>
-          <text class="text_price">￥{{item.price}}</text>
-          <text class="text_left">剩余：{{item.left}}</text>
+          <text class="text_time">>{{item.begin_hour}}-{{item.end_hour}}</text>
+          <text class="text_price">￥{{item.cur_price}}</text>
+          <text class="text_left">剩余：{{item.total_count}}</text>
         </view>
         <van-stepper
           value="{{ 0 }}"
           integer
           min="0"
-          max="{{item.left}}"
+          max="{{item.total_count}}"
           step="1"
           bind:change="onChange"
-          data-id="{{item.id}}"
-          data-price="{{item.price}}"
+          data-id="{{item.ad_period_id}}"
+          data-price="{{item.cur_price}}"
         />
       </view>
       </block>
@@ -59,4 +59,5 @@
       <button type="primary">支付：￥{{priceTotal}}</button>
     </view>
   </view>
+  <van-toast id="van-toast" />
 </view>
