@@ -85,6 +85,7 @@ Page({
 
   //
   myQuitRequest: function (ssqid) {
+    var that = this;
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -95,9 +96,11 @@ Page({
         'ssqid':ssqid
       },
       success: res => {
-        console.log("----------- myQuitRequest:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
-          //todo
+          wx.showToast({
+            title: '已退出该社圈！',
+          })
+          that.myJoinRequest();
         } else {
           wx.showToast({
             title: '退出社圈失败！请稍后再试！',
