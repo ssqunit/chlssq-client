@@ -1,7 +1,8 @@
 // pages/my/product/new/new.js
 
 var util = require('../../../../utils/util.js');
-
+var common = require("../../../../utils/common.js")
+const app = getApp();
 
 Page({
 
@@ -11,7 +12,7 @@ Page({
   data: {
     popShow: false,
     dateType:"1",
-    dateEnd:"",
+    dateEnd:0,
     dateEndFormat:"",
     minHour: 10,
     maxHour: 20,
@@ -20,17 +21,26 @@ Page({
     currentDate: new Date().getTime(),
     tags: [
       { name: '1', value: '推荐' },
-      { name: '2', value: '优惠', checked: 'true' }
+      { name: '2', value: '优惠' }
     ],
     tradeType: [
-      { name: '1', value: '预约', checked: 'true' }
+      { name: '1', value: '预约' }
     ],
     imgesArr:[
       "../../../../static/custom/defaults/def_ssq.jpg",
       "../../../../static/custom/defaults/def_ssq.jpg",
       "../../../../static/custom/defaults/def_ssq.jpg",
       "../../../../static/custom/defaults/def_ssq.jpg"
-    ]
+    ],
+    resImgids:[],
+    shopid : 0,
+    p_name:"",
+    p_des:"",
+    p_price:0,
+    p_unit:"",
+    p_flags:[],
+    p_tradeway:[],
+    commited: []
 
   },
 
@@ -79,12 +89,12 @@ Page({
 
   //标签选择
   tagsChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    this.data.p_flags = e.detail.value;
   },
 
   //交易方式选择
   tradeTypeChange: function (e) {
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
+    this.data.p_tradeway = e.detail.value;
   },
 
   //预览图片
@@ -97,12 +107,130 @@ Page({
     })
   },
 
+  onNameInput: function (e) {
+    this.data.p_name = e.detail.value;
+  },
+  onDesInput: function (e) {
+    this.data.p_des = e.detail.value;
+  },
+  onPriceInput: function (e) {
+    this.data.p_price = e.detail.value;
+  },
+  onUnitInput: function (e) {
+    this.data.p_unit = e.detail.value;
+  },
+
+  onSave: function (e) {
+    var suc = this.successed(this.data.p_name);
+    if (suc) {
+      this.toast("已提交了申请，切勿重复提交！")
+      return;
+    }
+    if(this.checkData() != ""){
+      this.toast(this.checkData());
+      return;
+    }
+    wx.showLoading({
+      title: '提交中，请稍后...',
+      mask: true
+    })
+    var resImgs = [];
+    common.uploadFiles(this.data.imgesArr, 0, resImgs, this.uploadCallBack, app.globalData.userInfo.session_id);
+
+  },
+
+  uploadCallBack: function (res) {
+    console.log("--------uploadCallBack:" + JSON.stringify(res));
+    if (res && res.length > 0) {
+      this.data.resImgids = res;
+      this.sendCommit();
+    } else {
+      wx.hideLoading();
+      this.toast("图片上传失败！");
+    }
+  },
+  sendCommit: function () {
+    var that = this;
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=addProduct&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        'openid': app.globalData.userInfo.ID,
+        'shopid': this.data.shopid,
+        'p_name': this.data.p_name,
+        'p_imgarr': util.arrayToString(this.data.resImgids),
+        'p_des': this.data.p_des,
+        'p_price': this.data.p_price,
+        'p_unit': this.data.p_unit,
+        'p_datetype': this.data.dateType,
+        'p_dateend': this.data.dateEnd,
+        'p_flags': util.arrayToString(this.data.p_flags),
+        "p_tradeway": util.arrayToString(this.data.p_tradeway)
+      },
+      success: res => {
+        console.log("--------addProduct:" + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          that.toast("已成功提交申请！请勿重复提交！");
+          that.data.commited.push({ "name": that.data.p_name });
+        } else {
+          that.toast("提交失败！请稍后再试。");
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        that.toast("提交失败！请检查您的网络。");
+      }
+    });
+  },
+
+  checkData: function(){
+    var _name = this.data.p_name.replace(/\s+/g, '');
+    if (_name == "") { return "请输入产品名字！"; }
+    var _des = this.data.p_des.replace(/\s+/g, '');
+    if (_des == "") { return "请输入产品描述！"; }
+    var _price = this.data.p_price.replace(/\s+/g, '');
+    if (_price == "") { return "请输入产品名字！"; }
+    var _unit = this.data.p_unit.replace(/\s+/g, '');
+    if (_unit == "") { return "请输入产品单位！"; }
+    if (this.data.dateType == 2 && this.data.dateEnd == 0){
+      return "请选择产品到期时间！";
+    }
+    if (this.data.imgesArr == null || this.data.imgesArr.length <= 0)
+    {
+      return "请上传至少一张产品图片";
+    }
+    return "";
+  },
+
+  //检查是否已经成功提交了申请
+  successed: function (name) {
+    let len = this.data.commited.length;
+    var got = false;
+    if (len > 0) {
+      for (var i = 0; i < len; i++) {
+        if (name == this.data.commited[i]) {
+          got = true;
+        }
+      }
+      return got;
+    } else {
+      return false;
+    }
+  },
+
+  toast: function(msg){
+    wx.showToast({
+      title: msg,
+      icon:'none'
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.data.shopid = options.shopid;
   },
 
   /**

@@ -42,7 +42,7 @@ Page({
   //添加产品
   goNew: function (e) {
     wx.navigateTo({
-      url: 'product/new/new',
+      url: 'product/new/new?shopid='+this.data.myShopInfo.shopid
     })
   },
 

@@ -47,9 +47,31 @@ const countDistance = (la1, lo1, la2, lo2) => {
   return s;
 }
 
+const arrayToString = (arr) => {
+  var str="";
+  var space="|";
+  if(arr != null && arr.length > 0){
+    for(var i=0;i<arr.length;i++){
+      if(i>0)str += space;
+      str += arr[i];
+    }
+  }
+  return str;
+}
+const stringToArray = (str) => {
+  var arr=[];
+  if(str != null && str.length > 0)
+  {
+    arr = str.split("|");
+  }
+  return arr;
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTimeYMD: formatTimeYMD,
   getWeekDay: getWeekDay,
-  countDistance: countDistance
+  countDistance: countDistance,
+  arrayToString: arrayToString,
+  stringToArray: stringToArray
 }

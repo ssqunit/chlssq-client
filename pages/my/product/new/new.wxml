@@ -4,7 +4,7 @@
   <view class="space_line"></view>
   <view class="new_name">
     <text>产品名称：</text>
-    <input class="name_input" maxlength="8" placeholder="请输入产品/项目名称" type="text"></input>
+    <input class="name_input" maxlength="8" placeholder="请输入产品/项目名称" type="text" bindinput="onNameInput"></input>
   </view>
 
   <view class="new_image">
@@ -18,15 +18,15 @@
 
   <view class="new_des">
     <text>产品描述：</text>
-    <textarea class="des_input" maxlength="60" placeholder="请输入产品/项目描述信息" type="text"></textarea>
+    <textarea class="des_input" maxlength="60" placeholder="请输入产品/项目描述信息" type="text" bindinput="onDesInput"></textarea>
   </view>
   <view class="new_name">
     <text>产品价格：￥</text>
-    <input class="name_input" maxlength="8" placeholder="请输入产品价格" type="digit"></input>
+    <input class="name_input" maxlength="8" placeholder="请输入产品价格" type="digit" bindinput="onPriceInput"></input>
   </view>
   <view class="new_name">
     <text>产品单位：</text>
-    <input class="name_input" maxlength="2" placeholder="请输入产品单位" type="text"></input>
+    <input class="name_input" maxlength="2" placeholder="请输入产品单位" type="text" bindinput="onUnitInput"></input>
   </view>
 
   <!-- 产品期限 -->
@@ -84,7 +84,7 @@
     <text>如有违反以上两点，平台有权追究产品发布者的相关法律责任。</text>
   </view>
 
-  <button type="primary">保存</button>
+  <button type="primary" bindtap="onSave">保存</button>
 
 
 
