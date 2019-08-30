@@ -7,6 +7,7 @@ var constd = require('../../utils/data/constd.js');
 
 
 Page({
+  name:"pages.my",
 
   /**
    * Page initial data
@@ -19,6 +20,7 @@ Page({
     shop_type:"商家",
     shop_optype:"养生",
     shop_createtime:"2019",
+    reflashPage: false
 
 
   },
@@ -117,6 +119,37 @@ Page({
             var _obj = res.data.data[0];
             _obj['ssqImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
             _obj['ssqCImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.cimg);
+            
+            //整理product_list
+            var _plist = _obj['product_list'];
+            if(_plist != null && _plist.length > 0)
+            {
+              for(var i=0;i<_plist.length;i++){
+                var _p = _plist[i];
+                //-------img
+                var imgids = util.stringToArray(_p['imgarr']);
+                var imgUrls = [];
+                for(var j=0;j<imgids.length;j++){
+                  imgUrls.push(common.getImgUrl(app.globalData.userInfo.session_id, imgids[j]));
+                }
+                _plist[i]["imgUrls"] = imgUrls;
+                
+                //-------flags
+                var flagids = util.stringToArray(_p['flags']);
+                if(flagids.length > 0){
+                  for(var f=0;f<flagids.length;f++){
+                    _plist[i]["flag"+flagids[f]]=1;
+                  }
+                }
+
+
+              }
+            }
+            _obj['product_list'] = _plist;
+
+
+            //整理结束
+
             that.setData({
               myShopInfo:_obj
             })
@@ -173,7 +206,12 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    var reflash = app.globalData.updates[this.name];
+    if (reflash)
+    {
+      this.getMyShopInfo();
+      app.globalData.updates[this.name] = false;
+    }
   },
 
   /**

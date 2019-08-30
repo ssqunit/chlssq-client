@@ -256,6 +256,22 @@ function getImgUrl(session_id,img_id){
   return "https://ssqunit.com/index.php?function=download&session_id=" + session_id + "&filename=" + img_id;
 }
 
+function getProductFlagName(id){
+  var name="";
+  switch(id){
+    case 1 || "1" :
+      name = "推荐";
+      break;
+    case 2 || "2":
+      name = "优惠";
+      break;
+    default:
+      break;
+  }
+  return name;
+}
+
+
 module.exports.APP_ID = WX_APP_ID;
 module.exports.API_KEY = WX_API_KEY;
 module.exports.DEFAULT_PAGE_SIZE = DEFAULT_PAGE_SIZE;
@@ -273,3 +289,4 @@ module.exports.refreshPrePage = refreshPrePage;
 module.exports.randomString = randomString;
 module.exports.log = log;
 module.exports.getImgUrl = getImgUrl;
+module.exports.getProductFlagName = getProductFlagName;

@@ -109,6 +109,7 @@ Page({
 
   onNameInput: function (e) {
     this.data.p_name = e.detail.value;
+    this.onDataChange();
   },
   onDesInput: function (e) {
     this.data.p_des = e.detail.value;
@@ -173,6 +174,7 @@ Page({
         if (res.data.iRet == 0) {
           that.toast("已成功提交申请！请勿重复提交！");
           that.data.commited.push({ "name": that.data.p_name });
+          that.onDataChange();
         } else {
           that.toast("提交失败！请稍后再试。");
         }
@@ -182,6 +184,10 @@ Page({
         that.toast("提交失败！请检查您的网络。");
       }
     });
+  },
+
+  onDataChange: function() {
+    app.globalData.updates['pages.my']=true;
   },
 
   checkData: function(){

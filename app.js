@@ -37,6 +37,7 @@ App({
   globalData: {
     userInfo: null,
     js_code:"",
-    myLocation:{"latitude":0.0,"longitude":0.0}
+    myLocation:{"latitude":0.0,"longitude":0.0},
+    updates:{}    //这里存储页面是否需要更新的数据
   },
 })
