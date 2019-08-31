@@ -34,7 +34,6 @@ Component({
     onSell: function (e) {
       //点击频率限制
       var cur = (new Date()).getTime();
-      console.log("-----cur="+cur+",last="+this.data.lastTime);
       if(cur - this.data.lastTime < 15000)
       {
         wx.showToast({
@@ -101,6 +100,16 @@ Component({
         id: e.currentTarget.dataset.id
       }
       this.triggerEvent('onEditClick', evt);
+    },
+    proDelete: function (e) {
+      var evt = {
+        id: e.currentTarget.dataset.id,
+        onsell: this.data.product.onsell,
+        update_time: this.data.product.update_time
+      }
+      this.triggerEvent('onDeleteClick', evt);
     }
+
+
   }
 })

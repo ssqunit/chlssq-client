@@ -81,7 +81,7 @@
     <view class="pro_list">
       <scroll-view>
         <block wx:for="{{myShopInfo.product_list}}" wx:for-index="index">
-        <ssq-product-my product="{{item}}" sellText="{{item.sellText}}" bind:onCardClick="onCardClick" bind:onSellClick="onSell" bind:onADClick="onOpenADChoose" bind:onEditClick="proEdit"/>  
+        <ssq-product-my product="{{item}}" sellText="{{item.sellText}}" bind:onCardClick="onCardClick" bind:onSellClick="onSell" bind:onADClick="onOpenADChoose" bind:onEditClick="proEdit" bind:onDeleteClick="proDelete"/>  
         </block>
       </scroll-view>
     </view>

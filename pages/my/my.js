@@ -80,7 +80,6 @@ Page({
       },
       success: res => {
         wx.hideLoading();
-        console.log('---------setOnSell:res=' + JSON.stringify(res));
         if (res.data.iRet == 0) {
           wx.showToast({ title: '成功！' })
         } else {
@@ -116,6 +115,45 @@ Page({
     wx.navigateTo({
       url: 'product/edit/edit?id=' + e.currentTarget.dataset.id,
     })
+  },
+
+  //
+  proDelete: function (e) {
+    var productid = e.detail.id;
+    var onsell = e.detail.onsell;
+    var update_time = e.detail.update_time;
+    if(onsell != 0){
+      wx.showToast({ title: '不可以删除上架产品', icon: "none" });
+      return;
+    }
+    var curTime = (new Date()).getTime();
+    if(update_time == null || curTime - update_time*1000 > 24*60*60){
+      wx.showLoading({ title: '请稍后......' })
+      common.request({
+        method: "GET",
+        url: common.BASE_URL,
+        data: {
+          'function': 'productDelete',
+          'session_id': app.globalData.userInfo.session_id,
+          'productid': productid
+        },
+        success: res => {
+          wx.hideLoading();
+          if (res.data.iRet == 0) {
+            wx.showToast({ title: '成功！' });
+            this.getMyShopInfo();
+          } else {
+            wx.showToast({ title: '删除失败！'+res.data.sMsg, icon: "none" })
+          }
+        },
+        fail: res => {
+          wx.hideLoading();
+          wx.showToast({ title: '请检查网络链接！', icon: "none" })
+        }
+      });
+    }else{
+      wx.showToast({ title: '产品下架24小时后才可以删除！', icon: "none" });
+    }
   },
 
   //
