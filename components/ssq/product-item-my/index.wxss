@@ -1,0 +1,3 @@
+/* components/ssq/product-item-my/index.wxss */
+.t_space{margin: 5rpx;}
+.itemctn{margin-top: 5rpx;}

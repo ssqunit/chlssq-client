@@ -21,8 +21,6 @@ Page({
     shop_optype:"养生",
     shop_createtime:"2019",
     reflashPage: false
-
-
   },
 
   //打开商圈在地图上的位置
@@ -48,20 +46,6 @@ Page({
     })
   },
 
-  //编辑产品
-  proEdit: function (e) {
-    wx.navigateTo({
-      url: 'product/edit/edit?id=' + e.currentTarget.dataset.id,
-    })
-  },
-
-  //点击产品
-  onCardClick: function (e) {
-    wx.navigateTo({
-      url: 'product/viewer/viewer',
-    })
-  },
-
   //预览图片
   previewImage: function (e) {
     var current = e.target.dataset.src;
@@ -72,15 +56,38 @@ Page({
     })
   },
 
-  //
+  //点击产品
+  onCardClick: function (e) {
+    wx.navigateTo({
+      url: 'product/viewer/viewer',
+    })
+  },
+
+  //上下架
+  onSell: function (e) {
+    var productid = e.detail.id;
+    var onsell = e.detail.onsell;
+    if(e.detail.callback){
+      e.detail.callback(false);
+    }
+  },
+
+  //做广告
   onCloseADChoose: function() {
     this.setData({ adShow: false });
   },
   onOpenADChoose: function(e) {
-    this.data.adproduct_id = e.currentTarget.dataset.id;
+    this.data.adproduct_id = e.detail.id;
     this.setData({ 
       adShow: true 
     });
+  },
+
+  //编辑产品
+  proEdit: function (e) {
+    wx.navigateTo({
+      url: 'product/edit/edit?id=' + e.currentTarget.dataset.id,
+    })
   },
 
   //
@@ -136,11 +143,22 @@ Page({
                 
                 //-------flags
                 var flagids = util.stringToArray(_p['flags']);
+                var _flagArr = [];
                 if(flagids.length > 0){
                   for(var f=0;f<flagids.length;f++){
-                    _plist[i]["flag"+flagids[f]]=1;
+                    _flagArr.push({ "id": flagids[f], "name": common.getProductFlagName(flagids[f])});
                   }
                 }
+                _plist[i]["flagArr"] = _flagArr;
+
+                //-------sellText
+                var _sellText = "";
+                if(_plist[i]['onsell'] == 0){
+                  _sellText = '上架';
+                } else if (_plist[i]['onsell'] == 1){
+                  _sellText = '下架';
+                }
+                _plist[i]['sellText'] = _sellText;
 
 
               }

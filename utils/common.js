@@ -259,10 +259,12 @@ function getImgUrl(session_id,img_id){
 function getProductFlagName(id){
   var name="";
   switch(id){
-    case 1 || "1" :
+    case 1:
+    case '1':
       name = "推荐";
       break;
-    case 2 || "2":
+    case 2:
+    case '2':
       name = "优惠";
       break;
     default:
