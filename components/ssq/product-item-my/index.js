@@ -71,7 +71,6 @@ Component({
       this.triggerEvent('onSellClick',evt);
     },
     onSellResult: function (res) {
-      console.log("--------onSellResult:"+JSON.stringify(this))
       if(!res){
         var _text = "";
         var _type = "";
@@ -88,6 +87,8 @@ Component({
           sellText: _text,
           //onsellBtnType: _type
         })
+      }else{
+        this.that.data.product.update_time = Math.round( (new Date()).getTime() / 1000 );
       }
     },
     onOpenADChoose: function (e) {

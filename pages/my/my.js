@@ -82,6 +82,9 @@ Page({
       success: res => {
         wx.hideLoading();
         if (res.data.iRet == 0) {
+          if (e.detail.callback) {
+            e.detail.callback(true);
+          }
           wx.showToast({ title: '成功！' })
         } else {
           if (e.detail.callback) {
