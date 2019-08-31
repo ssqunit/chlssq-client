@@ -105,7 +105,7 @@ Page({
     this.setData({ adShow: false });
   },
   onOpenADChoose: function(e) {
-    this.data.adproduct_id = e.detail.id;
+    var product = e.detail.product;
     this.setData({ 
       adShow: true 
     });

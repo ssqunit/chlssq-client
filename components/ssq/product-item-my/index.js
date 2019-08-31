@@ -92,7 +92,7 @@ Component({
     },
     onOpenADChoose: function (e) {
       var evt = {
-        id: e.currentTarget.dataset.id
+        product: this.data.product
       }
       this.triggerEvent('onADClick', evt);
     },
