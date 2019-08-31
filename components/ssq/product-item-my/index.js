@@ -28,6 +28,7 @@ Component({
   methods: {
     onCardClick: function (e) {
       var evt = {
+        product: this.data.product
       }
       this.triggerEvent('onCardClick', evt);
     },
@@ -97,7 +98,7 @@ Component({
     },
     proEdit: function (e) {
       var evt = {
-        id: e.currentTarget.dataset.id
+        product: this.data.product
       }
       this.triggerEvent('onEditClick', evt);
     },

@@ -58,6 +58,7 @@ Page({
 
   //点击产品
   onCardClick: function (e) {
+    var product = e.detail.product;
     wx.navigateTo({
       url: 'product/viewer/viewer',
     })
@@ -112,6 +113,7 @@ Page({
 
   //编辑产品
   proEdit: function (e) {
+    var product = e.detail.product;
     wx.navigateTo({
       url: 'product/edit/edit?id=' + e.currentTarget.dataset.id,
     })
