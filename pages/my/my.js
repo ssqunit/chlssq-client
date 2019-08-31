@@ -117,9 +117,23 @@ Page({
   //编辑产品
   proEdit: function (e) {
     var product = e.detail.product;
-    wx.navigateTo({
-      url: 'product/edit/edit?id=' + e.currentTarget.dataset.id,
-    })
+    app.globalData.productsForEdit[product.productid]=product;
+    var onsell = product.onsell;
+    if (onsell != 0) {
+      wx.showToast({ title: '不可编辑上架产品', icon: "none" });
+      return;
+    }
+    var curTime = (new Date()).getTime();
+    var update_time = product.update_time;
+    if (update_time == null || curTime - update_time * 1000 > 24 * 60 * 60 * 1000) {
+      wx.navigateTo({
+        url: 'product/edit/edit?id=' + product.productid,
+      })
+    } else {
+      var hmObj = util.getHM(24*60*60*1000 - curTime + update_time * 1000);
+      var msg = hmObj['h'] + "小时 "+ hmObj['m'] + "分钟后可以编辑该产品";
+      wx.showToast({ title: msg, icon: "none" });
+    }
   },
 
   //
@@ -132,7 +146,7 @@ Page({
       return;
     }
     var curTime = (new Date()).getTime();
-    if(update_time == null || curTime - update_time*1000 > 24*60*60){
+    if(update_time == null || curTime - update_time*1000 > 24*60*60*1000){
       wx.showLoading({ title: '请稍后......' })
       common.request({
         method: "GET",
@@ -157,7 +171,9 @@ Page({
         }
       });
     }else{
-      wx.showToast({ title: '产品下架24小时后才可以删除！', icon: "none" });
+      var hmObj = util.getHM(24 * 60 * 60 * 1000 - curTime + update_time * 1000);
+      var msg = hmObj['h'] + "小时 " + hmObj['m'] + "分钟后可以删除该产品";
+      wx.showToast({ title: msg, icon: "none" });
     }
   },
 

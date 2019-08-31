@@ -1,6 +1,7 @@
 // pages/my/product/edit/edit.js
 
 var util = require('../../../../utils/util.js');
+var app = getApp();
 
 
 Page({
@@ -10,29 +11,13 @@ Page({
    */
   data: {
     popShow: false,
-    productInfo:{
-      ID:113,
-      "name":"肩周调理",
-      "images": [
-        "../../../../static/custom/defaults/def_ssq.jpg",
-        "../../../../static/custom/defaults/def_ssq.jpg",
-        "../../../../static/custom/defaults/def_ssq.jpg",
-        "../../../../static/custom/defaults/def_ssq.jpg"
-      ],
-      "des":"这里是产品的描述信息",
-      "price":98.99,
-      "unit":"次",
-      "dateType":"2",
-      "dateEnd": 1565000815723,
-      "tags":["1"],
-      "tradeType":[]
-    },
-    pName:"",
-    des:"",
-    price:0.0,
-    unit:"",
-    dateType: "1",
-    dateEnd: "",
+    productInfo:{},//产品的原始对象，不要修改其中任何属性
+    imgesArr: [], //修改的图片数组
+    des:"",       //修改的描述
+    price: 0.0,    //修改的价格
+    unit: "",      //修改的单位
+    dateType: "1", //修改的产品期限类型
+    dateEnd: "",   //修改的产品到期时间
     dateEndFormat: "",
     minHour: 10,
     maxHour: 20,
@@ -46,7 +31,6 @@ Page({
     tradeType: [
       { name: '1', value: '预约', checked: false }
     ],
-    imgesArr: []
 
   },
 
@@ -117,50 +101,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-    //-----------预设页面内容-------
-    if (this.data.productInfo.dateType == "2") {
-      this.setData({
-        dateEndFormat: util.formatTime(new Date(this.data.productInfo.dateEnd))
-      })
+    var product = app.globalData.productsForEdit[options.id];
+    console.log("---------onLoad: product=" + JSON.stringify(product));
+    delete app.globalData.productsForEdit[options.id];
+    var tmp = this.data.tags;
+    if (product.flagArr != null && product.flagArr.length > 0){
+      for (var i = 0; i < tmp.length; i++) {
+        for (var j = 0; j < product.flagArr.length; j++){
+          if (Number(product.flagArr[j]['id']) == Number(tmp[i]['name'])){
+            tmp[i]['checked'] = true;
+          }
+        }
+      }
     }
-    this.setData({
-      pName: this.data.productInfo.name,
-      imgesArr: this.data.productInfo.images,
-      des: this.data.productInfo.des,
-      price: this.data.productInfo.price,
-      unit: this.data.productInfo.unit,
-      dateType: this.data.productInfo.dateType,
-
-    })
-    let len = this.data.productInfo.tags.length
-    let m1 = false
-    let m2 = false
-    if( len > 0){
-      for(var i=0; i<len; i++){
-        if (this.data.productInfo.tags[i] == "1") m1 = true
-        if (this.data.productInfo.tags[i] == "2") m2 = true
+    var tmpTrad = this.data.tradeType;
+    var tradTypes = util.stringToArray(product.tradeway);
+    if(tradTypes != null & tradTypes.length > 0){
+      for (var i = 0; i < tmpTrad.length; i++) {
+        for (var j = 0; j < tradTypes.length; j++) {
+          if (Number(tradTypes[j]) == Number(tmpTrad[i]['name'])) {
+            tmpTrad[i]['checked'] = true;
+          }
+        }
       }
     }
     this.setData({
-      tags: [
-        { name: '1', value: '推荐', checked: m1 },
-        { name: '2', value: '优惠', checked: m2 }
-      ]
-    })
-    if(this.data.productInfo.tradeType.length > 0){
-      this.setData({
-        tradeType: [
-          { name: '1', value: '预约', checked: true }
-        ]
-      })
-    }else{
-      this.setData({
-        tradeType:[
-          { name: '1', value: '预约', checked: false }
-        ]
-      })
-    }
+      productInfo: product,
+      imgesArr: product.imgUrls,
+      dateType: product.datetype,
+      dateEnd: product.dateend,
+      dateEndFormat: util.formatTime(new Date(Number(product.dateend))),
+      tags: tmp,
+      tradeType: tmpTrad
+    });
   },
 
   /**

@@ -1,31 +1,31 @@
 <!--pages/my/product/edit/edit.wxml-->
 <view class="container">
-  <view class="new_title"><text>新增产品：</text></view>
+  <view class="new_title"><text>编辑产品：</text></view>
   <view class="space_line"></view>
   <view class="new_name">
-    <text>产品名称：{{pName}}</text>
+    <text>产品名称：{{productInfo.name}}</text>
   </view>
 
   <view class="new_image">
     <view class="img_ctn">
-      <block wx:for="{{imgesArr}}" wx:for-index="index">
+      <block wx:for="{{productInfo.imgUrls}}" wx:for-index="index">
         <image class="img_img" mode="aspectFit" src="{{item}}"  data-src="{{item}}" bindtap="previewImage"></image>
       </block>
     </view>
-    <text class="img_btn" bindtap="loadImg">上传</text>
+    <text class="img_btn" bindtap="loadImg">重新传图</text>
   </view>
 
   <view class="new_des">
     <text>产品描述：</text>
-    <textarea class="des_input" maxlength="60" placeholder="" type="text">{{des}}</textarea>
+    <textarea class="des_input" maxlength="60" value="{{productInfo.des}}" type="text"></textarea>
   </view>
   <view class="new_name">
     <text>产品价格：￥</text>
-    <input class="name_input" maxlength="8" placeholder="" type="digit" value="{{price}}"></input>
+    <input class="name_input" maxlength="8" placeholder="" type="digit" value="{{productInfo.price}}"></input>
   </view>
   <view class="new_name">
     <text>产品单位：</text>
-    <input class="name_input" maxlength="2" placeholder="" type="text" value="{{unit}}"></input>
+    <input class="name_input" maxlength="2" placeholder="" type="text" value="{{productInfo.unit}}"></input>
   </view>
 
   <!-- 产品期限 -->
@@ -83,7 +83,7 @@
     <text>如有违反以上两点，平台有权追究产品发布者的相关法律责任。</text>
   </view>
 
-  <button type="primary">保存</button>
+  <button type="primary">提交修改</button>
 
 
 

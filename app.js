@@ -38,6 +38,7 @@ App({
     userInfo: null,
     js_code:"",
     myLocation:{"latitude":0.0,"longitude":0.0},
-    updates:{}    //这里存储页面是否需要更新的数据
+    updates:{},    //这里存储页面是否需要更新的数据
+    productsForEdit:{}   //用于存储需要编辑的产品对象，取出时请删除该产品对象
   },
 })

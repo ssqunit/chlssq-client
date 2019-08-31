@@ -67,11 +67,21 @@ const stringToArray = (str) => {
   return arr;
 }
 
+const getHM = (millonSecond) => {
+  var h = 0;
+  if(millonSecond > 3600000){
+    h = Math.floor(millonSecond / 3600000);
+  }
+  var m = Math.ceil( (millonSecond - h*3600000)/60000 );
+  return {'h':h,'m':m};
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTimeYMD: formatTimeYMD,
   getWeekDay: getWeekDay,
   countDistance: countDistance,
   arrayToString: arrayToString,
-  stringToArray: stringToArray
+  stringToArray: stringToArray,
+  getHM: getHM
 }
