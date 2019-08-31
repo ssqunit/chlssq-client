@@ -67,9 +67,37 @@ Page({
   onSell: function (e) {
     var productid = e.detail.id;
     var onsell = e.detail.onsell;
-    if(e.detail.callback){
-      e.detail.callback(false);
-    }
+    var that = this;
+    wx.showLoading({ title: '请稍后......' })
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'setOnSell',
+        'session_id': app.globalData.userInfo.session_id,
+        'productid': productid,
+        'onsell': onsell
+      },
+      success: res => {
+        wx.hideLoading();
+        console.log('---------setOnSell:res=' + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          wx.showToast({ title: '成功！' })
+        } else {
+          if (e.detail.callback) {
+            e.detail.callback(false);
+          }
+          wx.showToast({ title: '上架失败！', icon: "none" })
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        if (e.detail.callback) {
+          e.detail.callback(false);
+        }
+        wx.showToast({ title: '请检查网络链接！', icon: "none" })
+      }
+    });
   },
 
   //做广告

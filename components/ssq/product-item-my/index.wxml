@@ -14,7 +14,7 @@
     </block>
   </view>
   <view slot="footer">
-    <van-button size="mini" class="t_space" catchtap="onSell" data-id="{{product.productid}}" data-onsell="{{product.onsell}}">{{sellText}}</van-button>
+    <van-button type="{{onsellBtnType}}" size="mini" class="t_space" catchtap="onSell" data-id="{{product.productid}}" data-onsell="{{product.onsell}}">{{sellText}}</van-button>
     <van-button size="mini" class="t_space" catchtap="onOpenADChoose" data-id="{{product.productid}}">做广告</van-button>
     <van-button size="mini" class="t_space" catchtap="proEdit" data-id="{{product.productid}}">编辑</van-button>
   </view>
