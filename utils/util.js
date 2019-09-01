@@ -79,7 +79,7 @@ const getHM = (millonSecond) => {
 const moneyValue = (value) => {
   var _m;
   if (/^(\d?)+(\.\d{0,2})?$/.test(value)) {
-    _m = e.detail.value;
+    _m = value;
   } else {
     _m = value.substring(0, value.length - 1);
   }
