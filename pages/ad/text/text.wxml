@@ -15,12 +15,12 @@
   <view class="space_line"></view>
   <view class="product_info fullwh">
     <view class="fullwh text_ctn">
-      <text class="text_tag">产品/项目名称：</text>
+      <text class="text_tag">产品名称：</text>
       <text class="text_content">{{productInfo.name}}</text>
     </view>
     <view class="hspace"></view>
     <view class="fullwh text_ctn">
-      <text class="text_tag">产品/项目描述：</text>
+      <text class="text_tag">产品描述：</text>
       <text class="text_content">{{productInfo.des}}</text>
     </view>
   </view>
@@ -31,7 +31,7 @@
     <input maxlength="20" placeholder="限长20个字" value="" bindinput="onInput"></input>
   </view>
   <view class="space_line"></view>
-  <view class="ad_date fullwh">
+  <view class="ad_date fullwh" hidden="{{ textADInfo==null ? true : false}}">
     <text class="fullwh">请选择广告时段及次数：</text>
     <view class="date_list">
       <text class="date_circle">注意：以下时段的广告周期为：{{textADInfo.dateStart}} - {{textADInfo.dateEnd}}</text>
@@ -58,6 +58,9 @@
 
       <button type="primary" bindtap="onPay">支付：￥{{priceTotal}}</button>
     </view>
+  </view>
+  <view  hidden="{{ textADInfo==null ? false : true}}">
+    <text>暂无可以购买的广告！请留意后续更新，谢谢！</text>
   </view>
   <van-toast id="van-toast" />
 </view>

@@ -261,7 +261,7 @@ Page({
    */
   onLoad: function(options) {
     var product = app.globalData.productsForEdit[options.id];
-    console.log("---------onLoad: product=" + JSON.stringify(product));
+    // console.log("---------onLoad: product=" + JSON.stringify(product));
     delete app.globalData.productsForEdit[options.id];
     var tmp = this.data.tags;
     if (product.flagArr != null && product.flagArr.length > 0) {

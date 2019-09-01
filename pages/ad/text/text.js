@@ -17,13 +17,9 @@ Page({
     priceTotal:0.00,
     itemSelected:[],
     adText:"这里输入能突出产品又能吸人眼球的文字",
-    productInfo: { "ID": "108", "name": "肩周调理", "des": "产品的描述信息,产品的描述信息,产品的描述信息,产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"]},
-    textADInfo:{
-      dateStart:0,
-      dateEnd:0,
-      list:[]
-    }
-
+    productInfo:null,
+    ssqid:0,
+    textADInfo:null
   },
 
   //
@@ -85,6 +81,10 @@ Page({
             that.setData({
               textADInfo:_info
             })
+          }else{
+            that.setData({
+              textADInfo: null
+            })
           }
         } else {
           Toast("查询广告失败！");
@@ -111,7 +111,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('----------onLoad:product_id='+options.product_id);
+    var product = app.globalData.productsForAD[options.ssqid];
+    // console.log("---------onLoad: product=" + JSON.stringify(product));
+    delete app.globalData.productsForAD[options.ssqid];
+    this.setData({
+      ssqid:options.ssqid,
+      productInfo:product
+    });
     this.getAdCfg();
   },
 

@@ -14,7 +14,6 @@ Page({
    */
   data: {
     adShow:false,
-    adproduct_id:0,
     myShopInfo:{},
     shop_distance:0.1,
     shop_type:"商家",
@@ -105,10 +104,13 @@ Page({
 
   //做广告
   onCloseADChoose: function() {
-    this.setData({ adShow: false });
+    this.setData({ 
+      adShow: false
+    });
   },
   onOpenADChoose: function(e) {
     var product = e.detail.product;
+    app.globalData.productsForAD[this.data.myShopInfo.ssqid] = product;
     this.setData({ 
       adShow: true 
     });
@@ -181,7 +183,7 @@ Page({
   onADText: function (e) {
     this.onCloseADChoose();
     wx.navigateTo({
-      url: '../ad/text/text?product_id='+this.data.adproduct_id,
+      url: '../ad/text/text?ssqid=' + this.data.myShopInfo.ssqid
     })
   },
 
@@ -189,7 +191,7 @@ Page({
   onADImage: function (e) {
     this.onCloseADChoose();
     wx.navigateTo({
-      url: '../ad/image/image',
+      url: '../ad/image/image?ssqid=' + this.data.myShopInfo.ssqid
     })
   },
 

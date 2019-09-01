@@ -12,7 +12,7 @@
 .text_content{width: calc(100% - 230rpx);height: auto;color: rgb(100, 99, 99);}
 .ad_info{font-size: 28rpx;}
 .ad_info text{font-size: 36rpx;}
-.ad_info input{border:1rpx solid silver;}
+.ad_info input{border:1rpx solid red;padding: 5rpx 10rpx;border-radius: 5rpx;}
 .ad_date{font-size: 36rpx;}
 .vspace{width: 20rpx;height: 100%;}
 .date_circle{font-size: 28rpx;color: red;}
