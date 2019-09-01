@@ -167,6 +167,7 @@ Page({
       url: common.BASE_URL + "?function=updateProduct&session_id=" + app.globalData.userInfo.session_id,
       data: {
         'openid': app.globalData.userInfo.ID,
+        'productid': this.data.productInfo.productid,
         'p_imgarr': util.arrayToString(this.data.resImgids),
         'p_des': this.data.des,
         'p_price': this.data.price,
