@@ -76,6 +76,16 @@ const getHM = (millonSecond) => {
   return {'h':h,'m':m};
 }
 
+const moneyValue = (value) => {
+  var _m;
+  if (/^(\d?)+(\.\d{0,2})?$/.test(value)) {
+    _m = e.detail.value;
+  } else {
+    _m = value.substring(0, value.length - 1);
+  }
+  return _m;
+}
+
 module.exports = {
   formatTime: formatTime,
   formatTimeYMD: formatTimeYMD,
@@ -83,5 +93,6 @@ module.exports = {
   countDistance: countDistance,
   arrayToString: arrayToString,
   stringToArray: stringToArray,
-  getHM: getHM
+  getHM: getHM,
+  moneyValue: moneyValue
 }

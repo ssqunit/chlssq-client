@@ -109,7 +109,6 @@ Page({
 
   onNameInput: function (e) {
     this.data.p_name = e.detail.value;
-    this.onDataChange();
   },
   onDesInput: function (e) {
     this.data.p_des = e.detail.value;

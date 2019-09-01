@@ -17,15 +17,15 @@
 
   <view class="new_des">
     <text>产品描述：</text>
-    <textarea class="des_input" maxlength="60" value="{{productInfo.des}}" type="text"></textarea>
+    <textarea class="des_input" maxlength="60" value="{{productInfo.des}}" type="text" bindinput="onDes"></textarea>
   </view>
   <view class="new_name">
     <text>产品价格：￥</text>
-    <input class="name_input" maxlength="8" placeholder="" type="digit" value="{{productInfo.price}}"></input>
+    <input class="name_input" maxlength="8" placeholder="" type="digit" value="{{price}}" bindinput="onPrice"></input>
   </view>
   <view class="new_name">
     <text>产品单位：</text>
-    <input class="name_input" maxlength="2" placeholder="" type="text" value="{{productInfo.unit}}"></input>
+    <input class="name_input" maxlength="2" placeholder="" type="text" value="{{productInfo.unit}}" bindinput="onUnit"></input>
   </view>
 
   <!-- 产品期限 -->
@@ -83,9 +83,9 @@
     <text>如有违反以上两点，平台有权追究产品发布者的相关法律责任。</text>
   </view>
 
-  <button type="primary">提交修改</button>
+  <button type="primary" bindtap="onCommit" disabled="{{btnDisabled}}">提交修改</button>
 
-
+  <van-dialog id="van-dialog" />
 
   <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
     <van-datetime-picker
