@@ -2,6 +2,7 @@
   "usingComponents": {
     "van-notice-bar": "/components/vant/notice-bar/index",
     "van-stepper": "/components/vant/stepper/index",
-    "van-toast": "/components/vant/toast/index"    
+    "van-toast": "/components/vant/toast/index",
+    "van-dialog": "/components/vant/dialog/index"  
   }
 }

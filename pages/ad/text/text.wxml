@@ -63,4 +63,5 @@
     <text>暂无可以购买的广告！请留意后续更新，谢谢！</text>
   </view>
   <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
 </view>

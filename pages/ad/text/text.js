@@ -7,6 +7,7 @@ var util = require('../../../utils/util.js');
 var common = require("../../../utils/common.js")
 
 import Toast from '../../../components/vant/toast/toast';
+import Dialog from '../../../components/vant/dialog/dialog';
 
 Page({
 
@@ -17,6 +18,7 @@ Page({
     priceTotal:0.00,
     itemSelected:[],
     adText:"这里输入能突出产品又能吸人眼球的文字",
+    adText_real:"",
     productInfo:null,
     ssqid:0,
     textADInfo:null
@@ -24,12 +26,11 @@ Page({
 
   //
   onInput: function(e){
-    this.setData({adText:e.detail.value});
+    this.setData({ adText: e.detail.value, adText_real: e.detail.value});
   },
 
   //购买项目选择数改变
   onChange: function(e){
-    console.log(JSON.stringify(e));
     let len = this.data.itemSelected.length;
     if(len<=0){
       let newobj = { "id": e.currentTarget.dataset.id, "price": e.currentTarget.dataset.price, "count": e.detail}
@@ -70,7 +71,6 @@ Page({
         'adType': 1
       },
       success: res => {
-        console.log("----------- getAdCfg:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           if (res.data.data) {
             var _info = {
@@ -98,13 +98,60 @@ Page({
 
   //点击支付按钮
   onPay: function (e) {
-    var _adText = this.data.adText.replace(/\s+/g, '');
+    var _adText = this.data.adText_real.replace(/\s+/g, '');
     if (_adText == "") {
       Toast("请输入广告文字！");
+      return;
     }
     if (!this.data.itemSelected || this.data.itemSelected.length <= 0){
       Toast("请选择广告时段！");
+      return;
     }
+    //format content
+    var _temArr = [];
+    for (var i = 0; i < this.data.itemSelected.length; i++){
+      var _objstr = this.data.itemSelected[i].id + "," + this.data.itemSelected[i].count;
+      _temArr.push(_objstr);
+    }
+    var _content = util.arrayToString(_temArr);
+    //下单
+    wx.showLoading({ title: '请稍后......' })
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=adOrder&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        'openid': app.globalData.userInfo.ID,
+        'productid': this.data.productInfo.productid,
+        'ssqid': this.data.ssqid,
+        'shopid': this.data.productInfo.shopid,
+        'flags': this.data.productInfo.flags,
+        'admoney': this.data.priceTotal,
+        'type': 1,
+        'adtext': this.data.adText_real,
+        'content':_content
+      },
+      success: res => {
+        console.log("----------- adOrder:success" + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          Dialog.alert({
+            title: '提示',
+            message: '下单成功！返回上一页。'
+          }).then(() => {
+            wx.navigateBack({
+              //可回传参数
+            })
+          });
+        } else {
+          Toast('下单失败！' + res.data.sMsg)
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        Toast('请检查网络链接！')
+      }
+    });
+
   },
 
   /**
