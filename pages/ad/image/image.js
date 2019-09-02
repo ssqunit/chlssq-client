@@ -19,8 +19,9 @@ Page({
     priceTotal: 0.00,
     itemSelected: [],
     adImage: "",
-    adImage_real:"",
+    imgid:"",
     adText:"",
+    ssqid:0,
     productInfo: null,
     imageADInfo: null
 
@@ -37,7 +38,7 @@ Page({
         break;
       }
     }
-    this.setData({ adImage: fullUrl, adImage_real: realImgid});
+    this.setData({ adImage: fullUrl, imgid: realImgid});
   },
   onInput: function (e) {
     this.setData({ adText: e.detail.value });
@@ -113,7 +114,7 @@ Page({
   },
 
   onPay: function (e) {
-    if (this.data.adImage_real == "") {
+    if (this.data.imgid == "") {
       Toast("请选择一张产品图作为广告图！");
       return;
     }
@@ -121,6 +122,51 @@ Page({
       Toast("请选择广告时段！");
       return;
     }
+    //format content
+    var _temArr = [];
+    for (var i = 0; i < this.data.itemSelected.length; i++) {
+      var _objstr = this.data.itemSelected[i].id + "," + this.data.itemSelected[i].count;
+      _temArr.push(_objstr);
+    }
+    var _content = util.arrayToString(_temArr);
+    //下单
+    wx.showLoading({ title: '请稍后......' })
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=adOrder&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        'openid': app.globalData.userInfo.ID,
+        'productid': this.data.productInfo.productid,
+        'ssqid': this.data.ssqid,
+        'shopid': this.data.productInfo.shopid,
+        'flags': this.data.productInfo.flags,
+        'admoney': this.data.priceTotal,
+        'type': 2,
+        'imgid': this.data.imgid,
+        'adtext': this.data.adText,
+        'content': _content
+      },
+      success: res => {
+        console.log("----------- adOrder:success" + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          Dialog.alert({
+            title: '提示',
+            message: '下单成功！返回上一页。'
+          }).then(() => {
+            wx.navigateBack({
+              //可回传参数
+            })
+          });
+        } else {
+          Toast('下单失败！' + res.data.sMsg)
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        Toast('请检查网络链接！')
+      }
+    });
 
   },
 

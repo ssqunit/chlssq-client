@@ -131,7 +131,6 @@ Page({
         'content':_content
       },
       success: res => {
-        console.log("----------- adOrder:success" + JSON.stringify(res));
         wx.hideLoading();
         if (res.data.iRet == 0) {
           Dialog.alert({
