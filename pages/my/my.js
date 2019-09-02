@@ -207,7 +207,6 @@ Page({
         'openid': app.globalData.userInfo.ID
       },
       success: res => {
-        console.log('---------getMyShopInfo:res='+JSON.stringify(res));
         if (res.data.iRet == 0) {
           if(res.data.data == null || res.data.data.length <= 0){
             myShopInfo = null;

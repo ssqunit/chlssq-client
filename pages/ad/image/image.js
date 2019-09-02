@@ -1,4 +1,15 @@
 // pages/ad/image/image.js
+
+const app = getApp()
+
+// 在需要使用的js文件中，导入js
+var util = require('../../../utils/util.js');
+var common = require("../../../utils/common.js")
+
+import Toast from '../../../components/vant/toast/toast';
+import Dialog from '../../../components/vant/dialog/dialog';
+
+
 Page({
 
   /**
@@ -7,26 +18,26 @@ Page({
   data: {
     priceTotal: 0.00,
     itemSelected: [],
-    adImage: "https://img.yzcdn.cn/vant/t-thirt.jpg",
+    adImage: "",
+    adImage_real:"",
     adText:"",
-    productInfo: { "ID": "108", "name": "肩周调理", "des": "产品的描述信息,产品的描述信息,产品的描述信息,产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg", "../../../static/custom/defaults/def_ssq.jpg", "https://img.yzcdn.cn/vant/t-thirt.jpg", "https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-    imageADInfo: {
-      dateStart: 1565478,
-      dateEnd: 15343748,
-      list: [
-        { "id": 1, "time": "0:00-9:00", "price": 14.00, "left": 5 },
-        { "id": 2, "time": "9:00-13:00", "price": 28.00, "left": 4 },
-        { "id": 3, "time": "13:00-17:00", "price": 28.00, "left": 3 },
-        { "id": 4, "time": "17:00-21:00", "price": 56.00, "left": 1 },
-        { "id": 5, "time": "21:00-24:00", "price": 42.00, "left": 0 }
-      ]
-    }
+    productInfo: null,
+    imageADInfo: null
 
   },
 
   //
   radioChange: function (e) {
-    this.setData({adImage: e.detail.value});
+    var fullUrl = e.detail.value;
+    var realImgid = "";
+    var imgArr = util.stringToArray(this.data.productInfo.imgarr);
+    for(var i=0;i<imgArr.length;i++){
+      if(fullUrl.indexOf(imgArr[i]) >= 0){
+        realImgid = imgArr[i];
+        break;
+      }
+    }
+    this.setData({ adImage: fullUrl, adImage_real: realImgid});
   },
   onInput: function (e) {
     this.setData({ adText: e.detail.value });
@@ -63,10 +74,69 @@ Page({
     })
   },
 
+
+  //获取服务器配置
+  getAdCfg: function () {
+    var that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getAdCfg',
+        'session_id': app.globalData.userInfo.session_id,
+        'adType': 2
+      },
+      success: res => {
+        if (res.data.iRet == 0) {
+          if (res.data.data) {
+            var _info = {
+              dateStart: res.data.data[0]['begin_date'],
+              dateEnd: res.data.data[0]['end_date'],
+              list: res.data.data
+            }
+            that.setData({
+              imageADInfo: _info
+            })
+          } else {
+            that.setData({
+              imageADInfo: null
+            })
+          }
+        } else {
+          Toast("查询广告失败！");
+        }
+      },
+      fail: res => {
+        Toast.fail("请检查网络链接！");
+      }
+    });
+  },
+
+  onPay: function (e) {
+    if (this.data.adImage_real == "") {
+      Toast("请选择一张产品图作为广告图！");
+      return;
+    }
+    if (!this.data.itemSelected || this.data.itemSelected.length <= 0) {
+      Toast("请选择广告时段！");
+      return;
+    }
+
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var product = app.globalData.productsForAD[options.ssqid];
+    console.log("---------onLoad: product=" + JSON.stringify(product));
+    delete app.globalData.productsForAD[options.ssqid];
+    this.setData({
+      ssqid: options.ssqid,
+      productInfo: product,
+      adImage: product['imgUrls'][0]
+    });
+    this.getAdCfg();
 
   },
 
