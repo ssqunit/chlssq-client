@@ -158,6 +158,15 @@ Page({
               //可回传参数
             })
           });
+        }else if(res.data.iRet == -4002){
+          var sarr = res.data.sMsg;
+          var msg = "";
+          if (sarr && sarr.length > 0) {
+            for (var i = 0; i < sarr.length; i++) {
+              msg += sarr[i]['begin_hour'] + '-' + sarr[i]['end_hour'] + ","
+            }
+          }
+          Toast('下单失败！重复购买了：' + msg)
         } else {
           Toast('下单失败！' + res.data.sMsg)
         }

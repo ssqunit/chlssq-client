@@ -61,7 +61,7 @@
           value="{{ 0 }}"
           integer
           min="0"
-          max="{{item.left}}"
+          max="{{item.left == 0 ? 0 : 1}}"
           step="1"
           bind:change="onChange"
           data-id="{{item.ad_period_id}}"
