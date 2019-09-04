@@ -24,13 +24,13 @@ Page({
     searchKeyword: "",
     ssqInfo: null,
     hideJoinBtn:false,
-    defTextADInfo: { "shopId": "", "productId": -1, "text": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
+    defTextADInfo: {"type":1, "shopId": "", "productId": -1, "adtext": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
     textADInfo: [],
-    defImgADInfo: { "shopId": "", "productId": -1, "text": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
+    defImgADInfo: {"type":2, "shopId": "", "productId": -1, "adtext": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
     imgADInfo: [],
-    defShopADInfo: { "shopId": -1, "productId":"", "text": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
+    defShopADInfo: {"type":3, "shopId": -1, "productId":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
     shopADInfo: [],
-    defPersonADInfo: { "shopId": -1, "productId": "", "text": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
+    defPersonADInfo: {"type":4, "shopId": -1, "productId": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
     personADInfo:[],
   },
 
@@ -77,7 +77,7 @@ Page({
         session_id: this.data.userInfo.session_id
       },
       success: res => {
-        console.log("----------- requestNotice:success" + JSON.stringify(res));
+        // console.log("----------- requestNotice:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           if(res.data.data){
             that.data.noticeType = res.data.data[0].type;
@@ -114,7 +114,7 @@ Page({
         js_code: app.globalData.js_code
       },
       success: res => {
-        console.log("----------login:res=" + JSON.stringify(res));
+        // console.log("----------login:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           that.data.userInfo.ID = res.data.data.openId;
           that.data.userInfo.session_id = res.data.data.session_id;
@@ -129,7 +129,7 @@ Page({
               'openid': that.data.userInfo.ID
             },
             success: res => {
-              console.log("----------getUserInfo:res="+JSON.stringify(res));
+              // console.log("----------getUserInfo:res="+JSON.stringify(res));
               if(res.data.iRet == 0){
                 that.data.userInfo.actLimit = res.data.data.platInfo.act_limit;
                 that.data.userInfo.ssqLimit = res.data.data.platInfo.ssq_limit;
@@ -176,11 +176,11 @@ Page({
         "avatarUrl": this.data.userInfo.avatarUrl
       },
       success: res => {
-        console.log("----------updateUserInfo:res=" + JSON.stringify(res));
+        // console.log("----------updateUserInfo:res=" + JSON.stringify(res));
         this.getMyPosition();
       },
       fail: res => {
-        console.log("----------- updateUserInfo:" + JSON.stringify(res));
+        // console.log("----------- updateUserInfo:" + JSON.stringify(res));
       }
     });
   },
@@ -237,7 +237,6 @@ Page({
         "longitude": longitude
       },
       success: res => {
-        Toast.clear();
         console.log("----------getNearbySsqDetail:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           var _ssqInfo = res.data.data;
@@ -277,66 +276,69 @@ Page({
           });
 
           //textADInfo
-          if (!that.data.ssqInfo.textADInfo) {
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["1"]) {
             var _textADInfo = [];
             while (_textADInfo.length < 2) {
               _textADInfo.push(that.data.defTextADInfo);
             }
             that.setData({ textADInfo: _textADInfo })
-          } else if (that.data.ssqInfo.textADInfo.length < 6) {
-            var _textADInfo = that.data.ssqInfo.textADInfo;
-            _textADInfo.push(that.data.defTextADInfo);
+          } else if (that.data.ssqInfo.adinfo["1"]) {
+            var _textADInfo = that.data.ssqInfo.adinfo["1"];
+            if (_textADInfo.length < 6){
+              _textADInfo.push(that.data.defTextADInfo);
+            }
             that.setData({ textADInfo: _textADInfo })
           }
 
           //imgADInfo
-          if (!that.data.ssqInfo.imgADInfo) {
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["2"]) {
             var _imgADInfo = [];
             while (_imgADInfo.length < 2) {
               _imgADInfo.push(that.data.defImgADInfo);
             }
             that.setData({ imgADInfo: _imgADInfo })
-          } else if (that.data.ssqInfo.imgADInfo.length < 8) {
-            var _imgADInfo = that.data.ssqInfo.imgADInfo;
-            _imgADInfo.push(that.data.defImgADInfo);
+          } else if (that.data.ssqInfo.adinfo["2"]) {
+            var _imgADInfo = that.data.ssqInfo.adinfo["2"];
+            if (_imgADInfo.length < 8) {
+              _imgADInfo.push(that.data.defImgADInfo);
+            }
             that.setData({ imgADInfo: _imgADInfo })
           }
 
           //shopADInfo
-          if(!that.data.ssqInfo.shopADInfo){
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["3"]){
             var _shopADInfo = [];
             while(_shopADInfo.length<8){
               _shopADInfo.push(that.data.defShopADInfo);
             }
             that.setData({shopADInfo:_shopADInfo})
-          } else if (that.data.ssqInfo.shopADInfo.length<8){
-            var _shopADInfo = that.data.ssqInfo.shopADInfo;
+          } else if (that.data.ssqInfo.adinfo["3"]){
+            var _shopADInfo = that.data.ssqInfo.adinfo["3"];
             while (_shopADInfo.length < 8) {
               _shopADInfo.push(that.data.defShopADInfo);
             }
             that.setData({ shopADInfo: _shopADInfo })
-          }else{
-            that.setData({ shopADInfo: that.data.ssqInfo.shopADInfo })
           }
+          
           //personADInfo
-          if (!that.data.ssqInfo.personADInfo) {
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["4"]) {
             var _personADInfo = [];
             while (_personADInfo.length < 4) {
               _personADInfo.push(that.data.defPersonADInfo);
             }
             that.setData({ personADInfo: _personADInfo })
-          } else if (that.data.ssqInfo.personADInfo.length < 4) {
-            var _personADInfo = that.data.ssqInfo.personADInfo;
+          } else if (that.data.ssqInfo.adinfo["4"]) {
+            var _personADInfo = that.data.ssqInfo.adinfo["4"];
             while (_personADInfo.length < 4) {
               _personADInfo.push(that.data.defPersonADInfo);
             }
             that.setData({ personADInfo: _personADInfo })
-          } else {
-            that.setData({ personADInfo: that.data.ssqInfo.personADInfo })
-          }
+          } 
+
         } else {
           Toast.fail("获取商圈信息失败！");
         }
+        Toast.clear();
       },//success
       fail: res => {
         Toast.fail("获取商圈信息失败！请检查网络或稍后再试。");
