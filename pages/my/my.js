@@ -58,8 +58,13 @@ Page({
   //点击产品
   onCardClick: function (e) {
     var product = e.detail.product;
+    if(product.onsell != 1)
+    {
+      wx.showToast({ title: '产品未上架！', icon: "none" });
+      return;
+    }
     wx.navigateTo({
-      url: 'product/viewer/viewer',
+      url: 'product/viewer/viewer?productid='+product.productid,
     })
   },
 

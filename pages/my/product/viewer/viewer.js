@@ -1,4 +1,10 @@
 // pages/my/product/viewer/viewer.js
+
+var util = require('../../../../utils/util.js');
+var common = require("../../../../utils/common.js")
+var app = getApp();
+
+
 Page({
 
   /**
@@ -46,12 +52,43 @@ Page({
     })
   },
 
+  sendRequest: function (productid) {
+    var that = this;
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': "getProductDetail",
+        'session_id': app.globalData.userInfo.session_id,
+        'openid': app.globalData.userInfo.ID,
+        'productid': productid
+      },
+      success: res => {
+        console.log("--------getProductDetail:" + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+
+        } else {
+
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        that.toast("拉取数据失败！请检查网络。");
+      }
+    });
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var productid = options.productid;
+    wx.showLoading({
+      title: '请稍后...',
+      mask: true
+    });
+    this.sendRequest(productid);
   },
 
   /**

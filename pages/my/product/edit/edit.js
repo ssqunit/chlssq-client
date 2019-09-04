@@ -177,7 +177,7 @@ Page({
         'p_flags': util.arrayToString(this.data.flags)
       },
       success: res => {
-        console.log("--------updateProduct:" + JSON.stringify(res));
+        // console.log("--------updateProduct:" + JSON.stringify(res));
         wx.hideLoading();
         if (res.data.iRet == 0) {
           that.onDataChange();
