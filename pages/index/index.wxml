@@ -61,8 +61,8 @@
         <block wx:for="{{imgADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_img_item"  bindtap="onSwiperAD" data-pid="{{item.productId}}">
             <image src='{{item.img}}' class='swiper_img' mode='aaaaspectFit'></image>
-            <view class="swiper_img_txtbg" hidden="{{item.text==''?true:false}}"></view>
-            <text class="swiper_img_txt" hidden="{{item.text==''?true:false}}">{{item.text}}</text>
+            <view class="swiper_img_txtbg" hidden="{{item.adtext==''?true:false}}"></view>
+            <text class="swiper_img_txt" hidden="{{item.adtext==''?true:false}}">{{item.adtext}}</text>
           </swiper-item>
         </block>
       </swiper>

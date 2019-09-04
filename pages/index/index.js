@@ -299,6 +299,9 @@ Page({
             that.setData({ imgADInfo: _imgADInfo })
           } else if (that.data.ssqInfo.adinfo["2"]) {
             var _imgADInfo = that.data.ssqInfo.adinfo["2"];
+            for(var i=0;i<_imgADInfo.length;i++){
+              _imgADInfo[i]['img'] = common.getImgUrl(that.data.userInfo.session_id, _imgADInfo[i]['imgid']);
+            }
             if (_imgADInfo.length < 8) {
               _imgADInfo.push(that.data.defImgADInfo);
             }

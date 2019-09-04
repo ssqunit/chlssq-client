@@ -115,6 +115,10 @@ Page({
   },
   onOpenADChoose: function(e) {
     var product = e.detail.product;
+    if (product.onsell != 1) {
+      wx.showToast({ title: '产品未上架！', icon: "none" });
+      return;
+    }
     app.globalData.productsForAD[this.data.myShopInfo.ssqid] = product;
     this.setData({ 
       adShow: true 
