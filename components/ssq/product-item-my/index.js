@@ -11,6 +11,10 @@ Component({
     sellText:{
       type:String,
       value:""
+    },
+    hideFooter:{
+      type:Boolean,
+      value:false
     }
   },
 

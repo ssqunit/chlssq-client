@@ -1,32 +1,145 @@
 // pages/district/shop/shop.js
+
+var app = getApp();
+var common = require("../../utils/common.js")
+var util = require('../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    shopInfo:null,
+    shopkm:0,
     topImages:[
       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg",
       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg",
       "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg"
     ],
-    productList: [
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] },
-      { "ID": "108", "name": "产品名称", "des": "产品的描述信息", "count": 1, "price": 18.00, "tags": [1], "images": ["https://img.yzcdn.cn/vant/t-thirt.jpg"] }
-    ]
 
+  },
+
+
+  //
+  getMyShopInfo: function (shopid,owner) {
+    var that = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask:true
+    })
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getMyShopInfo',
+        'session_id': app.globalData.userInfo.session_id,
+        'openid': owner,
+        'shopid': shopid,
+        'iself': 0
+      },
+      success: res => {
+        console.log('----------getMyShopInfo:'+JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          if (res.data.data == null || res.data.data.length <= 0) {
+            that.data.shopInfo = null;
+          } else {
+            var _obj = res.data.data[0];
+            _obj['ssqImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
+            _obj['ssqCImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.cimg);
+
+            //整理product_list
+            var _plist = _obj['product_list'];
+            if (_plist != null && _plist.length > 0) {
+              for (var i = 0; i < _plist.length; i++) {
+                var _p = _plist[i];
+                //-------img
+                var imgids = util.stringToArray(_p['imgarr']);
+                var imgUrls = [];
+                for (var j = 0; j < imgids.length; j++) {
+                  imgUrls.push(common.getImgUrl(app.globalData.userInfo.session_id, imgids[j]));
+                }
+                _plist[i]["imgUrls"] = imgUrls;
+
+                //-------flags
+                var flagids = util.stringToArray(_p['flags']);
+                var _flagArr = [];
+                if (flagids.length > 0) {
+                  for (var f = 0; f < flagids.length; f++) {
+                    _flagArr.push({ "id": flagids[f], "name": common.getProductFlagName(flagids[f]) });
+                  }
+                }
+                _plist[i]["flagArr"] = _flagArr;
+
+                //short des
+                var _short_des = "";
+                if (_plist[i]['des'].length > 16) {
+                  _short_des = _plist[i]['des'].substring(0, 16) + '......';
+                } else {
+                  _short_des = _plist[i]['des'];
+                }
+                _plist[i]['short_des'] = _short_des;
+
+              }
+            }
+            _obj['product_list'] = _plist;
+
+
+            //整理结束
+            console.log("-------shopInfo:"+JSON.stringify(_obj));
+            that.setData({
+              shopInfo: _obj
+            })
+            that.updateShopInfo();
+          }
+        } else {
+          wx.showToast({
+            title: '查询社圈失败！',
+          })
+        }
+        wx.hideLoading();
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络链接！',
+        })
+      }
+    });
+  },
+
+  updateShopInfo: function () {
+    var km = util.countDistance(app.globalData.myLocation.latitude, app.globalData.myLocation.longitude,this.data.shopInfo.latitude,this.data.shopInfo.longitude);
+
+    this.setData({
+      shopkm: km,
+    });
+  },
+
+  //打开商家在地图上的位置
+  openPosition: function (e) {
+    wx.openLocation({
+      latitude: Number(this.data.shopInfo.latitude),
+      longitude: Number(this.data.shopInfo.longitude),
+      scale: 14
+    })
+  },
+
+  //点击产品
+  onCardClick: function (e) {
+    var product = e.detail.product;
+    wx.navigateTo({
+      url: '../my/product/viewer/viewer?productid=' + product.productid,
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var shopid = options.shopid;
+    var owner = options.owner;
+    this.getMyShopInfo(shopid,owner);
   },
 
   /**

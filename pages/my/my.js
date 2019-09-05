@@ -217,7 +217,8 @@ Page({
       data: {
         'function': 'getMyShopInfo',
         'session_id': app.globalData.userInfo.session_id,
-        'openid': app.globalData.userInfo.ID
+        'openid': app.globalData.userInfo.ID,
+        'iself':1
       },
       success: res => {
         if (res.data.iRet == 0) {

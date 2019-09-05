@@ -423,14 +423,21 @@ Page({
   //商家点击事件
   onBusClick:function(e){
     var shopId = e.currentTarget.dataset.id;
+    var owner = e.currentTarget.dataset.owner;
     if(shopId == -1){
       wx.navigateTo({
         url: '../ad/shop/shop'
       })
     }else{
-      wx.navigateTo({
-        url: '../shop/shop'
-      })
+      if(app.globalData.userInfo.ID != owner){
+        wx.switchTab({
+          url: '/pages/my/my',
+        })
+      }else{
+        wx.navigateTo({
+          url: '../shop/shop?shopid=' + shopId + '&owner=' + owner
+        })
+      }
     }
   },
 

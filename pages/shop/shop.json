@@ -1,8 +1,6 @@
 {
   "usingComponents": {
-    "van-tag": "/components/vant/tag/index",
-    "van-card": "/components/vant/card/index",
-    "van-button": "/components/vant/button/index"
+    "ssq-product-my": "/components/ssq/product-item-my/index"
   },
   "navigationBarTitleText": "商家主页"
 }

@@ -4,15 +4,15 @@
   <!-- 商家名称 -->
   <view class="shop_name">
     <view class="name_img">
-      <image src="../../static/custom/defaults/def_ssq.jpg"></image>
+      <image src="{{shopInfo.ssqImgUrl}}"></image>
     </view>
     <view class="name_name">
-      <text class="name_value">双手健康理疗馆</text>
-      <text class="name_ssq">(广东省深圳市龙岗区  御峰园  社圈)</text>
+      <text class="name_value">{{shopInfo.name}}</text>
+      <text class="name_ssq">{{shopInfo.ssqinfo[0].area}}  {{shopInfo.ssqinfo[0].name}}  社圈</text>
     </view>
-    <view class="name_km">
+    <view class="name_km" bindtap="openPosition">
       <image src="../../static/icons/map_b.png" mode="aspectFit"></image>
-      <text>123.89km</text>
+      <text>{{shopkm}}km</text>
     </view>
   </view>
   <view class="space_line"></view>
@@ -32,17 +32,17 @@
   <!-- 商家信息 -->
   <view class="info_item fullwh">
     <text class="item_tag">经营范围：</text>
-    <text class="item_value">绿莹莹经营信息，绿莹莹经营信息，绿莹莹经营信息，绿莹莹经营信息，绿莹</text>
+    <text class="item_value">{{shopInfo.optext}}</text>
   </view>
   <view class="blank_space"></view>
   <view class="info_item fullwh">
     <text class="item_tag">电话：</text>
-    <text class="item_value">15989316305，15989316302</text>
+    <text class="item_value">{{shopInfo.contact}}</text>
   </view>
   <view class="blank_space"></view>
   <view class="info_item fullwh">
     <text class="item_tag">地址：</text>
-    <text class="item_value">广东省深圳市龙岗区平湖凤凰大道御峰园商业街G4-110</text>
+    <text class="item_value">{{shopInfo.addr}}</text>
   </view>
   <view class="blank_space"></view>
 
@@ -54,20 +54,8 @@
 
   <view class="list_ctn fullwh">
     <scroll-view>
-      <block wx:for="{{productList}}" wx:for-index="index">
-        <van-card
-          num="{{item.count}}"
-          price="{{item.price}}"
-          desc="{{item.des}}"
-          title="{{item.name}}"
-          thumb="{{ item.images[0] }}"
-          bindtap="onCardClick"
-        >
-          <view slot="tags">
-            <van-tag color="#f2826a" plain class="t_space">推荐</van-tag>
-            <van-tag color="#f2826a" plain class="t_space">优惠</van-tag>
-          </view>
-        </van-card>
+      <block wx:for="{{shopInfo.product_list}}" wx:for-index="index">
+        <ssq-product-my product="{{item}}" hideFooter="true" bind:onCardClick="onCardClick" />  
       </block>
     </scroll-view>
   </view>
