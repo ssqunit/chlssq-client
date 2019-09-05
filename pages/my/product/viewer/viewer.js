@@ -52,6 +52,32 @@ Page({
     })
   },
 
+  //
+  onShop: function (e) {
+    console.log("---------onShop----");
+    if(this.data.productInfo.shop['owner'] == app.globalData.userInfo.ID){
+      console.log("---------onShop----1");
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
+    }else{
+      console.log("---------onShop----2");
+      wx.navigateTo({
+        url: '../../../shop/shop?shopid='+this.data.productInfo.shop['shopid'],
+      })
+    }
+  },
+
+  //预览图片
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
+    let urls = this.data.productInfo.product.images;
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: urls
+    })
+  },
+
   sendRequest: function (productid) {
     var that = this;
     common.request({
@@ -65,12 +91,37 @@ Page({
       },
       success: res => {
         console.log("--------getProductDetail:" + JSON.stringify(res));
-        wx.hideLoading();
         if (res.data.iRet == 0) {
+          var _info = res.data.data;
+          
+          //imgurls
+          var _imgUrls = [];
+          if(_info && _info.product ){
+            var imgids = util.stringToArray(_info.product.imgarr);
+            if(imgids.length>0){
+              for (var i = 0; i < imgids.length; i++) {
+                _imgUrls.push(common.getImgUrl(app.globalData.userInfo.session_id, imgids[i]));
+              }
+            }
+          }
+          _info.product['images'] = _imgUrls;
 
+          //date
+          var _dateText = "";
+          if(Number(_info.product.datetype) == 1){
+            _dateText = "长期";
+          }else{
+            _dateText = util.formatTime(new Date(Number(_info.product.dateend)));
+          }
+          _info.product['datetext'] = _dateText;
+
+          that.setData({
+            productInfo: _info
+          });
         } else {
 
         }
+        wx.hideLoading();
       },
       fail: res => {
         wx.hideLoading();

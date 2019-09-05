@@ -1,43 +1,43 @@
 <!--pages/my/product/viewer/viewer.wxml-->
 <view class="container">
-  <view class="shopctn">
+  <view class="shopctn" bindtap="onShop">
     <image class="shop_icon" mode="aspectFit" src="../../../../static/icons/map_r.png"></image>
-    <text class="shop_name">{{productInfo.bopInfo.name}}</text>
+    <text class="shop_name">{{productInfo.shop.name}}</text>
   </view>
   <view class="space_line"></view>
   <view class="name_ctn">
-    <text>产品/项目名称：</text>
-    <text>{{productInfo.name}}</text>
+    <text>产品名称：</text>
+    <text>{{productInfo.product.name}}</text>
   </view>
   <view class="space"></view>
   <view class="img_ctn">
     <swiper class="img_swiper" autoplay='true' interval='5000' duration='1000' circular='true'>
-      <block wx:for="{{productInfo.images}}" wx:for-index="index">
+      <block wx:for="{{productInfo.product.images}}" wx:for-index="index">
         <swiper-item class="img_item">
-          <image src='{{item}}' class='img_img' mode='aspectFit'></image>
+          <image src='{{item}}' class='img_img' mode='aspectFit' data-src="{{item}}" bindtap="previewImage"></image>
         </swiper-item>
       </block>
     </swiper>
   </view>
   <view class="space"></view>
   <view class="des_ctn">
-    <text class="des_tag">产品/项目描述：</text>
-    <text class="des_value">{{productInfo.des}}</text>
+    <text class="des_tag">产品描述：</text>
+    <text class="des_value">{{productInfo.product.des}}</text>
   </view>
   <view class="space"></view>
   <view class="des_ctn">
-    <text class="des_tag">产品/项目价格：</text>
-    <text class="des_value">￥{{productInfo.price}}</text>
+    <text class="des_tag">产品价格：</text>
+    <text class="des_value">￥{{productInfo.product.price}}</text>
   </view>
   <view class="space"></view>
   <view class="des_ctn">
-    <text class="des_tag">产品/项目单位：</text>
-    <text class="des_value">{{productInfo.unit}}</text>
+    <text class="des_tag">产品单位：</text>
+    <text class="des_value">{{productInfo.product.unit}}</text>
   </view>
   <view class="space"></view>
   <view class="des_ctn">
-    <text class="des_tag">产品/项目期限：</text>
-    <text class="des_value">{{productInfo.dateEnd}}  到期</text>
+    <text class="des_tag">产品期限：</text>
+    <text class="des_value">至-{{productInfo.product.datetext}}</text>
   </view>
   <view class="space_line"></view>
   <view class="order_ctn">
