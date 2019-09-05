@@ -4,21 +4,13 @@ Component({
    * Component properties
    */
   properties: {
-    cname:{
-      type:String,
-      value:""
-    },
-    cid:{
-      type:Number,
-      value:0
+    shop:{
+      type: Object,
+      value: null
     },
     cflag:{
       type:Number,
       value:0
-    },
-    cimg:{
-      type:String,
-      value:""
     }
     
 

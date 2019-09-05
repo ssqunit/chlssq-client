@@ -316,7 +316,15 @@ Page({
             }
             that.setData({shopADInfo:_shopADInfo})
           } else if (that.data.ssqInfo.adinfo["3"]){
-            var _shopADInfo = that.data.ssqInfo.adinfo["3"];
+            var _shopADInfo = [];
+            for (var i = 0; i < that.data.ssqInfo.adinfo["3"].length;i++){
+              var _oi = that.data.ssqInfo.adinfo["3"][i];
+              _oi['img']=common.getImgUrl(app.globalData.userInfo.session_id,_oi['img']);
+              _oi['adtext']=_oi['name'];
+              if(_oi != null){
+                _shopADInfo.push(_oi);
+              }
+            }
             while (_shopADInfo.length < 8) {
               _shopADInfo.push(that.data.defShopADInfo);
             }
