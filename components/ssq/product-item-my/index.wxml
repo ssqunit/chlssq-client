@@ -3,7 +3,7 @@
 <van-card
   num="{{product.unit}}"
   price="{{product.price}}"
-  desc="{{product.des}}"
+  desc="{{product.short_des}}"
   title="{{product.name}}"
   thumb="{{ product.imgUrls[0] }}"
   bindtap="onCardClick"

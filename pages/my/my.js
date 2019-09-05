@@ -94,7 +94,11 @@ Page({
           if (e.detail.callback) {
             e.detail.callback(false);
           }
-          wx.showToast({ title: '上架失败！', icon: "none" })
+          wx.showModal({
+            title: '操作失败',
+            content: '广告中的产品不可以下架！',
+            showCancel: false
+          })
         }
       },
       fail: res => {
@@ -257,6 +261,14 @@ Page({
                 }
                 _plist[i]['sellText'] = _sellText;
 
+                //short des
+                var _short_des = "";
+                if(_plist[i]['des'].length > 16){
+                  _short_des = _plist[i]['des'].substring(0,16) + '......';
+                }else{
+                  _short_des = _plist[i]['des'];
+                }
+                _plist[i]['short_des'] = _short_des;
 
               }
             }
