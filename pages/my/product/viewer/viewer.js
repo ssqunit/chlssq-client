@@ -119,13 +119,19 @@ Page({
             productInfo: _info
           });
         } else {
-
+          wx.showToast({
+            title: "拉取数据失败！" + res.data.sMsg,
+            icon: 'none'
+          })
         }
         wx.hideLoading();
       },
       fail: res => {
         wx.hideLoading();
-        that.toast("拉取数据失败！请检查网络。");
+        wx.showToast({
+          title: "拉取数据失败！请检查网络。",
+          icon: 'none'
+        })
       }
     });
   },

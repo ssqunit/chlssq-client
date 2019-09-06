@@ -50,6 +50,7 @@ Page({
 
             //整理product_list
             var _plist = _obj['product_list'];
+            var _hightlight = [];
             if (_plist != null && _plist.length > 0) {
               for (var i = 0; i < _plist.length; i++) {
                 var _p = _plist[i];
@@ -68,6 +69,7 @@ Page({
                   for (var f = 0; f < flagids.length; f++) {
                     _flagArr.push({ "id": flagids[f], "name": common.getProductFlagName(flagids[f]) });
                   }
+                  _hightlight.push({"productid":_plist[i].productid, "img":_plist[i]['imgUrls'][0]});
                 }
                 _plist[i]["flagArr"] = _flagArr;
 
@@ -83,6 +85,7 @@ Page({
               }
             }
             _obj['product_list'] = _plist;
+            _obj['hightlight'] = _hightlight;
 
 
             //整理结束
@@ -122,6 +125,14 @@ Page({
       latitude: Number(this.data.shopInfo.latitude),
       longitude: Number(this.data.shopInfo.longitude),
       scale: 14
+    })
+  },
+
+  //点击轮播图
+  onHightlightImg: function (e) {
+    var pid = e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../my/product/viewer/viewer?productid=' + pid,
     })
   },
 

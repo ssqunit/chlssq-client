@@ -11,8 +11,8 @@ var opType = [
 ]
 
 var flags = {
-  youhui: { id: 1, name: "优惠" },
-  xin: { id: 2, name: "上新" }
+  youhui: { id: 1, name: "推荐" },
+  xin: { id: 2, name: "优惠" }
 }
 
 module.exports.OpType = opType;

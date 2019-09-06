@@ -20,9 +20,9 @@
   <!-- 产品SWIPER -->
   <view class="swiper_imgctn">
     <swiper class="fullwh" autoplay='true' interval='3000' duration='500' circular='true' indicator-dots="true">
-      <block wx:for="{{topImages}}" wx:for-index="index">
+      <block wx:for="{{shopInfo.hightlight}}" wx:for-index="index">
         <swiper-item class="fullwh">
-          <image src='{{item}}' class='fullwh' mode='aspectFit'></image>
+          <image src='{{item.img}}' class='fullwh' mode='aspectFit' data-id="{{item.productid}}" bindtap="onHightlightImg"></image>
         </swiper-item>
       </block>
     </swiper>
