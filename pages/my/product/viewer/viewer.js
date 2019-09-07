@@ -90,7 +90,7 @@ Page({
         'productid': productid
       },
       success: res => {
-        console.log("--------getProductDetail:" + JSON.stringify(res));
+        // console.log("--------getProductDetail:" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           var _info = res.data.data;
           

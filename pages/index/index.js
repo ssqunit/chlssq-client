@@ -24,13 +24,13 @@ Page({
     searchKeyword: "",
     ssqInfo: null,
     hideJoinBtn:false,
-    defTextADInfo: {"type":1, "shopid": "", "productId": -1, "adtext": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
+    defTextADInfo: {"type":1, "shopid": "", "productid": -1, "adtext": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
     textADInfo: [],
-    defImgADInfo: {"type":2, "shopid": "", "productId": -1, "adtext": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
+    defImgADInfo: {"type":2, "shopid": "", "productid": -1, "adtext": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
     imgADInfo: [],
-    defShopADInfo: {"type":3, "shopid": -1, "productId":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
+    defShopADInfo: {"type":3, "shopid": -1, "productid":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
     shopADInfo: [],
-    defPersonADInfo: {"type":4, "shopid": -1, "productId": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
+    defPersonADInfo: {"type":4, "shopid": -1, "productid": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
     personADInfo:[],
   },
 
@@ -451,7 +451,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../my/product/viewer/viewer'
+        url: '../my/product/viewer/viewer?productid='+pId
       })
     }
   },
