@@ -43,25 +43,42 @@
   <view class="order_ctn">
     <view class="order_sum">
       <text>产品预约情况：</text>
-      <text>(预约人数 8 ，数量 14)  </text>
+      <text>(预约人数 {{productInfo.orderinfo.count}} ，数量 {{productInfo.orderinfo.total}})  </text>
       <text class="order_cancel_btn">取消预约</text>
     </view>
     <view class="space"></view>
     <text class="order_detail_btn" bindtap="onOrderDetail">{{orderDetaiLabel}}</text>
     <view class="order_list" hidden="{{showOrderDetail}}">
+      <view class="item_line"></view>
       <view class="list_item">
+        <view class="item_vline"></view>
         <view class="item_name">昵称</view>
+        <view class="item_vline"></view>
         <view class="item_tel">电话</view>
+        <view class="item_vline"></view>
         <view class="item_count">数量</view>
+        <view class="item_vline"></view>
         <view class="item_date">时间</view>
+        <view class="item_vline"></view>
+        <view class="item_sum">备注</view>
+        <view class="item_vline"></view>
       </view>
-      <block wx:for="{{productInfo.orderInfo.detail.list}}" wx:for-index="index">
+      <view class="item_line"></view>
+      <block wx:for="{{productInfo.orderinfo.list}}" wx:for-index="index">
       <view class="list_item">
+        <view class="item_vline"></view>
         <view class="item_name">{{item.name}}</view>
-        <view class="item_tel">{{item.tel}}</view>
+        <view class="item_vline"></view>
+        <view class="item_tel">{{item.contact}}</view>
+        <view class="item_vline"></view>
         <view class="item_count">{{item.count}}</view>
+        <view class="item_vline"></view>
         <view class="item_date">{{item.date}}</view>
+        <view class="item_vline"></view>
+        <view class="item_sum">{{item.sum}}</view>
+        <view class="item_vline"></view>
       </view>
+      <view class="item_line"></view>
       </block>
     </view>
   </view>
