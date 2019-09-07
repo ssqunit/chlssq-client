@@ -24,13 +24,13 @@ Page({
     searchKeyword: "",
     ssqInfo: null,
     hideJoinBtn:false,
-    defTextADInfo: {"type":1, "shopId": "", "productId": -1, "adtext": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
+    defTextADInfo: {"type":1, "shopid": "", "productId": -1, "adtext": "滚动文字轮播，点击了解详细！", "flag": 0, "img": "" },
     textADInfo: [],
-    defImgADInfo: {"type":2, "shopId": "", "productId": -1, "adtext": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
+    defImgADInfo: {"type":2, "shopid": "", "productId": -1, "adtext": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
     imgADInfo: [],
-    defShopADInfo: {"type":3, "shopId": -1, "productId":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
+    defShopADInfo: {"type":3, "shopid": -1, "productId":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
     shopADInfo: [],
-    defPersonADInfo: {"type":4, "shopId": -1, "productId": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
+    defPersonADInfo: {"type":4, "shopid": -1, "productId": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
     personADInfo:[],
   },
 
@@ -244,7 +244,6 @@ Page({
             var arr = that.data.userInfo.mySsqInfo;
             if (arr.length > 0) {
               for (var i = 0; i < arr.length; i++) {
-                console.log("ssqid="+_ssqInfo['ssqid']+','+arr[i]['ssqid']);
                 if(_ssqInfo['ssqid'] == arr[i]['ssqid'])
                 {
                   _hideJoinBtn = true;
@@ -407,7 +406,7 @@ Page({
   goSsqInfo: function (e) {
     let tab = e.currentTarget.dataset.tab;
     wx.navigateTo({
-      url: '../district/detail/detail?tab='+ tab
+      url: '../district/detail/detail?tab='+ tab + "&ssqid=" + this.data.ssqInfo.ssqid
     })
   },
 
@@ -419,15 +418,18 @@ Page({
   },
 
   //商家点击事件
-  onBusClick:function(e){
-    var shopId = e.currentTarget.dataset.id;
-    var owner = e.currentTarget.dataset.owner;
+  onShopClick:function(e){
+    console.log('---------onBusClick:e'+JSON.stringify(e));
+    let shopId = e.currentTarget.dataset.id;
+    let owner = e.currentTarget.dataset.owner;
+    console.log("---------onBusClick:shopid="+shopId+",owner="+owner);
     if(shopId == -1){
       wx.navigateTo({
-        url: '../ad/shop/shop'
+        url: '../ad/shop/shop?shopid=' + shopId + '&owner=' + owner
       })
     }else{
-      if(app.globalData.userInfo.ID != owner){
+      console.log("---------onBusClick:userInfo.ID=" + app.globalData.userInfo.ID);
+      if(app.globalData.userInfo.ID == owner){
         wx.switchTab({
           url: '/pages/my/my',
         })
@@ -439,19 +441,6 @@ Page({
     }
   },
 
-  //个人点击事件
-  onPerClick: function (e) {
-    var shopId = e.currentTarget.dataset.id;
-    if (shopId == -1) {
-      wx.navigateTo({
-        url: '../ad/shop/shop'
-      })
-    } else {
-      wx.navigateTo({
-        url: '../shop/shop'
-      })
-    }
-  },
 
   //点击文字或大图广告
   onSwiperAD: function(e){

@@ -203,6 +203,7 @@ Page({
                 "imgId": that.data.imgId,
                 "area": that.data.citysData,
                 "name": that.data.inputText,
+                "ownername": app.globalData.userInfo.nickName,
                 "latitude": Math.round(that.data.positions.latitude * 100000)/100000,
                 "longitude": Math.round(that.data.positions.longitude * 100000) / 100000
               },

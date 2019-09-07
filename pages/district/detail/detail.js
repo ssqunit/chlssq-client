@@ -1,112 +1,147 @@
 // pages/district/detail/detail.js
+
+var app = getApp();
+var common = require("../../../utils/common.js")
+var util = require('../../../utils/util.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    ssqInfo:null,
+    shopsInfo:null,
     active: 0,
     active_chi: 0,
     distance: 0.50,
-    ssqInfo:{"ID":0,"name":"御峰园","area":"广东省深圳市龙岗区","photo":"../../../static/custom/defaults/def_ssq.jpg","busCount":98,"perCount":66},
-    ssqBpInfo:{
-      "bInfo": [
-        { "optype": 0, "opname": "全部",
-          "members": [
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 1, "opname":"健康养生",
-          "members": [
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" },
-            { "id": 0, "optype": 1, "name": "商家名字1", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 2, "opname": "培训辅导",
-          "members": [
-            { "id": 0, "optype": 2, "name": "商家名字2", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 3, "opname": "家装报修",
-          "members": [
-            { "id": 0, "optype": 3, "name": "商家名字3", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 4, "opname": "中介服务",
-          "members": [
-            { "id": 0, "optype": 4, "name": "商家名字4", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 5, "opname": "悠闲娱乐",
-          "members": [
-            { "id": 0, "optype": 5, "name": "商家名字5", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 6, "opname": "果蔬鲜花",
-          "members": [
-            { "id": 0, "optype": 6, "name": "商家名字6", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 7, "opname": "饮食",
-          "members": [
-            { "id": 0, "optype": 7, "name": "商家名字7", "photo": "../../../static/icons/home_r.png" }
-          ]
-        },
-        { "optype": 8, "opname": "其它",
-          "members": [
-            { "id": 0, "optype": 8, "name": "商家名字8", "photo": "../../../static/icons/home_r.png" }
-          ]
-        }
-        ],
-        "pInfo":[
-          {"id": 0, "name": "个人商家名字0", "photo": "../../../static/icons/account_r.png"},
-          { "id": 1, "name": "个人商家名字1", "photo": "../../../static/icons/account_r.png" },
-          { "id": 3, "name": "个人商家名字3", "photo": "../../../static/icons/account_r.png" },
-          { "id": 4, "name": "个人商家名字4", "photo": "../../../static/icons/account_r.png" },
-          { "id": 2, "name": "个人商家名字2", "photo": "../../../static/icons/account_r.png" },
-          { "id": 5, "name": "个人商家名字5", "photo": "../../../static/icons/account_r.png" },
-          { "id": 6, "name": "个人商家名字6", "photo": "../../../static/icons/account_r.png" },
-          { "id": 9, "name": "个人商家名字9", "photo": "../../../static/icons/account_r.png" },
-          { "id": 8, "name": "个人商家名字8", "photo": "../../../static/icons/account_r.png" },
-          { "id": 7, "name": "个人商家名字7", "photo": "../../../static/icons/account_r.png" },
-          { "id": 12, "name": "个人商家名字12", "photo": "../../../static/icons/account_r.png" },
-          { "id": 10, "name": "个人商家名字10", "photo": "../../../static/icons/account_r.png" },
-          { "id": 11, "name": "个人商家名字11", "photo": "../../../static/icons/account_r.png" }
-        ]
-      }
+    shopCount:0,
+    personCount:0
   },
 
   //打开商圈在地图上的位置
   openPosition:function(e){
     wx.openLocation({
-      latitude:21.70915603,
-      longitude:111.35697174,
+      latitude:Number(this.data.ssqInfo.latitude),
+      longitude:Number(this.data.ssqInfo.longitude),
       scale:14})
   },
 
   //选择商圈加入方式
   goJoin: function (e) {
     wx.navigateTo({
-      url: '../../district/join/join'
+      url: '../../district/join/join?ssqid=' + this.data.ssqInfo.ssqid
     })
   },
 
   //
   onItemClick:function(e){
-    console.log("eeeeeeeee:" + e.currentTarget.dataset.id);
+    console.log("shopid:" + e.currentTarget.dataset.id);
+    let shopId = e.currentTarget.dataset.id;
+    let owner = e.currentTarget.dataset.owner;
+    if (app.globalData.userInfo.ID == owner) {
+      wx.switchTab({
+        url: '/pages/my/my',
+      })
+    } else {
+      wx.navigateTo({
+        url: '../shop/shop?shopid=' + shopId + '&owner=' + owner
+      })
+    }
+  },
+
+  //
+  getSsqInfo: function (ssqid) {
+    var that = this;
+    wx.showLoading({
+      title: '数据加载中...',
+      mask: true
+    })
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getSsqInfo',
+        'session_id': app.globalData.userInfo.session_id,
+        'ssqid':ssqid
+      },
+      success: res => {
+        console.log('----------getSsqInfo:' + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          let _ssqinfo = res.data.data['ssqinfo'];
+          _ssqinfo['img'] = common.getImgUrl(app.globalData.userInfo.session_id, _ssqinfo['imgid']);
+          _ssqinfo['dis'] = util.countDistance(app.globalData.myLocation.latitude,app.globalData.myLocation.longitude,_ssqinfo['latitude'],_ssqinfo['longitude']);
+
+          let _shopinfo = res.data.data['shopinfo'];
+          let _bCount = 0;
+          let _pCount = 0;
+          let _bbInfo = [];
+          let _bInfo = [
+            { "optype": 0, "opname": "全部", "members": [] },
+            { "optype": 1, "opname": "健康养生", "members": [] },
+            { "optype": 2, "opname": "培训辅导", "members": [] },
+            { "optype": 3, "opname": "家装报修", "members": [] },
+            { "optype": 4, "opname": "中介服务", "members": [] },
+            { "optype": 5, "opname": "悠闲娱乐", "members": [] },
+            { "optype": 6, "opname": "果蔬鲜花", "members": [] },
+            { "optype": 7, "opname": "饮食", "members": [] },
+            { "optype": 8, "opname": "其它", "members": [] }
+          ];
+          let _pInfo = [];
+          if(_shopinfo.length > 0){
+            for(let i=0;i<_shopinfo.length;i++)
+            {
+              let one = _shopinfo[i];
+              one['imgurl'] = common.getImgUrl(app.globalData.userInfo.session_id, one['img']);
+              //--商家
+              if(one['type'] == 2){
+                let optype = one['optype'];
+                for (let j = 0; j < _bInfo.length;j++){
+                  if(Number(optype) == _bInfo[j]['optype']){
+                    _bInfo[j]['members'].push(one);
+                  }
+                }
+                _bInfo[0]['members'].push(one);
+                _bCount ++;
+
+                //clear no members obj
+                for(let k=0;k<_bInfo.length;k++){
+                  if(_bInfo[k]['members'].length>0){
+                    _bbInfo.push(_bInfo[k]);
+                  }
+                }
+
+              //--个人商家
+              } else if (one['type'] == 3){
+                _pInfo.push(one);
+                _pCount ++;
+              }
+            }
+          }
+
+          let _shopsInfo = { "bInfo": _bbInfo, "pInfo": _pInfo };
+          that.setData({
+            ssqInfo: _ssqinfo,
+            shopsInfo: _shopsInfo,
+            shopCount: _bCount,
+            personCount: _pCount
+          });
+        } else {
+          wx.showToast({
+            title: '获取社圈信息失败！',
+            icon: "none"
+          })
+        }
+        wx.hideLoading();
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络链接！',
+          icon: "none"
+        })
+      }
+    });
   },
 
   /**
@@ -114,9 +149,11 @@ Page({
    */
   onLoad: function (options) {
     let tab = options.tab;
+    let ssqid = options.ssqid;
     this.setData({
       active: tab
     })
+    this.getSsqInfo(ssqid);
   },
 
   /**

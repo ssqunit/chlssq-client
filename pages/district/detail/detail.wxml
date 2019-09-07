@@ -2,17 +2,17 @@
 <view class="container">
   <view class="name_info">
     <image class="n_icon" mode="aspectFit" src="../../../static/icons/favorite_r.png"></image>
-    <text class="n_name">{{ssqInfo.name}} 商圈</text>
+    <text class="n_name">{{ssqInfo.name}}社圈</text>
     <text class="n_area">{{ssqInfo.area}}</text>
-    <text class="n_dis">距离：{{distance}}km</text>
+    <text class="n_dis">距离：{{ssqInfo.dis}}km</text>
     <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../static/custom/icons/icon_pos_b.png"></image>
   </view>
   <view class="photo_info">
-    <image class="p_img" mode="aspectFit" src="{{ssqInfo.photo}}"></image>
+    <image class="p_img" mode="aaaspectFit" src="{{ssqInfo.img}}"></image>
     <view class="p_text">
-      <text>商家数量：{{ssqInfo.busCount}}</text>
-      <text>个人商家数量：{{ssqInfo.perCount}}</text>
-      <text>创建者：locky.lee</text>
+      <text>商家数量：{{shopCount}}</text>
+      <text>个人商家数量：{{personCount}}</text>
+      <text>创建者：{{ssqInfo.ownername}}</text>
       <text class="p_changebtn">申请换图</text>
       <text class="p_joinbtn" bindtap="goJoin">马上加入</text>
     </view>
@@ -21,13 +21,13 @@
     <van-tabs active="{{ active }}" bind:change="onChange" line-width="0">
       <van-tab title="本圈商家">
         <van-tabs active="{{ active_chi }}" bind:change="onChangeChi" type="line">
-          <block wx:for="{{ssqBpInfo.bInfo}}" wx:for-index="index" >
+          <block wx:for="{{shopsInfo.bInfo}}" wx:for-index="index" >
             <van-tab optype="0" title="{{item.opname}}">
               <view class="scroll_ctn">
               <scroll-view class="tab_ctn" scroll-y='true'>
-                <block wx:for="{{ssqBpInfo.bInfo[index].members}}" wx:for-index="index">
-                  <view class="shop_ctn" sid="{{item.id}}" bindtap="onItemClick" data-id="{{item.id}}">
-                    <image mode="aspectFit" class="shop_photo" src="{{item.photo}}"></image>
+                <block wx:for="{{shopsInfo.bInfo[index].members}}" wx:for-index="index">
+                  <view class="shop_ctn" sid="{{item.shopid}}" bindtap="onItemClick" data-id="{{item.shopid}}" data-owner="{{item.owner}}">
+                    <image mode="aspectFit" class="shop_photo" src="{{item.imgurl}}"></image>
                     <view class="shop_right_ctn">
                       <text class="shop_name">{{item.name}}</text>
                       <view class="shop_flag_ctn">
@@ -46,9 +46,9 @@
       <van-tab title="本圈个人">
         <view class="scroll_ctn">
         <scroll-view class="tab_ctn" scroll-y='true'>
-          <block wx:for="{{ssqBpInfo.pInfo}}" wx:for-index="index">
-          <view class="shop_ctn" sid="{{item.id}}" bindtap="onItemClick" data-id="{{item.id}}">
-            <image mode="aspectFit" class="shop_photo" src="{{item.photo}}"></image>
+          <block wx:for="{{shopsInfo.pInfo}}" wx:for-index="index">
+          <view class="shop_ctn" sid="{{item.shopid}}" bindtap="onItemClick" data-id="{{item.shopid}}" data-owner="{{item.owner}}">
+            <image mode="aspectFit" class="shop_photo" src="{{item.imgurl}}"></image>
             <view class="shop_right_ctn">
               <text class="shop_name">{{item.name}}</text>
               <view class="shop_flag_ctn">

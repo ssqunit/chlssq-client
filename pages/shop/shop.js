@@ -11,13 +11,7 @@ Page({
    */
   data: {
     shopInfo:null,
-    shopkm:0,
-    topImages:[
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563866519577&di=7b6bf24aa5b3e7ec54927b3aa829a33a&imgtype=0&src=http%3A%2F%2Fimg.redocn.com%2Fsheji%2F20150127%2Fshejianshangdelvxingmeishihaibaosheji_3895321.jpg"
-    ],
-
+    shopkm:0
   },
 
 
