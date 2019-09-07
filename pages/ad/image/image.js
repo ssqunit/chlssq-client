@@ -135,7 +135,6 @@ Page({
       method: "POST",
       url: common.BASE_URL + "?function=adOrder&session_id=" + app.globalData.userInfo.session_id,
       data: {
-        'openid': app.globalData.userInfo.ID,
         'productid': this.data.productInfo.productid,
         'ssqid': this.data.ssqid,
         'shopid': this.data.productInfo.shopid,

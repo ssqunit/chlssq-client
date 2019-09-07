@@ -32,8 +32,7 @@ Page({
       url: common.BASE_URL,
       data: {
         'function': 'getMyJoin',
-        'session_id': this.data.userInfo.session_id,
-        'openid':this.data.userInfo.ID
+        'session_id': this.data.userInfo.session_id
       },
       success: res => {
         if (res.data.iRet == 0) {
@@ -92,7 +91,6 @@ Page({
       data: {
         'function': 'quitSsq',
         'session_id': this.data.userInfo.session_id,
-        'openid': this.data.userInfo.ID,
         'ssqid':ssqid
       },
       success: res => {

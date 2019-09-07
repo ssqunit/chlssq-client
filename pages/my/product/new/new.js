@@ -155,7 +155,6 @@ Page({
       method: "POST",
       url: common.BASE_URL + "?function=addProduct&session_id=" + app.globalData.userInfo.session_id,
       data: {
-        'openid': app.globalData.userInfo.ID,
         'shopid': this.data.shopid,
         'p_name': this.data.p_name,
         'p_imgarr': util.arrayToString(this.data.resImgids),

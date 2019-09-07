@@ -138,7 +138,6 @@ Page({
       method: "POST",
       url: common.BASE_URL + "?function=joinApply&session_id=" + app.globalData.userInfo.session_id,
       data: {
-        'ownerid': app.globalData.userInfo.ID,
         'ssqid': this.data.ssqInfo.ssqid,
         'ssqname': this.data.ssqInfo.name,
         'ssqarea': this.data.ssqInfo.area,

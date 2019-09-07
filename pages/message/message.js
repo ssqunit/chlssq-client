@@ -24,8 +24,7 @@ Page({
       url: common.BASE_URL,
       data: {
         'function': 'getMsg',
-        session_id: app.globalData.userInfo.session_id,
-        'openid': app.globalData.userInfo.ID
+        session_id: app.globalData.userInfo.session_id
       },
       success: res => {
         console.log("----------- getMsg:success" + JSON.stringify(res));

@@ -125,8 +125,7 @@ Page({
             url:common.BASE_URL,
             data:{
               "function": "getUserInfo",
-              'session_id': that.data.userInfo.session_id,
-              'openid': that.data.userInfo.ID
+              'session_id': that.data.userInfo.session_id
             },
             success: res => {
               // console.log("----------getUserInfo:res="+JSON.stringify(res));
@@ -166,7 +165,6 @@ Page({
       method:"POST",
       url: common.BASE_URL + '?function=updateUserInfo&session_id=' + this.data.userInfo.session_id,
       data: {
-        "openId": this.data.userInfo.ID, 
         "nickName": this.data.userInfo.nickName, 
         "gender": this.data.userInfo.gender, 
         "language": this.data.userInfo.language, 
@@ -176,7 +174,7 @@ Page({
         "avatarUrl": this.data.userInfo.avatarUrl
       },
       success: res => {
-        // console.log("----------updateUserInfo:res=" + JSON.stringify(res));
+        console.log("----------updateUserInfo:res=" + JSON.stringify(res));
         this.getMyPosition();
       },
       fail: res => {
