@@ -12,7 +12,7 @@ Page({
    * Page initial data
    */
   data: {
-    msgList:[]
+    msgList:null
   },
   /**
    * Lifecycle function--Called when page load
@@ -24,7 +24,7 @@ Page({
       url: common.BASE_URL,
       data: {
         'function': 'getMsg',
-        session_id: app.globalData.userInfo.session_id
+        'session_id': app.globalData.userInfo.session_id
       },
       success: res => {
         console.log("----------- getMsg:success" + JSON.stringify(res));
@@ -46,14 +46,23 @@ Page({
               msgList:list
             });
           }else{
-            Toast("没有消息！");
+            wx.showToast({
+              title: '没有消息！',
+              icon: 'none'
+            })
           }
         } else {
-          Toast.fail("查询公告失败！");
+          wx.showToast({
+            title: '查询公告失败！',
+            icon: 'none'
+          })
         }
       },
       fail: res => {
-        Toast.fail("请检查网络链接！");
+        wx.showToast({
+          title: '请检查网络链接！',
+          icon: 'none'
+        })
       }
     });
 
