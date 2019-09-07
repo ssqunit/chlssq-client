@@ -56,12 +56,10 @@
       <view class="info_imginfo">
         <text class="info_star">*</text>
         <text>标记社圈位置：</text>
-        <text class="uploadtxt" bindtap="onMapMark">在地图上标记</text>
-        <text>或</text>
-        <text class="uploadtxt" bindtap="getCurPosition">使用当前位置</text>
-      </view>
-      <view class="info_imginfo">
-        <text class="curpos">商家位置：（{{markText}}）</text>
+        <text class="curpos">{{markText}}</text>
+        <text class="uploadtxt" bindtap="onMapMark" style="margin-left:20rpx;">在地图上标记</text>
+        <!-- <text>或</text>
+        <text class="uploadtxt" bindtap="getCurPosition">使用当前位置</text> -->
       </view>
       <view class="line_space"></view>
 

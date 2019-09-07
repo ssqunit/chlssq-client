@@ -65,35 +65,35 @@ Page({
   },
 
   //获取当前的位置经纬度
-  getCurPosition: function (e) {
-    var that = this;
-    wx.showLoading({
-      title: '正在获取当前位置...',
-      mask: true
-    })
-    wx.getLocation({
-      type: "wgs84",
-      success: function (res) {
-        wx.hideLoading();
-        that.setData({
-          positions: { "latitude": res.latitude, "longitude": res.longitude },
-          markText: "已标记"
-        })
-      },
-      fail: function () {
-        wx.hideLoading();
-        wx.showToast({
-          title: '获取位置信息失败！',
-          icon : 'none',
-          duration : 2000
-        })
-        that.setData({
-          positions: null,
-          markText: "未标记"
-        })
-      }
-    })
-  },
+  // getCurPosition: function (e) {
+  //   var that = this;
+  //   wx.showLoading({
+  //     title: '正在获取当前位置...',
+  //     mask: true
+  //   })
+  //   wx.getLocation({
+  //     type: "wgs84",
+  //     success: function (res) {
+  //       wx.hideLoading();
+  //       that.setData({
+  //         positions: { "latitude": res.latitude, "longitude": res.longitude },
+  //         markText: "已标记"
+  //       })
+  //     },
+  //     fail: function () {
+  //       wx.hideLoading();
+  //       wx.showToast({
+  //         title: '获取位置信息失败！',
+  //         icon : 'none',
+  //         duration : 2000
+  //       })
+  //       that.setData({
+  //         positions: null,
+  //         markText: "未标记"
+  //       })
+  //     }
+  //   })
+  // },
 
   //选择区域
   choseArea:function(e){

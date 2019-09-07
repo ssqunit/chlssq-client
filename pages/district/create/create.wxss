@@ -80,7 +80,7 @@
   text-decoration-line: underline;
 }
 .curpos{
-  width: 100%;
+  width: 120rpx;
   color: gray;
   font-size: 26rpx;
 }

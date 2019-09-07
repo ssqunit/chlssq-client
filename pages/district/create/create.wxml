@@ -24,12 +24,10 @@
  </view>
  <view class="input_name_ctn">
   <text>标记社圈位置：</text>
+  <text class="curpos">{{markText}}</text>
   <text class="mark" bindtap="onMapMark">在地图上标记</text>
-  <text>或</text>
-  <text class="mark" bindtap="getCurPosition">使用当前位置</text>
- </view>
- <view class="input_name_ctn">
-  <text class="curpos">社圈位置：{{markText}}</text>
+  <!-- <text>或</text>
+  <text class="mark" bindtap="getCurPosition">使用当前位置</text> -->
  </view>
  <text class="attention">注意：社圈新建申请一旦提交，其它人则不可以再创建同区域的同名社圈。</text>
  <view class="commit_ctn">

@@ -79,24 +79,24 @@ Page({
   },
 
   //获取当前的位置经纬度
-  getCurPosition: function (e) {
-    var that = this;
-    wx.getLocation({
-      type: "wgs84",
-      success: function (res) {
-        that.setData({
-          positions: { "latitude": res.latitude, "longitude": res.longitude },
-          markText: "已标记"
-        })
-      },
-      fail: function () {
-        that.setData({
-          positions: null,
-          markText: "未标记"
-        })
-      }
-    })
-  },
+  // getCurPosition: function (e) {
+  //   var that = this;
+  //   wx.getLocation({
+  //     type: "wgs84",
+  //     success: function (res) {
+  //       that.setData({
+  //         positions: { "latitude": res.latitude, "longitude": res.longitude },
+  //         markText: "已标记"
+  //       })
+  //     },
+  //     fail: function () {
+  //       that.setData({
+  //         positions: null,
+  //         markText: "未标记"
+  //       })
+  //     }
+  //   })
+  // },
 
   //提交申请
   onCommit: function (e) {
