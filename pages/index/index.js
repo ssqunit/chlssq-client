@@ -313,9 +313,9 @@ Page({
             }
             that.setData({shopADInfo:_shopADInfo})
           } else if (that.data.ssqInfo.adinfo["3"]){
-            var _shopADInfo = [];
-            for (var i = 0; i < that.data.ssqInfo.adinfo["3"].length;i++){
-              var _oi = that.data.ssqInfo.adinfo["3"][i];
+            let _shopADInfo = [];
+            for (let i = 0; i < that.data.ssqInfo.adinfo["3"].length;i++){
+              let _oi = that.data.ssqInfo.adinfo["3"][i];
               _oi['img']=common.getImgUrl(app.globalData.userInfo.session_id,_oi['img']);
               _oi['adtext']=_oi['name'];
               if(_oi != null){
@@ -336,7 +336,15 @@ Page({
             }
             that.setData({ personADInfo: _personADInfo })
           } else if (that.data.ssqInfo.adinfo["4"]) {
-            var _personADInfo = that.data.ssqInfo.adinfo["4"];
+            let _personADInfo = [];
+            for (let i = 0; i < that.data.ssqInfo.adinfo["4"].length; i++) {
+              let _oi = that.data.ssqInfo.adinfo["4"][i];
+              _oi['img'] = common.getImgUrl(app.globalData.userInfo.session_id, _oi['img']);
+              _oi['adtext'] = _oi['name'];
+              if (_oi != null) {
+                _personADInfo.push(_oi);
+              }
+            }
             while (_personADInfo.length < 4) {
               _personADInfo.push(that.data.defPersonADInfo);
             }

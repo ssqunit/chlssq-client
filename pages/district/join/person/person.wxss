@@ -58,7 +58,7 @@
 .info_star{width: 10rpx;color:red;}
 .info_tag{width: 140rpx;}
 .info_item input{width: calc(100% - 150rpx);}
-.info_item textarea{width: calc(100% - 150rpx);height: 100rpx;}
+.info_item textarea{width: calc(100% - 200rpx);height: 100rpx;}
 
 .info_imginfo{font-size: 28rpx;height: auto;width:100%;}
 .info_imginfo .uploadtxt{text-decoration-line: underline;color: blue;}
