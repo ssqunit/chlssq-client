@@ -12,24 +12,21 @@ Page({
    */
   data: {
     showOrderDetail:true,
-    orderDetaiLabel:"展开详情",
+    orderDetaiLabel:"预约详情-展开",
     productInfo:null,
-    tmplist: [
-      { "productid": "", "owner": "", "name": "昵称nickname", "contact": 15989316305, "count": 3, "date": 15764849992, "sum":"8B1501"},
-      { "productid": "", "owner": "", "name": "昵称nickname", "contact": 15989316305, "count": 3, "date": 15764849992, "sum": "8B1501" },
-      { "productid": "", "owner": "", "name": "昵称nickname", "contact": 15989316305, "count": 3, "date": 15764849992, "sum": "8B1501" },
-      { "productid": "", "owner": "", "name": "昵称nickname", "contact": 15989316305, "count": 3, "date": 15764849992, "sum": "8B1501" },
-      { "productid": "", "owner": "", "name": "昵称nickname", "contact": 15989316305, "count": 3, "date": 15764849992, "sum": "8B1501" }
-    ]
-
-
+    hideBespeak:false,
+    hideBespeakBtn:false,
+    bespeakType:0, //1-取消预约，0-预约
+    hideInput:false,
+    contact:"",
+    count:0,
+    summary:""
   },
 
   //
   onOrderDetail: function (e) {
     let show = !this.data.showOrderDetail;
-    let label = show ? "展开详情" : "收起详情";
-    console.log("ggggggggg:"+show)
+    let label = show ? "预约详情-展开" : "预约详情-收起";
     this.setData({
       showOrderDetail: show,
       orderDetaiLabel:label
@@ -38,14 +35,14 @@ Page({
 
   //
   onShop: function (e) {
-    console.log("---------onShop----");
+    // console.log("---------onShop----");
     if(this.data.productInfo.shop['owner'] == app.globalData.userInfo.ID){
-      console.log("---------onShop----1");
+      // console.log("---------onShop----1");
       wx.switchTab({
         url: '/pages/my/my',
       })
     }else{
-      console.log("---------onShop----2");
+      // console.log("---------onShop----2");
       wx.navigateTo({
         url: '../../../shop/shop?shopid='+this.data.productInfo.shop['shopid'],
       })
@@ -62,8 +59,121 @@ Page({
     })
   },
 
+  //预约或取消预约
+  onBespeak: function (e) {
+    let _hideInput = true;
+    let _type = 0;
+    if(this.data.bespeakType == 1){ //取消预约
+      _type = 0;
+    }else{  //预约
+      _type = 1;
+      _hideInput = false;
+    }
+    // console.log('------------------onBespeak, type='+_type);
+    this.setData({
+      hideInput: _hideInput,
+      bespeakType: _type
+    });
+    if(_type == 0){
+      this.sendBespeakRequest(_type);
+    }
+  },
+
+  onInput: function (e) {
+    let dtype = e.currentTarget.dataset.dtype;
+    let _value = e.detail.value;
+    //console.log('---------onInput: dtype = ' + dtype + ", value = " + e.detail.value);
+    if(dtype == 1){
+      this.data.contact = _value;
+    }else if(dtype == 2){
+      this.data.count = _value;
+    }else if(dtype == 3){
+      this.data.summary = _value;
+    }
+  },
+
+  //提交预约
+  onCommit: function (e) {
+    let tips = this.check();
+    if(tips.length > 0){
+      wx.showToast({title: tips,icon: 'none'});
+      return;
+    }
+    this.sendBespeakRequest(1);
+  },
+
+  check: function(){
+    let _contact = this.data.contact.replace(/\s+/g, '');
+    if (_contact == "" || _contact.length < 6) {
+      return "请输入正确的联系方式";
+    }
+    if(Number(this.data.count) <= 0){
+      return "请输入预约数量";
+    }
+    return "";
+  },
+
+  sendBespeakRequest: function(actionType){
+    let that = this;
+    let _actionType = actionType;
+    wx.showLoading({
+      title: '请稍后...',
+      mask: true
+    });
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + '?function=bespeakRequest&session_id=' + app.globalData.userInfo.session_id,
+      data: {
+        'action': _actionType,
+        'productid': this.data.productInfo.product.productid,
+        'name': app.globalData.userInfo.nickName,
+        'contact':this.data.contact,
+        'count':Number(this.data.count),
+        'summary':this.data.summary
+      },
+      success: res => {
+        // console.log("--------sendBespeakRequest:" + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          let msg = "";
+          if (_actionType == 1){ //预约成功
+            msg = "预约成功";
+          }else{ //取消成功
+            msg = "取消成功";
+          }
+          wx.showToast({
+            title: msg,
+            icon: 'none'
+          })
+          that.setData({
+            hideInput: true,
+            bespeakType: _actionType
+          });
+          that.sendRequest(that.data.productInfo.product.productid);
+        } else {
+          wx.showToast({
+            title: "操作失败！" + res.data.sMsg,
+            icon: 'none'
+          })
+        }
+        wx.hideLoading();
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: "操作失败！请检查网络。",
+          icon: 'none'
+        })
+      }
+    });
+  },
+
+
   sendRequest: function (productid) {
     var that = this;
+    wx.showLoading({
+      title: '请稍后...',
+      mask:true
+    });
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -74,7 +184,7 @@ Page({
         'productid': productid
       },
       success: res => {
-        // console.log("--------getProductDetail:" + JSON.stringify(res));
+        //  console.log("--------getProductDetail:" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           var _info = res.data.data;
           
@@ -99,14 +209,43 @@ Page({
           }
           _info.product['datetext'] = _dateText;
 
-          _info['orderinfo'] = {
-            'count':8,
-            'total':88,
-            'list':that.data.tmplist
+          //处理预约信息
+          let tradeArr = util.arrayToString(_info.product['tradeway']);
+          let _hideBespeak = true;
+          if(tradeArr && tradeArr.length > 0){
+            for(let i=0;i<tradeArr.length;i++){
+              if(tradeArr[i] == 1){
+                _hideBespeak = false;
+              }
+            }
+          }
+          let _hideInput=false;
+          let _hidebtn=false;
+          let _type=0;
+          _info.bespeak.self = 0;
+          if(_info.bespeak){
+            _hideInput = true;
+            if (_info.bespeak.self == 1) {
+              _hidebtn = true;
+            } else {
+              _hidebtn = false;
+              _type = _info.bespeak.hasbespeak;
+            }
+          }else{
+            _hide = true;
+          }
+          if(_info.bespeak.list && _info.bespeak.list.length > 0){
+            for(let j=0;j<_info.bespeak.list.length;j++){
+              _info.bespeak.list[j]['time'] = util.formatTime(new Date(_info.bespeak.list[j]['create_time'] * 1000));
+            }
           }
 
           that.setData({
-            productInfo: _info
+            productInfo: _info,
+            hideInput: _hideInput,
+            hideBespeakBtn: _hidebtn,
+            bespeakType: _type,
+            hideBespeak: _hideBespeak
           });
         } else {
           wx.showToast({

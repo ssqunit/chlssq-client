@@ -13,8 +13,9 @@
 .img_item{width: 100%;height: 100%;}
 .img_img{width: 100%;height: 200rpx;}
 .order_ctn{width: calc(100% - 10rpx); height: auto;margin-left: 9rpx;font-size: 28rpx;}
+.order_sum{width: 100%;height: auto;display: flex;flex-direction: row;}
 .order_detail_btn{color: blue;text-decoration-line: underline;}
-.order_cancel_btn{color: blue;text-decoration-line: underline;margin-left: 10rpx;}
+.order_cancel_btn{color: blue;text-decoration-line: underline;margin-left: 20rpx;}
 .order_list{width: 100%;height: auto;font-size: 24rpx;}
 .list_item{width: 100%;height: 60rpx;display: flex;flex-direction: row;align-items: center;}
 .item_name{width: 20%;height: auto;text-align: center;}
@@ -24,5 +25,11 @@
 .item_sum{width: 15%;height: auto;text-align: center;}
 .item_line{width:100%;height: 2rpx;background-color: silver;}
 .item_vline{width: 2rpx;height: 100%;background-color: silver;}
+.bespeak_ctn{width: 100%;height: auto;background-color: rgb(233, 232, 232);}
+.b_content{width: calc(100% - 30rpx);height: calc(100% - 30rpx); border: 1rpx solid white;border-radius: 10rpx;margin: 15rpx;background-color: silver;}
+.bespeak_ctn .b_item{width: 96%;margin-left: 2%;display: flex;flex-direction: row;margin-top: 5rpx;margin-bottom: 5rpx;}
+.b_tag{width:100rpx;}
+.b_value{width: calc(100% - 100rpx);background-color: white;padding-left:10rpx;}
+
 
 
