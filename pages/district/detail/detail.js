@@ -88,7 +88,7 @@ Page({
             { "optype": 8, "opname": "其它", "members": [] }
           ];
           let _pInfo = [];
-          if(_shopinfo.length > 0){
+          if(_shopinfo && _shopinfo.length > 0){
             for(let i=0;i<_shopinfo.length;i++)
             {
               let one = _shopinfo[i];

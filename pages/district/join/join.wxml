@@ -25,7 +25,7 @@
       <button bindtap="joinApply" data-type="1">成员快速加入</button>
       <button bindtap="joinApply" data-type="2">申请商家入驻</button>
       <button bindtap="joinApply" data-type="3">申请个人入驻</button>
-      <button bindtap="buySsqAD">购买商圈广告</button>
+      <!-- <button bindtap="buySsqAD">购买商圈广告</button> -->
     </view>
   </view>
 </view>

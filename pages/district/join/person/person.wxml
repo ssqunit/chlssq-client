@@ -41,6 +41,13 @@
       <view class="line_space"></view>
       <view class="info_imginfo">
         <text class="info_star">*</text>
+        <text>请上传个人形象照：</text>
+        <text class="uploadtxt" bindtap="uploadImg1">上传</text>
+      </view>
+      <image class="myimg" src="{{upload_img1}}" mode="aspectFit"></image>
+      <view class="line_space"></view>
+      <view class="info_imginfo">
+        <text class="info_star">*</text>
         <text>请上传本人手持身份证照：</text>
         <text class="uploadtxt" bindtap="uploadImg">上传</text>
       </view>

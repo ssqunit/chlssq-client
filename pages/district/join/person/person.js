@@ -13,12 +13,28 @@ Page({
     shopOpText:"",
     addrText:"",
     contactText:"",
+    upload_img1: "",
     upload_img: "",
     resImgids:[],
     ssqInfo: {},
     commited: []
 
 
+  },
+
+  uploadImg1: function (e) {
+    var that = this;
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        const tempFilePaths = res.tempFilePaths
+        that.setData({
+          upload_img1: tempFilePaths[0]
+        });
+      }
+    })
   },
 
   uploadImg: function (e) {
@@ -58,7 +74,7 @@ Page({
         title: '提交中，请稍后...',
         mask: true
       })
-      that.data.uploadPaths = [that.data.upload_img];
+      that.data.uploadPaths = [that.data.upload_img1,that.data.upload_img];
       var resImgs = [];
       common.uploadFiles(that.data.uploadPaths, 0, resImgs, this.uploadCallBack, app.globalData.userInfo.session_id);
 
@@ -90,9 +106,9 @@ Page({
         'ssqarea': this.data.ssqInfo.area,
         'roletype': 3,
 
-        "shopname": "username",
-        "shopimg": "userphoto",
-        "shopcimg": this.data.resImgids[0],
+        "shopname": app.globalData.userInfo.nickName,
+        "shopimg": this.data.resImgids[0],
+        "shopcimg": this.data.resImgids[1],
         "shopoptext": this.data.shopOpText,
         "shopaddr": this.data.addrText,
         "shopcontact": this.data.contactText
