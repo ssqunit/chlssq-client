@@ -413,7 +413,7 @@ Page({
   //选择商圈加入方式
   goJoin:function(e){
     wx.navigateTo({
-      url: '../district/join/join'
+      url: '../district/join/join?ssqid=' + this.data.ssqInfo.ssqid
     })
   },
 
