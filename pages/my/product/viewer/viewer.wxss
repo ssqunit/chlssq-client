@@ -30,6 +30,8 @@
 .bespeak_ctn .b_item{width: 96%;margin-left: 2%;display: flex;flex-direction: row;margin-top: 5rpx;margin-bottom: 5rpx;}
 .b_tag{width:100rpx;}
 .b_value{width: calc(100% - 100rpx);background-color: white;padding-left:10rpx;}
+.list_top{width:100%;height: auto;display: flex;flex-direction: row;margin-bottom: 15rpx;}
+.date_text{width: 140rpx;height:auto;border: 1rpx solid silver;border-radius: 5rpx;padding-left: 5rpx;font-size: 22rpx;}
 
 
 

@@ -20,7 +20,17 @@ Page({
     hideInput:false,
     contact:"",
     count:0,
-    summary:""
+    summary:"",
+    dateStart:"-",
+    dateStartMS: 0,//毫秒
+    dateEnd: "-",
+    dateEndMS: 0,//毫秒
+    popShow:false,
+    dateType:0,
+    minDate: new Date(2019, 8, 8).getTime(),
+    maxDate: new Date(2029, 1, 1).getTime(),
+    currentDate: new Date(2019, 8, 7).getTime(),
+    targetList:null
   },
 
   //
@@ -56,6 +66,64 @@ Page({
     wx.previewImage({
       current: current, // 当前显示图片的http链接
       urls: urls
+    })
+  },
+
+
+  selectDate: function (e) {
+    this.data.dateType = Number(e.currentTarget.dataset.type);
+    this.setData({
+      popShow: true
+    })
+  },
+
+  confirmSelect: function (e) {
+    if((this.data.dateStartMS > this.data.dateEndMS && this.data.dateEndMS!=0) || this.data.dateStartMS == 0){
+      wx.showToast({title: '时间格式错误', icon: 'none'});
+    }
+    // console.log('confirmSelect:startms='+this.data.dateStartMS+",endms="+this.data.dateEndMS);
+    if (this.data.productInfo.bespeak.list && this.data.productInfo.bespeak.list.length>0){
+      let tmpList = [];
+      let list = this.data.productInfo.bespeak.list;
+      for(let i=0;i<list.length;i++){
+        // console.log('confirmSelect:listtime=' + list[i]['create_time'] * 1000);
+
+        if(this.data.dateStartMS <= list[i]['create_time']*1000){
+          if(this.data.dateEndMS == 0){
+            tmpList.push(list[i]);
+          }else{
+            if(list[i]['create_time']*1000 <= this.data.dateEndMS){
+              tmpList.push(list[i]);
+            }
+          }
+        }
+      }//end for
+      this.setData({targetList: tmpList});
+    }
+
+  },
+
+  onConfirm: function (e) {
+    // console.log("--------onInput:" + e.detail)
+    let ms = e.detail;
+    let msstr = util.formatTimeYMD(new Date(ms));
+    if(this.data.dateType == 0){
+      this.setData({
+        popShow: false,
+        dateStartMS: ms,
+        dateStart:msstr
+      });
+    }else if(this.data.dateType == 1){
+      this.setData({
+        popShow: false,
+        dateEndMS: ms,
+        dateEnd:msstr
+      });
+    }
+  },
+  onCancel: function (e) {
+    this.setData({
+      popShow: false
     })
   },
 
@@ -234,7 +302,9 @@ Page({
           }else{
             _hide = true;
           }
+          let _targetList = [];
           if(_info.bespeak.list && _info.bespeak.list.length > 0){
+            _targetList = _info.bespeak.list;
             for(let j=0;j<_info.bespeak.list.length;j++){
               _info.bespeak.list[j]['time'] = util.formatTime(new Date(_info.bespeak.list[j]['create_time'] * 1000));
             }
@@ -242,6 +312,7 @@ Page({
 
           that.setData({
             productInfo: _info,
+            targetList: _targetList,
             hideInput: _hideInput,
             hideBespeakBtn: _hidebtn,
             bespeakType: _type,

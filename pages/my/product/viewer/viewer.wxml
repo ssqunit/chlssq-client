@@ -68,7 +68,14 @@
       <button type="primary" bindtap="onCommit">提交预约</button>
     </view>
     <view class="space"></view>
-    <text class="order_detail_btn" bindtap="onOrderDetail">{{orderDetaiLabel}}</text>
+    <view class="list_top">
+      <text class="order_detail_btn" bindtap="onOrderDetail">{{orderDetaiLabel}}</text>
+      <text style="margin-left:20rpx;">按日期</text>
+      <text class="date_text" bindtap="selectDate" data-type="0">{{dateStart}}</text>
+      <text>-</text>
+      <text class="date_text" bindtap="selectDate" data-type="1">{{dateEnd}}</text>
+      <text class="order_detail_btn" style="margin-left:15rpx;" bindtap="confirmSelect">筛选</text>
+    </view>
     <view class="order_list" hidden="{{showOrderDetail}}">
       <view class="item_line"></view>
       <view class="list_item">
@@ -85,7 +92,7 @@
         <view class="item_vline"></view>
       </view>
       <view class="item_line"></view>
-      <block wx:for="{{productInfo.bespeak.list}}" wx:for-index="index">
+      <block wx:for="{{targetList}}" wx:for-index="index">
       <view class="list_item">
         <view class="item_vline"></view>
         <view class="item_name">{{item.name}}</view>
@@ -103,4 +110,14 @@
       </block>
     </view>
   </view>
+  <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onClose">
+    <van-datetime-picker
+      type="date"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      max-date="{{ maxDate }}"
+      bind:confirm="onConfirm"
+      bind:cancel="onCancel"
+    />
+  </van-popup>
 </view>
