@@ -7,56 +7,92 @@
     <text>赶紧行动，入驻身边的社圈，成为商家，为社圈的福祉作出您的贡献！</text>
   </view>
 
-  <!-- 我的商家信息 -->
-  <view class="shop_name" hidden="{{myShopInfo==null?true:false}}">
-    <view class="name_img">
-      <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage"></image>
-    </view>
-    <view class="name_name">
-      <text class="name_value">{{myShopInfo.name}}</text>
-      <text class="name_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
-    </view>
-    <view class="name_km" bindtap="openPosition">
-      <image src="../../static/icons/map_b.png" mode="aspectFit"></image>
-      <text>{{shop_distance}}km</text>
-    </view>
-  </view>
-  <view class="space_line" hidden="{{myShopInfo==null?true:false}}"></view>
-
-  <!-- 商家信息 -->
-  <view class="shop_detail" hidden="{{myShopInfo==null?true:false}}">
-    <view class="detail_left">
-      <view class="shop_sum">
-        <view class="sum_item">
-          <view class="sum_item_left">
-            <text class="sum_item_tag">商家类型：</text>
-            <text class="sum_item_value">{{shop_type}}</text>
-          </view>
-          <view class="sumitem_right">
-            <text class="sum_item_tag">商业类别：</text>
-            <text class="sum_item_value">{{shop_optype}}</text>
-          </view>
-        </view>
-        <view class="sum_item">
-          <text class="sum_item_tag">地址：</text>
-          <text class="sum_item_value">{{myShopInfo.addr}}</text>
-        </view>
-        <view class="sum_item">
-          <text class="sum_item_tag">联系信息：</text>
-          <text class="sum_item_value">{{myShopInfo.contact}}</text>
-        </view>
-        <view class="sum_item">
-          <text class="sum_item_tag">首次入驻：</text>
-          <text class="sum_item_value">{{shop_createtime}}</text>
-        </view>
-        <view class="sum_item">
-          <text class="sum_item_tag">经营信息：</text>
-          <text class="sum_item_value">{{myShopInfo.optext}}</text>
-        </view>
+  <!-- 商家信息展示 -->
+  <view hidden="{{myShopInfo.type == 3 ? true : false}}">
+    <view class="shop_name" hidden="{{myShopInfo==null?true:false}}">
+      <view class="name_img">
+        <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage"></image>
+      </view>
+      <view class="name_name">
+        <text class="name_value">{{myShopInfo.name}}</text>
+        <text class="name_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
+      </view>
+      <view class="name_km" bindtap="openPosition">
+        <image src="../../static/icons/map_b.png" mode="aspectFit"></image>
+        <text>{{shop_distance}}km</text>
       </view>
     </view>
-    <view class="detail_right">
-      <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image>
+    <view class="space_line" hidden="{{myShopInfo==null?true:false}}"></view>
+
+    <!-- 商家信息 -->
+    <view class="shop_detail" hidden="{{myShopInfo==null?true:false}}">
+      <view class="detail_left">
+        <view class="shop_sum">
+          <view class="sum_item">
+            <view class="sum_item_left">
+              <text class="sum_item_tag">商家类型：</text>
+              <text class="sum_item_value">{{shop_type}}</text>
+            </view>
+            <view class="sumitem_right">
+              <text class="sum_item_tag">商业类别：</text>
+              <text class="sum_item_value">{{shop_optype}}</text>
+            </view>
+          </view>
+          <view class="sum_item">
+            <text class="sum_item_tag">地址：</text>
+            <text class="sum_item_value">{{myShopInfo.addr}}</text>
+          </view>
+          <view class="sum_item">
+            <text class="sum_item_tag">联系信息：</text>
+            <text class="sum_item_value">{{myShopInfo.contact}}</text>
+          </view>
+          <view class="sum_item">
+            <text class="sum_item_tag">首次入驻：</text>
+            <text class="sum_item_value">{{shop_createtime}}</text>
+          </view>
+          <view class="sum_item">
+            <text class="sum_item_tag">经营信息：</text>
+            <text class="sum_item_value">{{myShopInfo.optext}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="detail_right">
+        <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 个人商家信息展示 -->
+  <view class="person_ctn"  hidden="{{myShopInfo.type == 3 ? false : true}}">
+    <view class="p_left">
+      <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage" mode="aspectFit"></image>
+    </view>
+    <view class="p_right">
+      <text class="p_name">{{myShopInfo.name}}</text>
+      <text class="p_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
+      <view class="p_item">
+        <text class="p_tag">商家类型：</text>
+        <text class="p_value">{{shop_type}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">地址：</text>
+        <text class="p_value">{{myShopInfo.addr}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">联系信息：</text>
+        <text class="p_value">{{myShopInfo.contact}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">首次入驻：</text>
+        <text class="p_value">{{shop_createtime}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">经营信息：</text>
+        <text class="p_value">{{myShopInfo.optext}}</text>
+      </view>
+      <view class="p_item">
+        <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image>
+      </view>
     </view>
   </view>
 
