@@ -1,8 +1,46 @@
 <!--pages/district/shop/shop.wxml-->
 <view class="container">
 
+  <!-- 个人商家信息展示 -->
+  <view class="person_ctn" hidden="{{shopInfo.type == 3 ? false : true}}">
+    <view class="p_left">
+      <image src="{{shopInfo.ssqImgUrl}}" data-src="{{shopInfo.ssqImgUrl}}" bindtap="previewImage" mode="aspectFit"></image>
+    </view>
+    <view class="p_right">
+      <text class="p_name">{{shopInfo.name}}</text>
+      <text class="p_ssq">{{shopInfo.ssqinfo[0].area}}{{shopInfo.ssqinfo[0].name}}社圈</text>
+      <view class="p_item">
+        <text class="p_tag">商家类型：</text>
+        <text class="p_value">{{shop_type}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">地址：</text>
+        <text class="p_value">{{shopInfo.addr}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">联系信息：</text>
+        <text class="p_value">{{shopInfo.contact}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">首次入驻：</text>
+        <text class="p_value">{{shop_createtime}}</text>
+      </view>
+      <view class="p_item">
+        <text class="p_tag">经营信息：</text>
+        <text class="p_value">{{shopInfo.optext}}</text>
+      </view>
+      <view class="p_item">
+        <button class='share_btn' id="shareBtn" open-type="share" hover-class="other-button-hover">
+          <image src='../../static/custom/icons/share_icon.png'></image>
+          分享
+        </button>
+      </view>
+    </view>
+  </view>
+  <view class="space_line" hidden="{{shopInfo.type == 3 ? false : true}}"></view>
+
   <!-- 商家名称 -->
-  <view class="shop_name">
+  <view class="shop_name" hidden="{{shopInfo.type == 3 ? true : false}}">
     <view class="name_img">
       <image src="{{shopInfo.ssqImgUrl}}"></image>
     </view>
@@ -15,10 +53,10 @@
       <text>{{shopkm}}km</text>
     </view>
   </view>
-  <view class="space_line"></view>
+  <view class="space_line" hidden="{{shopInfo.type == 3 ? true : false}}"></view>
 
   <!-- 产品SWIPER -->
-  <view class="swiper_imgctn">
+  <view class="swiper_imgctn" hidden="{{shopInfo.type == 3 ? true : false}}">
     <swiper class="fullwh" autoplay='true' interval='3000' duration='500' circular='true' indicator-dots="true">
       <block wx:for="{{shopInfo.hightlight}}" wx:for-index="index">
         <swiper-item class="fullwh">
@@ -30,25 +68,37 @@
   <view class="blank_space"></view>
 
   <!-- 商家信息 -->
-  <view class="info_item fullwh">
-    <text class="item_tag">经营范围：</text>
-    <text class="item_value">{{shopInfo.optext}}</text>
+  <view hidden="{{shopInfo.type == 3 ? true : false}}">
+    <view class="info_item fullwh">
+      <text class="item_tag">商家类型：</text>
+      <text class="item_value">{{shop_type}}</text>
+    </view>
+    <view class="blank_space"></view>
+    <view class="info_item fullwh">
+      <text class="item_tag">经营范围：</text>
+      <text class="item_value">{{shopInfo.optext}}</text>
+    </view>
+    <view class="blank_space"></view>
+    <view class="info_item fullwh">
+      <text class="item_tag">电话：</text>
+      <text class="item_value">{{shopInfo.contact}}</text>
+    </view>
+    <view class="blank_space"></view>
+    <view class="info_item fullwh">
+      <text class="item_tag">首次入驻：</text>
+      <text class="item_value">{{shop_createtime}}</text>
+    </view>
+    <view class="blank_space"></view>
+    <view class="info_item fullwh">
+      <text class="item_tag">地址：</text>
+      <text class="item_value">{{shopInfo.addr}}</text>
+    </view>
+    <view class="blank_space"></view>
   </view>
-  <view class="blank_space"></view>
-  <view class="info_item fullwh">
-    <text class="item_tag">电话：</text>
-    <text class="item_value">{{shopInfo.contact}}</text>
-  </view>
-  <view class="blank_space"></view>
-  <view class="info_item fullwh">
-    <text class="item_tag">地址：</text>
-    <text class="item_value">{{shopInfo.addr}}</text>
-  </view>
-  <view class="blank_space"></view>
 
   <!-- 产品信息 -->
   <view class="list_tag fullwh">
-    <text>产品/服务列表：(数量18)</text>
+    <text>产品/服务列表：(数量{{productCount}})</text>
   </view>
   <view class="space_line"></view>
 

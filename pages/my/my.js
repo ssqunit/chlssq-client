@@ -320,6 +320,13 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    if (!app || !app.globalData || !app.globalData.userInfo) {
+      wx.switchTab({
+        url: '/pages/index/index',
+      })
+      return;
+    }
+
     this.getMyShopInfo();
   },
 

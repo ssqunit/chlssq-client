@@ -48,9 +48,11 @@ display: flex;flex-direction: row;border: 1rpx solid white;border-bottom-color: 
 .p_left{width: 280rpx;height: 500rpx;border: 1rpx solid sandybrown;border-radius: 10rpx;}
 .p_left image{width: 98%;height: 98%;margin: 1%;}
 .p_right{width: calc(100% - 280rpx);height: auto;display: flex;flex-direction: column;}
-.p_name{font-size: 32rpx;width: 96%;margin-left:2%}
+.p_name{font-size: 40rpx;width: 96%;margin-left:2%}
 .p_ssq{font-size: 20rpx;width: 96%;margin-left: 2%;}
 .p_item{width:96%;margin-left:2%;font-size: 24rpx;display: flex;flex-direction: row;margin-top: 10rpx;}
 .p_tag{width: 120rpx;height: auto;}
 .p_value{width:calc(100% - 120rpx);height: auto;}
-.p_item image{width: 60%;margin-left:20%; height: 180rpx;}
+.p_item image{width: 100rpx; height: 140rpx;}
+.share_btn{height: 70rpx;display: flex;flex-direction: row;align-items: center;color: rgb(128, 127, 127);font-size: 26rpx;margin-right: 1rpx;margin-top: 70rpx;}
+.share_btn image{width:50rpx; height: 50rpx;margin-right: 15rpx;}

@@ -15,6 +15,7 @@ var common = require("../../utils/common.js")
 
 Page({
   data: {
+    hasSendLogin:false,
     noticeType:0,
     userInfo: c_userInfo.UserInfo,
     v_nickName:"",
@@ -35,6 +36,7 @@ Page({
   },
 
   onLoad: function(options) {
+    // console.log('------------index onLoad in ---------');
     var time = util.formatTimeYMD(new Date());
     var weekday = util.getWeekDay(new Date());
     console.debug(time + " - " + weekday)
@@ -105,6 +107,10 @@ Page({
   },
 
   myLogin:function(){
+    if(this.data.hasSendLogin){
+      return;
+    }
+    this.data.hasSendLogin = true;
     var that = this;
     common.request({
       method: "GET",
@@ -174,7 +180,7 @@ Page({
         "avatarUrl": this.data.userInfo.avatarUrl
       },
       success: res => {
-        console.log("----------updateUserInfo:res=" + JSON.stringify(res));
+        // console.log("----------updateUserInfo:res=" + JSON.stringify(res));
         this.getMyPosition();
       },
       fail: res => {
@@ -427,16 +433,16 @@ Page({
 
   //商家点击事件
   onShopClick:function(e){
-    console.log('---------onBusClick:e'+JSON.stringify(e));
+    // console.log('---------onBusClick:e'+JSON.stringify(e));
     let shopId = e.currentTarget.dataset.id;
     let owner = e.currentTarget.dataset.owner;
-    console.log("---------onBusClick:shopid="+shopId+",owner="+owner);
+    // console.log("---------onBusClick:shopid="+shopId+",owner="+owner);
     if(shopId == -1){
       wx.navigateTo({
         url: '../ad/shop/shop?shopid=' + shopId + '&owner=' + owner
       })
     }else{
-      console.log("---------onBusClick:userInfo.ID=" + app.globalData.userInfo.ID);
+      // console.log("---------onBusClick:userInfo.ID=" + app.globalData.userInfo.ID);
       if(app.globalData.userInfo.ID == owner){
         wx.switchTab({
           url: '/pages/my/my',
@@ -463,6 +469,12 @@ Page({
       })
     }
   },
+
+  onShow: function () {
+    if(!this.data.hasSendLogin){
+      app.onLaunch();
+    }
+  }
 
 
 })
