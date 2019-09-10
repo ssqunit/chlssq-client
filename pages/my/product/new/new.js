@@ -195,6 +195,7 @@ Page({
     if (_des == "") { return "请输入产品描述！"; }
     var _price = this.data.p_price.replace(/\s+/g, '');
     if (_price == "") { return "请输入产品名字！"; }
+    if(Number(_price)>99999){return "产品价格过高！"}
     var _unit = this.data.p_unit.replace(/\s+/g, '');
     if (_unit == "") { return "请输入产品单位！"; }
     if (this.data.dateType == 2 && this.data.dateEnd == 0){

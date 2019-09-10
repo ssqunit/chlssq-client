@@ -223,10 +223,10 @@ Page({
     if (!(this.data.des == this.data.productInfo.des)) {
       return true;
     }
-    if (!(String(this.data.price) == String(this.data.productInfo.price))) {
+    if (!(String(this.data.price) == String(this.data.productInfo.price)) && Number(this.data.price) < 100000) {
       return true;
     }
-    if (!(String(this.data.unit) == String(this.data.productInfo.unit))) {
+    if (!(String(this.data.unit) == String(this.data.productInfo.unit)) ) {
       return true;
     }
     if (!(Number(this.data.dateType) == Number(this.data.productInfo.datetype))) {
