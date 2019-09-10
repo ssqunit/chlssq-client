@@ -10,6 +10,14 @@
       <text class="p_name">{{shopInfo.name}}</text>
       <text class="p_ssq">{{shopInfo.ssqinfo[0].area}}{{shopInfo.ssqinfo[0].name}}社圈</text>
       <view class="p_item">
+        <text class="p_tag">综合评价：</text>
+        <view class="ctn_stars">
+          <block wx:for="{{shopInfo.stars}}" wx:for-index="index">
+          <image class="shop_star" mode="aspectFit" src="../../static/icons/favorites-filling_{{item}}.png"></image>
+          </block>
+        </view>
+      </view>
+      <view class="p_item">
         <text class="p_tag">商家类型：</text>
         <text class="p_value">{{shop_type}}</text>
       </view>
@@ -69,6 +77,14 @@
 
   <!-- 商家信息 -->
   <view hidden="{{shopInfo.type == 3 ? true : false}}">
+    <view class="info_item fullwh">
+      <text class="item_tag">综合评价：</text>
+      <view class="ctn_stars">
+        <block wx:for="{{shopInfo.stars}}" wx:for-index="index">
+        <image class="shop_star" mode="aspectFit" src="../../static/icons/favorites-filling_{{item}}.png"></image>
+        </block>
+      </view>
+    </view>
     <view class="info_item fullwh">
       <text class="item_tag">商家类型：</text>
       <text class="item_value">{{shop_type}}</text>

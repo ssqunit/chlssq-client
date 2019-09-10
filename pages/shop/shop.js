@@ -53,6 +53,11 @@ Page({
             var _obj = res.data.data[0];
             _obj['ssqImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
             _obj['ssqCImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.cimg);
+            if (_obj['starinfo'] && _obj['starinfo'][0] && _obj['starinfo'][0][_obj['shopid']]) {
+              _obj['stars'] = _obj['starinfo'][0][_obj['shopid']];
+            } else {
+              _obj['stars'] = ['b', 'b', 'b', 'b', 'b']
+            }
 
             //整理product_list
             var _plist = _obj['product_list'];

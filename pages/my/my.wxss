@@ -56,3 +56,6 @@ display: flex;flex-direction: row;border: 1rpx solid white;border-bottom-color: 
 .p_item image{width: 100rpx; height: 140rpx;}
 .share_btn{height: 70rpx;display: flex;flex-direction: row;align-items: center;color: rgb(128, 127, 127);font-size: 26rpx;margin-right: 1rpx;margin-top: 70rpx;}
 .share_btn image{width:50rpx; height: 50rpx;margin-right: 15rpx;}
+
+.ctn_stars{height: auto;width: calc(100% - 120rpx);display: flex;flex-direction: row;}
+.shop_star{width: 25rpx!important;height: 25rpx!important;margin: 5rpx;}
