@@ -19,5 +19,6 @@
 .item_title button{margin-top: 20rpx;}
 .list_ctn{width: 96%;margin-left: 2%;height: auto;}
 .short_space{width: 50rpx;height: 4rpx;}
-.ssqinfo{margin-top: 15rpx;}
+.nearby_item{width: 100%;height: auto;display: flex;flex-direction: row;font-size: 24rpx;margin-top: 10rpx;margin-bottom: 10rpx;}
+.nearby_item image{width: 40rpx;height: 40rpx;}
 

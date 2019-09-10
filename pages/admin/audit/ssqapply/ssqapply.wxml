@@ -23,7 +23,7 @@
     <view class="item_ctn">
       <view class="item_title">
         <view class="short_line"></view>
-        <text class="item_text">申请者：{{applySsqInfo.creator.nickName}}</text>
+        <text class="item_text">申请者：{{applySsqInfo.ownername}}</text>
       </view>
     </view>
     <view class="item_ctn">
@@ -32,14 +32,14 @@
         <text class="item_text">社区图:</text>
       </view>
       <view class="item_img">
-        <image src="{{applySsqInfo.image}}" mode="aspectFit"></image>
+        <image src="{{applySsqInfo.img}}" mode="aspectFit"></image>
       </view>
     </view>
     <view class="item_ctn">
       <view class="item_title">
         <view class="short_line"></view>
         <text class="item_text">本社圈所在位置：</text>
-        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{applySsqInfo.position.latitude}}" data-longitude="{{applySsqInfo.position.longitude}}"></image>
+        <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{applySsqInfo.latitude}}" data-longitude="{{applySsqInfo.longitude}}"></image>
       </view>
     </view>
     <view class="item_ctn">
@@ -48,12 +48,12 @@
         <text class="item_text">附近社圈：</text>
       </view>
       <view class="list_ctn">
-        <block wx:for="{{applySsqInfo.nearbySsq}}" wx:for-index="index">
-        <view class="item_title ssqinfo">
+        <block wx:for="{{nearbySsq}}" wx:for-index="index">
+        <view class="nearby_item">
           <view class="short_space"></view>
-          <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{item.position.latitude}}" data-longitude="{{item.position.longitude}}"></image>
-          <text class="item_text">距离：{{item.dis}}km</text>
-          <text class="item_text">{{item.area}}{{item.name}}社圈</text>
+          <image src="../../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{item.latitude}}" data-longitude="{{item.longitude}}"></image>
+          <text class="nearby_text">距离：{{item.dis}}km</text>
+          <text class="nearby_text">{{item.area}}{{item.name}}社圈</text>
         </view>
         </block>
       </view>
@@ -64,14 +64,14 @@
         <text class="item_text">审核意见：</text>
       </view>
       <view class="item_msg">
-        <textarea></textarea>
+        <textarea bindinput="onDes"></textarea>
       </view>
     </view>
     <view class="item_ctn">
       <view class="item_title">
         <view class="short_line"></view>
-        <button type="warn">驳回</button>
-        <button type="primary">通过</button>
+        <button type="warn" bindtap="onDell" data-type="2">驳回</button>
+        <button type="primary" bindtap="onDell" data-type="1">通过</button>
       </view>
     </view>
 

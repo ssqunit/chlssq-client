@@ -17,11 +17,11 @@
       </view>
       <view class="item_list">
         <scroll-view scroll-y="true">
-          <block wx:for="{{newSsqList}}" wx:for-index="index">
+          <block wx:for="{{ssqinfo}}" wx:for-index="index">
           <view class="item_item">
             <text class="tag">新申请：</text>
             <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn" bindtap="delSsqApply">去处理</text>
+            <text class="btn" bindtap="delSsqApply" data-id="{{item.ssqid}}">去处理</text>
           </view>
           </block>
         </scroll-view>
@@ -36,11 +36,11 @@
       </view>
       <view class="item_list">
         <scroll-view scroll-y="true">
-          <block wx:for="{{newSsqList}}" wx:for-index="index">
+          <block wx:for="{{shopinfo}}" wx:for-index="index">
           <view class="item_item">
             <text class="tag">新申请：</text>
-            <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn" bindtap="delBusApply">去处理</text>
+            <text class="name">{{item.name}} 入驻申请</text>
+            <text class="btn" bindtap="delBusApply" data-id="{{item.shopid}}">去处理</text>
           </view>
           </block>
         </scroll-view>
@@ -55,11 +55,11 @@
       </view>
       <view class="item_list">
         <scroll-view scroll-y="true">
-          <block wx:for="{{newSsqList}}" wx:for-index="index">
+          <block wx:for="{{personinfo}}" wx:for-index="index">
           <view class="item_item">
             <text class="tag">新申请：</text>
-            <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn" bindtap="delPerApply">去处理</text>
+            <text class="name">{{item.name}} 入驻申请</text>
+            <text class="btn" bindtap="delPerApply" data-id="{{item.shopid}}">去处理</text>
           </view>
           </block>
         </scroll-view>

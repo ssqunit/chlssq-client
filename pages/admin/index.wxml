@@ -15,9 +15,7 @@
     </view>
     <view class="item_ctn" bindtap="goAudit">
       <view class="short_line"></view>
-      <text class="item_text">审核(</text>
-      <text class="item_text count">{{count}}</text>
-      <text class="item_text">)</text>
+      <text class="item_text">审核</text>
     </view>
     <view class="item_ctn" bindtap="goUsers">
       <view class="short_line"></view>
