@@ -35,10 +35,10 @@ Page({
   },
 
   //
-  onItemClick:function(e){
-    console.log("shopid:" + e.currentTarget.dataset.id);
-    let shopId = e.currentTarget.dataset.id;
-    let owner = e.currentTarget.dataset.owner;
+  onShopItemClick:function(e){
+    console.log("shopid:" + e.detail);
+    let shopId = e.detail.shopinfo.shopid;
+    let owner = e.detail.shopinfo.owner;
     if (app.globalData.userInfo.ID == owner) {
       wx.switchTab({
         url: '/pages/my/my',
@@ -48,6 +48,43 @@ Page({
         url: '../shop/shop?shopid=' + shopId + '&owner=' + owner
       })
     }
+  },
+
+  onShopZanClick:function(e){
+    let shopId = e.detail.shopinfo.shopid;
+    let owner = e.detail.shopinfo.owner;
+    var that = this;
+    wx.showLoading({
+      title: '请稍后...',
+      mask: true
+    })
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=shopZan&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        'shopid': shopId,
+        'ssqid': this.data.ssqInfo.ssqid
+      },
+      success: res => {
+        console.log('----------shopZan:' + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+
+        } else {
+          wx.showToast({
+            title: '点赞失败！',
+            icon: "none"
+          })
+        }
+        wx.hideLoading();
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络链接！',
+          icon: "none"
+        })
+      }
+    });
   },
 
   //
@@ -93,7 +130,19 @@ Page({
             {
               let one = _shopinfo[i];
               one['imgurl'] = common.getImgUrl(app.globalData.userInfo.session_id, one['img']);
-              //--商家
+
+              //set starinfo to each shop
+              let _starinfo = res.data.data['starinfo'];
+              if (_starinfo && _starinfo.length>0)
+              {
+                for (let j = 0; j < _starinfo.length; j++){
+                  if (_starinfo[j][one['shopid']]){
+                    one['stars'] = _starinfo[j][one['shopid']];
+                  }
+                }
+              }
+
+              //--商家归类
               if(one['type'] == 2){
                 let optype = one['optype'];
                 for (let j = 0; j < _bInfo.length;j++){
@@ -120,6 +169,7 @@ Page({
           }
 
           let _shopsInfo = { "bInfo": _bbInfo, "pInfo": _pInfo };
+          console.log('----------getSsqInfo: _shopsInfo= ' + JSON.stringify(_shopsInfo));
           that.setData({
             ssqInfo: _ssqinfo,
             shopsInfo: _shopsInfo,

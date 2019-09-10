@@ -1,7 +1,8 @@
 {
     "usingComponents": {
       "van-tab": "/components/vant/tab/index",
-      "van-tabs": "/components/vant/tabs/index"
+      "van-tabs": "/components/vant/tabs/index",
+      "ssq-shop-item":"/components/ssq/shop-item/shop-item"
     },
     "navigationBarTitleText": "商圈主页"
 }

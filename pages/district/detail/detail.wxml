@@ -26,16 +26,7 @@
               <view class="scroll_ctn">
               <scroll-view class="tab_ctn" scroll-y='true'>
                 <block wx:for="{{shopsInfo.bInfo[index].members}}" wx:for-index="index">
-                  <view class="shop_ctn" sid="{{item.shopid}}" bindtap="onItemClick" data-id="{{item.shopid}}" data-owner="{{item.owner}}">
-                    <image mode="aspectFit" class="shop_photo" src="{{item.imgurl}}"></image>
-                    <view class="shop_right_ctn">
-                      <text class="shop_name">{{item.name}}</text>
-                      <view class="shop_flag_ctn">
-                        <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_0.png"></image>
-                        <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_1.png"></image>
-                      </view>
-                    </view>
-                  </view>
+                <ssq-shop-item shopinfo="{{item}}" bind:onShopItemClick="onShopItemClick" bind:onShopZanClick="onShopZanClick" />
                 </block>
               </scroll-view>
               </view>
@@ -47,16 +38,7 @@
         <view class="scroll_ctn">
         <scroll-view class="tab_ctn" scroll-y='true'>
           <block wx:for="{{shopsInfo.pInfo}}" wx:for-index="index">
-          <view class="shop_ctn" sid="{{item.shopid}}" bindtap="onItemClick" data-id="{{item.shopid}}" data-owner="{{item.owner}}">
-            <image mode="aspectFit" class="shop_photo" src="{{item.imgurl}}"></image>
-            <view class="shop_right_ctn">
-              <text class="shop_name">{{item.name}}</text>
-              <view class="shop_flag_ctn">
-                <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_0.png"></image>
-                <image class="shop_flag" mode="aspectFit" src="../../../static/custom/flags/flag_1.png"></image>
-              </view>
-            </view>
-          </view>
+          <ssq-shop-item shopinfo="{{item}}" bind:onShopItemClick="onShopItemClick" bind:onShopZanClick="onShopZanClick" />
           </block>     
         </scroll-view>
         </view>

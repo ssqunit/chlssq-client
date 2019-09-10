@@ -1,0 +1,18 @@
+/* components/ssq/shop-item/shop-item.wxss */
+.shop_ctn{
+  width: calc(100%-20rpx);height: 100rpx;display: flex;flex-direction: row;align-items: center;
+  border: 1rpx solid gainsboro;
+  border-radius: 10rpx;margin: 10rpx;
+}
+.shop_photo{height: 90rpx;width: 90rpx;margin: 10rpx 20rpx;}
+
+.shop_right_ctn{height: 100%;width: calc(100% - 300rpx);display: flex;flex-direction: column;}
+.shop_name{width: 100%;height: auto;padding-top: 10rpx;font-size: 26rpx;overflow: hidden;}
+.shop_star_ctn{width: 100%;height: auto;display: flex;flex-direction: row;margin-top: 10rpx;}
+.ctn_txt{width: 100rpx;height: auto;font-size: 20rpx;}
+.ctn_stars{height: 100%;width: calc(100% - 100rpx);display: flex;flex-direction: row;}
+.shop_star{width: 25rpx;height: 25rpx;margin: 5rpx;}
+
+.btns_ctn{width: 200rpx;height: auto;display: flex;flex-direction: row;}
+.btns_ctn button{width: 100rpx;height: 70rpx;display: flex;flex-direction: row;align-items: center;}
+.btn_zan{width: 50rpx;height: 50rpx;}
