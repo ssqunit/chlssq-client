@@ -15,8 +15,10 @@
     </view>
   </view>
   <view class="btns_ctn">
-    <button catchtap="clickZan">
-      <image class="btn_zan" src="../../../static/custom/icons/zan.png"></image>
-    </button>
+    <view class="btn_zan_ctn">
+      <button catchtap="clickZan">
+        <image class="btn_zan" src="../../../static/custom/icons/zan.png"></image>
+      </button>
+    </view>
   </view>
 </view>

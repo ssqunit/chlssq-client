@@ -16,7 +16,8 @@ Page({
     active_chi: 0,
     distance: 0.50,
     shopCount:0,
-    personCount:0
+    personCount:0,
+    zans:[]
   },
 
   //打开商圈在地图上的位置
@@ -50,10 +51,23 @@ Page({
     }
   },
 
+  checkZans:function(shopid){
+    for(let i=0;i<this.data.zans.length;i++){
+      if(this.data.zans[i] == shopid){
+        return false;
+      }
+    }
+    return true;
+  },
+
   onShopZanClick:function(e){
     let shopId = e.detail.shopinfo.shopid;
     let owner = e.detail.shopinfo.owner;
     var that = this;
+    if(!this.checkZans(shopId)){
+      wx.showToast({title: '赞了',icon: "none",duration:500})
+      return;
+    }
     wx.showLoading({
       title: '请稍后...',
       mask: true
@@ -66,15 +80,24 @@ Page({
         'ssqid': this.data.ssqInfo.ssqid
       },
       success: res => {
-        console.log('----------shopZan:' + JSON.stringify(res));
+        // console.log('----------shopZan:' + JSON.stringify(res));
+        let msg = "已赞"
         if (res.data.iRet == 0) {
-
+          this.data.zans.push(shopid);
         } else {
-          wx.showToast({
-            title: '点赞失败！',
-            icon: "none"
-          })
+          if(res.data.iRet == -5002){
+            this.data.zans.push(shopid);
+            msg = "已赞！"
+          }else if(res.data.iRet == -5001){
+            msg = "已达上限！"
+          }else{
+            msg = res.data.sMsg;
+          }
         }
+        wx.showToast({
+          title: msg,
+          icon: "none"
+        })
         wx.hideLoading();
       },
       fail: res => {
