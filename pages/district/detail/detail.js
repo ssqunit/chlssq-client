@@ -83,10 +83,10 @@ Page({
         // console.log('----------shopZan:' + JSON.stringify(res));
         let msg = "已赞"
         if (res.data.iRet == 0) {
-          this.data.zans.push(shopid);
+          this.data.zans.push(shopId);
         } else {
           if(res.data.iRet == -5002){
-            this.data.zans.push(shopid);
+            this.data.zans.push(shopId);
             msg = "已赞！"
           }else if(res.data.iRet == -5001){
             msg = "已达上限！"
