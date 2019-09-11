@@ -30,7 +30,21 @@ Page({
   },
 
   onDell: function (e) {
+    let that = this;
     let type = e.currentTarget.dataset.type;
+    if(type == 2){
+      var _des = this.data.des.replace(/\s+/g, '');
+      if(_des==""){
+        wx.showModal({
+          title: '提示',
+          content: '请输入拒绝原因！',
+          showCancel: false,
+          success(res) {
+          }
+        });
+        return;
+      }
+    }
     let _pass = type;
     wx.showLoading({ title: '请稍后......' });
     common.request({
@@ -53,11 +67,12 @@ Page({
             showCancel: false,
             success(res) {
               if (res.confirm) {
-                wx.navigateBack();
+                that.setDellResAndBack();
               }
             }
           })
         } else {
+          wx.showToast({ title: '处理失败！', icon: "none" })
         }
       },
       fail: res => {
@@ -67,7 +82,19 @@ Page({
     });
   },
 
+  setDellResAndBack:function(){
+    let pages = getCurrentPages();
+    let currPage = pages[pages.length - 1];   //当前页面
+    let prevPage = pages[pages.length - 2];  //上一个页面
 
+    //直接调用上一个页面对象的setData()方法，把数据存到上一个页面中去
+    prevPage.setData({
+      dirtyObj: { 'ssqinfo': this.data.applySsqInfo.ssqid }
+    });
+    wx.navigateBack({
+      delta: 1
+    })
+  },
 
 
   /**

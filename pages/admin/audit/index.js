@@ -15,7 +15,8 @@ Page({
     nickName: "",
     ssqinfo:null,
     shopinfo:null,
-    personinfo:null
+    personinfo:null,
+    dirtyObj:null
   },
 
   //
@@ -49,10 +50,12 @@ Page({
     })
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
+  onReflash: function (e) {
+    this.data.dirtyObj = null;
+    this.query();
+  },
+
+  query: function (){
     let that = this;
     wx.showLoading({ title: '请稍后......' });
     common.request({
@@ -67,10 +70,10 @@ Page({
         wx.hideLoading();
         if (res.data.iRet == 0) {
           that.setData({
-            nickName:app.globalData.userInfo.nickName,
-            ssqinfo:res.data.data.ssqinfo,
-            shopinfo:res.data.data.shopinfo,
-            personinfo:res.data.data.personinfo
+            nickName: app.globalData.userInfo.nickName,
+            ssqinfo: res.data.data.ssqinfo,
+            shopinfo: res.data.data.shopinfo,
+            personinfo: res.data.data.personinfo
           });
         } else {
         }
@@ -80,7 +83,13 @@ Page({
         wx.showToast({ title: '请检查网络链接！', icon: "none" })
       }
     });
+  },
 
+  /**
+   * Lifecycle function--Called when page load
+   */
+  onLoad: function (options) {
+    this.query();
   },
 
   /**
@@ -94,7 +103,22 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-
+    if(this.data.dirtyObj){
+      if(this.data.dirtyObj['ssqinfo']){
+        let _ssqinfo = this.data.ssqinfo;
+        if(_ssqinfo && _ssqinfo.length>0){
+          let _tmp = [];
+          for(let i=0;i<_ssqinfo.length;i++){
+            if(_ssqinfo[i]['ssqid'] != this.data.dirtyObj['ssqinfo'] ){
+              _tmp.push(_ssqinfo[i]);
+            }
+          }
+          this.setData({
+            ssqinfo : _tmp
+          });
+        }
+      }
+    }
   },
 
   /**
