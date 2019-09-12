@@ -103,7 +103,9 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
+    console.log('--------onShow: obj = ' + JSON.stringify(this.data.dirtyObj));
     if(this.data.dirtyObj){
+      //ssqinfo
       if(this.data.dirtyObj['ssqinfo']){
         let _ssqinfo = this.data.ssqinfo;
         if(_ssqinfo && _ssqinfo.length>0){
@@ -114,10 +116,44 @@ Page({
             }
           }
           this.setData({
-            ssqinfo : _tmp
+            ssqinfo : _tmp,
+            dirtyObj: null
           });
         }
       }
+      //shopinfo
+      if (this.data.dirtyObj['shopinfo']) {
+        let _shopinfo = this.data.shopinfo;
+        if (_shopinfo && _shopinfo.length > 0) {
+          let _tmp = [];
+          for (let i = 0; i < _shopinfo.length; i++) {
+            if (_shopinfo[i]['shopid'] != this.data.dirtyObj['shopinfo']) {
+              _tmp.push(_shopinfo[i]);
+            }
+          }
+          this.setData({
+            shopinfo: _tmp,
+            dirtyObj: null
+          });
+        }
+      }
+      //persioninfo
+      if (this.data.dirtyObj['personinfo']) {
+        let _personinfo = this.data.personinfo;
+        if (_personinfo && _personinfo.length > 0) {
+          let _tmp = [];
+          for (let i = 0; i < _personinfo.length; i++) {
+            if (_personinfo[i]['shopid'] != this.data.dirtyObj['personinfo']) {
+              _tmp.push(_personinfo[i]);
+            }
+          }
+          this.setData({
+            personinfo: _tmp,
+            dirtyObj: null
+          });
+        }
+      }
+
     }
   },
 

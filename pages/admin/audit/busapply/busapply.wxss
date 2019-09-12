@@ -12,8 +12,8 @@
 .item_title image{width: 40rpx;height: 40rpx;}
 .short_line{width: 50rpx;height: 4rpx;background-color: silver;}
 .item_text{font-size: 28rpx;margin-left: 10rpx;}
-.item_img{width: 92%;margin-left: 4%;height: auto;}
-.item_img image{width: 100%;height: 260rpx;}
+.item_img{width: 100%;height: auto;display: flex;flex-direction: row;}
+.item_img image{width: 200rpx;height: 260rpx;}
 .item_msg{width: 92%;margin-left: 4%;height: auto;}
 .item_msg textarea{width: 100%;height: 120rpx;border: 1rpx solid silver;border-radius: 10rpx;padding: 5rpx;}
 .item_title button{margin-top: 20rpx;}
