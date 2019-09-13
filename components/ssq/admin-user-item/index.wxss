@@ -1,0 +1,5 @@
+/* components/ssq/admin-user-item/index.wxss */
+.list_item{width:100%;height:auto;display: flex;flex-direction: row;margin-top: 10rpx;}
+.list_item text{width: 40%;}
+.list_item van-radio-group{display: flex;flex-direction: row;}
+.list_item van-radio{margin-left: 10rpx;}

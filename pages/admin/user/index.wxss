@@ -16,7 +16,4 @@
 .item_content{width: 100%;height: auto;display: flex;flex-direction: column;overflow: hidden;}
 .item_content van-search{width: 100%;height: 90rpx;}
 .res_list{width: 92%;margin-left: 4%;height: auto;font-size: 28rpx;margin-top: 20rpx;}
-.list_item{display: flex;flex-direction: row;margin-top: 10rpx;}
-.list_item text{width: 40%;}
-.list_item label{margin-left: 15rpx;}
 button{width:100%;margin-top: 50rpx;}

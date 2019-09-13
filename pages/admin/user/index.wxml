@@ -17,17 +17,17 @@
       <view class="text_ctn">
         <text class="text_tag">平台用户总数</text>
         <text>：</text>
-        <text class="text_value">{{sumInfo.userTotal}}</text>
+        <text class="text_value">{{usersTotal}}</text>
       </view>
       <view class="text_ctn">
         <text class="text_tag">平台首页访问量(昨天)</text>
         <text>：</text>
-        <text class="text_value">{{sumInfo.firstpageTotal}}</text>
+        <text class="text_value">{{indexinTotal}}</text>
       </view>
       <view class="text_ctn">
         <text class="text_tag">平台日活跃（昨天）</text>
         <text>：</text>
-        <text class="text_value">{{sumInfo.userActivity}}</text>
+        <text class="text_value">{{usersActivity}}</text>
       </view>
     </view>
 
@@ -38,10 +38,11 @@
       </view>
       <view class="item_content">
         <van-search
-          value="{{ value }}"
+          value="{{ keywords }}"
           label="搜索用户:"
           placeholder="请输入搜索关键词"
-          use-action-slot
+          use-action-slot 
+          bind:change="doSearchChange"
           bind:search="onSearch">
           <view slot="action" bind:tap="onSearch">搜索</view>
         </van-search>
@@ -52,17 +53,7 @@
       <view class="res_list">
 
         <block wx:for="{{users}}" wx:for-index="index">
-        <view class="list_item">
-          <text>{{item.nickName}}</text>
-          <radio-group class="radio-group" bindchange="radioChange" data-openid="{{item.openId}}">
-            <label class="radio">
-              <radio value="1"/>拉黑
-            </label>
-            <label class="radio">
-              <radio value="0"/>移出黑名单
-            </label>
-          </radio-group>
-        </view>
+        <ssq-admin-user-item user="{{item}}" radio="{{item.act_limit}}" bind:onActSelected="onOneActSelected" />
         </block>
 
       </view>
@@ -70,5 +61,5 @@
 
   </view>
 
-  <button type="primary">确认提交</button>
+  <button type="primary" bindtap="dellUsers">确认提交</button>
 </view>
