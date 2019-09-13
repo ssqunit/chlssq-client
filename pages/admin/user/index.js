@@ -71,6 +71,10 @@ Page({
 
   dellUsers: function (e) {
     let that = this;
+    if(this.data.usersForCommit == null || this.data.usersForCommit.length <= 0){
+      wx.showToast({ title: '用户属性没有改变！', icon: "none" });
+      return;
+    }
     wx.showLoading({ title: '请稍后......' });
     common.request({
       method: "POST",
