@@ -2,6 +2,9 @@
 
 var aList = require("../../../common/area.js");
 
+var app = getApp();
+var common = require("../../../utils/common.js")
+var util = require('../../../utils/util.js');
 
 Page({
 
@@ -9,34 +12,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    nickName: "locky",
+    nickName: "",
+    ssqTotal:0,
+    citysData: "",//区域
+    areaSsqTotal:0,
     popShow: false,
     areaList: null,
     type1:false,
     type2: false,
     type3: true,
     currentType:3,
-    citysData: "",//区域
-    areaSsqTotal:0,
-    sumInfo: {
-      "ssqTotal": 64548
-    },
-    ssqList:[
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" }
-    ],
-    searchList: [
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" },
-      { "ID": "", "name": "茗萃园", "area": "广东省深圳市龙岗区" }
-    ],
+    ssqList:null,
+    keywords:"",
+    searchList:null,
     targetSsq:{
       "ID":"",
       "name":"茗萃园",
@@ -80,6 +68,8 @@ Page({
       citysData: _info
     })
     this.onClose();
+    console.log('onAreaConfirm, citysData = '+ _info);
+    this.getSsqInfoByArea(_info);
   },
   onAreaChange: function (values, index) {
     let _info = "";
@@ -89,6 +79,7 @@ Page({
     this.setData({
       citysData: _info
     })
+    console.log('onAreaChange, citysData = ' + _info);
   },
 
   //
@@ -104,7 +95,114 @@ Page({
   radioChange: function (e) {
     console.log("radioChange---:" + e.detail.value + ",openid=" + e.currentTarget.dataset.openid);
   },
-  
+
+  onSearch: function (e) {
+    let searchkeys = this.data.keywords;
+    if (searchkeys && typeof (searchkeys) === 'string') {
+      searchkeys = searchkeys.replace(/\s+/g, '');
+      if (searchkeys != '') {
+        this.searchSsq_admin(searchkeys);
+      } else {
+        wx.showToast({
+          title: '请输入搜索关键字！',
+          icon: 'none'
+        })
+      }
+    }
+  },
+
+  doSearchChange: function (e) {
+    this.data.keywords = e.detail;
+  },
+
+  searchSsq_admin:function(keywords){
+    let that = this;
+    wx.showLoading({ title: '请稍后......' });
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        "function": "searchSsq_admin",
+        "session_id": app.globalData.userInfo.session_id,
+        "keywords": keywords
+      },
+      success: res => {
+        console.log('-------------searchSsq_admin: res = ' + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          let _info = res.data.data;
+          that.setData({
+            searchList: _info
+          });
+        } else {
+          wx.showToast({ title: '错误：' + res.data.sMsg, icon: "none" });
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({ title: '请检查网络链接！', icon: "none" })
+      }
+    });
+  },
+
+  getSsqInfoByArea:function(area){
+    let that = this;
+    wx.showLoading({ title: '请稍后......' });
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        "function": "getSsqInfoByArea",
+        "session_id": app.globalData.userInfo.session_id,
+        "area": area
+      },
+      success: res => {
+        console.log('-------------getSsqInfoByArea: res = ' + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          let _info = res.data.data;
+          let _total = _info["total"];
+          let _list = _info['list'];
+          if(area == "area"){
+            that.setData({
+              ssqTotal: _total,
+              nickName: app.globalData.userInfo.nickName
+            });
+          }else{
+            that.setData({
+              areaSsqTotal: _total,
+              ssqList: _list
+            });
+          }
+        } else {
+          wx.showToast({ title: '错误：' + res.data.sMsg, icon: "none" });
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({ title: '请检查网络链接！', icon: "none" })
+      }
+    });
+  },
+
+  onDell: function (e) {
+    let _type = e.currentTarget.dataset.type;
+    let _ssqid = e.currentTarget.dataset.ssqid;
+    let _ssqinfo = null;
+    let _list = _type == 1 ? this.data.ssqList : this.data.searchList;
+    if (_list && _list.length > 0){
+      for(let i=0;i<_list.length;i++){
+        if(_list[i]['ssqid'] == _ssqid){
+          _ssqinfo = _list[i];
+        }
+      }
+    }
+    console.log('---onDell, ssqinfo = ' + JSON.stringify(_ssqinfo));
+    this.setData({
+      targetSsq: _ssqinfo
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -112,6 +210,7 @@ Page({
     this.setData({
       areaList: aList.default
     });
+    this.getSsqInfoByArea("area");
   },
 
   /**

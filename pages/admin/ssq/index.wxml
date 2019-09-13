@@ -16,7 +16,7 @@
       </view>
       <view class="text_ctn">
         <text class="text_tag">平台社圈总数：</text>
-        <text class="text_value">{{sumInfo.ssqTotal}}</text>
+        <text class="text_value">{{ssqTotal}}</text>
       </view>
       <view class="text_ctn">
         <view class="text_tag">
@@ -36,7 +36,7 @@
           <block wx:for="{{ssqList}}" wx:for-index="index">
           <view class="list_item">
             <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn" bindtap="onDell">管理</text>
+            <text class="btn" bindtap="onDell" data-type="1" data-ssqid="{{item.ssqid}}">管理</text>
           </view>
           </block>
         </scroll-view>
@@ -54,6 +54,7 @@
           label=""
           placeholder="请输入搜索关键词"
           use-action-slot
+          bind:change="doSearchChange"
           bind:search="onSearch">
           <view slot="action" bind:tap="onSearch">搜索</view>
         </van-search>
@@ -66,7 +67,7 @@
           <block wx:for="{{searchList}}" wx:for-index="index">
           <view class="list_item">
             <text class="name">{{item.area}}{{item.name}}社圈</text>
-            <text class="btn" bindtap="onDell">管理</text>
+            <text class="btn" bindtap="onDell" data-type="2" data-ssqid="{{item.ssqid}}">管理</text>
           </view>
           </block>
         </scroll-view>
