@@ -30,3 +30,5 @@ button{width:100%;margin-top: 50rpx;}
 .ssqphoto{width: 80%!important;height: 180rpx!important;}
 .item_title radio-group{font-size: 28rpx;}
 .mtop{margin-top: 20rpx;}
+van-radio-group{display: flex;flex-direction: row;font-size: 24rpx!important;}
+van-radio{margin-left: 10rpx;}

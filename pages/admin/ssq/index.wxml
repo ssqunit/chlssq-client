@@ -85,42 +85,44 @@
       </view>
       <view class="item_title">
         <view class="short_space"></view>
-        <text class="item_text ssqdetail">商家数：{{targetSsq.busCount}}</text>
+        <text class="item_text ssqdetail">商家数：{{targetSsq.shoptotal}}</text>
       </view>
       <view class="item_title">
         <view class="short_space"></view>
-        <text class="item_text ssqdetail">个人商家数：{{targetSsq.perCount}}</text>
+        <text class="item_text ssqdetail">个人商家数：{{targetSsq.pertotal}}</text>
       </view>
       <view class="item_title">
         <view class="short_space"></view>
-        <text class="item_text ssqdetail">成员数：{{targetSsq.memCount}}</text>
+        <text class="item_text ssqdetail">成员数：{{targetSsq.memtotal}}</text>
+      </view>
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text ssqdetail">创建时间：{{targetSsq.ctime}}</text>
+      </view>
+      <view class="item_title">
+        <view class="short_space"></view>
+        <text class="item_text ssqdetail">创建者：{{targetSsq.ownername}}:{{targetSsq.owner}}</text>
       </view>
       <view class="item_title">
         <view class="short_space"></view>
         <text class="item_text ssqdetail">位置：</text>
-        <image src="../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{targetSsq.position.latitude}}" data-longitude="{{targetSsq.position.longitude}}"></image>
+        <image src="../../../static/icons/map_r.png" mode="aspectFit" bindtap="showOnMap" data-latitude="{{targetSsq.latitude}}" data-longitude="{{targetSsq.longitude}}"></image>
       </view>
       <view class="item_title">
         <view class="short_space"></view>
         <text class="item_text ssqdetail">社圈图：</text>
       </view>
       <view class="item_content">
-        <image class="ssqphoto" src="../../../static/custom/defaults/def_ssq.jpg" mode="aspectFit"></image>
+        <image class="ssqphoto" src="{{targetSsq.img}}" mode="aspectFit"></image>
       </view>
       <view class="item_title mtop">
         <view class="short_space"></view>
         <text class="item_text">操作：</text>
-        <radio-group class="radio-group" bindchange="radioChange">
-          <label class="radio">
-            <radio value="2"/>删除
-          </label>
-          <label class="radio">
-            <radio value="1"/>拉黑
-          </label>
-          <label class="radio">
-            <radio value="0"/>移出黑名单
-          </label>
-        </radio-group>
+        <van-radio-group value="{{ ssq_status }}" bind:change="radioChange" >
+          <van-radio name="4">删除</van-radio>
+          <van-radio name="3">黑名单</van-radio>
+          <van-radio name="1">白名单</van-radio>
+        </van-radio-group>
       </view>
     </view>
 

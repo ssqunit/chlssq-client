@@ -25,18 +25,8 @@ Page({
     ssqList:null,
     keywords:"",
     searchList:null,
-    targetSsq:{
-      "ID":"",
-      "name":"茗萃园",
-      "area":"广东省深圳市龙岗区",
-      "photo":"",
-      "position":{},
-      "creator":{},
-      "busCount":98,
-      "perCount":89,
-      "memCount":998,
-      "block":0
-    }
+    targetSsq:null,
+    ssq_status:'0'
   },
 
   //选择区域
@@ -85,15 +75,18 @@ Page({
   //
   showOnMap: function (e) {
     wx.openLocation({
-      latitude: e.currentTarget.dataset.latitude,
-      longitude: e.currentTarget.dataset.longitude,
+      latitude: Number(e.currentTarget.dataset.latitude),
+      longitude: Number(e.currentTarget.dataset.longitude),
       scale: 14
     })
   },
 
   //
   radioChange: function (e) {
-    console.log("radioChange---:" + e.detail.value + ",openid=" + e.currentTarget.dataset.openid);
+    console.log("radioChange---:" + e.detail);
+    this.setData({
+      ssq_status: e.detail
+    });
   },
 
   onSearch: function (e) {
@@ -200,6 +193,41 @@ Page({
     console.log('---onDell, ssqinfo = ' + JSON.stringify(_ssqinfo));
     this.setData({
       targetSsq: _ssqinfo
+    });
+    //--------------------------------------------------------------
+    let that = this;
+    wx.showLoading({ title: '请稍后......' });
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        "function": "getSsqInfo_admin",
+        "session_id": app.globalData.userInfo.session_id,
+        "ssqid": _ssqid
+      },
+      success: res => {
+        console.log('-------------getSsqInfo_admin: res = ' + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          let _ssqinfo = res.data.data['ssqinfo'];
+          _ssqinfo['shoptotal'] = res.data.data['shoptotal'];
+          _ssqinfo['pertotal'] = res.data.data['pertotal'];
+          _ssqinfo['memtotal'] = res.data.data['memtotal'];
+          _ssqinfo['img'] = common.getImgUrl(app.globalData.userInfo.session_id, _ssqinfo['imgid']);
+          _ssqinfo['ctime'] = util.formatTime(new Date(_ssqinfo['create_time'] * 1000));
+          let _status = String(_ssqinfo['status']);
+          that.setData({
+            ssq_status: _status,
+            targetSsq: _ssqinfo
+          });
+        } else {
+          wx.showToast({ title: '错误：' + res.data.sMsg, icon: "none" });
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({ title: '请检查网络链接！', icon: "none" })
+      }
     });
   },
 
