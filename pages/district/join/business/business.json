@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "van-action-sheet": "/components/vant/action-sheet/index"
+    "van-action-sheet": "/components/vant/action-sheet/index",
+    "van-popup": "/components/vant/popup/index"
   },
   "navigationBarTitleText": "商家入驻"
 }

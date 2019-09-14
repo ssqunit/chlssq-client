@@ -77,6 +77,13 @@
       <image class="myimg" src="{{upload_img2}}" mode="aspectFit"></image>
     </view>
   </view>
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox">
+      <checkbox value="agree" >
+        <text class="agreeText" catchtap="onAgree">已阅读并同意本平台的相关服务条款</text>
+      </checkbox>
+    </label>
+  </checkbox-group>
   <text class="tips">平台会在1到5个工作日内审核该申请，请留意相关信息，谢谢！</text>
   <button class="comitbtn" bindtap="onCommit">提交申请</button>
   <van-action-sheet
@@ -85,5 +92,36 @@
     bind:close="onClose"
     bind:select="onSelect"
   />
+  <van-popup show="{{agree_show}}" overlay="{{ true }}" bind:close="onAgreeClose">
+    <view class='agree_ctn'>
+      <view class='agree_title_ctn'>
+        <text class='agree_title'>社圈平台服务协议</text>
+        <text class='agree_time'>协议版本生效日期：2019.08.01</text>
+      </view>
+      <scroll-view scroll-y="true">
+        <view class='agree_text'>
+          <text>欢迎使用本软件，请仔细阅读《社圈平台服务协议》（下称“本协议”）</text>
+        </view>
+        <view class='agree_text'>
+          <text>1.您作为本软件的使用者，即本平台用户，下称“用户”；本软件社圈平台，下称“本平台”。</text>
+        </view>
+        <view class='agree_text'>
+          <text>2.用户可以是平台内容的浏览者，也可以是平台内容的发布者</text>
+        </view>
+        <view class='agree_text'>
+          <text>3.用户在本平台发布的内容必须符合国家的相关法律法规，并对发布的内容承担全部风险及责任</text>
+        </view>
+        <view class='agree_text'>
+          <text>4.用户不能在本平台发布任何虚假及有误导性的内容，如有违反，平台有权追究该用户的法律责任</text>
+        </view>
+        <view class='agree_text'>
+          <text>5.平台有权根据用户使用本平台的行为限制用户使用本平台的相关功能，或禁止使用等</text>
+        </view>
+        <view class='agree_text'>
+          <text>6.用户勾选并进驻本平台，则视为用户同意本协议</text>
+        </view>
+      </scroll-view>
+    </view>
+  </van-popup>
 </view>
 

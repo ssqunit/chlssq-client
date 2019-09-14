@@ -25,8 +25,9 @@ Page({
     addrText:"",
     contactText:"",
     markText:"未标记",
-    commited:[]
-
+    commited:[],
+    agree: "",
+    agree_show: false
   },
 
   uploadImg1: function (e) {
@@ -191,6 +192,20 @@ Page({
   onContactInfo: function (e) {
     this.setData({ contactText: e.detail.value })
   },
+  checkboxChange: function (e) {
+    //console.log("---------:checkboxChange , " + e.detail.value);
+    this.data.agree = e.detail.value;
+  },
+  onAgree: function (e) {
+    this.setData({
+      agree_show: true
+    });
+  },
+  onAgreeClose: function (e) {
+    this.setData({
+      agree_show: false
+    });
+  },
 
   check: function () {
     var _name = this.data.shopname.replace(/\s+/g, '');
@@ -205,6 +220,7 @@ Page({
     if (this.data.positions == null){ return "请标记商家位置"; }
     if (this.data.upload_img1 == ""){ return "请上传营业执照！"; }
     if (this.data.upload_img2 == "") { return "请上传商家形象照！"; }
+    if (this.data.agree != "agree") { return "请详细阅读并同意本平台的服务协议！"; }
     return "";
   },
 

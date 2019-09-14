@@ -17,7 +17,9 @@ Page({
     upload_img: "",
     resImgids:[],
     ssqInfo: {},
-    commited: []
+    commited: [],
+    agree: "",
+    agree_show: false
 
 
   },
@@ -128,6 +130,20 @@ Page({
       }
     });
   },
+  checkboxChange: function (e) {
+    //console.log("---------:checkboxChange , " + e.detail.value);
+    this.data.agree = e.detail.value;
+  },
+  onAgree: function (e) {
+    this.setData({
+      agree_show: true
+    });
+  },
+  onAgreeClose: function (e) {
+    this.setData({
+      agree_show: false
+    });
+  },
 
   check: function () {
     var _opt = this.data.shopOpText.replace(/\s+/g, '');
@@ -137,6 +153,7 @@ Page({
     var _conT = this.data.contactText.replace(/\s+/g, '');
     if (_conT == "") { return "请输入商家联系信息！"; }
     if (this.data.upload_img == "") { return "请上传手持身份证照！"; }
+    if (this.data.agree != "agree") { return "请详细阅读并同意本平台的服务协议！"; }
     return "";
   },
 

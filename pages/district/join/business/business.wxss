@@ -67,3 +67,11 @@
 .tips{font-size: 28rpx;color: silver;padding-left: 40rpx;padding-right: 40rpx;}
 .curpos{font-size: 24rpx;padding-left: 15rpx;color: silver;}
 .clickText{color: blue;margin-left: 30rpx;}
+
+checkbox-group{font-size: 32rpx;margin-top: 30rpx;margin-bottom: 10rpx;}
+.agreeText{text-decoration-line: underline;}
+.agree_ctn{width: 600rpx;height: auto;display: flex;flex-direction: column;font-size: 26rpx;margin-top:20rpx;margin-bottom: 20rpx;}
+.agree_title_ctn{width: 100%;height: auto;display: flex;flex-direction: column;align-items: center;}
+.agree_title{font-size: 32rpx;}
+.scroll-view{width: 100%;height:800rpx;display: flex;flex-direction: column;}
+.agree_text{width: 92%;margin-left:4%;height: auto;}

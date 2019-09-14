@@ -249,14 +249,14 @@ Page({
     } else if (this.data.positions == null) {
       return "请标记社圈位置";
     } else if (this.data.agree != 'agree') {
-      return "请详细阅读并同意本平台的服务条款！";
+      return "请详细阅读并同意本平台的服务协议！";
     } else {
       return "";
     } 
   },
 
   checkboxChange: function (e) {
-    console.log("---------:checkboxChange , " + e.detail.value);
+    //console.log("---------:checkboxChange , " + e.detail.value);
     this.data.agree = e.detail.value;
   },
 
