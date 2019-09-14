@@ -17,7 +17,8 @@ Page({
     distance: 0.50,
     shopCount:0,
     personCount:0,
-    zans:[]
+    zans:[],
+    hideJoinBtn:false
   },
 
   //打开商圈在地图上的位置
@@ -156,13 +157,18 @@ Page({
 
               //set starinfo to each shop
               let _starinfo = res.data.data['starinfo'];
+              let _settedStars = false;
               if (_starinfo && _starinfo.length>0)
               {
                 for (let j = 0; j < _starinfo.length; j++){
                   if (_starinfo[j][one['shopid']]){
                     one['stars'] = _starinfo[j][one['shopid']];
+                    _settedStars = true;
                   }
                 }
+              }
+              if(!_settedStars){
+                one['stars'] = ['b', 'b', 'b', 'b', 'b'];
               }
 
               //--商家归类
@@ -217,12 +223,29 @@ Page({
     });
   },
 
+  checkForJoinBtn: function(ssqid) {
+    let arr = app.globalData.userInfo.mySsqInfo;
+    let _hideJoinBtn = false;
+    if (arr.length > 0) {
+      for (let i = 0; i < arr.length; i++) {
+        if (ssqid == arr[i]['ssqid']) {
+          _hideJoinBtn = true;
+          break;
+        }
+      }
+    }
+    this.setData({
+      hideJoinBtn: _hideJoinBtn
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let tab = options.tab;
     let ssqid = options.ssqid;
+    this.checkForJoinBtn(ssqid);
     this.setData({
       active: tab
     })
