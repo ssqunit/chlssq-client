@@ -1,94 +1,25 @@
 /* pages/district/create/create.wxss */
-.ctn {
-  width: 96%;
-  margin-left: 2%;
-}
-.web_title {
-  font-size: 28rpx;
-}
-.line {
-  width: 100%;
-  height: 1rpx;
-  background-color: gray;
-  margin-top: 10rpx;
-  margin-bottom: 10rpx;
-}
-.img_ctn{
-  width: 100%;
-  height: 240rpx;
-  background-color: rgb(152, 252, 247);
-  padding: 5rpx;
-}
-.img{
-  height: 100%;
-  width: 100%;
-}
-.upload_btn{
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-}
-.upload_txt{
-  width: 100%;
-  text-align: center;
-  font-size: 28rpx;
-  color:blue;
-  text-decoration-line: underline;
-}
-.cho_area{
-  width:100%;
-  height: 60rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 28rpx;
-  margin:10rpx 0rpx;
-}
-.pickbtn{
-  margin-left: 10rpx;
-  color:blue;
-  text-decoration-line: underline;
-}
-.cho_area_txt{
-  margin-left: 20rpx;
-}
-.input_name_ctn{
-  width: 100%;
-  height: 60rpx;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 28rpx;
-  margin-top: 10rpx;
-  margin-bottom: 10rpx;
-}
-.input_name{
-  height: 90%;
-  border: 1rpx solid gray;
-  border-radius: 6rpx;
-  padding-left: 5rpx;
-  margin-right: 5rpx;
-}
-.full_name{
-  color: gray;
-}
-.mark{
-  color: blue;
-  margin-left: 10rpx;
-  margin-right: 10rpx;
-  text-decoration-line: underline;
-}
-.curpos{
-  width: 120rpx;
-  color: gray;
-  font-size: 26rpx;
-}
-.attention{
-  color: red;
-  font-size: 28rpx;
-}
-.commit_ctn{
-  width: 100%;
-  margin-top: 60rpx;
-}
+.ctn {width: 96%;margin-left: 2%;}
+.web_title {font-size: 32rpx;}
+.line {width: 100%;height: 1rpx;background-color: #ff9800;margin-top: 10rpx;margin-bottom: 10rpx;}
+.img_ctn{width: 100%;height: 240rpx;background-color: #ff9800;padding: 5rpx;}
+.img{height: 100%;width: 100%;}
+.upload_btn{width: 100%;display: flex;flex-direction: column;align-content: center;}
+.upload_txt{width: 100%;text-align: center;font-size: 28rpx;color:blue;text-decoration-line:underline;}
+.cho_area{width:100%;height: 60rpx;display: flex;flex-direction: row;align-items: center;font-size: 28rpx;margin:10rpx 0rpx;}
+.pickbtn{margin-left: 10rpx;color:blue;text-decoration-line: underline;}
+.cho_area_txt{margin-left: 20rpx;}
+.input_name_ctn{width: 100%;height: 60rpx;display: flex;flex-direction: row;align-items: center;font-size: 28rpx;margin-top: 10rpx;margin-bottom: 10rpx;}
+.input_name{height: 90%;border: 1rpx solid gray;border-radius: 6rpx;padding-left: 5rpx;margin-right: 5rpx;}
+.full_name{color: gray;}
+.mark{color: blue;margin-left: 10rpx;margin-right: 10rpx;text-decoration-line: underline;}
+.curpos{width: 120rpx;color: gray;font-size: 26rpx;}
+.attention{color: #ff9800;font-size: 28rpx;}
+.commit_ctn{width: 100%;margin-top: 60rpx;}
+checkbox-group{font-size: 32rpx;margin-top: 30rpx;}
+.agreeText{text-decoration-line: underline;}
+.agree_ctn{width: 600rpx;height: auto;display: flex;flex-direction: column;font-size: 26rpx;margin-top:20rpx;margin-bottom: 20rpx;}
+.agree_title_ctn{width: 100%;height: auto;display: flex;flex-direction: column;align-items: center;}
+.agree_title{font-size: 32rpx;}
+.scroll-view{width: 100%;height:800rpx;display: flex;flex-direction: column;}
+.agree_text{width: 92%;margin-left:4%;height: auto;}

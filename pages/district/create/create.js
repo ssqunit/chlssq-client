@@ -22,7 +22,9 @@ Page({
     inputText: "",//社圈名称
     positions: null, //社圈位置
     markText:"未标记",
-    commited:[]
+    commited:[],
+    agree:"",
+    agree_show:false
   },
 
   /**
@@ -246,9 +248,27 @@ Page({
       return "请输入社圈名字";
     } else if (this.data.positions == null) {
       return "请标记社圈位置";
+    } else if (this.data.agree != 'agree') {
+      return "请详细阅读并同意本平台的服务条款！";
     } else {
       return "";
     } 
+  },
+
+  checkboxChange: function (e) {
+    console.log("---------:checkboxChange , " + e.detail.value);
+    this.data.agree = e.detail.value;
+  },
+
+  onAgree: function(e) {
+    this.setData({
+      agree_show: true
+    });
+  },
+  onAgreeClose: function (e) {
+    this.setData({
+      agree_show: false
+    });
   },
 
   //检查是否已经成功提交了申请
