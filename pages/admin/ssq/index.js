@@ -178,6 +178,7 @@ Page({
     });
   },
 
+  //点击管理
   onDell: function (e) {
     let _type = e.currentTarget.dataset.type;
     let _ssqid = e.currentTarget.dataset.ssqid;
@@ -220,6 +221,64 @@ Page({
             ssq_status: _status,
             targetSsq: _ssqinfo
           });
+        } else {
+          wx.showToast({ title: '错误：' + res.data.sMsg, icon: "none" });
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({ title: '请检查网络链接！', icon: "none" })
+      }
+    });
+  },
+
+  //提交服务器处理
+  dellSsq: function (e) {
+    let that = this;
+    let _dell = Number(this.data.ssq_status);
+    let _ssqid = this.data.targetSsq.ssqid;
+    //console.log("-----dellSsq: _dell="+_dell+",ssqid="+_ssqid);
+    if(_dell == Number(this.data.targetSsq.status)){
+      wx.showToast({ title: '社圈属性无变化', icon: "none" })
+      return;
+    }
+    if(_dell == 4){
+      wx.showModal({
+        title: '提示',
+        content: '删除社圈会删除所有与之相关的社圈数据，确定要删除么？',
+        success(res) {
+          if (res.confirm) {
+            //console.log("用户点击确认" );
+            that.sendDellReq(_ssqid,_dell);
+          } else if (res.cancel) {
+            //console.log('用户点击取消');
+            return;
+          }
+        }
+      })      
+    }else{
+      that.sendDellReq(_ssqid, _dell);
+    }
+  },
+
+  sendDellReq: function(ssqid,dell){
+    //console.log('----------sendDellReq');
+    let that = this;
+    wx.showLoading({ title: '请稍后......' });
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=dellSsq&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        "ssqid": ssqid,
+        "dell": dell
+      },
+      success: res => {
+        console.log('-------------sendDellReq: res = ' + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          wx.showToast({ title: '成功！', icon: "none" })
+          that.setData({targetSsq: null});
+          that.getSsqInfoByArea("area");
         } else {
           wx.showToast({ title: '错误：' + res.data.sMsg, icon: "none" });
         }
