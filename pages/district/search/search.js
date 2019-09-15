@@ -41,6 +41,7 @@ Page({
                 app.globalData.myLocation.latitude, app.globalData.myLocation.longitude,
                 resList[i]["latitude"], resList[i]['longitude']);
               resList[i]['imageUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, resList[i]['imgid']);
+              resList[i]['hideJoinBtn'] = that.checkForJoinBtn(resList[i]['ssqid']);
             }
             that.setData({ 
               searchList: resList,
@@ -90,6 +91,7 @@ Page({
                 app.globalData.myLocation.latitude,app.globalData.myLocation.longitude,
                 resList[i]["latitude"],resList[i]['longitude']);
               resList[i]['imageUrl'] = common.getImgUrl(app.globalData.userInfo.session_id,resList[i]['imgid']); 
+              resList[i]['hideJoinBtn'] = that.checkForJoinBtn(resList[i]['ssqid']);
             }
             that.setData({ 
               nearbyList: resList,
@@ -115,6 +117,20 @@ Page({
     });
   },
 
+  checkForJoinBtn: function (ssqid) {
+    let arr = app.globalData.userInfo.mySsqInfo;
+    let _hideJoinBtn = false;
+    if (arr.length > 0) {
+      for (let i = 0; i < arr.length; i++) {
+        if (ssqid == arr[i]['ssqid']) {
+          _hideJoinBtn = true;
+          break;
+        }
+      }
+    }
+    return _hideJoinBtn;
+  },
+
   //打开商圈在地图上的位置
   openPosition: function (e) {
     wx.openLocation({
@@ -127,8 +143,9 @@ Page({
   //跳转商圈主页
   goSsqInfo: function (e) {
     let tab = e.currentTarget.dataset.tab;
+    let ssqid = e.currentTarget.dataset.ssqid;
     wx.navigateTo({
-      url: '../detail/detail?tab=' + tab
+      url: '../detail/detail?tab=' + tab + "&ssqid=" + ssqid
     })
   },
 

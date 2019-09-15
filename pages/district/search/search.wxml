@@ -25,7 +25,7 @@
           <text class="name_name">{{item.name}}社圈</text>
           <text class="name_area">{{item.area}}</text>
         </view>
-        <view class="item_btn">
+        <view class="item_btn" hidden="{{item.hideJoinBtn}}">
           <button class="btn_btn" bindtap="goJoin" data-ssqid="{{item.ssqid}}">加入</button>
         </view>
       </view>
@@ -59,7 +59,7 @@
           <text class="name_name">{{item.name}}社圈</text>
           <text class="name_area">{{item.area}}</text>
         </view>
-        <view class="item_btn">
+        <view class="item_btn" hidden="{{item.hideJoinBtn}}">
           <button class="btn_btn" bindtap="goJoin" data-ssqid="{{item.ssqid}}">加入</button>
         </view>
       </view>
