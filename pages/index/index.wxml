@@ -102,9 +102,5 @@
 
   </view>
 
-  <!-- 需要使用 button 来授权登录 -->
-  <!-- <view class="getuserinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-  </view> -->
   <!-- <banner></banner> -->
 </view>

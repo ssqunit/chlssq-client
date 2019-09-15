@@ -36,7 +36,6 @@ Page({
   },
 
   onLoad: function(options) {
-    // console.log('------------index onLoad in ---------');
     var time = util.formatTimeYMD(new Date());
     var weekday = util.getWeekDay(new Date());
     console.debug(time + " - " + weekday)
@@ -52,20 +51,21 @@ Page({
     // qqmapsdk = new QQMapWX({
     //   key: ''
     // });
-
-    app.userInfoReadyCallback = res => {
-      this.data.userInfo.nickName = res.userInfo.nickName;
-      this.data.userInfo.gender = res.userInfo.gender;
-      this.data.userInfo.language = res.userInfo.language;
-      this.data.userInfo.city = res.userInfo.city;
-      this.data.userInfo.province = res.userInfo.province;
-      this.data.userInfo.country = res.userInfo.country;
-      this.data.userInfo.avatarUrl = res.userInfo.avatarUrl;
-      app.globalData.userInfo = this.data.userInfo;
-      //this.requestNotice();
-      this.myLogin();
-    }
-
+    let that = this;
+    wx.getUserInfo({
+      success: function (res) {
+        that.data.userInfo.nickName = res.userInfo.nickName;
+        that.data.userInfo.gender = res.userInfo.gender;
+        that.data.userInfo.language = res.userInfo.language;
+        that.data.userInfo.city = res.userInfo.city;
+        that.data.userInfo.province = res.userInfo.province;
+        that.data.userInfo.country = res.userInfo.country;
+        that.data.userInfo.avatarUrl = res.userInfo.avatarUrl;
+        app.globalData.userInfo = that.data.userInfo;
+        //this.requestNotice();
+        that.myLogin();
+      }
+    })
   },
 
   //拉取通知消息
@@ -120,7 +120,6 @@ Page({
         js_code: app.globalData.js_code
       },
       success: res => {
-        // console.log("----------login:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           that.data.userInfo.ID = res.data.data.openId;
           that.data.userInfo.session_id = res.data.data.session_id;

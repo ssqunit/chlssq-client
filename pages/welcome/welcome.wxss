@@ -1,0 +1,10 @@
+/* pages/welcome/welcome.wxss */
+.ctn{width: 92%;margin-left: 4%;height: auto;}
+.main_ctn{width: 100%;height: auto;margin-top: 58rpx;}
+.logo_ctn{width: 100%;height: auto;display: flex;flex-direction: column;align-items: center;}
+.logo{width: 188rpx;height: 188rpx;}
+.title_ctn{width: 100%;height: auto;display: flex;flex-direction: column;align-items: center;}
+.title{font-size: 48rpx;color: #ff9800;}
+.img_ctn{width: 100%;height: auto;margin-top: 20rpx;}
+.img{width: 80%;margin-left: 10%;height: 288rpx;}
+.btn_ctn{width: 50%;margin-left:25%;height: auto;margin-top:20rpx;}

@@ -16,18 +16,13 @@ App({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         that.globalData.js_code = res.code;
-
         //检测是否授权获取用户信息，如果已经授权，获取并更新用户信息到服务器上
         wx.getSetting({
           success: (res) => {
             if (res.authSetting['scope.userInfo']) {
-              wx.getUserInfo({
-                success: function (res) {
-                  if (that.userInfoReadyCallback) {
-                    that.userInfoReadyCallback(res)
-                  }
-                }
-              })
+              that.userInfoPermissionCallback('success')
+            }else{
+              that.userInfoPermissionCallback('fail')
             }
           }
         })
