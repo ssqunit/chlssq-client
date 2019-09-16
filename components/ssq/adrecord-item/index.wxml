@@ -26,7 +26,7 @@
         <view class="time_list">
           <block wx:for="{{timeSet}}" wx:for-index="index">
           <view class="list_item">
-            <text class="time_value">{{item.value}}</text>
+            <text class="time_value">{{item.begin_hour}}-{{item.end_hour}}</text>
             <text class="time_count">数量：{{item.count}}</text>
           </view>
           </block>
@@ -37,12 +37,16 @@
         <text class="text_value">￥{{price}}</text>
       </view>
       <view class="text_ctn" hidden="{{hideDetail}}">
+        <text class="text_tag">支付状态：</text>
+        <text class="text_value">{{statusStr}}</text>
+      </view>
+      <!-- <view class="text_ctn" hidden="{{hideDetail}}">
         <text class="text_tag">商家：</text>
         <text class="text_value">{{shopName}}</text>
       </view>
       <view class="text_ctn" hidden="{{hideDetail}}">
         <text class="text_tag">社圈：</text>
         <text class="text_value">{{ssqName}}</text>
-      </view>
+      </view> -->
     </view>
 

@@ -130,9 +130,7 @@
   <view class="products" hidden="{{myShopInfo==null?true:false}}">
     <view class="pro_info">
       <text class="pro_title" decode="{{true}}">产品/项目列表：&nbsp;（{{proCount}}&nbsp;个产品）</text>
-      <text class="pro_des" decode="{{true}}">推荐：已推荐&nbsp;{{}},&nbsp;&nbsp;最多推荐&nbsp;6&nbsp;个</text>
-      <text class="pro_des" decode="{{true}}">折扣：折扣中&nbsp;{{}}</text>
-      <text class="pro_des" decode="{{true}}">广告：广告中&nbsp;{{}} ,&nbsp;预购成功&nbsp;{{}}</text>
+      <text class="pro_des" decode="{{true}}">推荐/优惠：{{proCount_flag}}</text>
     </view>
     <view class="pro_list">
       <scroll-view>

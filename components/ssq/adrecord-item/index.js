@@ -28,14 +28,18 @@ Component({
       type:Number,
       value:0
     },
-    shopName:{
+    statusStr:{
       type:String,
       value:""
     },
-    ssqName:{
-      type:String,
-      value:""
-    }
+    // shopName:{
+    //   type:String,
+    //   value:""
+    // },
+    // ssqName:{
+    //   type:String,
+    //   value:""
+    // }
 
 
 

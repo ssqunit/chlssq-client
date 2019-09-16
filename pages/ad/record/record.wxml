@@ -1,13 +1,34 @@
 <!--pages/ad/record/record.wxml-->
 <view class="container">
-  <text class="title">广告记录：{{count}}</text>
+  <view class="title_ctn">
+    <text class="title">广告记录：{{count}}</text>
+    <view class="date_choose">
+      <text class="date_tag">按日期</text>
+      <text class="date_text" bindtap="selectDate" data-type="0">{{dateStart}}</text>
+      <text>-</text>
+      <text class="date_text" bindtap="selectDate" data-type="1">{{dateEnd}}</text>
+      <text class="date_btn" bindtap="confirmSelect">筛选</text>
+    </view>
+  </view>
   <view class="space_line"></view>
   <scroll-view scroll-y style="height:{{scr_h + 'px'}};">
 
     <block wx:for="{{recordsInfo}}" wx:for-index="index">
-    <ssq-adrecord-item dateTime="{{item.dateTime}}" name="{{item.name}}" type="{{item.type}}" dateSet="{{item.dateSet}}" timeSet="{{item.timeSet}}" price="{{item.price}}" shopName="{{item.shopName}}" ssqName="{{item.ssqName}}" />
+    <ssq-adrecord-item dateTime="{{item.timestr}}" name="{{item.productname}}" type="{{item.typestr}}" dateSet="{{item.dateSet}}" timeSet="{{item.content}}" price="{{item.admoney}}" statusStr="{{item.statusstr}}" />
     <view class="bottom_line"></view>
     </block>
 
   </scroll-view>
+
+  <van-popup show="{{popShow}}" position="bottom" overlay="{{ true }}" bind:close="onCancel">
+    <van-datetime-picker
+      type="date"
+      value="{{ currentDate }}"
+      min-date="{{ minDate }}"
+      max-date="{{ maxDate }}"
+      bind:confirm="onConfirm"
+      bind:cancel="onCancel"
+    />
+  </van-popup>
+
 </view>

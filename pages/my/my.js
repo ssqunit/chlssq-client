@@ -19,7 +19,9 @@ Page({
     shop_type:"商家",
     shop_optype:"养生",
     shop_createtime:"2019",
-    reflashPage: false
+    reflashPage: false,
+    proCount: 0,
+    proCount_flag: 0
   },
 
   //打开商圈在地图上的位置
@@ -34,7 +36,7 @@ Page({
   //广告记录
   onADRecord: function(e) {
     wx.navigateTo({
-      url: '../ad/record/record',
+      url: '../ad/record/record?shopid=' + this.data.myShopInfo.shopid
     })
   },
 
@@ -240,6 +242,8 @@ Page({
             var _plist = _obj['product_list'];
             if(_plist != null && _plist.length > 0)
             {
+              let _proCount = _plist.length;
+              let _proCount_flag = 0;
               for(var i=0;i<_plist.length;i++){
                 var _p = _plist[i];
                 //-------img
@@ -254,6 +258,7 @@ Page({
                 var flagids = util.stringToArray(_p['flags']);
                 var _flagArr = [];
                 if(flagids.length > 0){
+                  _proCount_flag ++;
                   for(var f=0;f<flagids.length;f++){
                     _flagArr.push({ "id": flagids[f], "name": common.getProductFlagName(flagids[f])});
                   }
@@ -277,8 +282,11 @@ Page({
                   _short_des = _plist[i]['des'];
                 }
                 _plist[i]['short_des'] = _short_des;
-
               }
+              that.setData({
+                proCount: _proCount,
+                proCount_flag: _proCount_flag
+              });
             }
             _obj['product_list'] = _plist;
 
