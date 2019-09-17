@@ -278,7 +278,7 @@ Page({
           });
 
           //textADInfo
-          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["1"]) {
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["1"] || that.data.ssqInfo.adinfo["1"].length <= 0) {
             var _textADInfo = [];
             while (_textADInfo.length < 2) {
               _textADInfo.push(that.data.defTextADInfo);
@@ -293,7 +293,7 @@ Page({
           }
 
           //imgADInfo
-          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["2"]) {
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["2"] || that.data.ssqInfo.adinfo["2"].length <= 0) {
             var _imgADInfo = [];
             while (_imgADInfo.length < 2) {
               _imgADInfo.push(that.data.defImgADInfo);
@@ -311,7 +311,7 @@ Page({
           }
 
           //shopADInfo
-          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["3"]){
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["3"] || that.data.ssqInfo.adinfo["3"].length <= 0){
             var _shopADInfo = [];
             while(_shopADInfo.length<8){
               _shopADInfo.push(that.data.defShopADInfo);
@@ -334,7 +334,7 @@ Page({
           }
           
           //personADInfo
-          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["4"]) {
+          if (!that.data.ssqInfo.adinfo || !that.data.ssqInfo.adinfo["4"] || that.data.ssqInfo.adinfo["4"].length <= 0) {
             var _personADInfo = [];
             while (_personADInfo.length < 4) {
               _personADInfo.push(that.data.defPersonADInfo);

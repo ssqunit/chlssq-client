@@ -15,7 +15,7 @@
       </view>
       <view class="name_name">
         <text class="name_value">{{myShopInfo.name}}</text>
-        <text class="name_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
+        <text class="name_ssq" style="color:{{ssqnametext_color}};">{{ssqnametext}}</text>
       </view>
       <view class="name_km" bindtap="openPosition">
         <image src="../../static/icons/map_b.png" mode="aspectFit"></image>
@@ -77,7 +77,7 @@
     </view>
     <view class="p_right">
       <text class="p_name">{{myShopInfo.name}}</text>
-      <text class="p_ssq">{{myShopInfo.ssqinfo[0].area}}{{myShopInfo.ssqinfo[0].name}}社圈</text>
+      <text class="p_ssq" style="color:{{ssqnametext_color}};">{{ssqnametext}}</text>
       <view class="p_item">
         <text class="p_tag">综合评价：</text>
         <view class="ctn_stars">

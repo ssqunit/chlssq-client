@@ -27,7 +27,8 @@ Page({
     markText:"未标记",
     commited:[],
     agree: "",
-    agree_show: false
+    agree_show: false,
+    myShopInfo:null
   },
 
   uploadImg1: function (e) {
@@ -160,7 +161,7 @@ Page({
           that.toast("已成功提交申请！请勿重复提交！");
           that.data.commited.push({ "name": that.data.shopname });
         } else {
-          that.toast("提交失败！请稍后再试。");
+          that.toast("提交失败！"+res.data.sMsg);
         }
       },
       fail: res => {
@@ -248,6 +249,66 @@ Page({
     })
   },
 
+  getMyShopInfo: function () {
+    var that = this;
+    wx.showLoading({
+      title: '加载中，请稍后...',
+    })
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getMyShopInfo',
+        'session_id': app.globalData.userInfo.session_id,
+        'openid': app.globalData.userInfo.ID,
+        'iself': 1
+      },
+      success: res => {
+        wx.hideLoading();
+        //console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          if (res.data.data == null || res.data.data.length <= 0) {
+            that.setData({
+              myShopInfo: null
+            })
+          } else {
+            var _obj = res.data.data[0];
+            // _obj['ssqImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
+            // _obj['ssqCImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.cimg);
+
+            that.setData({
+              myShopInfo: _obj
+            })
+
+            that.updateShopInfo();
+          }
+        } else {
+          wx.hideLoading();
+          wx.showToast({
+            title: '查询社圈失败！',
+            icon: 'none'
+          })
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络链接！',
+          icon: 'none'
+        })
+      }
+    });
+  },
+
+  updateShopInfo: function () {
+    this.setData({
+      shopname: this.data.myShopInfo.name,
+      shopOpText: this.data.myShopInfo.optext,
+      addrText: this.data.myShopInfo.addr,
+      contactText: this.data.myShopInfo.contact
+    });
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -263,6 +324,7 @@ Page({
     this.setData({
       ssqInfo:_info
     })
+    this.getMyShopInfo();
   },
 
   /**

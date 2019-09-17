@@ -23,19 +23,19 @@
         <view class="info_item">
           <text class="info_star">*</text>
           <text class="info_tag">经营信息：</text>
-          <textarea maxlength="80" type="text" bindinput="onOpTextInfo" placeholder="请输入个人经营的相关信息"></textarea>
+          <textarea value="{{shopOpText}}" maxlength="80" type="text" bindinput="onOpTextInfo" placeholder="请输入个人经营的相关信息"></textarea>
         </view>
         <view class="line_space"></view>
         <view class="info_item">
           <text class="info_star">*</text>
           <text class="info_tag">商家地址：</text>
-          <textarea maxlength="50" type="text" bindinput="onAddrInfo" placeholder="请输地址信息"></textarea>
+          <textarea value="{{addrText}}" maxlength="50" type="text" bindinput="onAddrInfo" placeholder="请输地址信息"></textarea>
         </view>
         <view class="line_space"></view>
         <view class="info_item">
           <text class="info_star">*</text>
           <text class="info_tag">商家联系：</text>
-          <input maxlength="30" type="text" bindinput="onContactInfo" placeholder="请输入商家联系信息"></input>
+          <input value="{{contactText}}" maxlength="30" type="text" bindinput="onContactInfo" placeholder="请输入商家联系信息"></input>
         </view>
       </view>
       <view class="line_space"></view>

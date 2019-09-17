@@ -21,7 +21,9 @@ Page({
     shop_createtime:"2019",
     reflashPage: false,
     proCount: 0,
-    proCount_flag: 0
+    proCount_flag: 0,
+    ssqnametext_color:"",
+    ssqnametext:""
   },
 
   //打开商圈在地图上的位置
@@ -213,6 +215,9 @@ Page({
   //
   getMyShopInfo: function () {
     var that = this;
+    wx.showLoading({
+      title: '加载中，请稍后...',
+    })
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -223,10 +228,13 @@ Page({
         'iself':1
       },
       success: res => {
-        console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
+        wx.hideLoading();
+        //console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
         if (res.data.iRet == 0) {
           if(res.data.data == null || res.data.data.length <= 0){
-            myShopInfo = null;
+            that.setData({
+              myShopInfo: null
+            })
           }else{
             var _obj = res.data.data[0];
             _obj['ssqImgUrl'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
@@ -299,12 +307,14 @@ Page({
             that.updateShopInfo();
           }
         } else {
+          wx.hideLoading();
           wx.showToast({
             title: '查询社圈失败！',
           })
         }
       },
       fail: res => {
+        wx.hideLoading();
         wx.showToast({
           title: '请检查网络链接！',
         })
@@ -324,11 +334,36 @@ Page({
     }
     var _createtime = util.formatTime(new Date(this.data.myShopInfo.create_time * 1000));
     var _dis = util.countDistance(app.globalData.myLocation.latitude, app.globalData.myLocation.longitude,this.data.myShopInfo.latitude,this.data.myShopInfo.longitude);
+
+    //商家状态
+    let _color="black";
+    let _text = "";
+    if (this.data.myShopInfo.status == 0){
+      _color = 'red';
+      if (this.data.myShopInfo.ssqid == 0){
+        _text = "没有加入社圈，本商家及产品不会展示给用户";
+      }else{
+        _text = "入驻审核中";
+      }
+    } else if (this.data.myShopInfo.status == 2){
+      _color = 'red';
+      _text = "入驻审核:入驻失败";
+    } else if (this.data.myShopInfo.status == 3) {
+      _color = 'red';
+      _text = "商家冻结中";
+    }else{
+      if (this.data.myShopInfo.ssqinfo[0]){
+        _text = this.data.myShopInfo.ssqinfo[0].area + this.data.myShopInfo.ssqinfo[0].name + '社圈';
+      }
+    }
+
     this.setData({
       shop_type:_type,
       shop_optype:_optype,
       shop_createtime:_createtime,
-      shop_distance:_dis
+      shop_distance:_dis,
+      ssqnametext_color:_color,
+      ssqnametext:_text
     })
   },
   /**
