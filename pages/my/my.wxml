@@ -120,7 +120,7 @@
   <!-- 我的广告记录 -->
   <view class="space_line" hidden="{{myShopInfo==null?true:false}}"></view>
   <view class="ad_info" hidden="{{myShopInfo==null?true:false}}">
-    <text class="ad_count">我购买的广告：{{myShopInfo.adCount}}单</text>
+    <text class="ad_count">购买记录：{{myShopInfo.adCount}}条</text>
     <view hidden="{{myShopInfo.adCount>0?false:true}}">
       <text class="ad_btn" bindtap="onADRecord">详情>></text>
     </view>
