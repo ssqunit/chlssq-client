@@ -13,6 +13,9 @@ Page({
    * Page initial data
    */
   data: {
+    v_time:"",
+    v_avatarUrl:"",
+    v_nickname:"",
     adShow:false,
     myShopInfo:{},
     shop_distance:0.1,
@@ -24,6 +27,13 @@ Page({
     proCount_flag: 0,
     ssqnametext_color:"",
     ssqnametext:""
+  },
+
+  //跳转-个人详细信息
+  goMyPerson: function (e) {
+    wx.navigateTo({
+      url: 'person/info'
+    })
   },
 
   //打开商圈在地图上的位置
@@ -301,7 +311,12 @@ Page({
 
             //整理结束
 
+            let time = util.formatTimeYMD(new Date());
+            let weekday = util.getWeekDay(new Date());
             that.setData({
+              v_time: time + " - " + weekday,
+              v_nickname: app.globalData.userInfo.nickName,
+              v_avatarUrl: app.globalData.userInfo.avatarUrl,
               myShopInfo:_obj
             })
             that.updateShopInfo();

@@ -1,17 +1,6 @@
 <!--index.wxml-->
 <view>
 
-  <!-- 顶部用户信息栏 -->
-  <view class="flex-row space-items default-padding">
-    <view class="flex-row center" bindtap="goMyPerson">
-      <avatar class="small-avatar" src="{{v_avatarUrl}}" mode="aspectFit"></avatar>
-      <text class="default-margin">{{v_nickName}}</text>
-    </view>
-    <view class="flex-row center">
-      <text>{{time}}</text>
-    </view>
-  </view>
-
   <!-- 搜索栏 -->
   <view class="flex-row center van-hairline--top">
     <view class="expand">

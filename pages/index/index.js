@@ -18,9 +18,6 @@ Page({
     hasSendLogin:false,
     noticeType:0,
     userInfo: c_userInfo.UserInfo,
-    v_nickName:"",
-    v_avatarUrl:"",
-    time: "",
     kmtext:"当前位置",
     searchKeyword: "",
     ssqInfo: null,
@@ -36,12 +33,6 @@ Page({
   },
 
   onLoad: function(options) {
-    var time = util.formatTimeYMD(new Date());
-    var weekday = util.getWeekDay(new Date());
-    console.debug(time + " - " + weekday)
-    this.setData({
-      time: time + " - " + weekday
-    })
     
     Toast.loading({
       mask: true,
@@ -140,10 +131,6 @@ Page({
                 that.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
                 app.globalData.userInfo = that.data.userInfo;
                 
-                that.setData({
-                  v_nickName: that.data.userInfo.nickName,
-                  v_avatarUrl: that.data.userInfo.avatarUrl
-                })
               }else{
                 Toast("Get user info fail:"+res.data.sMsg);
               }
@@ -376,12 +363,12 @@ Page({
     })
   },
 
-  //跳转-个人详细信息
-  goMyPerson: function(e) {
-    wx.navigateTo({
-      url: '../my/person/info'
-    })
-  },
+  // //跳转-个人详细信息
+  // goMyPerson: function(e) {
+  //   wx.navigateTo({
+  //     url: '../my/person/info'
+  //   })
+  // },
 
   //跳转搜索商圈页面
   doSearch: function (e) {

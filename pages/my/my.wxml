@@ -1,4 +1,18 @@
 <!--pages/my.wxml-->
+<view class="user_info">
+  <view class='info_time'>
+    <text class='time_text'>{{v_time}}</text>
+  </view>
+  <view class='info_main' bindtap="goMyPerson">
+    <image class='main_avatar' src="{{v_avatarUrl}}" mode="aspectFit"></image>
+    <text class='main_nickname'>{{v_nickname}}</text>
+  </view>
+</view>
+<view class='b_b'>
+  <view class='b_n'></view>
+</view>
+
+
 <view class="container">
   
   <!-- 未加入社圈 -->
@@ -65,7 +79,7 @@
         </view>
       </view>
       <view class="detail_right">
-        <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image>
+        <!-- <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image> -->
       </view>
     </view>
   </view>
@@ -106,31 +120,40 @@
         <text class="p_tag">经营信息：</text>
         <text class="p_value">{{myShopInfo.optext}}</text>
       </view>
-      <view class="p_item">
-        <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image>
-        <button class='share_btn' id="shareBtn" open-type="share" hover-class="other-button-hover">
-          <image src='../../static/custom/icons/share_icon.png'></image>
-          分享
-        </button>
-      </view>
+      <!-- <view class="p_item"> -->
+        <!-- <image src="{{myShopInfo.ssqCImgUrl}}" data-src="{{myShopInfo.ssqCImgUrl}}" bindtap="previewImage"></image> -->
+      <!-- </view> -->
     </view>
   </view>
 
+  <button class='share_btn' id="shareBtn" open-type="share" hover-class="other-button-hover">
+    <image src='../../static/custom/icons/share_icon.png'></image>
+    分享
+  </button>
 
-  <!-- 我的广告记录 -->
-  <view class="space_line" hidden="{{myShopInfo==null?true:false}}"></view>
-  <view class="ad_info" hidden="{{myShopInfo==null?true:false}}">
-    <text class="ad_count">购买记录：{{myShopInfo.adCount}}条</text>
-    <view hidden="{{myShopInfo.adCount>0?false:true}}">
-      <text class="ad_btn" bindtap="onADRecord">详情>></text>
-    </view>
-  </view>
+</view>
 
+<view class='b_d'>
+  <view class='b_u'></view>
+  <view class='b_n'></view>
+</view>
+
+<view class="container">
   <!-- 产品详情 -->
   <view class="products" hidden="{{myShopInfo==null?true:false}}">
     <view class="pro_info">
-      <text class="pro_title" decode="{{true}}">产品/项目列表：&nbsp;（{{proCount}}&nbsp;个产品）</text>
-      <text class="pro_des" decode="{{true}}">推荐/优惠：{{proCount_flag}}</text>
+      <view class="pro_info_left">
+        <text class="pro_title" decode="{{true}}">产品/项目列表：&nbsp;（{{proCount}}&nbsp;个产品）</text>
+        <text class="pro_des" decode="{{true}}">推荐/优惠：{{proCount_flag}}</text>
+      </view>
+      <view class='pro_info_right'>
+        <view class="ad_info" hidden="{{myShopInfo==null?true:false}}">
+          <text class="ad_count">广告记录：</text>
+          <view hidden="{{myShopInfo.adCount>0?false:true}}">
+            <text class="ad_btn" bindtap="onADRecord">{{myShopInfo.adCount}}条</text>
+          </view>
+        </view>
+      </view>
     </view>
     <view class="pro_list">
       <scroll-view>
