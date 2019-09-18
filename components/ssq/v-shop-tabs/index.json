@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ssq-shop-item": "/components/ssq/shop-item/shop-item"
+  }
+}

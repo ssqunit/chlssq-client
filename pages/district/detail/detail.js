@@ -177,9 +177,11 @@ Page({
                 for (let j = 0; j < _bInfo.length;j++){
                   if(Number(optype) == _bInfo[j]['optype']){
                     _bInfo[j]['members'].push(one);
+                    _bInfo[j]['color'] = "black";
                   }
                 }
                 _bInfo[0]['members'].push(one);
+                _bInfo[0]['color'] = "red";
                 _bCount ++;
 
                 //clear no members obj

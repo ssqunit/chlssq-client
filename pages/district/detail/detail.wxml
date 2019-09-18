@@ -20,9 +20,11 @@
     </view>
   </view>
   <view class="contents_info">
-    <van-tabs active="{{ active }}" bind:change="onChange" line-width="0">
+    <van-tabs active="{{ active }}" bind:change="onChange" type="line">
       <van-tab title="本圈商家">
-        <van-tabs active="{{ active_chi }}" bind:change="onChangeChi" type="line">
+        <ssq-v-shop-tabs tabsInfo="{{shopsInfo.bInfo}}" target_members="{{shopsInfo.bInfo[0].members}}" bind:onShopItemClick="onShopItemClick" bind:onShopZanClick="onShopZanClick" />
+
+        <!-- <van-tabs active="{{ active_chi }}" bind:change="onChangeChi" type="line">
           <block wx:for="{{shopsInfo.bInfo}}" wx:for-index="index" >
             <van-tab optype="0" title="{{item.opname}}">
               <view class="scroll_ctn">
@@ -34,7 +36,8 @@
               </view>
             </van-tab>
           </block>
-        </van-tabs>
+        </van-tabs> -->
+
       </van-tab>
       <van-tab title="本圈个人">
         <view class="scroll_ctn">
