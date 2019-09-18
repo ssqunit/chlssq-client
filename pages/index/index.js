@@ -26,9 +26,9 @@ Page({
     textADInfo: [],
     defImgADInfo: {"type":2, "shopid": "", "productid": -1, "adtext": "", "flag": 0, "img": "../../static/custom/defaults/ad_img.jpg" },
     imgADInfo: [],
-    defShopADInfo: {"type":3, "shopid": -1, "productid":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
+    defShopADInfo: {"type":3, "shopid": -3, "productid":"", "adtext": "", "flag": 0, "img":"../../../static/custom/defaults/shop_logo.png"},
     shopADInfo: [],
-    defPersonADInfo: {"type":4, "shopid": -1, "productid": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
+    defPersonADInfo: {"type":4, "shopid": -4, "productid": "", "adtext": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
     personADInfo:[],
   },
 
@@ -423,7 +423,7 @@ Page({
     let shopId = e.currentTarget.dataset.id;
     let owner = e.currentTarget.dataset.owner;
     // console.log("---------onBusClick:shopid="+shopId+",owner="+owner);
-    if(shopId == -1){
+    if(shopId == -3 || shopId == -4){
       wx.navigateTo({
         url: '../ad/shop/shop?shopid=' + shopId + '&owner=' + owner
       })

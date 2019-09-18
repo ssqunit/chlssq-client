@@ -1,44 +1,193 @@
 // pages/ad/shop/shop.js
+
+const app = getApp()
+
+// 在需要使用的js文件中，导入js
+var util = require('../../../utils/util.js');
+var common = require("../../../utils/common.js")
+
+import Toast from '../../../components/vant/toast/toast';
+import Dialog from '../../../components/vant/dialog/dialog';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    priceTotal:0.0,
-    defShopADInfo: { "shopId": -1, "productId": "", "text": "", "flag": 0, "img": "../../../static/custom/defaults/shop_logo.png" },
-    timeItems:[
-      { "id":100, "price": 1.0, "timeStart": "2019-08-20 0:00", "timeEnd": "2019-08-26 23:59", "left":2},
-      { "id": 101, "price": 1.0, "timeStart": "2019-08-20 0:00", "timeEnd": "2019-08-26 23:59", "left": 2 }
-    ]
-
+    adType:3,
+    myShopInfo:null,
+    adInfo:null,
+    priceTotal:0.0
 
   },
 
   checkboxChange: function (e) {
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-    var that=this;
-    var _price = 0;
-    var len = e.detail.value.length;
+    let _price = 0;
+    let len = e.detail.value.length;
     if(len>0){
-      for (var i = 0; i < len; i++) {
-        for (var j = 0; j < that.data.timeItems.length; j++) {
-          if (e.detail.value[i] == that.data.timeItems[j].id){
-            _price += that.data.timeItems[j].price;
+      for (let i = 0; i < len; i++) {
+        for (let j = 0; j < this.data.adInfo.length; j++) {
+          if (e.detail.value[i] == this.data.adInfo[j].ad_period_id){
+            _price += this.data.adInfo[j].cur_price;
           }
       }
       }
     }
-    that.setData({
-      priceTotal:_price
+    this.setData({
+      priceTotal:Number(_price)
     })
+  },
+
+  getMyShopInfo: function () {
+    var that = this;
+    wx.showLoading({
+      title: '加载中，请稍后...',
+    })
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getMyShopInfo',
+        'session_id': app.globalData.userInfo.session_id,
+        'openid': app.globalData.userInfo.ID,
+        'iself': 1
+      },
+      success: res => {
+        wx.hideLoading();
+        // console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          if (res.data.data == null || res.data.data.length <= 0) {
+            that.setData({
+              myShopInfo: null
+            })
+          } else {
+            var _obj = res.data.data[0];
+            _obj['img'] = common.getImgUrl(app.globalData.userInfo.session_id, _obj.img);
+            _obj['adtext'] = _obj.name;
+
+            that.setData({
+              myShopInfo: _obj
+            })
+          }
+          that.onRQCompleted();
+        } else {
+          wx.hideLoading();
+          wx.showToast({
+            title: '查询社商失败！',
+          })
+          that.onRQCompleted();
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        wx.showToast({
+          title: '请检查网络链接！',
+        })
+        that.onRQCompleted();
+      }
+    });
+  },
+
+  //获取服务器配置
+  getAdCfg: function () {
+    var that = this;
+    wx.showLoading({
+      title: '加载中，请稍后...',
+    })
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        'function': 'getAdCfg',
+        'session_id': app.globalData.userInfo.session_id,
+        'adType': this.data.adType
+      },
+      success: res => {
+        wx.hideLoading();
+        // console.log('-------getAdCfg: res = ' + JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          if (res.data.data) {
+            let _info = res.data.data;
+            that.setData({
+              adInfo: _info
+            })
+            that.getMyShopInfo();
+          } else {
+            that.setData({
+              adInfo: null
+            })
+            that.onRQCompleted();
+          }
+        } else {
+          Toast("查询广告失败！");
+          that.onRQCompleted();
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        Toast.fail("请检查网络链接！");
+        that.onRQCompleted();
+      }
+    });
+  },
+
+  onRQCompleted: function () {
+    // console.log('-----------onRQCompleted------');
+    if(!this.data.adInfo){
+      Dialog.alert({title: '提示',message: '还没开售！返回上一页。'
+      }).then(() => {
+        wx.navigateBack({
+          //可回传参数
+        })
+      });
+      return;
+    }
+    if(!this.data.myShopInfo){
+      Dialog.alert({
+        title: '提示', message: '您还不是商家，请先入驻为商家！返回上一页。'
+      }).then(() => {
+        wx.navigateBack({
+          //可回传参数
+        })
+      });
+      return;
+    }
+    if (this.data.adType == 3){
+      if(this.data.myShopInfo.type != 2){
+        Dialog.alert({
+          title: '提示', message: '您是个人商家，请抢购个人展位！返回上一页。'
+        }).then(() => {
+          wx.navigateBack({
+            //可回传参数
+          })
+        });
+
+      }
+    } else if (this.data.adType == 4){
+      if (this.data.myShopInfo.type != 3) {
+        Dialog.alert({
+          title: '提示', message: '您是商家，请抢购商家展位！返回上一页。'
+        }).then(() => {
+          wx.navigateBack({
+            //可回传参数
+          })
+        });
+      }
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let _shopid = options.shopid;
+    //console.log('-------onLoad, shopid = ' + _shopid);
+    this.setData({
+      adType: Math.abs(_shopid)
+    });
+    this.getAdCfg();
   },
 
   /**

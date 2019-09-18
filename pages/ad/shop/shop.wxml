@@ -6,7 +6,7 @@
   <view class="effect">
     <van-row>
       <van-col span="6">
-        <ssq-logo cname="{{defShopADInfo.text}}" cid="{{defShopADInfo.shopId}}" cflag="{{defShopADInfo.flag}}" cimg="{{defShopADInfo.img}}" />
+        <ssq-logo shop="{{myShopInfo}}" cflag="{{myShopInfo.flag}}" />
       </van-col>
     </van-row>
   </view>
@@ -14,14 +14,16 @@
     <text>展示周期：</text>
   </view>
   <checkbox-group bindchange="checkboxChange">
-    <label class="checkbox" wx:for="{{timeItems}}">
-      <checkbox value="{{item.id}}">
+    <label class="checkbox" wx:for="{{adInfo}}">
+      <checkbox value="{{item.ad_period_id}}">
         <view class="show_time">
-          <text>{{item.timeStart}}</text>
+          <text class="time_ctn">{{item.begin_date}}  {{item.begin_hour}}</text>
           <view class="hspace"></view>
           <text>至</text>
           <view class="hspace"></view>
-          <text>{{item.timeEnd}}</text>
+          <text class="time_ctn">{{item.end_date}}  {{item.end_hour}}</text>
+          <view class="hspace"></view>
+          <text>价格：￥{{item.cur_price}}</text>
           <view class="hspace"></view>
           <text>剩余：{{item.left}}</text>
         </view>
@@ -30,4 +32,8 @@
   </checkbox-group> 
 
   <button type="primary">抢购：￥{{priceTotal}}</button>
+
+  <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
+
 </view>
