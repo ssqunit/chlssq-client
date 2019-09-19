@@ -1,18 +1,25 @@
 <!--index.wxml-->
-<view>
+<view> 
 
   <!-- 搜索栏 -->
-  <view class="flex-row center van-hairline--top">
-    <view class="expand">
-      <van-search value="{{ searchKeyword }}" placeholder="请输入搜索关键词" use-action-slot bind:search="doSearch" bind:change="doSearchChange" data-type="0">
-        <view slot="action" bind:tap="doSearch" data-type="0">搜索</view>
-      </van-search>
+  <view class="top_bar_ctn">
+    <view class="tbar_search">
+      <image class="search_icon" mode="aspectFit" src="../../static/icons/search_b.png"></image>
+      <view class="input_ctn">
+        <input value="{{ searchKeyword }}" placeholder="请输入搜索关键字" bindinput="doSearchChange"></input>
+      </view>
+      <view class="search_clearn_ctn">
+        <image hidden="{{searchKeyword == '' ? true : false }}" class="search_clearn" mode="aspectFit" src="../../static/custom/icons/icon_clear.png" bindtap="onClearSearch"></image>
+      </view>
+      <text bindtap="doSearch" data-type="0">搜索</text>
     </view>
-    <view class="s_btn">
-      <van-button size="normal" bindtap="doSearch" data-type="1">附近</van-button>
+    <view class="tbar_btn" bindtap="doSearch" data-type="1">
+      <image mode="aspectFit" src="../../static/custom/icons/nearby_icon.png"></image>
+      <text>附近</text>
     </view>
-    <view class="s_btn">
-      <van-button bindtap="goCreatSsq" size="normal">新建</van-button>
+    <view class="tbar_btn" bindtap="goCreatSsq">
+      <image mode="aspectFit" src="../../static/custom/icons/newssq_icon.png"></image>
+      <text>新建</text>
     </view>
   </view>
 

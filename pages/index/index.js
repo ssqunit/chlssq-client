@@ -392,7 +392,15 @@ Page({
     }
   },
   doSearchChange: function (e) {
-    this.data.searchKeyword = e.detail;
+    console.log('---------doSearchChange:' + e.detail.value);
+    this.setData({
+      searchKeyword: e.detail.value
+    });
+  },
+  onClearSearch: function (e) {
+    this.setData({
+      searchKeyword: ""
+    });
   },
 
   //跳转创建商圈

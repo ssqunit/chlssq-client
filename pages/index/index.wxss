@@ -1,4 +1,17 @@
 @import "/components/vant/common/index.wxss";
+
+.top_bar_ctn{width: 100%;height: 68rpx;display: flex;flex-direction: row;background-color: #ff9800;}
+.tbar_btn{width: 80rpx;height: 100%;display: flex;flex-direction: column;align-items: center;}
+.tbar_btn image{width: 100%;height: 40rpx;}
+.tbar_btn text{width: 100%;height: auto;color: white;font-size: 22rpx;text-align: center;}
+.tbar_search{width: calc(100% - 180rpx);height: 48rpx;display: flex;flex-direction: row;align-items: center;margin-left: 10rpx;margin-top: 10rpx;border-radius: 20rpx;background-color: white;}
+.search_icon{width: 30rpx;height: 30rpx;margin: 10rpx;}
+.tbar_search text{width: 60rpx;height: auto;font-size: 26rpx;margin: 20rpx;}
+.input_ctn{font-size: 26rpx;width: calc(100% - 200rpx);height: auto;}
+.search_clearn_ctn{width: 30rpx;height: 100%;margin: 0 10rpx;display: flex;flex-direction: row;align-items: center;}
+.search_clearn{width: 20rpx;height: 20rpx;}
+
+
 .s_btn{width: 140rpx;}
 .kmicon{
   height: 40rpx;width: 100%;
