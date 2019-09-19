@@ -18,7 +18,8 @@ Page({
     adType:3,
     myShopInfo:null,
     adInfo:null,
-    priceTotal:0.0
+    priceTotal:0.0,
+    ad_period_ids:null
 
   },
 
@@ -36,7 +37,8 @@ Page({
       }
     }
     this.setData({
-      priceTotal:Number(_price)
+      priceTotal:Number(_price),
+      ad_period_ids: e.detail.value
     })
   },
 
@@ -56,7 +58,7 @@ Page({
       },
       success: res => {
         wx.hideLoading();
-        // console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
+        console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
         if (res.data.iRet == 0) {
           if (res.data.data == null || res.data.data.length <= 0) {
             that.setData({
@@ -176,6 +178,66 @@ Page({
         });
       }
     }
+  },
+
+  onPay: function (e) {
+    if (!this.data.ad_period_ids || this.data.ad_period_ids.length <= 0) {
+      Toast("请选择广告时段！");
+      return;
+    }
+    //format content
+    var _temArr = [];
+    for (var i = 0; i < this.data.ad_period_ids.length; i++) {
+      var _objstr = this.data.ad_period_ids[i] + ",1";
+      _temArr.push(_objstr);
+    }
+    var _content = util.arrayToString(_temArr);
+    //console.log('-----content='+_content);
+    //下单
+    wx.showLoading({ title: '请稍后......' })
+    common.request({
+      method: "POST",
+      url: common.BASE_URL + "?function=adOrder&session_id=" + app.globalData.userInfo.session_id,
+      data: {
+        'productid': 0,
+        'ssqid': this.data.myShopInfo.ssqid,
+        'shopid': this.data.myShopInfo.shopid,
+        'flags': '',
+        'admoney': this.data.priceTotal,
+        'type': this.data.adType,
+        'content': _content
+      },
+      success: res => {
+        //console.log("----------- adOrder:success" + JSON.stringify(res));
+        wx.hideLoading();
+        if (res.data.iRet == 0) {
+          Dialog.alert({
+            title: '提示',
+            message: '下单成功！返回上一页。'
+          }).then(() => {
+            wx.navigateBack({
+              //可回传参数
+            })
+          });
+        } else if (res.data.iRet == -4002) {
+          var sarr = res.data.sMsg;
+          var msg = "";
+          if (sarr && sarr.length > 0) {
+            for (var i = 0; i < sarr.length; i++) {
+              msg += sarr[i]['begin_hour'] + '-' + sarr[i]['end_hour'] + ","
+            }
+          }
+          Toast('下单失败！重复购买了：' + msg)
+        } else {
+          Toast('下单失败！' + res.data.sMsg)
+        }
+      },
+      fail: res => {
+        wx.hideLoading();
+        Toast('请检查网络链接！')
+      }
+    });
+
   },
 
   /**

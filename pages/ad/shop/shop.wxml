@@ -31,7 +31,7 @@
     </label>
   </checkbox-group> 
 
-  <button type="primary">抢购：￥{{priceTotal}}</button>
+  <button type="primary" bindtap="onPay">抢购：￥{{priceTotal}}</button>
 
   <van-toast id="van-toast" />
   <van-dialog id="van-dialog" />
