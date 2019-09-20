@@ -15,6 +15,7 @@ var common = require("../../utils/common.js")
 
 Page({
   data: {
+    refreshing:false,
     hasSendLogin:false,
     noticeType:0,
     userInfo: c_userInfo.UserInfo,
@@ -227,6 +228,7 @@ Page({
         "longitude": longitude
       },
       success: res => {
+        that.onPullDownCompleted();
         console.log("----------getNearbySsqDetail:res=" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           var _ssqInfo = res.data.data;
@@ -349,6 +351,7 @@ Page({
         Toast.clear();
       },//success
       fail: res => {
+        that.onPullDownCompleted();
         Toast.fail("获取商圈信息失败！请检查网络或稍后再试。");
       },//fail
     })//common.request
@@ -468,7 +471,19 @@ Page({
     if(!this.data.hasSendLogin){
       app.onLaunch();
     }
-  }
+  },
 
+  onPullDownCompleted: function () {
+    this.data.refreshing = false;
+    wx.stopPullDownRefresh();
+  },
+  onPullDownRefresh() {
+    // console.log('-------onPullDownRefresh');
+    // 上拉刷新
+    if (!this.data.refreshing) {
+      this.data.refreshing = true;
+      this.getMyPosition();
+    }
+  },
 
 })

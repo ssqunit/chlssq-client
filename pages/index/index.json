@@ -12,5 +12,6 @@
     "avatar": "/components/ssq/avatar/index",
     "banner": "/components/ssq/banner/banner",
     "van-dialog": "/components/vant/dialog/index"
-  }
+  },
+  "enablePullDownRefresh": true
 }
