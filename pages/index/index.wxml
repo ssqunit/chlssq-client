@@ -41,7 +41,7 @@
   <!-- Post广告区域 -->
   <view>
     <view class="swiper_txtctn">
-      <swiper class="swiper_self" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
+      <swiper class="swiper_self_txt" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
         <block wx:for="{{textADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_item" bindtap="onSwiperAD" data-pid="{{item.productid}}">
             <van-notice-bar left-icon="volume-o" color="orange" text="{{item.adtext}}" />
@@ -52,8 +52,8 @@
     </view>
   </view>
   <view>
-    <view class="swiper_imgctn">
-      <swiper class="swiper_self" autoplay='true' interval='5000' duration='1000' circular='true'>
+    <view class="swiper_img_ctn">
+      <swiper class="swiper_self_img" autoplay='true' interval='5000' duration='1000' circular='true'>
         <block wx:for="{{imgADInfo}}" wx:for-index="index">
           <swiper-item class="swiper_img_item"  bindtap="onSwiperAD" data-pid="{{item.productid}}">
             <image src='{{item.img}}' class='swiper_img' mode='aaaaspectFit'></image>

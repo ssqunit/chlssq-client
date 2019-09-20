@@ -5,5 +5,6 @@
       "van-popup": "/components/vant/popup/index",
       "ssq-product-my":"/components/ssq/product-item-my/index"
   },
-  "navigationBarTitleText": "我的社商"
+  "navigationBarTitleText": "我的社商",
+  "enablePullDownRefresh": true
 }

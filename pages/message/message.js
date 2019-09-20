@@ -12,12 +12,11 @@ Page({
    * Page initial data
    */
   data: {
-    msgList:null
+    msgList:null,
+    refreshing: false
   },
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
+
+  pageRequest: function () {
     let that = this;
     common.request({
       method: "GET",
@@ -27,13 +26,14 @@ Page({
         'session_id': app.globalData.userInfo.session_id
       },
       success: res => {
-        console.log("----------- getMsg:success" + JSON.stringify(res));
+        that.onPullDownCompleted();
+        //console.log("----------- getMsg:success" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           var list = res.data.data;
-          if(list && list.length>0){
+          if (list && list.length > 0) {
             list.sort(that.compare("create_time"));
-            for(var i=0;i<list.length;i++){
-              var ms = Number(list[i]['create_time'])*1000;
+            for (var i = 0; i < list.length; i++) {
+              var ms = Number(list[i]['create_time']) * 1000;
               list[i]['date'] = util.formatTime(new Date(ms));
               try {
                 var value = wx.getStorageSync(String(list[i]['id']))
@@ -43,9 +43,9 @@ Page({
               }
             }
             that.setData({
-              msgList:list
+              msgList: list
             });
-          }else{
+          } else {
             wx.showToast({
               title: '没有消息！',
               icon: 'none'
@@ -59,14 +59,20 @@ Page({
         }
       },
       fail: res => {
+        that.onPullDownCompleted();
         wx.showToast({
           title: '请检查网络链接！',
           icon: 'none'
         })
       }
     });
+  },
 
-
+  /**
+   * Lifecycle function--Called when page load
+   */
+  onLoad: function (options) {
+    this.pageRequest();
   },
 
   compare: function (property) {
@@ -81,6 +87,12 @@ Page({
 
     }
 
+  },
+
+
+  onPullDownCompleted: function () {
+    this.data.refreshing = false;
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -115,7 +127,12 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    console.log('-------onPullDownRefresh');
+    // 上拉刷新
+    if (!this.data.refreshing) {
+      this.data.refreshing = true;
+      this.pageRequest();
+    }
   },
 
   /**

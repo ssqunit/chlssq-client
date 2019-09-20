@@ -16,15 +16,12 @@
   height: 40rpx;width: 100%;
 }
 .kmtext{height: 30%;width: 100%;font-size: 20rpx;text-align: center;}
-.ssq_name{
-  font-size: 38rpx;
-}
-.ssq_area{
-  font-size: 24rpx;color: rgb(7, 7, 7);margin-top: 14rpx;margin-left: 5rpx;
-}
-.swiper_txtctn {width: 100%;height: 80rpx;}
-.swiper_imgctn {width: 100%;height:320rpx;}
-.swiper_self {width:100%;height: 100%;}
+.ssq_name{ font-size: 38rpx; }
+.ssq_area{ font-size: 24rpx;color: rgb(7, 7, 7);margin-top: 14rpx;margin-left: 5rpx; }
+.swiper_txtctn {width: calc(100% - 16rpx);margin-left:4rpx;height: 70rpx;border: 4rpx dashed #f8c68d;margin-bottom: 5rpx;}
+.swiper_self_txt{width:calc(100% - 4rpx);margin-left:2rpx;height: calc(100% - 2rpx);margin-top: 2rpx;}
+.swiper_img_ctn {width: 100%;height:320rpx;}
+.swiper_self_img {width:100%;height: 100%;}
 .swiper_item {height: 100%;}
 .swiper_img_item {height: 100%;align-items: center;display: flex;flex-direction: column;}
 .swiper_img {width:100%;height: 100%;}

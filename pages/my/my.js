@@ -13,6 +13,7 @@ Page({
    * Page initial data
    */
   data: {
+    refreshing:false,
     v_time:"",
     v_avatarUrl:"",
     v_nickname:"",
@@ -239,6 +240,7 @@ Page({
       },
       success: res => {
         wx.hideLoading();
+        that.onPullDownCompleted();
         //console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
         if (res.data.iRet == 0) {
           if(res.data.data == null || res.data.data.length <= 0){
@@ -330,6 +332,7 @@ Page({
       },
       fail: res => {
         wx.hideLoading();
+        that.onPullDownCompleted();
         wx.showToast({
           title: '请检查网络链接！',
         })
@@ -381,6 +384,12 @@ Page({
       ssqnametext:_text
     })
   },
+
+  onPullDownCompleted: function () {
+    this.data.refreshing = false;
+    wx.stopPullDownRefresh();
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
@@ -432,7 +441,12 @@ Page({
    * Page event handler function--Called when user drop down
    */
   onPullDownRefresh: function () {
-
+    // console.log('-------onPullDownRefresh');
+    // 上拉刷新
+    if (!this.data.refreshing) {
+      this.data.refreshing = true;
+      this.getMyShopInfo();
+    }
   },
 
   /**
