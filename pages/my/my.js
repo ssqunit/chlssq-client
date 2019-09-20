@@ -241,10 +241,15 @@ Page({
       success: res => {
         wx.hideLoading();
         that.onPullDownCompleted();
-        //console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
+        console.log('---------getMyShopInfo, res = ' + JSON.stringify(res));
         if (res.data.iRet == 0) {
           if(res.data.data == null || res.data.data.length <= 0){
+            let time = util.formatTimeYMD(new Date());
+            let weekday = util.getWeekDay(new Date());
             that.setData({
+              v_time: time + " - " + weekday,
+              v_nickname: app.globalData.userInfo.nickName,
+              v_avatarUrl: app.globalData.userInfo.avatarUrl,
               myShopInfo: null
             })
           }else{

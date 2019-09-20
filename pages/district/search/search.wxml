@@ -42,7 +42,7 @@
     <text>附近社圈：</text>
     <view class="space_line"></view>
     <view class="fail_text" hidden="{{nearbyResNotNull}}">
-      <text>抱歉！附近10公里内没有发现社圈。</text>
+      <text>抱歉！附近没有发现社圈。</text>
     </view>
     <view class="list_ctn">
 

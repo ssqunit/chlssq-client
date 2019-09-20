@@ -58,6 +58,9 @@ Page({
         })
       },
       fail: function () {
+        if (!app.globalData.locationPermission){
+          common.tipPermissionLocation();
+        }
         that.setData({
           positions: null,
           markText: "未标记"

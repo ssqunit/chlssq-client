@@ -1,20 +1,20 @@
 <!--pages/district/join/join.wxml-->
 <view class="container">
-  <view class="name_info">
-    <image class="n_icon" mode="aspectFit" src="../../../static/icons/favorite_r.png"></image>
-    <text class="n_name">{{ssqInfo.name}} 社圈</text>
-    <text class="n_area">{{ssqInfo.area}}</text>
-    <text class="n_dis">距离：{{ssqInfo.distance}}km</text>
-    <!-- <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../static/custom/icons/icon_pos_b.png"></image> -->
-  </view>
-  <view class="photo_info">
-    <image class="p_img" mode="aaaspectFit" src="{{ssqInfo.imageUrl}}" data-src="{{ssqInfo.imageUrl}}" bindtap="previewImage"></image>
-    <view class="p_text">
-      <text>商家数量：{{ssqInfo.busCount}}</text>
-      <text>个人商家数量：{{ssqInfo.perCount}}</text>
-      <text>创建者：locky.lee</text>
+
+  <view class="ssqinfo_ctn">
+    <view class="ctn_img">
+      <image src="{{ssqInfo.imageUrl}}" data-src="{{ssqInfo.imageUrl}}" bindtap="previewImage"></image>
+    </view>
+    <view class="ctn_info">
+      <view class="info_name">
+        <image class="name_icon" mode="aspectFit" src="../../../static/icons/favorite_r.png"></image>
+        <text class="name_txt">{{ssqInfo.name}}</text>
+      </view>
+      <text class="info_area">{{ssqInfo.area}}</text>
+      <text class="info_dis">距离：{{ssqInfo.distance}}km</text>
     </view>
   </view>
+
   <van-toast id="van-toast" />
   <view class="contents_info">
     <text class="ctn_des">欢迎入驻,入驻方式说明：</text>

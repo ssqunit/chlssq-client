@@ -45,7 +45,7 @@ Page({
         'iself': 0
       },
       success: res => {
-        console.log('----------getMyShopInfo:'+JSON.stringify(res));
+        // console.log('----------getMyShopInfo:'+JSON.stringify(res));
         if (res.data.iRet == 0) {
           if (res.data.data == null || res.data.data.length <= 0) {
             that.data.shopInfo = null;
@@ -100,7 +100,7 @@ Page({
 
 
             //整理结束
-            console.log("-------shopInfo:"+JSON.stringify(_obj));
+            // console.log("-------shopInfo:"+JSON.stringify(_obj));
             that.setData({
               shopInfo: _obj
             })

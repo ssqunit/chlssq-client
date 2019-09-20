@@ -13,14 +13,15 @@
 </view>
 
 
-<view class="container">
-  
+<view class="container" hidden="{{myShopInfo==null?false:true}}">
   <!-- 未加入社圈 -->
-  <view class="null_info" hidden="{{myShopInfo==null?false:true}}">
+  <view class="null_info">
     <text>亲，您还不是商家哦！</text>
     <text>赶紧行动，入驻身边的社圈，成为商家，为社圈的福祉作出您的贡献！</text>
   </view>
+</view>
 
+<view class="container" hidden="{{myShopInfo==null?true:false}}">
   <!-- 商家信息展示 -->
   <view hidden="{{myShopInfo.type == 3 ? true : false}}">
     <view class="shop_name" hidden="{{myShopInfo==null?true:false}}">
@@ -130,7 +131,6 @@
     <image src='../../static/custom/icons/share_icon.png'></image>
     分享
   </button>
-
 </view>
 
 <view class='b_d'>
@@ -138,9 +138,9 @@
   <view class='b_n'></view>
 </view>
 
-<view class="container">
+<view class="container" hidden="{{myShopInfo==null?true:false}}">
   <!-- 产品详情 -->
-  <view class="products" hidden="{{myShopInfo==null?true:false}}">
+  <view class="products" >
     <view class="pro_info">
       <view class="pro_info_left">
         <text class="pro_title" decode="{{true}}">产品/项目列表：&nbsp;（{{proCount}}&nbsp;个产品）</text>

@@ -1,51 +1,16 @@
 /* pages/district/join/join.wxss */
-.container {
-  width: 100%;height: 100%;
-  display: flex;flex-direction: column;align-items: center;
-}
+.container {width: 100%;height: 100%;display: flex;flex-direction: column;align-items: center;overflow: hidden;}
 
-.name_info{
-  width: 100%;height: 70rpx;display: flex;flex-direction: row;align-items: center;
-}
-.name_info .n_icon{
-  height: 100%;width: 30rpx;padding-left: 10rpx;
-}
-.name_info .n_name{
-  font-size: 38rpx;padding-left: 10rpx;
-}
-.name_info .n_area{
-  font-size: 22rpx;padding-top: 18rpx;padding-left: 10rpx;
-}
-.name_info .n_dis{
-  font-size: 22rpx;padding-top: 18rpx;padding-left: 20rpx;
-}
-.name_info .n_pos{
-  width: 35rpx;height: 35rpx;padding-left: 10rpx;padding-top: 17rpx;
-  }
+.ssqinfo_ctn{width: calc(100% - 40rpx);margin-left: 10rpx;height: 220rpx;display: flex;flex-direction: row;margin-top: 20rpx;border: 1rpx solid sandybrown;border-radius: 10rpx;padding: 5rpx;}
+.ctn_img{width: calc(100% - 300rpx);height: 100%;}
+.ctn_img image{width: 100%;height: 100%;border-radius: 10rpx;}
+.ctn_info{width: 300rpx;height: 100%;display: flex;flex-direction: column;padding-left: 10rpx;}
+.info_name{font-size: 36rpx;display: flex;flex-direction: row;align-items: center;}
+.name_icon{width: 30rpx;height: 30rpx;}
+.info_area{font-size: 24rpx;margin-top: 10rpx;}
+.info_dis{font-size: 24rpx;margin-top: 10rpx;}
 
-.photo_info{
-  width: 100%;height: 240rpx;display: flex;flex-direction: row;align-items: center;
-  background-color: rgb(233, 233, 231);
-}
-.photo_info .p_img{
-  width: calc(100% - 260rpx);height: calc(100% - 20rpx); margin: 10rpx;
-}
-.photo_info .p_text{
-  width: 260rpx; font-size: 22rpx;display: flex;flex-direction: column;
-}
-.photo_info .p_changebtn{
-  color: gray;text-decoration-line: underline;margin-top: 15rpx;
-}
-.photo_info .p_joinbtn{
-  width: 60%;height: 50rpx;font-size:30rpx;padding-top: 5rpx;
-  border: 1rpx solid gainsboro;border-radius: 5rpx;
-  text-align: center;margin-top: 15rpx;margin-right: 39%;background-color: white;
-}
-
-.contents_info{
-  width:100%;height: auto;
-  display: flex;flex-direction: column;
-}
-.contents_info .ctn_des{
-  width: 100%;font-size: 26rpx;padding-left: 10rpx;margin-top: 5rpx;color: gray;
-}
+.contents_info{width: calc(100% - 40rpx);margin-left: 10rpx;height: auto;display: flex;flex-direction: column;}
+.contents_info .ctn_des{width: 100%;font-size: 26rpx;padding-left: 10rpx;margin-top: 10rpx;color: gray;}
+.contents_info .ctn_btns{width: 100%;height: auto;margin-top: 50rpx;}
+.contents_info button{margin-top: 10rpx;}

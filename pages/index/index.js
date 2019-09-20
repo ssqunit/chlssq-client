@@ -34,7 +34,6 @@ Page({
   },
 
   onLoad: function(options) {
-    
     Toast.loading({
       mask: true,
       message: '加载中...'
@@ -46,6 +45,7 @@ Page({
     let that = this;
     wx.getUserInfo({
       success: function (res) {
+        console.log('--------wx.getUserInfo : res = ' + JSON.stringify(res));
         that.data.userInfo.nickName = res.userInfo.nickName;
         that.data.userInfo.gender = res.userInfo.gender;
         that.data.userInfo.language = res.userInfo.language;
@@ -154,6 +154,7 @@ Page({
 
   //更新用户信息给服务器
   updateInfo2Svr: function () {
+    let that = this;
     common.request({
       method:"POST",
       url: common.BASE_URL + '?function=updateUserInfo&session_id=' + this.data.userInfo.session_id,
@@ -168,7 +169,7 @@ Page({
       },
       success: res => {
         // console.log("----------updateUserInfo:res=" + JSON.stringify(res));
-        this.getMyPosition();
+        that.getMyPosition();
       },
       fail: res => {
         // console.log("----------- updateUserInfo:" + JSON.stringify(res));
@@ -210,7 +211,9 @@ Page({
       },
       fail: function () {
         Toast.fail("获取位置信息失败！");
-        //that.getNearbySsqDetail(0, 0);
+        app.globalData.myLocation.latitude = 0;
+        app.globalData.myLocation.longitude = 0;
+        that.getNearbySsqDetail(0, 0);
       }
     })
   },

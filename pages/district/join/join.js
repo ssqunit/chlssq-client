@@ -95,6 +95,7 @@ Page({
           "ssqid": ssqid
         },
         success: res => {
+          console.log('-----------getSsqInfo4JoinPage, res = ' + JSON.stringify(res));
           if (res.data.iRet == 0) {
             var resList = res.data.data;
             if (resList && resList.length > 0) {

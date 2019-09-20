@@ -273,6 +273,42 @@ function getProductFlagName(id){
   return name;
 }
 
+function applyLocationPermission(callback){
+  wx.getSetting({
+    success(res) {
+      if (!res.authSetting['scope.userLocation']) {
+        wx.authorize({
+          scope: 'scope.userLocation',
+          success() {
+            // 用户已经同意小程序使用
+            if(callback){
+              callback("success");
+            }
+          },
+          fail(){
+            if (callback) {
+              callback("fail");
+            }
+          }
+        })
+      }else{
+        if (callback) {
+          callback("success");
+        }
+      }
+    }
+  })
+}
+
+function tipPermissionLocation(){
+  wx.showModal({
+    title: '提示',
+    content: "用户位置信息授权失败 或 未授权！请点开小程序设置页面授权！路径：右上角'...' -> '关于社区商业圈'->右上角'...'->'设置' ",
+    showCancel: false,
+    success(res) {
+    }
+  })
+}
 
 module.exports.APP_ID = WX_APP_ID;
 module.exports.API_KEY = WX_API_KEY;
@@ -292,3 +328,5 @@ module.exports.randomString = randomString;
 module.exports.log = log;
 module.exports.getImgUrl = getImgUrl;
 module.exports.getProductFlagName = getProductFlagName;
+module.exports.applyLocationPermission = applyLocationPermission;
+module.exports.tipPermissionLocation = tipPermissionLocation;

@@ -1,20 +1,20 @@
 <!--pages/district/join/business/business.wxml-->
 <view class="container">
-  <view class="name_info">
-    <image class="n_icon" mode="aspectFit" src="../../../../static/icons/favorite_r.png"></image>
-    <text class="n_name">{{ssqInfo.name}} 社圈</text>
-    <text class="n_area">{{ssqInfo.area}}</text>
-    <text class="n_dis">距离：{{ssqInfo.distance}}km</text>
-    <image class="n_pos" mode="aspectFit" bindtap="openPosition" src="../../../../static/custom/icons/icon_pos_b.png"></image>
-  </view>
-  <view class="photo_info">
-    <image class="p_img" mode="aaaspectFit" src="{{ssqInfo.photo}}"></image>
-    <view class="p_text">
-      <text>商家数量：{{ssqInfo.busCount}}</text>
-      <text>个人商家数量：{{ssqInfo.perCount}}</text>
-      <text>创建者：locky.lee</text>
+
+  <view class="ssqinfo_ctn">
+    <view class="ctn_img">
+      <image src="{{ssqInfo.photo}}" data-src="{{ssqInfo.photo}}" bindtap="previewImage"></image>
+    </view>
+    <view class="ctn_info">
+      <view class="info_name">
+        <image class="name_icon" mode="aspectFit" src="../../../../static/icons/favorite_r.png"></image>
+        <text class="name_txt">{{ssqInfo.name}}</text>
+      </view>
+      <text class="info_area">{{ssqInfo.area}}</text>
+      <text class="info_dis">距离：{{ssqInfo.distance}}km</text>
     </view>
   </view>
+
   <view class="contents_info">
     <text class="ctn_way">入驻方式：商家入驻</text>
     <view class="ctn_info">
@@ -25,26 +25,22 @@
           <text class="info_tag">商家名字：</text>
           <input value="{{shopname}}" maxlength="12" type="text" bindinput="onNameInfo" placeholder="请输入商家名字"></input>
         </view>
-        <view class="line_space"></view>
         <view class="info_item" hidden="{{show}}">
           <text class="info_star">*</text>
           <text class="info_tag">经营信息：</text>
           <textarea value="{{shopOpText}}" maxlength="80" type="text" bindinput="onOpTextInfo" placeholder="请输入个人经营的相关信息"></textarea>
         </view>
-        <view class="line_space"></view>
         <view class="info_item">
           <text class="info_star">*</text>
           <text class="info_tag">选择类别：</text>
           <text>{{opType.name}}</text>
           <text class="clickText" bindtap="selectOpType">选择</text>
         </view>
-        <view class="line_space"></view>
         <view class="info_item" hidden="{{show}}">
           <text class="info_star">*</text>
           <text class="info_tag">商家地址：</text>
           <textarea value="{{addrText}}" maxlength="50" type="text" bindinput="onAddrInfo" placeholder="请输地址信息"></textarea>
         </view>
-        <view class="line_space"></view>
         <view class="info_item">
           <text class="info_star">*</text>
           <text class="info_tag">商家联系：</text>
@@ -61,20 +57,23 @@
         <!-- <text>或</text>
         <text class="uploadtxt" bindtap="getCurPosition">使用当前位置</text> -->
       </view>
-      <view class="line_space"></view>
 
+      <view class="line_space"></view>
       <view class="info_imginfo">
         <text class="info_star">*</text>
         <text>请上传商家形象图：</text>
         <text class="uploadtxt" bindtap="uploadImg1">上传</text>
       </view>
       <image class="myimg" src="{{upload_img1}}" mode="aspectFit"></image>
+
+      <view class="line_space"></view>
       <view class="info_imginfo">
         <text class="info_star">*</text>
         <text>请上传商家营业执照：</text>
         <text class="uploadtxt" bindtap="uploadImg2">上传</text>
       </view>
       <image class="myimg" src="{{upload_img2}}" mode="aspectFit"></image>
+      
     </view>
   </view>
   <checkbox-group bindchange="checkboxChange">

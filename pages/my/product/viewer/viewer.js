@@ -237,6 +237,7 @@ Page({
 
 
   sendRequest: function (productid) {
+    // console.log('-------sendRequest, productid = ' + productid);
     var that = this;
     wx.showLoading({
       title: '请稍后...',
@@ -252,7 +253,7 @@ Page({
         'productid': productid
       },
       success: res => {
-        //  console.log("--------getProductDetail:" + JSON.stringify(res));
+        // console.log("--------getProductDetail:" + JSON.stringify(res));
         if (res.data.iRet == 0) {
           var _info = res.data.data;
           
