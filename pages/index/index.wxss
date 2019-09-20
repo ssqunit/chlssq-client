@@ -10,20 +10,33 @@
 .search_clearn_ctn{width: 30rpx;height: 100%;margin: 0 10rpx;display: flex;flex-direction: row;align-items: center;}
 .search_clearn{width: 20rpx;height: 20rpx;}
 
+.ssq_info{width: 100%;height: 88rpx;display: flex;flex-direction: row;align-items: center;background-color: #cf6f00;}
+.km_info{width: 88rpx;height: auto;display: flex;flex-direction: column;align-items: center;}
+.km_info image{width: 40rpx;height: 40rpx;}
+.km_info text{font-size: 20rpx;color: white;}
+.name_info{width: calc(100% - 230rpx);height: auto;color: white;}
+.name_info .name{font-size: 36rpx;}
+.name_info .area{font-size: 24rpx;}
+.v_line{width: 4rpx;height: 40rpx;background-color: white;margin-left: 5rpx; margin-right: 5rpx;}
+.join_btn{font-size: 26rpx;margin-left: 10rpx;color: white;}
+
 
 .s_btn{width: 140rpx;}
-.kmicon{
-  height: 40rpx;width: 100%;
-}
+.kmicon{height: 40rpx;width: 100%;}
 .kmtext{height: 30%;width: 100%;font-size: 20rpx;text-align: center;}
 .ssq_name{ font-size: 38rpx; }
 .ssq_area{ font-size: 24rpx;color: rgb(7, 7, 7);margin-top: 14rpx;margin-left: 5rpx; }
-.swiper_txtctn {width: calc(100% - 16rpx);margin-left:4rpx;height: 70rpx;border: 4rpx dashed #f8c68d;margin-bottom: 5rpx;}
+
+.swiper_txtctn {width: 96%;margin-left:2%;height: 70rpx;border: 4rpx dashed #f8c68d;margin-bottom: 5rpx;margin-top: 15rpx;}
 .swiper_self_txt{width:calc(100% - 4rpx);margin-left:2rpx;height: calc(100% - 2rpx);margin-top: 2rpx;}
-.swiper_img_ctn {width: 100%;height:320rpx;}
-.swiper_self_img {width:100%;height: 100%;}
+
+.m_t{width: 100%;height: 200rpx;background-color: #cf6f00;border-bottom-left-radius: 50%;border-bottom-right-radius: 50%;}
+.swiper_img_ctn {width: 96%;margin-left:2%;height:320rpx;margin-top: -200rpx;border-radius: 10rpx;overflow: hidden;}
+.swiper_self_img {width:100%;height: 100%;border-radius: 10rpx;overflow: hidden;}
 .swiper_item {height: 100%;}
-.swiper_img_item {height: 100%;align-items: center;display: flex;flex-direction: column;}
-.swiper_img {width:100%;height: 100%;}
-.swiper_img_txtbg{width: 100%;height: 100rpx;background-color: black;opacity: 0.3;position: absolute;margin-top: 220rpx;}
+.swiper_img_item {height: 100%;align-items: center;display: flex;flex-direction: column;border-radius: 10rpx;}
+.swiper_img {width:100%;height: 100%;border-radius: 10rpx;}
+.swiper_img_txtbg{width: 100%;height: 100rpx;background-color: black;opacity: 0.3;position: absolute;margin-top: 220rpx;border-bottom-left-radius: 10rpx;border-bottom-right-radius: 10rpx;}
 .swiper_img_txt{width: 100%;height: 100rpx;color:white;position: absolute;margin-top: 220rpx;font-size: 24rpx;}
+
+.shops_ctn{margin-bottom: 100rpx;}

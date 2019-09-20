@@ -6,7 +6,7 @@
     <view class="tbar_search">
       <image class="search_icon" mode="aspectFit" src="../../static/icons/search_b.png"></image>
       <view class="input_ctn">
-        <input value="{{ searchKeyword }}" placeholder="请输入搜索关键字" bindinput="doSearchChange"></input>
+        <input value="{{ searchKeyword }}" placeholder="请输入社商圈名字" bindinput="doSearchChange"></input>
       </view>
       <view class="search_clearn_ctn">
         <image hidden="{{searchKeyword == '' ? true : false }}" class="search_clearn" mode="aspectFit" src="../../static/custom/icons/icon_clear.png" bindtap="onClearSearch"></image>
@@ -23,53 +23,54 @@
     </view>
   </view>
 
-  <!-- 当前坐标  -->
-  <view class="flex-row center van-hairline--top" style="height:90rpx!important;">
-    <view class="expand flex-column" bindtap="openPosition">
-      <image class="kmicon" src="../../static/custom/icons/icon_pos_b.png" mode="aspectFit"></image>
-      <text class="kmtext">{{kmtext}}</text>
+  <!-- 社圈名字信息  -->
+  <view class="ssq_info">
+    <view class="km_info"  bindtap="openPosition">
+      <image src="../../static/custom/icons/icon_pos_w.png" mode="aspectFit"></image>
+      <text>{{kmtext}}</text>
     </view>
-    <view class="expand flex-row" bindtap="goSsqInfo" data-tab="0">
-      <text class="ssq_name">{{ssqInfo.name}}</text>
-      <text class="ssq_area">({{ssqInfo.area}})</text>
+    <view class="name_info" bindtap="goSsqInfo" data-tab="0">
+      <text class="name">{{ssqInfo.name}}</text>
+      <text class="area">({{ssqInfo.area}})</text>
     </view>
+    <view class="v_line" hidden="{{hideJoinBtn}}"></view>
     <view hidden="{{hideJoinBtn}}">
-      <van-button bindtap="goJoin">马上加入</van-button>
+      <text class="join_btn" bindtap="goJoin">马上加入</text>
     </view>
   </view>
 
-  <!-- Post广告区域 -->
-  <view>
-    <view class="swiper_txtctn">
-      <swiper class="swiper_self_txt" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
-        <block wx:for="{{textADInfo}}" wx:for-index="index">
-          <swiper-item class="swiper_item" bindtap="onSwiperAD" data-pid="{{item.productid}}">
-            <van-notice-bar left-icon="volume-o" color="orange" text="{{item.adtext}}" />
-            <!-- <view class='swiper_text' mode='aspectFill'>"{{item.text}}"</view> -->
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+
+  <view class="m_t"></view>
+  <!-- 大图广告区域 -->
+  <view class="swiper_img_ctn">
+    <swiper class="swiper_self_img" autoplay='true' interval='5000' duration='1000' circular='true'>
+      <block wx:for="{{imgADInfo}}" wx:for-index="index">
+        <swiper-item class="swiper_img_item"  bindtap="onSwiperAD" data-pid="{{item.productid}}">
+          <image src='{{item.img}}' class='swiper_img' mode='aaaaspectFit'></image>
+          <view class="swiper_img_txtbg" hidden="{{item.adtext==''?true:false}}"></view>
+          <text class="swiper_img_txt" hidden="{{item.adtext==''?true:false}}">{{item.adtext}}</text>
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
-  <view>
-    <view class="swiper_img_ctn">
-      <swiper class="swiper_self_img" autoplay='true' interval='5000' duration='1000' circular='true'>
-        <block wx:for="{{imgADInfo}}" wx:for-index="index">
-          <swiper-item class="swiper_img_item"  bindtap="onSwiperAD" data-pid="{{item.productid}}">
-            <image src='{{item.img}}' class='swiper_img' mode='aaaaspectFit'></image>
-            <view class="swiper_img_txtbg" hidden="{{item.adtext==''?true:false}}"></view>
-            <text class="swiper_img_txt" hidden="{{item.adtext==''?true:false}}">{{item.adtext}}</text>
-          </swiper-item>
-        </block>
-      </swiper>
-    </view>
+
+  <!-- 文字广告区域 -->
+  <view class="swiper_txtctn">
+    <swiper class="swiper_self_txt" autoplay='true' vertical="true" interval='4000' duration='500' circular='true'>
+      <block wx:for="{{textADInfo}}" wx:for-index="index">
+        <swiper-item class="swiper_item" bindtap="onSwiperAD" data-pid="{{item.productid}}">
+          <van-notice-bar left-icon="volume-o" color="orange" text="{{item.adtext}}" />
+          <!-- <view class='swiper_text' mode='aspectFill'>"{{item.text}}"</view> -->
+        </swiper-item>
+      </block>
+    </swiper>
   </view>
 
   <!-- 所在商圈的列表 -->
   <van-dialog id="van-dialog" />
   <van-toast id="van-toast" />
-  <view>
-    <view>
+  <view class="shops_ctn">
+    <view class="ctn_shop">
       <van-nav-bar right-text="更多>>" bind:click-right="goSsqInfo"  data-tab="0">
         <text slot="left">本圈商家</text>
       </van-nav-bar>
@@ -83,7 +84,7 @@
 
     </view>
 
-    <view>
+    <view class="ctn_person">
       <van-nav-bar right-text="更多>>" bind:click-right="goSsqInfo"  data-tab="1">
         <text slot="left">本圈个人</text>
       </van-nav-bar>
@@ -95,6 +96,8 @@
         </block>
       </van-row>
     </view>
+
+    <view style="width:100%;height:100rpx;"></view>
 
   </view>
 
