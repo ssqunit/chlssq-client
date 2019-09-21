@@ -104,6 +104,7 @@ Page({
     }
     this.data.hasSendLogin = true;
     var that = this;
+    console.log("------------- sendLogin --------");
     common.request({
       method: "GET",
       url: common.BASE_URL,
@@ -117,43 +118,53 @@ Page({
           that.data.userInfo.session_id = res.data.data.session_id;
           app.globalData.userInfo = that.data.userInfo;
 
-          common.request({
-            method: "GET",
-            url:common.BASE_URL,
-            data:{
-              "function": "getUserInfo",
-              'session_id': that.data.userInfo.session_id
-            },
-            success: res => {
-              // console.log("----------getUserInfo:res="+JSON.stringify(res));
-              if(res.data.iRet == 0){
-                that.data.userInfo.actLimit = res.data.data.platInfo.act_limit;
-                that.data.userInfo.ssqLimit = res.data.data.platInfo.ssq_limit;
-                that.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
-                app.globalData.userInfo = that.data.userInfo;
-                
-              }else{
-                Toast("Get user info fail:"+res.data.sMsg);
-              }
-              that.updateInfo2Svr();
-              that.requestNotice();
-            },
-            fail: res => {
-              Toast.fail(res.errMsg);
-            }
-          })
+          that.getUserInfo();
         } else {
-          Toast.fail('登录失败，请重试');
+          Toast.fail('登录失败，请重试:'+res.data.sMsg);
+          that.onPullDownCompleted();
         }
       },//success
       fail: res => {
         Toast.fail(res.errMsg);
+        that.onPullDownCompleted();
       },//fail
     })//common.request
   },
 
+  getUserInfo: function() {
+    let that = this;
+    console.log("------------- getUserInfo --------");
+    common.request({
+      method: "GET",
+      url: common.BASE_URL,
+      data: {
+        "function": "getUserInfo",
+        'session_id': that.data.userInfo.session_id
+      },
+      success: res => {
+        // console.log("----------getUserInfo:res="+JSON.stringify(res));
+        if (res.data.iRet == 0) {
+          that.data.userInfo.actLimit = res.data.data.platInfo.act_limit;
+          that.data.userInfo.ssqLimit = res.data.data.platInfo.ssq_limit;
+          that.data.userInfo.mySsqInfo = res.data.data.mySsqInfo;
+          app.globalData.userInfo = that.data.userInfo;
+
+        } else {
+          Toast("Get user info fail:" + res.data.sMsg);
+        }
+        that.updateInfo2Svr();
+        that.requestNotice();
+      },
+      fail: res => {
+        Toast.fail(res.errMsg);
+        that.onPullDownCompleted();
+      }
+    })
+  },
+
   //更新用户信息给服务器
   updateInfo2Svr: function () {
+    console.log("------------- updateInfo2Svr --------");
     let that = this;
     common.request({
       method:"POST",
@@ -172,6 +183,7 @@ Page({
         that.getMyPosition();
       },
       fail: res => {
+        that.onPullDownCompleted();
         // console.log("----------- updateUserInfo:" + JSON.stringify(res));
       }
     });
@@ -220,6 +232,7 @@ Page({
 
   //获取首页商圈信息
   getNearbySsqDetail: function(latitude,longitude){
+    console.log("------------- getNearbySsqDetail --------");
     var that = this;
     common.request({
       method: "GET",
@@ -485,7 +498,10 @@ Page({
     // 上拉刷新
     if (!this.data.refreshing) {
       this.data.refreshing = true;
-      this.getMyPosition();
+      // this.data.hasSendLogin = false;
+      // this.myLogin();
+      this.getUserInfo();
+      //this.getMyPosition();
     }
   },
 
