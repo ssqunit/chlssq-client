@@ -63,6 +63,16 @@
   </view>
   <view class="space_line" hidden="{{shopInfo.type == 3 ? true : false}}"></view>
 
+  <view class="swiper_bg_ctn" hidden="{{shopInfo.type == 3 ? true : false}}">
+    <view class="bg_left">
+      <view class="left_d"></view>
+    </view>
+    <view class="bg_center"></view>
+    <view class="bg_right">
+      <view class="right_d"></view>
+    </view>
+  </view>
+
   <!-- 产品SWIPER -->
   <view class="swiper_imgctn" hidden="{{shopInfo.type == 3 ? true : false}}">
     <swiper class="fullwh" autoplay='true' interval='3000' duration='500' circular='true' indicator-dots="true">

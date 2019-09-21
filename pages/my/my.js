@@ -87,6 +87,7 @@ Page({
   onSell: function (e) {
     var productid = e.detail.id;
     var onsell = e.detail.onsell;
+    // console.log('-------- onSell: productid = ' + productid + ", onsell = " + onsell);
     var that = this;
     wx.showLoading({ title: '请稍后......' })
     common.request({
@@ -99,6 +100,7 @@ Page({
         'onsell': onsell
       },
       success: res => {
+        // console.log('-------- setOnSell: res = ' + JSON.stringify(res));
         wx.hideLoading();
         if (res.data.iRet == 0) {
           if (e.detail.callback) {
