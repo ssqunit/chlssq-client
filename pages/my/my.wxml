@@ -26,7 +26,7 @@
   <view hidden="{{myShopInfo.type == 3 ? true : false}}">
     <view class="shop_name" hidden="{{myShopInfo==null?true:false}}">
       <view class="name_img">
-        <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage"></image>
+        <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage" mode="aspectFill"></image>
       </view>
       <view class="name_name">
         <text class="name_value">{{myShopInfo.name}}</text>
@@ -88,7 +88,7 @@
   <!-- 个人商家信息展示 -->
   <view class="person_ctn"  hidden="{{myShopInfo.type == 3 ? false : true}}">
     <view class="p_left">
-      <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage" mode="aspectFit"></image>
+      <image src="{{myShopInfo.ssqImgUrl}}" data-src="{{myShopInfo.ssqImgUrl}}" bindtap="previewImage" mode="aspectFill"></image>
     </view>
     <view class="p_right">
       <text class="p_name">{{myShopInfo.name}}</text>

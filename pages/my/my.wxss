@@ -60,8 +60,8 @@
 .tagsctn{display: flex;flex-direction: row;}
 
 .person_ctn{width: 100%;height: auto;display: flex;flex-direction: row;margin-top: 15rpx;margin-bottom: 15rpx;}
-.p_left{width: 280rpx;height: 500rpx;border: 1rpx solid sandybrown;border-radius: 10rpx;}
-.p_left image{width: 98%;height: 98%;margin: 1%;}
+.p_left{width: 280rpx;height: 500rpx;border: 1rpx solid sandybrown;border-radius: 10rpx;overflow: hidden;}
+.p_left image{width: 98%;height: 98%;margin: 1%;border-radius: 10rpx;}
 .p_right{width: calc(100% - 280rpx);height: auto;display: flex;flex-direction: column;}
 .p_name{font-size: 40rpx;width: 96%;margin-left:2%}
 .p_ssq{font-size: 20rpx;width: 96%;margin-left: 2%;}
