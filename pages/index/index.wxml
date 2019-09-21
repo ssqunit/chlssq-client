@@ -43,7 +43,7 @@
   <view class="m_t"></view>
   <!-- 大图广告区域 -->
   <view class="swiper_img_ctn">
-    <swiper class="swiper_self_img" autoplay='true' interval='5000' duration='1000' circular='true'>
+    <swiper class="swiper_self_img" autoplay='true' interval='5000' duration='500' circular='true'>
       <block wx:for="{{imgADInfo}}" wx:for-index="index">
         <swiper-item class="swiper_img_item"  bindtap="onSwiperAD" data-pid="{{item.productid}}">
           <image src='{{item.img}}' class='swiper_img' mode='aaaaspectFit'></image>
