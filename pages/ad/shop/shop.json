@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "van-row": "/components/vant/row/index",
-    "van-col": "/components/vant/col/index",
-    "ssq-logo": "/components/ssq/logo/index",
-    "van-toast": "/components/vant/toast/index",
-    "van-dialog": "/components/vant/dialog/index"
-  }
-}

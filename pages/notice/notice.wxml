@@ -1,5 +1,0 @@
-<!--pages/notice/notice.wxml-->
-<view class="container">
-  <van-dialog id="van-dialog" />
-
-</view>

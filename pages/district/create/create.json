@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "van-area": "/components/vant/area/index",
-    "van-popup": "/components/vant/popup/index"
-  },
-  "navigationBarTitleText": "新建社圈"
-}

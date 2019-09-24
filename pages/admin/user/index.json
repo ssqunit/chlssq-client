@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "van-search": "/components/vant/search/index",
-    "ssq-admin-user-item": "/components/ssq/admin-user-item/index"
-  },
-  "navigationBarTitleText": "用户管理"
-}

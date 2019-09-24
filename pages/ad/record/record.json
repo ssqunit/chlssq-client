@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "ssq-adrecord-item":"/components/ssq/adrecord-item/index",
-    "van-datetime-picker": "/components/vant/datetime-picker/index",
-    "van-popup": "/components/vant/popup/index"
-  }
-}

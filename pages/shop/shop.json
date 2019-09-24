@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "ssq-product-my": "/components/ssq/product-item-my/index"
-  },
-  "navigationBarTitleText": "商家主页"
-}

@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "ssq-msg-item": "/components/ssq/msgitem/index",
-    "van-dialog": "/components/vant/dialog/index"
-  },
-  "navigationBarTitleText": "消息",
-  "enablePullDownRefresh": true
-}
