@@ -1,7 +1,0 @@
-/* components/ssq/v-shop-tabs/index.wxss */
-.main_ctn{width: 100%;height: auto;display: flex;flex-direction: row;margin-top: 5rpx;}
-.ctn_tabs{width: 120rpx;height: 800rpx;display: flex;flex-direction: column;border-right: 1rpx solid rgb(226, 226, 226);}
-.ctn_tab{width: 120rpx;height: 60rpx;border-bottom:1rpx solid rgb(226, 226, 226);display: flex;flex-direction: column;align-items: center;}
-.ctn_tab text{width: 120rpx; height: auto;font-size: 24rpx;text-align: center;margin-top: 10rpx;}
-.ctn_page{width: calc(100% - 125rpx);height: 800rpx;}
-.ctn_page scroll-view{width: 100%;height: auto;}

@@ -1,9 +1,0 @@
-<!--components/ssq/msgitem/index.wxml-->
-
-<van-panel title="{{ctitle}}" desc="{{cdate}}" status="{{cstatus==1?'':'未读'}}">
-  <view class="msg_content" hidden="{{isClip}}">{{ccontent}}</view>
-  <view class="msg_act">
-    <text class="msg_sum" hidden="{{!isClip}}">{{ccontent}}</text>
-    <text class="msg_btn" bindtap="onClip" data-id="{{cid}}">{{actText}}</text>
-  </view>
-</van-panel>

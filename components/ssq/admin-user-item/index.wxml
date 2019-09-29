@@ -1,8 +1,0 @@
-<!--components/ssq/admin-user-item/index.wxml-->
-<view class="list_item">
-  <text>{{user.nickname}}</text>
-  <van-radio-group value="{{ radio }}" bind:change="onChangeData" data-openid="{{user.openid}}">
-    <van-radio name="1">黑名单</van-radio>
-    <van-radio name="0">白名单</van-radio>
-  </van-radio-group>
-</view>

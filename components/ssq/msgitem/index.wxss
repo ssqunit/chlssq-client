@@ -1,5 +1,0 @@
-/* components/ssq/msgitem/index.wxss */
-.msg_content{width: calc(100% - 60rpx);padding-left: 30rpx;font-size: 28rpx;}
-.msg_act{width: 100%;padding-left: 30rpx;font-size: 28rpx;display: flex;flex-direction: row;height: 45rpx;}
-.msg_btn{width:120rpx;height: 100%;color: blue;text-decoration-line: underline;}
-.msg_sum{width: calc(100% - 150rpx);height: 100%;}
